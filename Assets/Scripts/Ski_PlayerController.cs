@@ -9,6 +9,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public float driftFactorSlippy = 1f;
     public float maxStickyVelocity = 2.5f;
     public float minStickyVelocity = 1.5f;
+    public float coneringLossVelocity = 1.0f;
 
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -18,17 +19,38 @@ public class Ski_PlayerController : MonoBehaviour {
         if (RightVelocity().magnitude > maxStickyVelocity) {
             driftFactor = driftFactorSlippy;
         }
+        rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
+        //회전력
+        rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
+        //Debug.Log(transform.eulerAngles.z);
+        //rb.freezeRotation = true;
+        Debug.Log(transform.eulerAngles);
+        if(transform.eulerAngles.z > 270) {
+            if(rb.angularVelocity == 0) {
+                rb.constraints = RigidbodyConstraints2D.None;
+                transform.eulerAngles = new Vector3(0, 0, 269.5f);
+            }
+            else {
+                rb.freezeRotation = true;
+            }
+        }
 
-        if (Input.GetKey(KeyCode.W)) {
+        if(transform.eulerAngles.z < 90) {
+            if (rb.angularVelocity == 0) {
+                rb.constraints = RigidbodyConstraints2D.None;
+                transform.eulerAngles = new Vector3(0, 0, 91.5f);
+            } else {
+                rb.freezeRotation = true;
+            }
+        }
+
+        if (rb.angularVelocity != 0) {
+            var val = transform.up * speedForce / rb.angularVelocity * coneringLossVelocity;
+            rb.AddForce(val);
+        }
+        else {
             rb.AddForce(transform.up * speedForce);
         }
-        rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
-
-        //rb.AddTorque(Input.GetAxis("Horizontal") * torqueForce);
-        rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
-
-        //Debug.Log("Rig Vel : " + rb.velocity);
-
         checkPlayerPos();
     }
 

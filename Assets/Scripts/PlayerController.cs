@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         float driftFactor = driftFactorSticky;
-        //Debug.Log(RightVelocity().magnitude);
+        Debug.Log(RightVelocity().magnitude);
         if(RightVelocity().magnitude > maxStickyVelocity) {
             driftFactor = driftFactorSlippy;
         }
