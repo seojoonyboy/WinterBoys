@@ -19,7 +19,7 @@ public class Ski_PlayerController : MonoBehaviour {
         if (RightVelocity().magnitude > maxStickyVelocity) {
             driftFactor = driftFactorSlippy;
         }
-        //rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
+        rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
 
         //회전속도
         rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
@@ -50,13 +50,14 @@ public class Ski_PlayerController : MonoBehaviour {
         //커브한 정도에 따라 감속
         //...
         //...
-
-
-        Debug.Log(rb.angularVelocity);
-        if (rb.angularVelocity != 0) {
-            var val = transform.up * speedForce / rb.angularVelocity * coneringLossVelocity;
+        //Debug.Log(Vector3.Angle(transform.up, -Vector3.up));
+        float angle = Vector3.Angle(transform.up, -Vector3.up);
+        if (angle >= 30.0f) {
+            var val = Vector3.down * (angle / 1000.0f);
             rb.AddForce(val);
-        } else {
+            Debug.Log(rb.velocity);
+        }
+        else {
             rb.AddForce(transform.up * speedForce);
         }
         checkPlayerPos();
@@ -69,7 +70,7 @@ public class Ski_PlayerController : MonoBehaviour {
     
     //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
     Vector2 RightVelocity() {
-        return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right * 2);
+        return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right);
     }
 
     void checkPlayerPos() {
