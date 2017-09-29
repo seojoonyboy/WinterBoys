@@ -52,10 +52,18 @@ public class Ski_PlayerController : MonoBehaviour {
         //...
         //Debug.Log(Vector3.Angle(transform.up, -Vector3.up));
         float angle = Vector3.Angle(transform.up, -Vector3.up);
-        if (angle >= 30.0f) {
-            var val = Vector3.down * (angle / 1000.0f);
+        if (angle >= 80.0f) {
+            //Debug.Log(transform.up.x);
+            Vector3 val;
+            if (transform.up.x < 0) {
+                val = new Vector3(-1, 1, 0) * (angle / 150.0f);
+            }
+            else {
+                val = new Vector3(-1, 1, 0) * -1 * (angle / 150.0f);
+            }
             rb.AddForce(val);
-            Debug.Log(rb.velocity);
+
+            Debug.Log(angle);
         }
         else {
             rb.AddForce(transform.up * speedForce);
