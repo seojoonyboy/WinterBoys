@@ -57,10 +57,10 @@ public class Ski_PlayerController : MonoBehaviour {
             //Debug.Log(transform.up.x);
             Vector3 val;
             if (transform.up.x < 0) {
-                val = new Vector3(-1, 1, 0) * (angle / 150.0f);
+                val = new Vector3(-1, 0.6f, 0) * (angle / 150.0f);
             }
             else {
-                val = new Vector3(1, 1, 0) * (angle / 150.0f);
+                val = new Vector3(1, 0.6f, 0) * (angle / 150.0f);
             }
             rb.AddForce(val);
         }
