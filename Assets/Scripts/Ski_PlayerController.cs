@@ -76,7 +76,7 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     Vector3 __ForwardVelocity() {
-        return transform.up * Vector3.Dot(-Vector3.up, transform.up);
+        return transform.up * Vector3.Dot(-Vector3.up, transform.up * 0.7f);
     }
     
     //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
