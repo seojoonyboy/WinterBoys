@@ -24,22 +24,22 @@ public class Ski_PlayerController : MonoBehaviour {
 
         //회전속도
         rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
-
+        Debug.Log(transform.eulerAngles.z);
         //최대회전 각도 지정 (우측)
-        if (transform.eulerAngles.z > 270) {
+        if (transform.eulerAngles.z > 260) {
             if (rb.angularVelocity == 0) {
                 rb.constraints = RigidbodyConstraints2D.None;
-                transform.eulerAngles = new Vector3(0, 0, 269.5f);
+                transform.eulerAngles = new Vector3(0, 0, 259.5f);
             } else {
                 rb.freezeRotation = true;
             }
         }
 
         //최대회전 각도 지정 (좌측)
-        if (transform.eulerAngles.z < 90) {
+        if (transform.eulerAngles.z < 100) {
             if (rb.angularVelocity == 0) {
                 rb.constraints = RigidbodyConstraints2D.None;
-                transform.eulerAngles = new Vector3(0, 0, 91.5f);
+                transform.eulerAngles = new Vector3(0, 0, 100.5f);
             } else {
                 rb.freezeRotation = true;
             }
@@ -60,14 +60,12 @@ public class Ski_PlayerController : MonoBehaviour {
                 val = new Vector3(-1, 1, 0) * (angle / 150.0f);
             }
             else {
-                val = new Vector3(-1, 1, 0) * -1 * (angle / 150.0f);
+                val = new Vector3(1, 1, 0) * (angle / 150.0f);
             }
             rb.AddForce(val);
-
-            Debug.Log(angle);
         }
         else {
-            rb.AddForce(transform.up * speedForce);
+            rb.AddForce(__ForwardVelocity() * 2f);
         }
         checkPlayerPos();
     }
@@ -75,6 +73,10 @@ public class Ski_PlayerController : MonoBehaviour {
     //전방으로 얼마나 추가적으로 힘을 가할지 (현재 속도 기준)
     Vector2 ForwardVelocity() {
         return transform.up * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.up);
+    }
+
+    Vector3 __ForwardVelocity() {
+        return transform.up * Vector3.Dot(-Vector3.up, transform.up);
     }
     
     //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
