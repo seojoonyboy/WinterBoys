@@ -7,4 +7,7 @@ public class GameManager : Singleton<GameManager> {
 
     public Ski_PlayerController pC;
     public BoardManager bM;
+
+    public tmp_addForce tmp_Pc;
+    public tmp_tileHolder tmp_tH;
 }

@@ -45,7 +45,7 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         //항상 Player 전방으로 Force 부여
-        rb.AddForce(transform.up * speedForce);
+        //rb.AddForce(transform.up * speedForce);
 
         //커브한 정도에 따라 감속
         //...
@@ -53,12 +53,12 @@ public class Ski_PlayerController : MonoBehaviour {
 
 
         Debug.Log(rb.angularVelocity);
-        //if (rb.angularVelocity != 0) {
-        //    //var val = transform.up * speedForce / rb.angularVelocity * coneringLossVelocity;
-        //    //rb.AddForce(val);
-        //} else {
-        //    rb.AddForce(transform.up * speedForce);
-        //}
+        if (rb.angularVelocity != 0) {
+            var val = transform.up * speedForce / rb.angularVelocity * coneringLossVelocity;
+            rb.AddForce(val);
+        } else {
+            rb.AddForce(transform.up * speedForce);
+        }
         checkPlayerPos();
     }
 
@@ -69,7 +69,7 @@ public class Ski_PlayerController : MonoBehaviour {
     
     //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
     Vector2 RightVelocity() {
-        return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity * 2, transform.right);
+        return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right * 2);
     }
 
     void checkPlayerPos() {
