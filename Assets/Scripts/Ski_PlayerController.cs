@@ -19,23 +19,23 @@ public class Ski_PlayerController : MonoBehaviour {
         if (RightVelocity().magnitude > maxStickyVelocity) {
             driftFactor = driftFactorSlippy;
         }
-        rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
-        //회전력
+        //rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
+
+        //회전속도
         rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
-        //Debug.Log(transform.eulerAngles.z);
-        //rb.freezeRotation = true;
-        Debug.Log(transform.eulerAngles);
-        if(transform.eulerAngles.z > 270) {
-            if(rb.angularVelocity == 0) {
+
+        //최대회전 각도 지정 (우측)
+        if (transform.eulerAngles.z > 270) {
+            if (rb.angularVelocity == 0) {
                 rb.constraints = RigidbodyConstraints2D.None;
                 transform.eulerAngles = new Vector3(0, 0, 269.5f);
-            }
-            else {
+            } else {
                 rb.freezeRotation = true;
             }
         }
 
-        if(transform.eulerAngles.z < 90) {
+        //최대회전 각도 지정 (좌측)
+        if (transform.eulerAngles.z < 90) {
             if (rb.angularVelocity == 0) {
                 rb.constraints = RigidbodyConstraints2D.None;
                 transform.eulerAngles = new Vector3(0, 0, 91.5f);
@@ -44,22 +44,32 @@ public class Ski_PlayerController : MonoBehaviour {
             }
         }
 
-        if (rb.angularVelocity != 0) {
-            var val = transform.up * speedForce / rb.angularVelocity * coneringLossVelocity;
-            rb.AddForce(val);
-        }
-        else {
-            rb.AddForce(transform.up * speedForce);
-        }
+        //항상 Player 전방으로 Force 부여
+        rb.AddForce(transform.up * speedForce);
+
+        //커브한 정도에 따라 감속
+        //...
+        //...
+
+
+        Debug.Log(rb.angularVelocity);
+        //if (rb.angularVelocity != 0) {
+        //    //var val = transform.up * speedForce / rb.angularVelocity * coneringLossVelocity;
+        //    //rb.AddForce(val);
+        //} else {
+        //    rb.AddForce(transform.up * speedForce);
+        //}
         checkPlayerPos();
     }
 
+    //전방으로 얼마나 추가적으로 힘을 가할지 (현재 속도 기준)
     Vector2 ForwardVelocity() {
         return transform.up * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.up);
     }
-
+    
+    //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
     Vector2 RightVelocity() {
-        return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right);
+        return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity * 2, transform.right);
     }
 
     void checkPlayerPos() {
@@ -69,12 +79,12 @@ public class Ski_PlayerController : MonoBehaviour {
         if (hit.collider != null) {
             Vector2 pos = hit.collider.transform.position;
             var bM = GameManager.Instance.bM;
-            if (pos == bM.lastTilePos) {
+            if (pos.y <= bM.lastTilePos.y) {
                 if (!bM.isMade) {
-                    bM.addToBoard(pos.y);
+                    bM.addToBoard();
                 }
             }
         }
-        //Debug.DrawRay(transform.position, Vector3.forward, Color.red);
+        Debug.DrawRay(transform.position, Vector3.forward, Color.red);
     }
 }

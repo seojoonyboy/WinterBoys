@@ -32,12 +32,12 @@ public class BoardManager : MonoBehaviour {
         }
     }
 
-    public void addToBoard(float y) {
+    public void addToBoard() {
         isMade = true;
         //다음 타일 생성
         GameObject newFloor = Instantiate(floorsPref[0]);
         newFloor.transform.SetParent(floorHolder, false);
-        newFloor.transform.position = new Vector2(0, y - 1);
+        newFloor.transform.position = new Vector2(0, lastTilePos.y - 1);
 
         //첫번째 타일 제거
         resetArr(newFloor);
