@@ -10,6 +10,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public float maxStickyVelocity = 2.5f;
     public float minStickyVelocity = 1.5f;
     public float coneringLossVelocity = 1.0f;
+    public float angleV = 45.0f;
 
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -52,7 +53,7 @@ public class Ski_PlayerController : MonoBehaviour {
         //...
         //Debug.Log(Vector3.Angle(transform.up, -Vector3.up));
         float angle = Vector3.Angle(transform.up, -Vector3.up);
-        if (angle >= 80.0f) {
+        if (angle >= angleV) {
             //Debug.Log(transform.up.x);
             Vector3 val;
             if (transform.up.x < 0) {
