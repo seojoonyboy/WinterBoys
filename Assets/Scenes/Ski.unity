@@ -162,14 +162,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08f99d3bf59e144aea893a54584d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedForce: 5
+  speedForce: 1
   torqueForce: -120
-  driftFactorSticky: 1.3
-  driftFactorSlippy: 1
+  driftFactor: 1
   maxStickyVelocity: 0.1
   minStickyVelocity: 0
   coneringLossVelocity: 2
-  angleV: 60
+  angleV: 70
 --- !u!4 &723963476
 Transform:
   m_ObjectHideFlags: 0
@@ -178,7 +177,7 @@ Transform:
   m_PrefabInternal: {fileID: 1117530437}
   m_GameObject: {fileID: 952238713}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0008, z: -0.03}
+  m_LocalPosition: {x: 0, y: 0, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -468,7 +467,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4005512714261212, guid: 8e609526e43942b469807e383c50ea21, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.0008
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4005512714261212, guid: 8e609526e43942b469807e383c50ea21, type: 2}
       propertyPath: m_LocalPosition.z
@@ -512,7 +511,12 @@ Prefab:
     - target: {fileID: 114176679749070268, guid: 8e609526e43942b469807e383c50ea21,
         type: 2}
       propertyPath: speedForce
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176679749070268, guid: 8e609526e43942b469807e383c50ea21,
+        type: 2}
+      propertyPath: angleV
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e609526e43942b469807e383c50ea21, type: 2}
