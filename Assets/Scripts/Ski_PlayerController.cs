@@ -10,6 +10,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public float minStickyVelocity = 1.5f;
     public float coneringLossVelocity = 1.0f;
     public float angleV = 45.0f;
+    public GameObject playerImage;
 
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -20,6 +21,7 @@ public class Ski_PlayerController : MonoBehaviour {
         rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
 
         checkPlayerPos();
+        changePlayerImage();
 
         if (transform.eulerAngles.z > 260) {
             if (rb.angularVelocity == 0) {
@@ -86,5 +88,38 @@ public class Ski_PlayerController : MonoBehaviour {
             }
         }
         Debug.DrawRay(transform.position, Vector3.forward, Color.red);
+    }
+
+    void changePlayerImage() {
+        var eularAngle = transform.eulerAngles;
+        SpriteRenderer sR = playerImage.GetComponent<SpriteRenderer>();
+        GameManager gm = GameManager.Instance;
+
+        Debug.Log(eularAngle);
+
+        if(eularAngle.z >= 135 && eularAngle.z <= 225) {
+            sR.sprite = gm.players[0];
+        }
+        if (eularAngle.z < 135) {
+            if (sR.flipX) {
+                sR.flipX = false;
+            }
+            if (eularAngle.z > 105) {
+                sR.sprite = gm.players[1];
+            }
+            else {
+                sR.sprite = gm.players[2];
+            }
+        }
+        else if(eularAngle.z > 225) {
+            sR.flipX = true;
+            sR.sprite = gm.players[1];
+            if(eularAngle.z > 250) {
+                sR.sprite = gm.players[2];
+            }
+            else {
+                sR.sprite = gm.players[1];
+            }
+        }
     }
 }
