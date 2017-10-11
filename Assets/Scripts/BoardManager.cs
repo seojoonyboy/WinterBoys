@@ -22,7 +22,7 @@ public class BoardManager : MonoBehaviour {
             floor.transform.SetParent(floorHolder, false);
             floor.transform.position = new Vector2(0, -i);
 
-            Debug.Log(floor.transform.position);
+            //Debug.Log(floor.transform.position);
 
             tiles.Add(floor);
 
