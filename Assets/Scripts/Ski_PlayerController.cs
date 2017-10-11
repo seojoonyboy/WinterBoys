@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Ski_PlayerController : MonoBehaviour {
     public float speedForce = 1.0f;
     public float torqueForce = 1.0f;
     public float driftFactor = 1.0f;
     public float angleV = 45.0f;
+    public float input_sensitive = 0.1f;
+    public int rotateDir = 1;
+    bool buttonDown = false;
 
     public GameObject playerImage;
 
@@ -16,8 +20,13 @@ public class Ski_PlayerController : MonoBehaviour {
         //rb.velocity = ForwardVelocity() + RightVelocity() * driftFactorSlippy;
         rb.AddForce(__ForwardVelocity());
 
-        rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
-
+        //rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
+        if(rb.velocity.y >= 0) {
+            rb.velocity = new Vector2(rb.velocity.x, -0.1f);
+        }
+        if (buttonDown) {
+            rb.angularVelocity += input_sensitive * rotateDir;
+        }
         checkPlayerPos();
         changePlayerImage();
 
@@ -93,7 +102,7 @@ public class Ski_PlayerController : MonoBehaviour {
         SpriteRenderer sR = playerImage.GetComponent<SpriteRenderer>();
         GameManager gm = GameManager.Instance;
 
-        Debug.Log(eularAngle);
+        //Debug.Log(eularAngle);
 
         if(eularAngle.z >= 135 && eularAngle.z <= 225) {
             sR.sprite = gm.players[0];
@@ -119,5 +128,18 @@ public class Ski_PlayerController : MonoBehaviour {
                 sR.sprite = gm.players[1];
             }
         }
+    }
+
+    public void OnPointerDown(int i) {
+        //다른 방향버튼이 눌리고 있는 중인 경우
+        if (buttonDown) {
+            return;
+        }
+        rotateDir = i;
+        buttonDown = true;
+    }
+
+    public void OnPointerUp() {
+        buttonDown = false;
     }
 }
