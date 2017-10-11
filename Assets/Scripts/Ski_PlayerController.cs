@@ -6,10 +6,8 @@ public class Ski_PlayerController : MonoBehaviour {
     public float speedForce = 1.0f;
     public float torqueForce = 1.0f;
     public float driftFactor = 1.0f;
-    public float maxStickyVelocity = 2.5f;
-    public float minStickyVelocity = 1.5f;
-    public float coneringLossVelocity = 1.0f;
     public float angleV = 45.0f;
+
     public GameObject playerImage;
 
     private void FixedUpdate() {

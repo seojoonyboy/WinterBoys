@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager> {
     protected GameManager() { }
 
-    public Ski_PlayerController pC;
     public BoardManager bM;
-
     public Sprite[] players;
 }
