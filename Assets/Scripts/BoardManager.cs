@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
+    private GameManager gm;
     public GameObject[] floorsPref;
+    public GameObject flagPref;
+
     public int columns = 3;
     public Transform floorHolder;
 
@@ -12,9 +15,11 @@ public class BoardManager : MonoBehaviour {
         firstTilePos;
 
     public bool isMade = false;
-
+    private float firstFlagY = -3.0f;
+    
     List<GameObject> tiles = new List<GameObject>();
     private void Awake() {
+        gm = GameManager.Instance;
         setUp();
     }
 
@@ -33,6 +38,8 @@ public class BoardManager : MonoBehaviour {
 
             tiles.Add(floor);
         }
+
+        initFlag();
     }
 
     public void addToBoard() {
@@ -56,5 +63,22 @@ public class BoardManager : MonoBehaviour {
         firstTilePos = tiles[0].transform.position;
 
         isMade = false;
+    }
+
+    private void initFlag() {
+        GameObject leftFlag = Instantiate(flagPref);
+        float xPos = -1 * ((float)rndX() / (float)gm.pixelPerUnit);
+
+        leftFlag.transform.position = new Vector2(xPos, firstFlagY);
+
+        GameObject rightFlag = Instantiate(flagPref);
+        xPos = leftFlag.transform.position.x + ((float)gm.row_interval_default / (float)gm.pixelPerUnit);
+
+        rightFlag.transform.position = new Vector3(xPos, firstFlagY);
+    }
+
+    private int rndX() {
+        int rnd = Random.Range((int)gm.row_total_default_min_move_amount, (int)gm.row_total_default_max_move_amount);
+        return rnd;
     }
 }

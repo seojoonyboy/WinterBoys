@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager> {
     public BoardManager bM;
     public Sprite[] players;
 
+    public int pixelPerUnit = 512;
+
     public float
         total_limit_time = 0.0f,            //첫 시작시 남은 시간
         inc_time_per_num = 20,              //제한시간 변동 기준인 폴의 갯수
@@ -29,6 +31,8 @@ public class GameManager : Singleton<GameManager> {
         row_total_max_move_amount = 25,     //행 전체 변동 최대 이동량
         combo_per_num = 1,                  //콤보 기준 폴의 갯수
         miss_penalty = 5.0f;
+
+    private float flagStartPos = -3.0f;
 
     private void Awake() {
         init();
