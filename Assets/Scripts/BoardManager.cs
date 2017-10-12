@@ -67,7 +67,7 @@ public class BoardManager : MonoBehaviour {
 
     private void initFlag() {
         GameObject leftFlag = Instantiate(flagPref);
-        float xPos = -1 * ((float)rndX() / (float)gm.pixelPerUnit);
+        float xPos = (float)rndX() / (float)gm.pixelPerUnit;
 
         leftFlag.transform.position = new Vector2(xPos, firstFlagY);
 
@@ -78,7 +78,8 @@ public class BoardManager : MonoBehaviour {
     }
 
     private int rndX() {
-        int rnd = Random.Range((int)gm.row_total_default_min_move_amount, (int)gm.row_total_default_max_move_amount);
+        int rnd = Random.Range((int)-gm.poll_interval_default, (int)(gm.pixelPerUnit - gm.poll_interval_default));
+        Debug.Log(rnd);
         return rnd;
     }
 }
