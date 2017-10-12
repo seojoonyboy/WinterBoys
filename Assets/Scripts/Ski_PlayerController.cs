@@ -88,7 +88,7 @@ public class Ski_PlayerController : MonoBehaviour {
         if (hit.collider != null) {
             Vector2 pos = hit.collider.transform.position;
             var bM = GameManager.Instance.bM;
-            if (pos.y <= bM.lastTilePos.y) {
+            if (pos.y <= bM.firstTilePos.y - 2) {
                 if (!bM.isMade) {
                     bM.addToBoard();
                 }

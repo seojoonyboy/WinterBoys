@@ -7,7 +7,9 @@ public class BoardManager : MonoBehaviour {
     public int columns = 3;
     public Transform floorHolder;
 
-    public Vector2 lastTilePos;
+    public Vector2 
+        lastTilePos,
+        firstTilePos;
 
     public bool isMade = false;
 
@@ -17,18 +19,19 @@ public class BoardManager : MonoBehaviour {
     }
 
     public void setUp() {
-        for(int i=0; i<columns; i++) {
+        for(int i=0; i<=columns - 1; i++) {
             GameObject floor = Instantiate(floorsPref[0]);
             floor.transform.SetParent(floorHolder, false);
             floor.transform.position = new Vector2(0, -i);
-
-            //Debug.Log(floor.transform.position);
-
-            tiles.Add(floor);
-
+            
+            if(i == 0) {
+                firstTilePos = floor.transform.position;
+            }
             if(i == columns - 1) {
                 lastTilePos = floor.transform.position;
             }
+
+            tiles.Add(floor);
         }
     }
 
@@ -50,6 +53,8 @@ public class BoardManager : MonoBehaviour {
         tiles.Add(newFloor);
 
         lastTilePos = newFloor.transform.position;
+        firstTilePos = tiles[0].transform.position;
+
         isMade = false;
     }
 }
