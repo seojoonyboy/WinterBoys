@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager> {
         poll_interval_max_dec_count = 10,   //폴 간격 감소 최대 횟수
         row_interval_default = 300,         //행간 간격 기본값
         row_interval_inc_per_num = 20,      //행간 간격 감소 기준인 폴의 갯수
-        row_interval_inc_per_amount = 25.0f,//행간 간격 감소량
+        row_interval_inc_per_amount = 25.0f,//행간 간격 증가량
         row_interval_max_inc_count = 10,    //행간 간격 감소 최대 횟수
         row_total_default_min_move_amount = 0,      //행 전체 기본 최소 이동량
         row_total_default_max_move_amount = 30,     //행 전체 기본 최대 이동량
@@ -31,8 +31,6 @@ public class GameManager : Singleton<GameManager> {
         row_total_max_move_amount = 25,     //행 전체 변동 최대 이동량
         combo_per_num = 1,                  //콤보 기준 폴의 갯수
         miss_penalty = 5.0f;
-
-    private float flagStartPos = -3.0f;
 
     private void Awake() {
         init();

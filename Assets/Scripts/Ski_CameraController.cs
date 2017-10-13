@@ -5,6 +5,6 @@ using UnityEngine;
 public class Ski_CameraController : MonoBehaviour {
     public Transform target;
     private void FixedUpdate() {
-        transform.position = new Vector3(target.position.x, target.transform.position.y -1.0f, -3.5f);
+        transform.position = new Vector3(target.position.x, target.transform.position.y -0.83f, -3.5f);
     }
 }
