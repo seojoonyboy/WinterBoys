@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Spine.Unity;
 
 public class Ski_PlayerController : MonoBehaviour {
     public float speedForce = 1.0f;
@@ -13,6 +14,11 @@ public class Ski_PlayerController : MonoBehaviour {
     bool buttonDown = false;
 
     public GameObject playerImage;
+    public GameObject[]
+        blue_chars,
+        red_chars,
+        yellow_chars;
+
     public BoardManager bM;
     public DownhillManager dM;
 
@@ -105,33 +111,28 @@ public class Ski_PlayerController : MonoBehaviour {
 
     void changePlayerImage() {
         var eularAngle = transform.eulerAngles;
-        SpriteRenderer sR = playerImage.GetComponent<SpriteRenderer>();
-        GameManager gm = GameManager.Instance;
-
         //Debug.Log(eularAngle);
-
-        if(eularAngle.z >= 135 && eularAngle.z <= 225) {
-            sR.sprite = gm.players[0];
+        if (eularAngle.z >= 135 && eularAngle.z <= 225) {
+            //sR.sprite = gm.players[0];
+            offSpines();
+            blue_chars[0].SetActive(true);
         }
         if (eularAngle.z < 135) {
-            if (sR.flipX) {
-                sR.flipX = false;
-            }
+            offSpines();
             if (eularAngle.z > 105) {
-                sR.sprite = gm.players[1];
+                blue_chars[1].SetActive(true);
             }
             else {
-                sR.sprite = gm.players[2];
+                blue_chars[2].SetActive(true);
             }
         }
         else if(eularAngle.z > 225) {
-            sR.flipX = true;
-            sR.sprite = gm.players[1];
-            if(eularAngle.z > 250) {
-                sR.sprite = gm.players[2];
+            offSpines();
+            if (eularAngle.z > 250) {
+                blue_chars[4].SetActive(true);
             }
             else {
-                sR.sprite = gm.players[1];
+                blue_chars[3].SetActive(true);
             }
         }
     }
@@ -147,5 +148,11 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public void OnPointerUp() {
         buttonDown = false;
+    }
+
+    private void offSpines() {
+        foreach(GameObject obj in blue_chars) {
+            obj.SetActive(false);
+        }
     }
 }
