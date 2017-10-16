@@ -1,0 +1,27 @@
+
+side90_blue.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+artefact_blue
+  rotate: false
+  xy: 298, 183
+  size: 13, 67
+  orig: 13, 67
+  offset: 0, 0
+  index: -1
+character_blue
+  rotate: true
+  xy: 2, 65
+  size: 185, 294
+  orig: 185, 294
+  offset: 0, 0
+  index: -1
+pole_right_blue
+  rotate: true
+  xy: 2, 2
+  size: 61, 251
+  orig: 61, 251
+  offset: 0, 0
+  index: -1
