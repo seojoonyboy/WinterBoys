@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class GameManager : Singleton<GameManager> {
     protected GameManager() { }
 
-    public BoardManager bM;
     public Sprite[] players;
 
     public int pixelPerUnit = 512;
+    public GameObject modal;
 
     public float
         total_limit_time = 0.0f,            //첫 시작시 남은 시간
@@ -33,11 +34,8 @@ public class GameManager : Singleton<GameManager> {
         miss_penalty = 5.0f;
 
     private void Awake() {
+        DontDestroyOnLoad(gameObject);
         init();
-    }
-
-    private void Start() {
-        
     }
 
     private void init() {
@@ -75,5 +73,9 @@ public class GameManager : Singleton<GameManager> {
 
         str = RemoteSettings.GetString("Downhill_miss");
         miss_penalty = float.Parse(str);
+    }
+
+    public void gameOver() {
+        Time.timeScale = 0;
     }
 }

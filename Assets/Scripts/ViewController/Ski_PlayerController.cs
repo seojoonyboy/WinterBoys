@@ -13,6 +13,8 @@ public class Ski_PlayerController : MonoBehaviour {
     bool buttonDown = false;
 
     public GameObject playerImage;
+    public BoardManager bM;
+    public DownhillManager dM;
 
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -87,12 +89,16 @@ public class Ski_PlayerController : MonoBehaviour {
 
         if (hit.collider != null) {
             Vector2 pos = hit.collider.transform.position;
-            var bM = GameManager.Instance.bM;
             if (pos.y <= bM.firstTilePos.y - 2) {
                 if (!bM.isMade) {
                     bM.addToBoard();
                 }
             }
+        }
+        //타일 밖으로 벗어난 경우
+        else {
+            dM.modal.SetActive(true);
+            GameManager.Instance.gameOver();
         }
         Debug.DrawRay(transform.position, Vector3.forward, Color.red);
     }

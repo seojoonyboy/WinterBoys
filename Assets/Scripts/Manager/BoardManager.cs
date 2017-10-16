@@ -28,7 +28,8 @@ public class BoardManager : MonoBehaviour {
         row_parallel_move_lv = 1;   //폴의 평행이동
 
     List<GameObject> tiles = new List<GameObject>();
-    private void Awake() {
+
+    private void OnEnable() {
         gm = GameManager.Instance;
         setUp();
     }
@@ -82,11 +83,13 @@ public class BoardManager : MonoBehaviour {
     private void initFlag() {
         for(int i=fstFlagAppearTile; i<=columns-1; i++) {
             GameObject leftFlag = Instantiate(flagPref);
+            leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
             float xPos = (float)rndX() / (float)gm.pixelPerUnit;
 
             leftFlag.transform.position = new Vector2(xPos, - i);
 
             GameObject rightFlag = Instantiate(flagPref);
+            rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
             xPos = leftFlag.transform.position.x + ((float)gm.row_interval_default / (float)gm.pixelPerUnit);
 
             rightFlag.transform.position = new Vector3(xPos, - i);
@@ -104,12 +107,16 @@ public class BoardManager : MonoBehaviour {
     public void addFlag() {
         for(int i=0; i<3; i++) {
             GameObject leftFlag = Instantiate(flagPref);
+            leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
+
             Vector2 nextPos = calcNextFlagPos();
 
             leftFlag.transform.position = nextPos;
 
             float rightX = (float)Math.Round(leftFlag.transform.position.x + ((float)gm.poll_interval_default / (float)gm.pixelPerUnit), 2);
             GameObject rightFlag = Instantiate(flagPref);
+            rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
+
             rightFlag.transform.position = new Vector2(rightX, nextPos.y);
 
             curFlagPos = nextPos;
