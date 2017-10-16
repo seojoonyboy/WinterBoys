@@ -7,4 +7,8 @@ public class MainSceneController : MonoBehaviour {
     public void downhillGameLoad() {
         SceneManager.LoadScene("Ski");
     }
+
+    public void skeletonGameLoad() {
+        SceneManager.LoadScene("Skeleton");
+    }
 }

@@ -597,8 +597,8 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 62fa4454-92bf-48ec-835c-21d2202d5c38
-  projectName: Skiing
-  organizationId: joonyboy
+  projectName: WinterSports
+  organizationId: feedbackloop
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

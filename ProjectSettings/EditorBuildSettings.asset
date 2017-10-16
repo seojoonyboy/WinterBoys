@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 70df4ac74a18fe5458b26f450523c952
+  - enabled: 1
+    path: Assets/Scenes/Skeleton.unity
+    guid: ff382326c7f634315819b023cd47e911
+  - enabled: 1
+    path: Assets/Scenes/Ski.unity
+    guid: bb2842399300fc648ae203fa3d5c45f6
