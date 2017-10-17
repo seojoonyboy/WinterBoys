@@ -20,8 +20,12 @@ public class BoardManager : MonoBehaviour {
     public bool isFlagMade = false;
     private int fstFlagAppearTile = 3;
     private int floorIndex = 2;
-    //좌측 기준 현재 폴의 위치
-    private Vector2 curFlagPos;
+    
+    private int nextFlagDir = 1;    //다음 폴 생성 방향 (-1 : 왼쪽 / 1 : 오른쪽)
+    private int sameDirCount = 0;   //같은 방향으로 폴이 생성된 횟수
+
+    private Vector2 curFlagPos;     //좌측 기준 현재 폴의 위치
+
     public int 
         flagNum = 0,
         poll_interval_lv = 1,       //폴과 폴 사이의 간격
@@ -124,9 +128,11 @@ public class BoardManager : MonoBehaviour {
         for(int i=0; i<3; i++) {
             GameObject leftFlag = Instantiate(flagPref);
             leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
+            //좌측 폴의 다음 위치 계산
             Vector2 nextPos = calcNextFlagPos();
             leftFlag.transform.position = nextPos;
 
+            //우측 폴의 다음 위치 계산
             float rightX = (float)Math.Round(leftFlag.transform.position.x + ((float)gm.poll_intervals[0] / (float)gm.pixelPerUnit), 2);
             GameObject rightFlag = Instantiate(flagPref);
             rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
@@ -161,8 +167,6 @@ public class BoardManager : MonoBehaviour {
 
     private Vector2 calcNextFlagPos() {
         Vector2 prePos = curFlagPos;
-        int[] arr = { 1, -1 };
-        int val = arr.Random();
 
         float deltaX = UnityEngine.Random.Range(
             gm.pararell_intervals[0] + (gm.pararell_intervals[2]) * (row_parallel_move_lv - 1),
@@ -173,9 +177,26 @@ public class BoardManager : MonoBehaviour {
 
         float unit = gm.pixelPerUnit;
 
-        Vector2 nextPos = new Vector2(prePos.x + (float)Math.Round(deltaX/unit, 2) * val, prePos.y - (float)Math.Round(deltaY / unit, 2));
-        Debug.Log((float)Math.Round(deltaX / unit, 2) * val);
+        float nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * setNextDir();
+        if(nextXPos <= -0.9f) {
+            nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * setNextDir() * -1;
+        }
+        Vector2 nextPos = new Vector2(nextXPos, prePos.y - (float)Math.Round(deltaY / unit, 2));
         return nextPos;
+    }
+
+    private int setNextDir() {
+        int[] arr = { 1, -1 };
+        int nextDir = arr.Random();
+
+        if (sameDirCount > 2) {
+            nextDir *= -1;
+            sameDirCount = 0;
+        }
+        else {
+            sameDirCount++;
+        }
+        return nextDir;
     }
 
     private void setFlagParent(GameObject leftFlag, GameObject rightFlag) {
