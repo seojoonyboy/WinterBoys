@@ -58,8 +58,6 @@ public class BoardManager : MonoBehaviour {
             }
 
             tiles.Add(floor);
-
-            Debug.Log(lastTilePos);
         }
         initFlag();
     }
@@ -108,7 +106,7 @@ public class BoardManager : MonoBehaviour {
 
             GameObject rightFlag = Instantiate(flagPref);
             rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
-            xPos = leftFlag.transform.position.x + ((float)gm.row_interval_default / (float)gm.pixelPerUnit);
+            xPos = leftFlag.transform.position.x + ((float)gm.poll_intervals[0] / (float)gm.pixelPerUnit);
 
             rightFlag.transform.position = new Vector3(xPos, - i);
 
@@ -126,12 +124,10 @@ public class BoardManager : MonoBehaviour {
         for(int i=0; i<3; i++) {
             GameObject leftFlag = Instantiate(flagPref);
             leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
-
             Vector2 nextPos = calcNextFlagPos();
-
             leftFlag.transform.position = nextPos;
 
-            float rightX = (float)Math.Round(leftFlag.transform.position.x + ((float)gm.poll_interval_default / (float)gm.pixelPerUnit), 2);
+            float rightX = (float)Math.Round(leftFlag.transform.position.x + ((float)gm.poll_intervals[0] / (float)gm.pixelPerUnit), 2);
             GameObject rightFlag = Instantiate(flagPref);
             rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
 
@@ -143,23 +139,23 @@ public class BoardManager : MonoBehaviour {
         }
 
         //폴 사이 간격 감소
-        if (flagNum % gm.poll_interval_dec_per_num == 0) {
+        if (flagNum % gm.poll_intervals[1] == 0) {
             lvup(0);
         }
 
         //행간 간격 증가
-        if(flagNum % gm.row_interval_inc_per_num == 0) {
+        if(flagNum % gm.vertical_intervals[1] == 0) {
             lvup(1);
         }
 
         //행 평행이동
-        if (flagNum % gm.row_total_move_per_num == 0) {
+        if (flagNum % gm.pararell_intervals[2] == 0) {
             lvup(2);
         }
     }
 
     private int rndX() {
-        int rnd = UnityEngine.Random.Range((int)-gm.poll_interval_default, (int)(gm.pixelPerUnit - gm.poll_interval_default));
+        int rnd = UnityEngine.Random.Range((int)-gm.poll_intervals[0], (int)(gm.pixelPerUnit - gm.poll_intervals[0]));
         return rnd;
     }
 
@@ -169,15 +165,16 @@ public class BoardManager : MonoBehaviour {
         int val = arr.Random();
 
         float deltaX = UnityEngine.Random.Range(
-            gm.row_total_default_min_move_amount + (gm.row_total_min_move_amount) * (row_parallel_move_lv - 1),
-            gm.row_total_default_max_move_amount + (gm.row_total_max_move_amount) * (row_parallel_move_lv - 1)
+            gm.pararell_intervals[0] + (gm.pararell_intervals[2]) * (row_parallel_move_lv - 1),
+            gm.pararell_intervals[1] + (gm.pararell_intervals[3]) * (row_parallel_move_lv - 1)
         );
 
-        float deltaY = gm.row_interval_default * (1 + gm.row_interval_inc_per_amount * row_interval_lv / 100);
+        float deltaY = gm.vertical_intervals[0] * (1 + gm.vertical_intervals[1] * row_interval_lv / 100);
 
         float unit = gm.pixelPerUnit;
 
         Vector2 nextPos = new Vector2(prePos.x + (float)Math.Round(deltaX/unit, 2) * val, prePos.y - (float)Math.Round(deltaY / unit, 2));
+        Debug.Log((float)Math.Round(deltaX / unit, 2) * val);
         return nextPos;
     }
 

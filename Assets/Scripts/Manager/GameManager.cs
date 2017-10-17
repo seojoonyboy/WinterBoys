@@ -8,34 +8,20 @@ public class GameManager : Singleton<GameManager> {
 
     public Sprite[] players;
 
-    public int pixelPerUnit = 512;
+    public int pixelPerUnit = 1024;
 
     //유저 닉네임
     public string nickname = null;
     //유저 캐릭터 번호
     public int character = 0;
 
-    public float
-        total_limit_time = 0.0f,            //첫 시작시 남은 시간
-        inc_time_per_num = 20,              //제한시간 변동 기준인 폴의 갯수
-        inc_time_per_amount = 15,           //폴 통과에 따른 제한시간 증가량
-        dec_time_per_missed = 5,            //폴을 통과하지 못한 경우 제한시간 감소량
-        poll_interval_default = 500,        //폴 사이 간격 기본값
-        poll_interval_dec_per_num = 25,     //폴 간격 변동 기준인 폴의 갯수
-        poll_interval_dec_amount = 8.0f,    //폴 간격 감소량
-        poll_interval_max_dec_count = 10,   //폴 간격 감소 최대 횟수
-        row_interval_default = 300,         //행간 간격 기본값
-        row_interval_inc_per_num = 20,      //행간 간격 감소 기준인 폴의 갯수
-        row_interval_inc_per_amount = 25.0f,//행간 간격 증가량
-        row_interval_max_inc_count = 10,    //행간 간격 감소 최대 횟수
-        row_total_default_min_move_amount = 0,      //행 전체 기본 최소 이동량
-        row_total_default_max_move_amount = 30,     //행 전체 기본 최대 이동량
-        row_total_move_per_num = 15,        //행 전체 이동 기준인 폴의 갯수
-        row_total_move_amount = 15,         //행 전체 이동량
-        row_total_min_move_amount = 15,     //행 전체 변동 최소 이동량
-        row_total_max_move_amount = 25,     //행 전체 변동 최대 이동량
-        combo_per_num = 1,                  //콤보 기준 폴의 갯수
-        miss_penalty = 5.0f;
+    public float[]
+        poll_intervals,                     //폴 사이 정보
+        vertical_intervals,                 //행간 정보
+        pararell_intervals,                 //평행이동 관련 정보
+        bonus_times;                        //보너스 타임 관련 정보
+
+    public float panelty_time;              //폴 통과하지 못한 경우 패널티
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -44,39 +30,37 @@ public class GameManager : Singleton<GameManager> {
 
     private void init() {
         string str;
-        str = RemoteSettings.GetString("Downhill_time");
+        str = RemoteSettings.GetString("Downhill_bonus_times");
         string[] spl_str = str.Split(',');
+        bonus_times = new float[spl_str.Length];
+        for (int i = 0; i < spl_str.Length; i++) {
+            bonus_times[i] = float.Parse(spl_str[i]);
+        }
 
-        inc_time_per_num = float.Parse(spl_str[0]);
-        inc_time_per_amount = float.Parse(spl_str[1]);
-
-        str = RemoteSettings.GetString("Downhill_poll_row_interval");
+        str = RemoteSettings.GetString("Downhill_vertical_interval");
         spl_str = str.Split(',');
-        row_interval_default = float.Parse(spl_str[0]);
-        row_interval_inc_per_num = float.Parse(spl_str[1]);
-        row_interval_inc_per_amount = float.Parse(spl_str[2]);
-        row_interval_max_inc_count = float.Parse(spl_str[3]);
+        vertical_intervals = new float[spl_str.Length];
+        for (int i = 0; i < spl_str.Length; i++) {
+            vertical_intervals[i] = float.Parse(spl_str[i]);
+        }
 
-        str = RemoteSettings.GetString("Downhill_row_total_move");
-
+        str = RemoteSettings.GetString("Downhill_pararell_intervals");
         spl_str = str.Split(',');
-        row_total_default_min_move_amount = float.Parse(spl_str[0]);
-        row_total_default_max_move_amount = float.Parse(spl_str[1]);
-        row_total_move_per_num = float.Parse(spl_str[2]);
-        row_total_move_amount = float.Parse(spl_str[3]);
-        row_total_min_move_amount = float.Parse(spl_str[4]);
-        row_total_max_move_amount = float.Parse(spl_str[5]);
+        pararell_intervals = new float[spl_str.Length];
+        for (int i = 0; i < spl_str.Length; i++) {
+            pararell_intervals[i] = float.Parse(spl_str[i]);
+        }
 
         str = RemoteSettings.GetString("Downhill_poll_interval");
 
         spl_str = str.Split(',');
-        poll_interval_default = float.Parse(spl_str[0]);
-        poll_interval_dec_per_num = float.Parse(spl_str[1]);
-        poll_interval_dec_amount = float.Parse(spl_str[2]);
-        poll_interval_max_dec_count = float.Parse(spl_str[3]);
+        poll_intervals = new float[spl_str.Length];
+        for(int i=0; i<spl_str.Length; i++) {
+            poll_intervals[i] = float.Parse(spl_str[i]);
+        }
 
         str = RemoteSettings.GetString("Downhill_miss");
-        miss_penalty = float.Parse(str);
+        panelty_time = float.Parse(str);
     }
 
     public void gameOver() {
