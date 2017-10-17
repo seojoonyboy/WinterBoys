@@ -19,6 +19,7 @@ public class BoardManager : MonoBehaviour {
     public bool isMade = false;
     public bool isFlagMade = false;
     private int fstFlagAppearTile = 3;
+    private int floorIndex = 2;
     //좌측 기준 현재 폴의 위치
     private Vector2 curFlagPos;
     public int 
@@ -36,18 +37,29 @@ public class BoardManager : MonoBehaviour {
 
     public void setUp() {
         for(int i=0; i<=columns - 1; i++) {
-            GameObject floor = Instantiate(floorsPref[0]);
-            floor.transform.SetParent(floorHolder, false);
-            floor.transform.position = new Vector2(0, -i);
-            
-            if(i == 0) {
-                firstTilePos = floor.transform.position;
-            }
-            if(i == columns - 1) {
+            GameObject floor;
+            if (i == columns - 1) {
+                floor = Instantiate(floorsPref[1]);
+
+                floor.transform.SetParent(floorHolder, false);
+                floor.transform.position = new Vector2(0, -i);
+
                 lastTilePos = floor.transform.position;
+            }
+            else {
+                floor = Instantiate(floorsPref[i]);
+
+                floor.transform.SetParent(floorHolder, false);
+                floor.transform.position = new Vector2(0, -i);
+
+                if (i == 0) {
+                    firstTilePos = floor.transform.position;
+                }
             }
 
             tiles.Add(floor);
+
+            Debug.Log(lastTilePos);
         }
         initFlag();
     }
@@ -56,7 +68,13 @@ public class BoardManager : MonoBehaviour {
         isMade = true;
 
         //다음 타일 생성
-        GameObject newFloor = Instantiate(floorsPref[0]);
+        GameObject newFloor = Instantiate(floorsPref[floorIndex]);
+        if(floorIndex >= columns - 2) {
+            floorIndex = 1;
+        }
+        else {
+            floorIndex++;
+        }
         newFloor.transform.SetParent(floorHolder, false);
         newFloor.transform.position = new Vector2(0, lastTilePos.y - 1);
 

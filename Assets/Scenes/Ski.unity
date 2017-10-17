@@ -704,7 +704,7 @@ SpriteRenderer:
   m_SortingLayerID: -1310618287
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: af79038a294369648a820449e96a23de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d975c20885a44b249bd4d5af5b22947, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1858,7 +1858,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorsPref:
-  - {fileID: 1991263135767194, guid: c37ef3816aa460d4c80ee8d548b684f1, type: 2}
+  - {fileID: 1015877009269834, guid: 2c5ef4aaa52799847914fae12d7ffee8, type: 2}
+  - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
+  - {fileID: 1788904706288122, guid: 6dcb9da3e0caa1a4a99dee312ac6c483, type: 2}
+  - {fileID: 1068549737899498, guid: e3c73521b891832449131d98c66520b7, type: 2}
+  - {fileID: 1908950784494682, guid: 1d22e53a053b1984cb20df09a3de7a16, type: 2}
   flagPref: {fileID: 1527239521299884, guid: 8874e1167c59a464fa7fa37b6ed8381f, type: 2}
   columns: 5
   floorHolder: {fileID: 1793202011}
