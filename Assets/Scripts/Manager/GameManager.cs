@@ -9,7 +9,11 @@ public class GameManager : Singleton<GameManager> {
     public Sprite[] players;
 
     public int pixelPerUnit = 512;
-    public GameObject modal;
+
+    //유저 닉네임
+    public string nickname = null;
+    //유저 캐릭터 번호
+    public int character = 0;
 
     public float
         total_limit_time = 0.0f,            //첫 시작시 남은 시간
