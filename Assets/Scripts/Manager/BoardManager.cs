@@ -179,8 +179,12 @@ public class BoardManager : MonoBehaviour {
 
         int nextDir = setNextDir();
         float nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * nextDir;
-        if(nextXPos <= -0.9f || nextXPos >= 0.9f) {
+        float rightX = (float)Math.Round(nextXPos + ((float)gm.poll_intervals[0] / (float)gm.pixelPerUnit), 2);
+
+        if (nextXPos <= -0.9f || rightX >= 0.9f) {
             nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * nextDir * -1f;
+            sameDirCount = 0;
+            nextDir *= -1;
         }
 
         Vector2 nextPos = new Vector2(nextXPos, prePos.y - (float)Math.Round(deltaY / unit, 2));
@@ -194,13 +198,13 @@ public class BoardManager : MonoBehaviour {
         int nextDir = arr.Random();
         //Debug.Log("다음 방향 : " + nextDir);
         //Debug.Log("같은 방향 수 : " + sameDirCount);
-        if(nextFlagDir == nextDir) {
-            sameDirCount++;
-        }
-
-        if (sameDirCount > 2) {
+        if (sameDirCount >= 2) {
             nextDir *= -1;
             sameDirCount = 0;
+        }
+
+        if (nextFlagDir == nextDir) {
+            sameDirCount++;
         }
         return nextDir;
     }
