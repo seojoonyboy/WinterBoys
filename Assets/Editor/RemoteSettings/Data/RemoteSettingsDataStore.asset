@@ -36,3 +36,6 @@ MonoBehaviour:
   - key: startTime
     value: 30
     type: int
+  - key: Downhill_time
+    value: 10,10
+    type: string
