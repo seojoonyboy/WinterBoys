@@ -176,10 +176,16 @@ public class BoardManager : MonoBehaviour {
         float deltaY = gm.vertical_intervals[0] * (1 + gm.vertical_intervals[1] * row_interval_lv / 100);
 
         float unit = gm.pixelPerUnit;
-        float nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * setNextDir();
+
+        int nextDir = setNextDir();
+        float nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * nextDir;
+        if(nextXPos <= -0.9f || nextXPos >= 0.9f) {
+            nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * nextDir * -1f;
+        }
+
         Vector2 nextPos = new Vector2(nextXPos, prePos.y - (float)Math.Round(deltaY / unit, 2));
 
-        Debug.Log(nextXPos);
+        //Debug.Log(nextXPos);
         return nextPos;
     }
 
