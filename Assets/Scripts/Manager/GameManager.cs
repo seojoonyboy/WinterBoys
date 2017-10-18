@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager> {
         bonus_times;                        //보너스 타임 관련 정보
 
     public float panelty_time;              //폴 통과하지 못한 경우 패널티
-
+    public int startTime;
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         init();
@@ -61,6 +61,8 @@ public class GameManager : Singleton<GameManager> {
 
         str = RemoteSettings.GetString("Downhill_miss");
         panelty_time = float.Parse(str);
+
+        startTime = RemoteSettings.GetInt("startTime");
     }
 
     public void gameOver() {

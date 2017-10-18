@@ -21,7 +21,7 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public BoardManager bM;
     public DownhillManager dM;
-
+    
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
@@ -73,6 +73,8 @@ public class Ski_PlayerController : MonoBehaviour {
         else {
             rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
         }
+
+
     }
 
     //전방으로 얼마나 추가적으로 힘을 가할지 (현재 속도 기준)
@@ -94,10 +96,12 @@ public class Ski_PlayerController : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
         if (hit.collider != null) {
-            Vector2 pos = hit.collider.transform.position;
-            if (pos.y <= bM.firstTilePos.y - 2) {
-                if (!bM.isMade) {
-                    bM.addToBoard();
+            if (hit.collider.tag == "Tile") {
+                Vector2 pos = hit.collider.transform.position;
+                if (pos.y <= bM.firstTilePos.y - 2) {
+                    if (!bM.isMade) {
+                        bM.addToBoard();
+                    }
                 }
             }
         }
