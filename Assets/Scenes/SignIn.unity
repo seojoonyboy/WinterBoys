@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50f9f43a8462f746b1804fff68a33d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
+  gm: {fileID: 723323775}
   charNames:
   - 
   - 
@@ -828,6 +828,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 680254158}
+--- !u!114 &723323775 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+    type: 2}
+  m_PrefabInternal: {fileID: 278764730}
+  m_Script: {fileID: 11500000, guid: 70a7e4e09d3ad1f4a9101790e863908f, type: 3}
 --- !u!1 &978441761
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class CharSelect : MonoBehaviour {
         gm = GameManager.Instance;
 
         string str = RemoteSettings.GetString("Characters_name");
+        Debug.Log("str : " + str);
         string[] spl_str = str.Split(',');
         for (int i=0; i<charNames.Length; i++) {
             charNames[i] = spl_str[i];

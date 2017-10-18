@@ -21,6 +21,10 @@ public class SignInController : MonoBehaviour {
         }
         else {
             gm.nickname = nickname;
+
+            int character = PlayerPrefs.GetInt("character");
+            gm.character = character;
+
             SceneManager.LoadScene("Main");
         }
     }

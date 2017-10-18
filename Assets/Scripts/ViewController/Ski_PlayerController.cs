@@ -21,7 +21,27 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public BoardManager bM;
     public DownhillManager dM;
-    
+    private GameManager gm;
+    private int characterIndex = 0;
+    private GameObject[] selectedCharacters;
+    private void Awake() {
+        gm = GameManager.Instance;
+    }
+    private void Start() {
+        characterIndex = gm.character;
+
+        if(characterIndex == 0) {
+            selectedCharacters = blue_chars;
+        }
+        else if(characterIndex == 1) {
+            selectedCharacters = red_chars;
+        }
+        else {
+            selectedCharacters = yellow_chars;
+        }
+        selectedCharacters[0].SetActive(true);
+    }
+
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
@@ -73,8 +93,6 @@ public class Ski_PlayerController : MonoBehaviour {
         else {
             rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
         }
-
-
     }
 
     //전방으로 얼마나 추가적으로 힘을 가할지 (현재 속도 기준)
@@ -108,7 +126,7 @@ public class Ski_PlayerController : MonoBehaviour {
         //타일 밖으로 벗어난 경우
         else {
             dM.modal.SetActive(true);
-            GameManager.Instance.gameOver();
+            gm.gameOver();
         }
         Debug.DrawRay(transform.position, Vector3.forward, Color.red);
     }
@@ -119,24 +137,24 @@ public class Ski_PlayerController : MonoBehaviour {
         if (eularAngle.z >= 135 && eularAngle.z <= 225) {
             //sR.sprite = gm.players[0];
             offSpines();
-            blue_chars[0].SetActive(true);
+            selectedCharacters[0].SetActive(true);
         }
         if (eularAngle.z < 135) {
             offSpines();
             if (eularAngle.z > 105) {
-                blue_chars[1].SetActive(true);
+                selectedCharacters[1].SetActive(true);
             }
             else {
-                blue_chars[2].SetActive(true);
+                selectedCharacters[2].SetActive(true);
             }
         }
         else if(eularAngle.z > 225) {
             offSpines();
             if (eularAngle.z > 250) {
-                blue_chars[4].SetActive(true);
+                selectedCharacters[4].SetActive(true);
             }
             else {
-                blue_chars[3].SetActive(true);
+                selectedCharacters[3].SetActive(true);
             }
         }
     }
@@ -155,7 +173,7 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void offSpines() {
-        foreach(GameObject obj in blue_chars) {
+        foreach(GameObject obj in selectedCharacters) {
             obj.SetActive(false);
         }
     }
