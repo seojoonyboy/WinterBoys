@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Spine.Unity;
+using UnityEngine.UI;
 
 public class Ski_PlayerController : MonoBehaviour {
     public float speedForce = 1.0f;
@@ -18,12 +19,15 @@ public class Ski_PlayerController : MonoBehaviour {
         blue_chars,
         red_chars,
         yellow_chars;
+    public Sprite[] plates;
 
     public BoardManager bM;
     public DownhillManager dM;
     private GameManager gm;
+
     private int characterIndex = 0;
     private GameObject[] selectedCharacters;
+
     private void Awake() {
         gm = GameManager.Instance;
     }
@@ -40,6 +44,7 @@ public class Ski_PlayerController : MonoBehaviour {
             selectedCharacters = yellow_chars;
         }
         selectedCharacters[0].SetActive(true);
+        transform.Find("Plate").GetComponent<SpriteRenderer>().sprite = plates[characterIndex];
     }
 
     private void FixedUpdate() {

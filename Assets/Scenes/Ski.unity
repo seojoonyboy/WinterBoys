@@ -2425,6 +2425,10 @@ MonoBehaviour:
   - {fileID: 2071809585}
   - {fileID: 1480822380}
   - {fileID: 1535378808}
+  plates:
+  - {fileID: 21300000, guid: 7d975c20885a44b249bd4d5af5b22947, type: 3}
+  - {fileID: 21300000, guid: a04cf3deec1264a52a10001d9f5cf4e8, type: 3}
+  - {fileID: 21300000, guid: fbb23736433e44eb9ab9f404375ab2d1, type: 3}
   bM: {fileID: 1793202012}
   dM: {fileID: 1268347495}
 --- !u!1 &999791829
