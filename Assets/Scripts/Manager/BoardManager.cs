@@ -176,25 +176,25 @@ public class BoardManager : MonoBehaviour {
         float deltaY = gm.vertical_intervals[0] * (1 + gm.vertical_intervals[1] * row_interval_lv / 100);
 
         float unit = gm.pixelPerUnit;
-
         float nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * setNextDir();
-        if(nextXPos <= -0.9f) {
-            nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * setNextDir() * -1;
-        }
         Vector2 nextPos = new Vector2(nextXPos, prePos.y - (float)Math.Round(deltaY / unit, 2));
+
+        Debug.Log(nextXPos);
         return nextPos;
     }
 
     private int setNextDir() {
         int[] arr = { 1, -1 };
         int nextDir = arr.Random();
+        //Debug.Log("다음 방향 : " + nextDir);
+        //Debug.Log("같은 방향 수 : " + sameDirCount);
+        if(nextFlagDir == nextDir) {
+            sameDirCount++;
+        }
 
         if (sameDirCount > 2) {
             nextDir *= -1;
             sameDirCount = 0;
-        }
-        else {
-            sameDirCount++;
         }
         return nextDir;
     }
