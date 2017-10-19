@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d5c8dadb03c4328a428367673ec4b2, type: 3}
   m_Name: IOSNativeSettings
   m_EditorClassIdentifier: 
-  EnableGameCenterAPI: 1
-  EnableInAppsAPI: 1
-  EnableCameraAPI: 1
-  EnableSocialSharingAPI: 1
+  EnableGameCenterAPI: 0
+  EnableInAppsAPI: 0
+  EnableCameraAPI: 0
+  EnableSocialSharingAPI: 0
   EnablePickerAPI: 0
   EnableMediaPlayerAPI: 0
   EnableReplayKit: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   UrlTypes: []
   ApplicationQueriesSchemes: []
   ForceTouchMenu: []
-  DisablePluginLogs: 0
+  DisablePluginLogs: 1
   SoomlaDownloadLink: http://goo.gl/7LYwuj
   SoomlaDocsLink: https://goo.gl/JFkpNa
   SoomlaGameKey: 

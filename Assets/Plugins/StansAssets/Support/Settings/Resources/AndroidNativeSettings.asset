@@ -16,7 +16,7 @@ MonoBehaviour:
   EnableAppInviteAPI: 1
   EnableDriveAPI: 0
   LoadProfileIcons: 1
-  LoadProfileImages: 1
+  LoadProfileImages: 0
   LoadQuestsImages: 1
   LoadQuestsIcons: 1
   LoadEventsIcons: 1
