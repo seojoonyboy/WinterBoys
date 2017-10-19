@@ -16,5 +16,6 @@ public class downhill_player_coll : MonoBehaviour {
             }
             isTriggered = true;
         }
+        Debug.Log("충돌 : " + other.tag);
     }
 }

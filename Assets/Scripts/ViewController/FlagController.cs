@@ -8,6 +8,7 @@ public class FlagController : MonoBehaviour {
     private bool isSend = false;
     private bool isPassSend = false;
     void Start() {
+        gameObject.tag = "Flag";
         InvokeRepeating("IsInArea", 1.0f, 1.0f);
     }
 
@@ -35,16 +36,19 @@ public class FlagController : MonoBehaviour {
         else if(rayDir == type.RIGHT) {
             dir = Vector3.right;
         }
-
-        if(Physics.Raycast(transform.position, dir, out hit)) {
+        //Debug.Log(dir);
+        if (Physics.Raycast(transform.position, dir, out hit)) {
             if(hit.collider.tag == "Player")  {
                 //game over
                 if (!isSend) {
+                    Debug.Log(hit.collider.tag);
                     GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
                 }
                 isSend = true;
             }
+            //Debug.Log("Raycasted : " + hit.collider.transform.name);
         }
+        //Debug.DrawLine(transform.position, dir, Color.red);
     }
 
     void IsPass() {
@@ -56,6 +60,7 @@ public class FlagController : MonoBehaviour {
             if (Physics.Raycast(transform.position, dir, out hit)) {
                 if (hit.collider.tag == "Player") {
                     if (!isPassSend) {
+                        Debug.Log(hit.collider.tag);
                         GameObject.Find("Manager").GetComponent<DownhillManager>().passNumInc();
                     }
                     isPassSend = true;
