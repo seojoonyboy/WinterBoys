@@ -27,7 +27,7 @@ public class Ski_PlayerController : MonoBehaviour {
 
     private int characterIndex = 0;
     private GameObject[] selectedCharacters;
-
+    private GameObject preObj;
     private void Awake() {
         gm = GameManager.Instance;
     }
@@ -43,6 +43,8 @@ public class Ski_PlayerController : MonoBehaviour {
         else {
             selectedCharacters = yellow_chars;
         }
+        preObj = selectedCharacters[0];
+
         selectedCharacters[0].SetActive(true);
         transform.Find("Plate").GetComponent<SpriteRenderer>().sprite = plates[characterIndex];
     }
@@ -140,26 +142,42 @@ public class Ski_PlayerController : MonoBehaviour {
         var eularAngle = transform.eulerAngles;
         //Debug.Log(eularAngle);
         if (eularAngle.z >= 135 && eularAngle.z <= 225) {
-            //sR.sprite = gm.players[0];
-            offSpines();
+            if (preObj != selectedCharacters[0]) {
+                preObj.SetActive(false);
+            }
             selectedCharacters[0].SetActive(true);
+            preObj = selectedCharacters[0];
         }
         if (eularAngle.z < 135) {
-            offSpines();
             if (eularAngle.z > 105) {
+                if (preObj != selectedCharacters[1]) {
+                    preObj.SetActive(false);
+                }
                 selectedCharacters[1].SetActive(true);
+                preObj = selectedCharacters[1];
             }
             else {
+                if (preObj != selectedCharacters[2]) {
+                    preObj.SetActive(false);
+                }
                 selectedCharacters[2].SetActive(true);
+                preObj = selectedCharacters[2];
             }
         }
         else if(eularAngle.z > 225) {
-            offSpines();
             if (eularAngle.z > 250) {
+                if (preObj != selectedCharacters[4]) {
+                    preObj.SetActive(false);
+                }
                 selectedCharacters[4].SetActive(true);
+                preObj = selectedCharacters[4];
             }
             else {
+                if (preObj != selectedCharacters[3]) {
+                    preObj.SetActive(false);
+                }
                 selectedCharacters[3].SetActive(true);
+                preObj = selectedCharacters[3];
             }
         }
     }
