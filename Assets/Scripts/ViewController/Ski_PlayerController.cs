@@ -140,44 +140,25 @@ public class Ski_PlayerController : MonoBehaviour {
 
     void changePlayerImage() {
         var eularAngle = transform.eulerAngles;
-        //Debug.Log(eularAngle);
+
         if (eularAngle.z >= 135 && eularAngle.z <= 225) {
-            if (preObj != selectedCharacters[0]) {
-                preObj.SetActive(false);
-            }
-            selectedCharacters[0].SetActive(true);
-            preObj = selectedCharacters[0];
+            offSpines(0);
         }
-        if (eularAngle.z < 135) {
+
+        else if (eularAngle.z < 135) {
             if (eularAngle.z > 105) {
-                if (preObj != selectedCharacters[1]) {
-                    preObj.SetActive(false);
-                }
-                selectedCharacters[1].SetActive(true);
-                preObj = selectedCharacters[1];
+                offSpines(1);
             }
             else {
-                if (preObj != selectedCharacters[2]) {
-                    preObj.SetActive(false);
-                }
-                selectedCharacters[2].SetActive(true);
-                preObj = selectedCharacters[2];
+                offSpines(2);
             }
         }
         else if(eularAngle.z > 225) {
             if (eularAngle.z > 250) {
-                if (preObj != selectedCharacters[4]) {
-                    preObj.SetActive(false);
-                }
-                selectedCharacters[4].SetActive(true);
-                preObj = selectedCharacters[4];
+                offSpines(4);
             }
             else {
-                if (preObj != selectedCharacters[3]) {
-                    preObj.SetActive(false);
-                }
-                selectedCharacters[3].SetActive(true);
-                preObj = selectedCharacters[3];
+                offSpines(3);
             }
         }
     }
@@ -195,9 +176,11 @@ public class Ski_PlayerController : MonoBehaviour {
         buttonDown = false;
     }
 
-    private void offSpines() {
-        foreach(GameObject obj in selectedCharacters) {
-            obj.SetActive(false);
+    private void offSpines(int index) {
+        if (preObj != selectedCharacters[index]) {
+            preObj.SetActive(false);
         }
+        selectedCharacters[index].SetActive(true);
+        preObj = selectedCharacters[index];
     }
 }
