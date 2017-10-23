@@ -37,5 +37,5 @@ MonoBehaviour:
     value: 30
     type: int
   - key: Downhill_pararell_intervals
-    value: 0,100,15,60,100,14
+    value: 100,200,15,60,100,14
     type: string
