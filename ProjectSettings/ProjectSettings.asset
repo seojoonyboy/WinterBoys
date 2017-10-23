@@ -141,7 +141,7 @@ PlayerSettings:
   targetPixelDensity: 0
   resolutionScalingMode: 0
   applicationIdentifier:
-    Android: com.Company.ProductName
+    Android: com.feedbackloop.wintersports
     Standalone: unity.DefaultCompany.Skiing
     Tizen: com.Company.ProductName
     iOS: kr.fbl.dev.wintersports
@@ -150,7 +150,7 @@ PlayerSettings:
     iOS: 0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 18
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 25
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -222,8 +222,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: F:/keystore/feedbackloop.keystore
+  AndroidKeyaliasName: wintersports
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1
