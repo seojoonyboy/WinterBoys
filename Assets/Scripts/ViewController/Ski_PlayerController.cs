@@ -10,7 +10,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public float torqueForce = 1.0f;
     public float driftFactor = 1.0f;
     public float angleV = 45.0f;
-    public float input_sensitive = 0.1f;
+    public float input_sensitive = 0.3f;
     public int rotateDir = 1;
     bool buttonDown = false;
 
@@ -61,6 +61,9 @@ public class Ski_PlayerController : MonoBehaviour {
         }
         if (buttonDown) {
             rb.angularVelocity += input_sensitive * rotateDir;
+        }
+        else {
+            rb.angularVelocity = 0;
         }
         checkPlayerPos();
         changePlayerImage();
