@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 777778367}
   - component: {fileID: 777778369}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LogViewer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
