@@ -63,6 +63,7 @@ public class BoardManager : MonoBehaviour {
             tiles.Add(floor);
         }
         curFlagPos = new Vector2(0, -4);
+        addFlag();
     }
 
     public void addToBoard() {

@@ -30,7 +30,6 @@ public class FlagController : MonoBehaviour {
     void IsFail() {
         RaycastHit hit;
 
-        //Debug.DrawRay(transform.position, Vector3.left, Color.red);
         Vector3 dir = Vector3.zero;
         if (rayDir == type.LEFT) {
             dir = Vector3.left;

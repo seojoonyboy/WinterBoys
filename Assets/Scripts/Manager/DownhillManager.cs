@@ -11,6 +11,7 @@ public class DownhillManager : MonoBehaviour {
     public int remainTime;
     public Text remainTimeTxt;
     public int passNum = 0;
+    private int score = 0;
 
     private void Awake() {
         gm = GameManager.Instance;
@@ -44,9 +45,13 @@ public class DownhillManager : MonoBehaviour {
         if(passNum >= gm.bonus_times[0]) {
             remainTime += (int)gm.bonus_times[1];
             passNum = 0;
-
             Debug.Log("시간 증가");
         }
         Debug.Log("통과 갯수 : " + passNum);
+        scoreInc(5);
+    }
+
+    public void scoreInc(int amount) {
+        score += amount;
     }
 }

@@ -5,18 +5,34 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SignInController : MonoBehaviour {
-    public GameObject signupPanel;
+    public GameObject 
+        signupPanel,
+        topInputBg;
     private GameManager gm;
     public InputField nickname;
     public Text msg;
+    private bool isInputMove = false;
+
+    public Transform inputPos;
+    private Vector3 inputOriginPos;
 
     private void Awake() {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
     }
 
     private void Start() {
         gm = GameManager.Instance;
         getInfo();
+        inputOriginPos = nickname.transform.position;
+        //nickname.shouldHideMobileInput = true;
+    }
+
+    private void Update() {
+        if (!nickname.isFocused) {
+            nickname.transform.position = inputOriginPos;
+            isInputMove = false;
+            topInputBg.SetActive(false);
+        }
     }
 
     public void getInfo() {
@@ -84,4 +100,27 @@ public class SignInController : MonoBehaviour {
             msg.text = result.code.ToString();
         }
     }
+    public void onClickInput() {
+        if (!isInputMove) {
+            nickname.transform.position = inputPos.transform.position;
+            topInputBg.SetActive(true);
+        }
+        else {
+            nickname.transform.position = inputOriginPos;
+            topInputBg.SetActive(false);
+        }
+        isInputMove = !isInputMove;
+        //Invoke("GetKeyboardSize", 3.0f);
+    }
+
+    //private void GetKeyboardSize() {
+    //    using(AndroidJavaClass unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
+    //        AndroidJavaObject View = unityClass.GetStatic<AndroidJavaObject>("currentActivity").Get<AndroidJavaObject>("mUnityPlayer").Call<AndroidJavaObject>("getView");
+
+    //        using (AndroidJavaObject Rct = new AndroidJavaObject("android.graphics.Rect")) {
+    //            View.Call("getWindowVisibleDisplayFrame", Rct);
+    //            height.text = (Screen.height - Rct.Call<int>("height")).ToString();
+    //        }
+    //    }
+    //}
 }
