@@ -28,6 +28,8 @@ public class Ski_PlayerController : MonoBehaviour {
     private int characterIndex = 0;
     private GameObject[] selectedCharacters;
     private GameObject preObj;
+    private int score;
+
     private void Awake() {
         gm = GameManager.Instance;
     }

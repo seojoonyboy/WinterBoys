@@ -5,6 +5,8 @@ using UnityEngine;
 public class FlagController : MonoBehaviour {
     public enum type { LEFT, RIGHT };
     public type rayDir;
+    public float distance;
+
     private bool isSend = false;
     private bool isPassSend = false;
     void Start() {
@@ -27,28 +29,25 @@ public class FlagController : MonoBehaviour {
 
     void IsFail() {
         RaycastHit hit;
-        
+
         //Debug.DrawRay(transform.position, Vector3.left, Color.red);
         Vector3 dir = Vector3.zero;
-        if(rayDir == type.LEFT) {
+        if (rayDir == type.LEFT) {
             dir = Vector3.left;
         }
-        else if(rayDir == type.RIGHT) {
+        else if (rayDir == type.RIGHT) {
             dir = Vector3.right;
         }
         //Debug.Log(dir);
         if (Physics.Raycast(transform.position, dir, out hit)) {
-            if(hit.collider.tag == "Player")  {
-                //game over
+            if (hit.collider.tag == "Player") {
                 if (!isSend) {
-                    Debug.Log(hit.collider.tag);
+                    Debug.Log(hit.collider.tag + " 통과하지 못함");
                     GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
                 }
                 isSend = true;
             }
-            //Debug.Log("Raycasted : " + hit.collider.transform.name);
         }
-        //Debug.DrawLine(transform.position, dir, Color.red);
     }
 
     void IsPass() {
@@ -57,10 +56,10 @@ public class FlagController : MonoBehaviour {
         if (rayDir == type.LEFT) {
             dir = Vector3.right;
 
-            if (Physics.Raycast(transform.position, dir, out hit)) {
+            if (Physics.Raycast(transform.position, dir, out hit, distance)) {
                 if (hit.collider.tag == "Player") {
                     if (!isPassSend) {
-                        Debug.Log(hit.collider.tag);
+                        Debug.Log(hit.collider.tag + " 통과");
                         GameObject.Find("Manager").GetComponent<DownhillManager>().passNumInc();
                     }
                     isPassSend = true;

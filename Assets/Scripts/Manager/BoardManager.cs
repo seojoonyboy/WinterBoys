@@ -60,10 +60,9 @@ public class BoardManager : MonoBehaviour {
                     firstTilePos = floor.transform.position;
                 }
             }
-
             tiles.Add(floor);
         }
-        initFlag();
+        curFlagPos = new Vector2(0, -4);
     }
 
     public void addToBoard() {
@@ -99,30 +98,6 @@ public class BoardManager : MonoBehaviour {
         isMade = false;
     }
 
-    //초기 폴 추가
-    private void initFlag() {
-        for(int i=fstFlagAppearTile; i<=columns-1; i++) {
-            GameObject leftFlag = Instantiate(flagPref);
-            leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
-            float xPos = (float)rndX() / (float)gm.pixelPerUnit;
-
-            leftFlag.transform.position = new Vector2(xPos, - i);
-
-            GameObject rightFlag = Instantiate(flagPref);
-            rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
-            xPos = leftFlag.transform.position.x + ((float)gm.poll_intervals[0] / (float)gm.pixelPerUnit);
-
-            rightFlag.transform.position = new Vector3(xPos, - i);
-
-            curFlagPos = leftFlag.transform.position;
-
-            leftFlag.transform.SetParent(tiles[i].transform);
-            rightFlag.transform.SetParent(tiles[i].transform);
-
-            flagNum++;
-        }
-    }
-
     //동적 폴 추가
     public void addFlag() {
         for(int i=0; i<3; i++) {
@@ -133,8 +108,12 @@ public class BoardManager : MonoBehaviour {
             leftFlag.transform.position = nextPos;
 
             //우측 폴의 다음 위치 계산
-            float rightX = (float)Math.Round(leftFlag.transform.position.x + ((float)gm.poll_intervals[0] / (float)gm.pixelPerUnit), 2);
+            float deltaX = gm.poll_intervals[0] * (1 - ((gm.poll_intervals[2] * (poll_interval_lv - 1)) / 100));
+            float rightX = (float)Math.Round(leftFlag.transform.position.x + (float)(deltaX / gm.pixelPerUnit), 2);
             GameObject rightFlag = Instantiate(flagPref);
+
+            leftFlag.GetComponent<FlagController>().distance = deltaX;
+
             rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
 
             rightFlag.transform.position = new Vector2(rightX, nextPos.y);
@@ -145,17 +124,17 @@ public class BoardManager : MonoBehaviour {
         }
 
         //폴 사이 간격 감소
-        if (flagNum % gm.poll_intervals[1] == 0) {
+        if (flagNum != 0 && flagNum % gm.poll_intervals[1] == 0) {
             lvup(0);
         }
 
         //행간 간격 증가
-        if(flagNum % gm.vertical_intervals[1] == 0) {
+        if(flagNum != 0 && flagNum % gm.vertical_intervals[1] == 0) {
             lvup(1);
         }
 
         //행 평행이동
-        if (flagNum % gm.pararell_intervals[2] == 0) {
+        if (flagNum != 0 && flagNum % gm.pararell_intervals[2] == 0) {
             lvup(2);
         }
     }
@@ -174,7 +153,6 @@ public class BoardManager : MonoBehaviour {
         );
 
         float deltaY = gm.vertical_intervals[0] * (1 + gm.vertical_intervals[1] * row_interval_lv / 100);
-
         float unit = gm.pixelPerUnit;
 
         int nextDir = setNextDir();

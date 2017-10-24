@@ -23,12 +23,15 @@ public class GameManager : Singleton<GameManager> {
 
     public float panelty_time;              //폴 통과하지 못한 경우 패널티
     public int startTime;
+    public int[] highestScores;                    //각 종목별 최고 점수
+    
     private void Awake() {
         DontDestroyOnLoad(gameObject);
+        RemoteSettings.ForceUpdate();
         init();
     }
 
-    private void init() {
+    public void init() {
         string str;
         str = RemoteSettings.GetString("Downhill_bonus_times");
         string[] spl_str = str.Split(',');
