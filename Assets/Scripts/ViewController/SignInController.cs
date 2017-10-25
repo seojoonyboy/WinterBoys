@@ -65,7 +65,7 @@ public class SignInController : MonoBehaviour {
             signUp();
             //google play 연동 시도
             //GooglePlayConnection.ActionConnectionResultReceived += ActionConnectionResultReceived;
-            //GooglePlayConnection.Instance.Connect();
+            GooglePlayConnection.Instance.Connect();
         }
         else {
             gm.nickname = nickname;
