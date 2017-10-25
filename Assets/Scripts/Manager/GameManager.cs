@@ -67,8 +67,4 @@ public class GameManager : Singleton<GameManager> {
 
         startTime = RemoteSettings.GetInt("startTime");
     }
-
-    public void gameOver() {
-        Time.timeScale = 0;
-    }
 }

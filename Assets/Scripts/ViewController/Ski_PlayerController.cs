@@ -28,7 +28,8 @@ public class Ski_PlayerController : MonoBehaviour {
     private int characterIndex = 0;
     private GameObject[] selectedCharacters;
     private GameObject preObj;
-
+    //private Vector3 tmp;
+    public Vector3 playerPos;
     private void Awake() {
         gm = GameManager.Instance;
     }
@@ -50,9 +51,20 @@ public class Ski_PlayerController : MonoBehaviour {
         transform.Find("Plate").GetComponent<SpriteRenderer>().sprite = plates[characterIndex];
     }
 
+    private void Update() {
+        playerPos = transform.position;
+    }
+
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
+        //float deltaTime = Time.fixedDeltaTime;
+        ////Debug.Log(deltaTime);
+        //if (tmp != null) {
+        //    float dist = Vector3.Distance(tmp, transform.position);
+        //    Debug.Log("속력 : " + dist / deltaTime);
+        //}
+        //tmp = transform.position;
         //rb.velocity = ForwardVelocity() + RightVelocity() * driftFactorSlippy;
         rb.AddForce(__ForwardVelocity());
 
@@ -136,8 +148,7 @@ public class Ski_PlayerController : MonoBehaviour {
         }
         //타일 밖으로 벗어난 경우
         else {
-            dM.modal.SetActive(true);
-            gm.gameOver();
+            dM.OnGameOver();
         }
         Debug.DrawRay(transform.position, Vector3.forward, Color.red);
     }

@@ -52,30 +52,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 21300000, guid: 43f76b55da8442846a68143dee367eb8, type: 3}
-  - {fileID: 21300000, guid: a013fc230d2c9514e8c398b4cdbcef98, type: 3}
-  - {fileID: 21300000, guid: 4f8a80b564ca9524fafec7fce81bb6b5, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   pixelPerUnit: 512
-  modal: {fileID: 0}
   nickname: 
   character: 0
-  total_limit_time: 0
-  inc_time_per_num: 20
-  inc_time_per_amount: 15
-  dec_time_per_missed: 5
-  poll_interval_default: 500
-  poll_interval_dec_per_num: 25
-  poll_interval_dec_amount: 8
-  poll_interval_max_dec_count: 10
-  row_interval_default: 300
-  row_interval_inc_per_num: 20
-  row_interval_inc_per_amount: 25
-  row_interval_max_inc_count: 10
-  row_total_default_min_move_amount: 0
-  row_total_default_max_move_amount: 30
-  row_total_move_per_num: 15
-  row_total_move_amount: 15
-  row_total_min_move_amount: 15
-  row_total_max_move_amount: 25
-  combo_per_num: 1
-  miss_penalty: 5
+  poll_intervals:
+  - 500
+  - 25
+  - 8
+  - 10
+  vertical_intervals:
+  - 300
+  - 20
+  - 25
+  - 10
+  pararell_intervals:
+  - 0
+  - 100
+  - 15
+  - 60
+  - 100
+  - 14
+  bonus_times:
+  - 20
+  - 15
+  panelty_time: 5
+  startTime: 30
+  highestScores: 

@@ -13,6 +13,9 @@ public class DownhillManager : MonoBehaviour {
     public int passNum = 0;
     private int score = 0;
 
+    public Ski_PlayerController playerController;
+    public delegate void gameOverHandler();
+    public static event gameOverHandler OngameOver;
     private void Awake() {
         gm = GameManager.Instance;
     }
@@ -22,6 +25,12 @@ public class DownhillManager : MonoBehaviour {
         remainTime = gm.startTime;
         remainTimeTxt.text = "남은 시간 : " + gm.startTime + " 초";
         InvokeRepeating("timeDec", 1.0f, 1.0f);
+
+        initEventHandler();
+    }
+
+    private void initEventHandler() {
+        OngameOver += OnGameOver;
     }
 
     public void mainLoad() {
@@ -35,8 +44,7 @@ public class DownhillManager : MonoBehaviour {
 
         if(remainTime <= 0) {
             remainTime = 0;
-            modal.SetActive(true);
-            gm.gameOver();
+            OnGameOver();
         }
     }
 
@@ -53,5 +61,16 @@ public class DownhillManager : MonoBehaviour {
 
     public void scoreInc(int amount) {
         score += amount;
+    }
+
+    public void OnGameOver() {
+        Time.timeScale = 0;
+
+        modal.SetActive(true);
+        Text dist = modal.transform.Find("InnerModal/Dist").GetComponent<Text>();
+
+        Vector3 playerEndPos = playerController.playerPos;
+        string str = -1 * System.Math.Truncate(playerEndPos.y) + " M 이동";
+        dist.text = str;
     }
 }
