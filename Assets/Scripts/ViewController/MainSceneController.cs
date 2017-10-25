@@ -34,5 +34,9 @@ public class MainSceneController : MonoBehaviour {
         SceneManager.LoadScene("Skeleton");
     }
 
+    public void rankingShow() {
+        UM_GameServiceManager.Instance.ShowLeaderBoardsUI();
+    }
+
 
 }

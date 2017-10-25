@@ -25,6 +25,12 @@ MonoBehaviour:
   StringEscaping: 1
   EditorAnalytics: 1
   IsDisabled: 0
+  AppName: WinterBoy
+  AppVersion: 1.0-1
+  UseHTTPS: 0
+  StringEscaping: 1
+  EditorAnalytics: 1
+  IsDisabled: 1
   IsTestingModeEnabled: 0
   TestingModeAccIndex: 0
   IsRequetsCachingEnabled: 1

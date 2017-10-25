@@ -222,7 +222,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: F:/keystore/feedbackloop.keystore
+  AndroidKeystoreName: /Users/feedbackloop/Documents/keystore/winter.keystore
   AndroidKeyaliasName: wintersports
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
