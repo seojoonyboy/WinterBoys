@@ -6,7 +6,10 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
     private GameManager gm;
-    public GameObject[] floorsPref;
+    public GameObject[] 
+        floorsPref,
+        leftPref,
+        rightPref;
     public GameObject flagPref;
 
     public int columns = 3;
@@ -33,6 +36,8 @@ public class BoardManager : MonoBehaviour {
         row_parallel_move_lv = 1;   //폴의 평행이동
 
     List<GameObject> tiles = new List<GameObject>();
+    List<GameObject> leftSides = new List<GameObject>();
+    List<GameObject> rightSides = new List<GameObject>();
 
     private void OnEnable() {
         gm = GameManager.Instance;
@@ -41,26 +46,26 @@ public class BoardManager : MonoBehaviour {
 
     public void setUp() {
         for(int i=0; i<=columns - 1; i++) {
-            GameObject floor;
+            GameObject floor = Instantiate(floorsPref[0]);
+            GameObject leftSide = Instantiate(leftPref[i]);
+            GameObject rightSide = Instantiate(rightPref[i]);
+
+            floor.transform.SetParent(floorHolder, false);
+            floor.transform.position = new Vector2(0, -i);
+            leftSide.transform.SetParent(floorHolder, false);
+            leftSide.transform.position = new Vector2(-2.0f, -i);
+            rightSide.transform.SetParent(floorHolder, false);
+            rightSide.transform.position = new Vector2(2.0f, -i);
+
             if (i == columns - 1) {
-                floor = Instantiate(floorsPref[1]);
-
-                floor.transform.SetParent(floorHolder, false);
-                floor.transform.position = new Vector2(0, -i);
-
                 lastTilePos = floor.transform.position;
             }
-            else {
-                floor = Instantiate(floorsPref[i]);
-
-                floor.transform.SetParent(floorHolder, false);
-                floor.transform.position = new Vector2(0, -i);
-
-                if (i == 0) {
-                    firstTilePos = floor.transform.position;
-                }
+            if (i == 0) {
+                firstTilePos = floor.transform.position;
             }
             tiles.Add(floor);
+            leftSides.Add(leftSide);
+            rightSides.Add(rightSide);
         }
         curFlagPos = new Vector2(0, -4);
         addFlag();
@@ -70,8 +75,11 @@ public class BoardManager : MonoBehaviour {
         isMade = true;
 
         //다음 타일 생성
-        GameObject newFloor = Instantiate(floorsPref[floorIndex]);
-        if(floorIndex >= columns - 2) {
+        GameObject newFloor = Instantiate(floorsPref[0]);
+        GameObject leftSide = Instantiate(leftPref[floorIndex]);
+        GameObject rightSide = Instantiate(rightPref[floorIndex]);
+
+        if (floorIndex >= columns - 2) {
             floorIndex = 1;
         }
         else {
@@ -80,18 +88,30 @@ public class BoardManager : MonoBehaviour {
         newFloor.transform.SetParent(floorHolder, false);
         newFloor.transform.position = new Vector2(0, lastTilePos.y - 1);
 
+        leftSide.transform.SetParent(floorHolder, false);
+        leftSide.transform.position = new Vector2(-2f, lastTilePos.y - 1);
+        rightSide.transform.SetParent(floorHolder, false);
+        rightSide.transform.position = new Vector2(2f, lastTilePos.y - 1);
+
         //첫번째 타일 제거
-        resetArr(newFloor);
+        resetArr(newFloor, leftSide, rightSide);
 
         //다음 폴 생성
         addFlag();
     }
 
-    private void resetArr(GameObject newFloor) {
+    private void resetArr(GameObject newFloor, GameObject leftSide, GameObject rightSide) {
         Destroy(tiles[0].gameObject);
+        Destroy(leftSides[0].gameObject);
+        Destroy(rightSides[0].gameObject);
+
         tiles.RemoveAt(0);
+        rightSides.RemoveAt(0);
+        leftSides.RemoveAt(0);
 
         tiles.Add(newFloor);
+        leftSides.Add(leftSide);
+        rightSides.Add(rightSide);
 
         lastTilePos = newFloor.transform.position;
         firstTilePos = tiles[0].transform.position;

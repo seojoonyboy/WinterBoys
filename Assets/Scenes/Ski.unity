@@ -3386,11 +3386,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorsPref:
-  - {fileID: 1015877009269834, guid: 2c5ef4aaa52799847914fae12d7ffee8, type: 2}
+  - {fileID: 1058845662176276, guid: 4aea5d2167575a94ab828233de08782b, type: 2}
+  leftPref:
   - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
-  - {fileID: 1788904706288122, guid: 6dcb9da3e0caa1a4a99dee312ac6c483, type: 2}
-  - {fileID: 1068549737899498, guid: e3c73521b891832449131d98c66520b7, type: 2}
-  - {fileID: 1908950784494682, guid: 1d22e53a053b1984cb20df09a3de7a16, type: 2}
+  - {fileID: 1058845662176276, guid: ebbd581874a758f4da602fe310e9e38e, type: 2}
+  - {fileID: 1058845662176276, guid: d06a1d1d1439d384296f648af017bd31, type: 2}
+  - {fileID: 1058845662176276, guid: bedf114eff71ba343b57592aef89d6bb, type: 2}
+  - {fileID: 1058845662176276, guid: bedf114eff71ba343b57592aef89d6bb, type: 2}
+  rightPref:
+  - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
+  - {fileID: 1058845662176276, guid: 5b10acba3a65f3f41ba45387d539fafd, type: 2}
+  - {fileID: 1058845662176276, guid: 7030ad26f71447a46afcd9d24acde005, type: 2}
+  - {fileID: 1058845662176276, guid: fb783db5fe884bf4eb9371fc2436e3cd, type: 2}
+  - {fileID: 1058845662176276, guid: fb783db5fe884bf4eb9371fc2436e3cd, type: 2}
   flagPref: {fileID: 1031508603598614, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
   columns: 5
   floorHolder: {fileID: 1793202011}
