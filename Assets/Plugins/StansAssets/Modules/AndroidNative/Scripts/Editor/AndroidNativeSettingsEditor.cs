@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ public class AndroidNativeSettingsEditor : Editor {
 	GUIContent GPSdkVersion   	= new GUIContent("Google Play SDK Version [?]", "Version of Google Play SDK used by the plugin");	
 	
 	private AndroidNativeSettings settings;	
+
+	private static ReorderableList linksList;
 	
 	void Awake() {
 		ApplaySettings();
@@ -35,8 +38,45 @@ public class AndroidNativeSettingsEditor : Editor {
 		
 	}
 	
-	
-	
+	void OnEnable() {
+		linksList = new ReorderableList (AndroidNativeSettings.Instance.DynamicLinks, typeof (SA.AndroidNative.DynamicLinks.LinkEditorTemplate), true, true, true, true);
+		linksList.drawHeaderCallback = (Rect rect) => {
+			GUIStyle style = EditorStyles.boldLabel;
+			EditorGUI.LabelField (rect, "Links", style);
+		};
+		linksList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) => {
+			DrawDynamicLinkConstructor(AndroidNativeSettings.Instance.DynamicLinks, rect, index);
+		};
+
+		linksList.onSelectCallback = (ReorderableList l) => {
+			//Just empty callback here
+		};
+		linksList.onCanRemoveCallback = (ReorderableList l) => {
+			return l.count > 0;
+		};
+		linksList.onRemoveCallback = (ReorderableList l) => {
+			ReorderableList.defaultBehaviours.DoRemoveButton (l);
+		};
+		linksList.onAddCallback = (ReorderableList l) => {
+			AndroidNativeSettings.Instance.DynamicLinks.Add (new SA.AndroidNative.DynamicLinks.LinkEditorTemplate());
+		};
+	}
+
+	private void DrawDynamicLinkConstructor(List<SA.AndroidNative.DynamicLinks.LinkEditorTemplate> collection, Rect rect, int index) {
+		if (AndroidNativeSettings.Instance.FirebaseDynamicLinks) {
+			SA.AndroidNative.DynamicLinks.LinkEditorTemplate link = collection.ToArray () [index];
+
+			float x = rect.x;
+			float y = rect.y + 2.0f;
+
+			EditorGUI.LabelField (new Rect (x, y, rect.width / 6.0f, EditorGUIUtility.singleLineHeight), "Host:"); x += rect.width / 6.0f;
+			link.Host = EditorGUI.TextField (new Rect (x, y, rect.width / 3.0f, EditorGUIUtility.singleLineHeight), link.Host); x += rect.width / 3.0f;
+
+			EditorGUI.LabelField (new Rect (x, y, rect.width / 6.0f, EditorGUIUtility.singleLineHeight), "Scheme:"); x += rect.width / 6.0f;
+			link.Scheme = EditorGUI.TextField (new Rect (x, y, rect.width / 3.0f, EditorGUIUtility.singleLineHeight), link.Scheme);
+		}
+	}
+
 	public static string AndroidNativeSettings_Path = SA.Common.Config.MODULS_PATH + "AndroidNative/Scripts/Core/AndroidNativeSettings.cs";
 	public static string GoogleCloudMessageService_Path = SA.Common.Config.MODULS_PATH + "AndroidNative/Scripts/GCM/GoogleCloudMessageService.cs";
 	public static string ParseCloudMessageService_Path = SA.Common.Config.MODULS_PATH + "AndroidNative/Scripts/System/Notifications/ParsePushesStub.cs";
@@ -436,10 +476,14 @@ public class AndroidNativeSettingsEditor : Editor {
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginHorizontal();
-			settings.NetworkStateAPI = EditorGUILayout.Toggle(AN_API_NAME.NetworkInfo,  settings.NetworkStateAPI);
 			settings.FirebaseAnalytics = EditorGUILayout.Toggle(AN_API_NAME.FirebaseAnalytics,  settings.FirebaseAnalytics);
+			settings.NetworkStateAPI = EditorGUILayout.Toggle(AN_API_NAME.NetworkInfo,  settings.NetworkStateAPI);
 			EditorGUILayout.EndHorizontal();
-			
+
+			EditorGUILayout.BeginHorizontal();
+			settings.FirebaseDynamicLinks = EditorGUILayout.Toggle(AN_API_NAME.FirebaseDynamicLinks,  settings.FirebaseDynamicLinks);
+			EditorGUILayout.EndHorizontal();
+
 			EditorGUI.indentLevel--;
 			EditorGUILayout.Space();
 		}
@@ -759,6 +803,12 @@ public class AndroidNativeSettingsEditor : Editor {
 		} else {
 			Instalation.DisableFirebaseAnalytics ();
 		}
+
+		if (AndroidNativeSettings.Instance.FirebaseDynamicLinks) {
+			Instalation.EnableFirebaseDynamicLinks ();
+		} else {
+			Instalation.DisableFirebaseDynamicLinks ();
+		}
 		
 		UpdateManifest();
 		
@@ -785,7 +835,7 @@ public class AndroidNativeSettingsEditor : Editor {
 		SA.Manifest.ActivityTemplate launcherActivity = application.GetLauncherActivity();
 
 		SA.Manifest.PropertyTemplate targetSdk = Manifest.GetOrCreatePropertyWithTag ("uses-sdk");
-		targetSdk.SetValue ("android:targetSdkVersion", "25");
+		targetSdk.SetValue ("android:targetSdkVersion", "26");
 		
 		if(launcherActivity.Name == "com.androidnative.AndroidNativeBridge") {
 			launcherActivity.SetName("com.unity3d.player.UnityPlayerNativeActivity");
@@ -858,6 +908,41 @@ public class AndroidNativeSettingsEditor : Editor {
 			application.RemoveProperty (provider);
 			application.RemoveProperty (service);
 			application.RemoveProperty (receiver);
+		}
+
+		////////////////////////
+		//Firebase Dynamic Links
+		////////////////////////
+		 
+		UpdateId++;
+		SA.Manifest.ActivityTemplate dynamicLinksReceiverActivity = application.GetOrCreateActivityWithName ("com.androidnative.firebase.dynamiclinks.DynamicLinksHandleActivity");
+
+
+		if (AndroidNativeSettings.Instance.FirebaseDynamicLinks) {
+			dynamicLinksReceiverActivity.SetValue("android:launchMode", "singleTask");
+			dynamicLinksReceiverActivity.SetValue("android:label", "@string/app_name");
+			dynamicLinksReceiverActivity.SetValue("android:configChanges", "fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen");
+			dynamicLinksReceiverActivity.SetValue("android:theme", "@android:style/Theme.Translucent.NoTitleBar");
+
+			SA.Manifest.PropertyTemplate intent_filter = dynamicLinksReceiverActivity.GetOrCreateIntentFilterWithName("android.intent.action.VIEW");
+			intent_filter.GetOrCreatePropertyWithName("category", "android.intent.category.DEFAULT");
+			intent_filter.GetOrCreatePropertyWithName("category", "android.intent.category.BROWSABLE");
+
+			SA.Manifest.PropertyTemplate data = intent_filter.GetPropertyWithTag ("data");
+			while (data != null) {
+				intent_filter.RemoveProperty (data);
+				data = intent_filter.GetPropertyWithTag ("data");
+			}
+
+			foreach (SA.AndroidNative.DynamicLinks.LinkEditorTemplate tpl in AndroidNativeSettings.Instance.DynamicLinks) {
+				SA.Manifest.PropertyTemplate link = new SA.Manifest.PropertyTemplate("data");
+				link.SetValue("android:scheme", tpl.Scheme);
+				link.SetValue("android:host", tpl.Host);
+
+				intent_filter.AddProperty (link);
+			}
+		} else {
+			application.RemoveActivity (dynamicLinksReceiverActivity);
 		}
 
 		////////////////////////
@@ -1952,6 +2037,19 @@ public class AndroidNativeSettingsEditor : Editor {
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox("Third-Party Plug-Ins Support Seettings", MessageType.None);
         }
+
+		if (AndroidNativeSettings.Instance.FirebaseDynamicLinks) {
+			SA.Common.Editor.Tools.BlockHeader ("Firebase Dynamic Links");
+			EditorGUI.BeginChangeCheck ();
+			EditorGUI.indentLevel++;
+			{
+				linksList.DoLayoutList ();
+			}
+			EditorGUI.indentLevel--;
+			if (EditorGUI.EndChangeCheck()) {
+				UpdateManifest ();
+			}
+		}
 
 		SA.Common.Editor.Tools.BlockHeader("Google Fit");
 

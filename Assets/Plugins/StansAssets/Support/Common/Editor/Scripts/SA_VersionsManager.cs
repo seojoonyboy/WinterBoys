@@ -27,8 +27,35 @@ namespace SA.Common.Editor {
 		// Android Native
 		//--------------------------------------
 
+        public static bool Is_SpotifyInstalled {
+            get {
+                return SA.Common.Util.Files.IsFileExists(SA.Common.Config.SPOTIFY_VERSION_INFO_PATH);
+            }
+        }
 
-		public static bool Is_AN_Installed {
+        public static int Spotify_Version
+        {
+            get
+            {
+                return GetVersionCode(SA.Common.Config.SPOTIFY_VERSION_INFO_PATH);
+            }
+        }
+
+        public static int Spotify_MagorVersion
+        {
+            get
+            {
+                return GetMagorVersionCode(SA.Common.Config.SPOTIFY_VERSION_INFO_PATH);
+            }
+        }
+
+        public static string Spotify_StringVersionId {
+			get {
+				return GetStringVersionId(SA.Common.Config.SPOTIFY_VERSION_INFO_PATH);
+			}
+		}
+
+        public static bool Is_AN_Installed {
 			get { 
 				return SA.Common.Util.Files.IsFileExists(SA.Common.Config.AN_VERSION_INFO_PATH);
 			}

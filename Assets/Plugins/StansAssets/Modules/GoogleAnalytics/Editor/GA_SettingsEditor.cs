@@ -70,26 +70,19 @@ namespace SA.Analytics.Google {
 				GUI.enabled = true;
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			Messages();
-			EditorGUILayout.Space();
-			Accounts();
-			EditorGUILayout.Space();
-			GeneralOptions();
-			EditorGUILayout.Space();
-			AdvancedTracking();
-			EditorGUILayout.Space();
-			AutoTracking();
-			EditorGUILayout.Space();
-			AboutGUI();
+			Messages ();
+			EditorGUILayout.Space ();
+			Accounts ();
+			EditorGUILayout.Space ();
+			GeneralOptions ();
+			EditorGUILayout.Space ();
+			AdvancedTracking ();
+			EditorGUILayout.Space ();
+			AutoTracking ();
+			EditorGUILayout.Space ();
+			FirebaseSettings ();
+			EditorGUILayout.Space ();
+			AboutGUI ();
 			
 			ButtonsGUI();
 			
@@ -102,6 +95,19 @@ namespace SA.Analytics.Google {
 		
 		public override void OnInspectorGUI() {
 			DrawAnalyticsSettings();
+		}
+
+		private static void FirebaseSettings() {
+			EditorGUILayout.HelpBox("Firebase Analytics", MessageType.None);
+			EditorGUI.BeginChangeCheck ();
+			GA_Settings.Instance.EnableFirebase = EditorGUILayout.Toggle (new GUIContent("Enable Firebase Analitycs [?]",
+				"Sets whether the Firebase Analytics collection is enabled for this application"),
+				GA_Settings.Instance.EnableFirebase);
+			GA_Settings.Instance.FirebaseAppId = EditorGUILayout.TextField (new GUIContent("App ID [?]", "Use this number to identify your app when you contact Firebase support."),
+				GA_Settings.Instance.FirebaseAppId);
+			if(EditorGUI.EndChangeCheck()) {				
+				UpdateLibsInstalation();
+			}
 		}
 		
 		private static void Messages() {
@@ -126,6 +132,63 @@ namespace SA.Analytics.Google {
 			} else {
 				SA.Common.Editor.Instalation.DisableAndroidCampainAPI();
 			}
+
+			SA.Manifest.Manager.Refresh();
+
+			SA.Manifest.Template Manifest =  SA.Manifest.Manager.GetManifest();
+			SA.Manifest.ApplicationTemplate application =  Manifest.ApplicationTemplate;
+			SA.Manifest.ActivityTemplate launcherActivity = application.GetLauncherActivity();
+
+			SA.Manifest.PropertyTemplate targetSdk = Manifest.GetOrCreatePropertyWithTag ("uses-sdk");
+			targetSdk.SetValue ("android:targetSdkVersion", "25");
+
+			if(launcherActivity.Name == "com.androidnative.AndroidNativeBridge") {
+				launcherActivity.SetName("com.unity3d.player.UnityPlayerNativeActivity");
+			}
+
+			foreach (KeyValuePair<int, SA.Manifest.ActivityTemplate> a in application.Activities) {
+				if (a.Value.Name.Equals("com.unity3d.player.UnityPlayerNativeActivity") && !a.Value.IsLauncher) {
+					application.RemoveActivity(a.Value);
+					break;
+				}
+			}
+
+			SA.Manifest.PropertyTemplate internalReceiver = application.GetOrCreatePropertyWithName ("receiver", "com.google.firebase.iid.FirebaseInstanceIdInternalReceiver");
+			SA.Manifest.PropertyTemplate provider = application.GetOrCreatePropertyWithName ("provider", "com.google.firebase.provider.FirebaseInitProvider");
+			SA.Manifest.PropertyTemplate service = application.GetOrCreatePropertyWithName ("service", "com.google.firebase.iid.FirebaseInstanceIdService");
+			SA.Manifest.PropertyTemplate receiver = application.GetOrCreatePropertyWithName ("receiver", "com.google.firebase.iid.FirebaseInstanceIdReceiver");
+
+			////////////////////////
+			//Firebase Analytics
+			////////////////////////
+			if (GA_Settings.Instance.EnableFirebase) {
+				SA.Common.Editor.Instalation.GAEnableFirebaseAPI (GA_Settings.Instance.FirebaseAppId);
+
+				internalReceiver.SetValue ("android:exported", "false");
+
+				receiver.SetValue ("android:permission", "com.google.android.c2dm.permission.SEND");
+				receiver.SetValue ("android:exported", "true");
+				SA.Manifest.PropertyTemplate filter = receiver.GetOrCreateIntentFilterWithName ("com.google.android.c2dm.intent.RECEIVE");
+				filter.GetOrCreatePropertyWithName ("action", "com.google.android.c2dm.intent.REGISTRATION");
+				filter.GetOrCreatePropertyWithName ("category", SA.Common.Editor.Tools.ApplicationIdentifier);
+
+				service.SetValue ("android:exported", "true");
+				SA.Manifest.PropertyTemplate intentFilter = service.GetOrCreateIntentFilterWithName ("com.google.firebase.INSTANCE_ID_EVENT");
+				intentFilter.SetValue ("android:priority", "-500");
+
+				provider.SetValue ("android:initOrder", "100");
+				provider.SetValue ("android:exported", "false");
+				provider.SetValue ("android:authorities", SA.Common.Editor.Tools.ApplicationIdentifier + ".firebaseinitprovider");
+			} else {
+				SA.Common.Editor.Instalation.GADisableFirebaseAPI ();
+
+				application.RemoveProperty (internalReceiver);
+				application.RemoveProperty (provider);
+				application.RemoveProperty (service);
+				application.RemoveProperty (receiver);
+			}
+
+			SA.Manifest.Manager.SaveManifest();
 		}
 		
 		
@@ -392,10 +455,8 @@ namespace SA.Analytics.Google {
 					GA_Settings.Instance.LevelPrefix =  EditorGUILayout.TextField(GA_Settings.Instance.LevelPrefix);
 					GA_Settings.Instance.LevelPostfix = EditorGUILayout.TextField(GA_Settings.Instance.LevelPostfix);
 					EditorGUILayout.EndHorizontal();
-				} 
-				
+				}				
 			}
-			EditorGUILayout.Space();
 		}
 		
 		private static void ButtonsGUI() {
@@ -403,7 +464,7 @@ namespace SA.Analytics.Google {
 			
 			EditorGUILayout.Space();
 			if(GUILayout.Button("Refresh Client Id",  GUILayout.Width(120))) {
-				PlayerPrefs.DeleteKey(GA_Manager.GOOGLE_ANALYTICS_CLIENTID_PREF_KEY);
+				PlayerPrefs.DeleteKey(Manager.GOOGLE_ANALYTICS_CLIENTID_PREF_KEY);
 			}
 			
 			

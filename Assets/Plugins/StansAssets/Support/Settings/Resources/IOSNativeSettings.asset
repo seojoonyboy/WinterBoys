@@ -26,6 +26,7 @@ MonoBehaviour:
   EnableContactsAPI: 0
   EnableAppEventsAPI: 0
   EnableUserNotificationsAPI: 0
+  EnablePermissionAPI: 0
   AppleId: XXXXXXXXX
   ToolbarIndex: 0
   ExpandMoreActionsMenu: 1

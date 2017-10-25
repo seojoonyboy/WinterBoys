@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class WP8NativeSettings : ScriptableObject {
 
-	public const string VERSION_NUMBER = "3.5/19";
+	public const string VERSION_NUMBER = "3.6/21";
 
 	private const string WP8NativeSettingsAssetName = "WP8NativeSettings";
 	private const string WP8NativeSettingsAssetExtension = ".asset";

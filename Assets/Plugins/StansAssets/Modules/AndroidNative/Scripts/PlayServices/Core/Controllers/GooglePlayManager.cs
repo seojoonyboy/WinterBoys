@@ -119,23 +119,23 @@ public class GooglePlayManager : SA.Common.Pattern.Singleton<GooglePlayManager> 
 
 	
 
-	public void SubmitScore(string leaderboardName, long score) {
+	public void SubmitScore(string leaderboardName, long score, string tag = "") {
 
 		if(AndroidNativeSettings.Instance.Is_Leaderboards_Editor_Notifications_Enabled)
 			SA_EditorNotifications.ShowNotification(leaderboardName, score + " Scores Submitted", SA_EditorNotificationType.Achievement);
 
 		if (!GooglePlayConnection.CheckState ()) { return; }
-		AN_GMSGeneralProxy.submitScore (leaderboardName, score);
+		AN_GMSGeneralProxy.submitScore (leaderboardName, score, tag);
 	}
 	
 
-	public void SubmitScoreById(string leaderboardId, long score) {
+	public void SubmitScoreById(string leaderboardId, long score, string tag = "") {
 
 		if(AndroidNativeSettings.Instance.Is_Leaderboards_Editor_Notifications_Enabled)
 			SA_EditorNotifications.ShowNotification(leaderboardId, score + " Scores Submitted", SA_EditorNotificationType.Achievement);
 
 		if (!GooglePlayConnection.CheckState ()) { return; }
-		AN_GMSGeneralProxy.submitScoreById (leaderboardId, score);
+		AN_GMSGeneralProxy.submitScoreById (leaderboardId, score, tag);
 	}
 
 	
@@ -505,7 +505,7 @@ public class GooglePlayManager : SA.Common.Pattern.Singleton<GooglePlayManager> 
 			lb.UpdateName(leaderboardName);
 			result = new GP_LeaderboardResult(lb, storeData [0]);
 
-			for(int i = 5; i < storeData.Length; i+=8) {
+			for(int i = 5; i < storeData.Length; i+=9) {
 				if(storeData[i] == AndroidNative.DATA_EOF) {
 					break;
 				}
@@ -519,7 +519,7 @@ public class GooglePlayManager : SA.Common.Pattern.Singleton<GooglePlayManager> 
 					AddPlayer(p);
 				}
 
-				GPScore s =  new GPScore(score, rank, timeSpan, collection, lb.Id, playerId);
+				GPScore s =  new GPScore(score, rank, timeSpan, collection, lb.Id, playerId, storeData[i + 8]);
 				lb.UpdateScore(s);
 
 				if(playerId.Equals(player.playerId)) {
@@ -532,7 +532,7 @@ public class GooglePlayManager : SA.Common.Pattern.Singleton<GooglePlayManager> 
 	}
 
 	private void OnLeaderboardDataLoaded(string data) {
-		Debug.Log("OnLeaderboardDataLoaded");
+		Debug.Log("OnLeaderboardDataLoaded " + data);
 		string[] storeData;
 		storeData = data.Split(AndroidNative.DATA_SPLITTER [0]);
 
@@ -540,7 +540,7 @@ public class GooglePlayManager : SA.Common.Pattern.Singleton<GooglePlayManager> 
 		GooglePlayResult result = new GooglePlayResult (storeData [0]);
 		if(result.IsSucceeded) {
 
-			for(int i = 1; i < storeData.Length; i+=26) {
+			for(int i = 1; i < storeData.Length; i+=32) {
 				if(storeData[i] == AndroidNative.DATA_EOF) {
 					break;
 				}
@@ -559,11 +559,12 @@ public class GooglePlayManager : SA.Common.Pattern.Singleton<GooglePlayManager> 
 
 					GPBoardTimeSpan 	timeSpan 		= (GPBoardTimeSpan)  System.Convert.ToInt32(storeData[start + 2]);
 					GPCollectionType 	collection  	= (GPCollectionType) System.Convert.ToInt32(storeData[start + 3]);
+					string tag = storeData[start + 4];
 
 					//Debug.Log("timeSpan: " + timeSpan +   " collection: " + collection + " score:" + score + " rank:" + rank);
 
-					GPScore s =  new GPScore(score, rank, timeSpan, collection, lb.Id, player.playerId);
-					start = start + 4;
+					GPScore s =  new GPScore(score, rank, timeSpan, collection, lb.Id, player.playerId, tag);
+					start = start + 5;
 					lb.UpdateScore(s);
 					lb.UpdateCurrentPlayerScore(s);
 				}
@@ -603,8 +604,9 @@ public class GooglePlayManager : SA.Common.Pattern.Singleton<GooglePlayManager> 
 
 			long score = System.Convert.ToInt64(storeData[5]);
 			int rank = System.Convert.ToInt32(storeData[6]);
+			string tag = storeData [7];
 
-			GPScore s =  new GPScore(score, rank, timeSpan, collection, lb.Id, player.playerId);
+			GPScore s =  new GPScore(score, rank, timeSpan, collection, lb.Id, player.playerId, tag);
 			result.score= s;
 
 			lb.ReportLocalPlayerScoreUpdate(s, requestId);

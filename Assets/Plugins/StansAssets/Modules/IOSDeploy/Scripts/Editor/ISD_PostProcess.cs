@@ -24,13 +24,15 @@ namespace SA.IOSDeploy {
 
 	public class PostProcess  {
 
-
 		[PostProcessBuild(100)]
 		public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
 
 			#if !UNITY_IPHONE
 				return;
 			#endif
+
+
+
 
 			#if UNITY_IPHONE &&  UNITY_EDITOR_WIN
 			UnityEngine.Debug.LogWarning("ISD Postprocess is not avaliable for Win");
@@ -47,12 +49,15 @@ namespace SA.IOSDeploy {
 
 			List<string> frmwrkWithOpt = new List<string>();
 
-
+			List<string> embededFrameworkds = new List<string>();
 
 			foreach(Framework framework in ISD_Settings.Instance.Frameworks){
 				string optional = "|0";
 				if(framework.IsOptional){
 					optional = "|1";
+				}
+				if(framework.IsEmbeded){
+					embededFrameworkds.Add(framework.Name);
 				}
 				frmwrkWithOpt.Add(framework.Name + optional);
 
@@ -225,8 +230,22 @@ namespace SA.IOSDeploy {
 			writer.Write(textPlist);
 			writer.Close ();
 
-			UnityEngine.Debug.Log("SA.IOSDeploy.PostProcess Finished.");
+			UnityEditor.XCodeEditor.XCProject project = new UnityEditor.XCodeEditor.XCProject(pathToBuiltProject);
+			foreach(string s in embededFrameworkds){
+				project.AddEmbedFramework(s);
+			}
+//			foreach(Lib lib in ISD_Settings.Instance.Libraries) { 
+//				string optional = "|0";
+//				if(lib.IsOptional) {
+//					optional = "|1";
+//				}
+//				project.AddFile( completeLibPath, modGroup, "SDKROOT", true, lib.IsOptional );
+//				//libWithOpt.Add (lib.Name + optional);
+//			}
 
+			project.Save();
+
+			UnityEngine.Debug.Log("SA.IOSDeploy.PostProcess Finished.");
 			#endif
 		}
 

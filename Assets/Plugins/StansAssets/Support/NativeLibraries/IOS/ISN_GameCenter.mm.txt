@@ -3203,7 +3203,12 @@ static ISN_SaveGame *sg_sharedHelper = nil;
                           
                           void _ISN_loadGKPlayerPhoto(char* playerId, int size) {
                               NSString* mPlayerId = [ISN_DataConvertor charToNSString:playerId];
-                              [[ISN_GameCenterManager sharedInstance] loadImageForPlayerWithPlayerId:mPlayerId size:size];
+                              
+                              if(size == 0) {
+                                  [[ISN_GameCenterManager sharedInstance] loadImageForPlayerWithPlayerId:mPlayerId size:GKPhotoSizeSmall];
+                              } else {
+                                  [[ISN_GameCenterManager sharedInstance] loadImageForPlayerWithPlayerId:mPlayerId size:GKPhotoSizeNormal];
+                              }
                           }
                           
                           void _ISN_RetrieveFriends() {

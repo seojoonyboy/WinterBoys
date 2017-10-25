@@ -237,5 +237,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cd54352c88548a8badaf9e1eedcdc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawTexture: {fileID: 0}
   textureForPost: {fileID: 2800000, guid: e2b49e741d78f4eee986a972a02d510e, type: 3}

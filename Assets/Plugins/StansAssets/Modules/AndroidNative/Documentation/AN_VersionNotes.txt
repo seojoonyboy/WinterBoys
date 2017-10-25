@@ -1,3 +1,27 @@
+9.8/21
+NEW!
+Firebase Dynamic Links API
+Google Play Services updated to version 11.0.2
+Score Tag option added to SubmitScore API
+
+Fixes:
+NullPointerException in BillingHelper.querySkuDetails(BillingHelper.java:842) FIX
+Show On Load AdMob banner option ignored FIX
+GetExternalStoragePath API improvement
+
+Overall performance improvements
+Compatibility updates & fixes
+
+9.7/20
+Fixes:
+StartShareIntent multiple filters selection fix
+Real-Time Multiplayer improved bytes to string convertion
+AdMob banners are clickable but not visible fix
+Local Notifications cahing issue fix
+
+Overall performance improvements
+Compatibility updates & fixes
+
 9.6/19
 NEW!
 Google Fit API

@@ -160,22 +160,6 @@ public class IOSNativeMenu : EditorWindow {
 	}
 
 	//--------------------------------------
-	//  iAd App Network
-	//--------------------------------------
-
-	[MenuItem("Window/Stan's Assets/IOS Native/Documentation/iAd App Network/iAd Setup", false, 100)]
-	public static void iAdAppSetup() {
-		string url = "https://unionassets.com/iosnative/iad-setup-19";
-		Application.OpenURL(url);
-	}
-
-	[MenuItem("Window/Stan's Assets/IOS Native/Documentation/iAd App Network/Coding Guidelines", false, 100)]
-	public static void iAdAppNetworkCodingGuidelines() {
-		string url = "https://unionassets.com/iosnative/coding-guidelines-20";
-		Application.OpenURL(url);
-	}
-
-	//--------------------------------------
 	//  iCloud
 	//--------------------------------------
 
@@ -290,12 +274,6 @@ public class IOSNativeMenu : EditorWindow {
 	[MenuItem("Window/Stan's Assets/IOS Native/Documentation/Playmaker/Actions List", false, 100)]
 	public static void PlaymakerActionsList() {
 		string url = "https://unionassets.com/iosnative/actions-list-18";
-		Application.OpenURL(url);
-	}
-
-	[MenuItem("Window/Stan's Assets/IOS Native/Documentation/Playmaker/iAd With Playmaker", false, 100)]
-	public static void PlaymakerIAd() {
-		string url = "https://unionassets.com/iosnative/iad-with-playmaker-22";
 		Application.OpenURL(url);
 	}
 
