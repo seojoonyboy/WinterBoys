@@ -63,9 +63,6 @@ public class SignInController : MonoBehaviour {
         string nickname = PlayerPrefs.GetString("nickname");
         if (string.IsNullOrEmpty(nickname)) {
             signUp();
-            //google play 연동 시도
-            //GooglePlayConnection.ActionConnectionResultReceived += ActionConnectionResultReceived;
-            GooglePlayConnection.Instance.Connect();
         }
         else {
             gm.nickname = nickname;

@@ -29,6 +29,8 @@ public class GameManager : Singleton<GameManager> {
         DontDestroyOnLoad(gameObject);
         RemoteSettings.ForceUpdate();
         init();
+
+        UM_GameServiceManager.Instance.Connect();
     }
 
     public void init() {
