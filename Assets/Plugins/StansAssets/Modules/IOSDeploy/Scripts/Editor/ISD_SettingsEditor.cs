@@ -222,8 +222,18 @@ GUI_ENABLED = true;
 					EditorGUILayout.BeginHorizontal ();
 
 					framework.IsOpen = EditorGUILayout.Foldout(framework.IsOpen, framework.TypeString);
-					if(framework.IsOptional) {
-						EditorGUILayout.LabelField("(Optional)");
+					if (framework.IsOptional && framework.IsEmbeded) {
+						EditorGUILayout.LabelField("(Optional & Embeded)");
+					} else if (framework.IsOptional) {
+						EditorGUILayout.LabelField ("(Optional)");
+					} else if (framework.IsEmbeded) {
+						EditorGUILayout.LabelField("(Embeded)");
+					}
+
+
+
+					if(framework.IsEmbeded) {
+						
 					}
 
 					bool ItemWasRemoved = SA.Common.Editor.Tools.SrotingButtons ((object)framework, ISD_Settings.Instance.Frameworks);
@@ -235,6 +245,7 @@ GUI_ENABLED = true;
 					if (framework.IsOpen) {
 						EditorGUI.indentLevel++;
 						framework.IsOptional = SA.Common.Editor.Tools.YesNoFiled ("Optional", framework.IsOptional);
+						framework.IsEmbeded = SA.Common.Editor.Tools.YesNoFiled ("Embeded", framework.IsEmbeded);
 						EditorGUILayout.Space ();
 						EditorGUI.indentLevel--;
 					}

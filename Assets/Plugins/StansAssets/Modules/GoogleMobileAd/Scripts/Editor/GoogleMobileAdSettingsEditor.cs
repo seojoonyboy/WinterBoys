@@ -291,7 +291,7 @@ public class GoogleMobileAdSettingsEditor : Editor {
 		
 		GoogleMobileAdSettings.Instance.Android_BannersUnitId = "ca-app-pub-6101605888755494/1824764765";
 		GoogleMobileAdSettings.Instance.Android_InterstisialsUnitId = "ca-app-pub-6101605888755494/3301497967";
-		GoogleMobileAdSettings.Instance.Android_RewardedVideoAdUnitId = "ca-app-pub-6101605888755494/4996523169";
+		GoogleMobileAdSettings.Instance.Android_RewardedVideoAdUnitId = "ca-app-pub-6101605888755494/5378283960";
 
 
 		
@@ -592,7 +592,7 @@ public class GoogleMobileAdSettingsEditor : Editor {
 		SA.Manifest.ActivityTemplate launcherActivity = application.GetLauncherActivity();
 
 		SA.Manifest.PropertyTemplate targetSdk = Manifest.GetOrCreatePropertyWithTag ("uses-sdk");
-		targetSdk.SetValue ("android:targetSdkVersion", "25");
+		targetSdk.SetValue ("android:targetSdkVersion", "26");
 
 		SA.Manifest.ActivityTemplate AdActivity = application.GetOrCreateActivityWithName("com.google.android.gms.ads.AdActivity");
 		AdActivity.SetValue("android:configChanges", "keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize");

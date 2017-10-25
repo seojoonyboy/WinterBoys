@@ -27,7 +27,7 @@ namespace SA.IOSDeploy {
 	#endif
 	public class ISD_Settings : ScriptableObject{
 
-		public const string VERSION_NUMBER = "3.2/19";
+		public const string VERSION_NUMBER = "3.4/21";
 
 
 		//Editor Window
@@ -183,11 +183,11 @@ namespace SA.IOSDeploy {
 			return null;
 		}
 
-		public Framework AddFramework(iOSFramework framework) {
+		public Framework AddFramework(iOSFramework framework, bool embaded = false) {
 
 			var f = GetFramework (framework);
 			if(f ==  null) {
-				f = new Framework (framework);
+				f = new Framework (framework, embaded);
 				ISD_Settings.Instance.Frameworks.Add (f);
 			}
 

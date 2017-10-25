@@ -365,13 +365,11 @@ MonoBehaviour:
   KeepRatioInEdiotr: 1
   CaclulcateOnlyOntStart: 0
   InitialRect:
-    serializedVersion: 2
     x: 0
     y: 150
     width: 438
     height: 218
   InitialScreen:
-    serializedVersion: 2
     x: 0
     y: 0
     width: 1433

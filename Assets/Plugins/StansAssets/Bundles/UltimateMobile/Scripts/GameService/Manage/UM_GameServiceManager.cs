@@ -583,20 +583,20 @@ public class UM_GameServiceManager : SA.Common.Pattern.Singleton<UM_GameServiceM
 	}
 	
 	
-	public void SubmitScore(string LeaderboardId, long score) {
+	public void SubmitScore(string LeaderboardId, long score, long context = 0) {
 		SubmitScore(UltimateMobileSettings.Instance.GetLeaderboardById(LeaderboardId), score);
 	}
 	
-	public void SubmitScore(UM_Leaderboard leaderboard, long score) {
+	public void SubmitScore(UM_Leaderboard leaderboard, long score, long context = 0) {
 		switch(Application.platform) {
 		case RuntimePlatform.IPhonePlayer:
-			GameCenterManager.ReportScore(score, leaderboard.IOSId, 0);
+			GameCenterManager.ReportScore(score, leaderboard.IOSId, context);
 			break;
 		case RuntimePlatform.Android:
 			if (UltimateMobileSettings.Instance.PlatformEngine == UM_PlatformDependencies.Amazon) {
 				SA_AmazonGameCircleManager.Instance.SubmitLeaderBoardProgress(leaderboard.AmazonId, score);
 			} else {
-				GooglePlayManager.Instance.SubmitScoreById(leaderboard.AndroidId, score);
+				GooglePlayManager.Instance.SubmitScoreById(leaderboard.AndroidId, score, context.ToString());
 			}
 			break;
 		}

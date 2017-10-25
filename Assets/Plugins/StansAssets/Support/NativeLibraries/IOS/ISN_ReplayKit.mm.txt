@@ -203,7 +203,11 @@ extern "C" {
     }
     
     BOOL ISN_IsReplayKitMicEnabled() {
+#if !TARGET_OS_TV
         return   [[RPScreenRecorder sharedRecorder] isMicrophoneEnabled];
+#else
+        return false;
+#endif
     }
     
    

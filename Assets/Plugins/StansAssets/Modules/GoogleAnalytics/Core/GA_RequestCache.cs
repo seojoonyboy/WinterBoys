@@ -26,31 +26,18 @@ namespace SA.Analytics.Google {
 
 		public static void SaveRequest(string cache) {
 
+			if(!GA_Settings.Instance.IsRequetsCachingEnabled) { return; }
 
 			CachedRequest r = new CachedRequest(cache, DateTime.Now.Ticks);
 
 			List<CachedRequest> current = CurrenCachedRequests;
 			current.Add(r);
-
-			Debug.Log(current.Count);
 			CacheRequests(current);
 
 		}
 
-		public static void SendChashedRequests() {
-
-			List<CachedRequest> current = CurrenCachedRequests;
-			foreach(CachedRequest request in current) {
-				string HitRequest = request.RequestBody;
-				if(GA_Settings.Instance.IsQueueTimeEnabled) {
-					HitRequest += "&qt" + request.Delay;
-					GA_Manager.SendSkipCache(HitRequest);
-				}
-
-			}
-
-				
-			Clear();
+		public static void SendCachedRequests() {
+			CacheQueue.Instance.Run ();
 		}
 
 

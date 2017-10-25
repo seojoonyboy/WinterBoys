@@ -27,8 +27,8 @@ public class IOSNativeSettingsEditor : Editor {
 	
 	
 
-	public const string ISN_SCRIPTS = SA.Common.Config.MODULS_PATH + "IOSNative/Scripts/";
-	
+	public const string ISN_SCRIPTS 		= SA.Common.Config.MODULS_PATH + "IOSNative/Scripts/";
+
 	
 	private static string ISN_RemoteNotificationsController_Path 	= ISN_SCRIPTS + "Messaging/Notifications/Controllers/ISN_RemoteNotificationsController.cs";
 	
@@ -52,7 +52,8 @@ public class IOSNativeSettingsEditor : Editor {
 
 	private static string ISN_MediaController_Path 			= ISN_SCRIPTS + "Media/MediaPlayer/Controllers/ISN_MediaController.cs";
 
-	private static string ISN_UserNotifications_Path 		= ISN_SCRIPTS + "Messaging/UserNotifications/Controllers/NativeReceiver.cs";
+	private static string ISN_UserNotificationsNativeReceiver_Path 		= ISN_SCRIPTS + "Messaging/UserNotifications/Controllers/NativeReceiver.cs";
+	private static string ISN_UserNotificationsNotificationCenter_Path 		= ISN_SCRIPTS + "Messaging/UserNotifications/Controllers/NotificationCenter.cs";
 
 	private static string ISN_CloudKit_Path 				= ISN_SCRIPTS + "iCloud/Controllers/ISN_CloudKit.cs";
 	private static string ISN_GestureRecognizer_Path 		= ISN_SCRIPTS + "System/Gestures/ISN_GestureRecognizer.cs";
@@ -62,9 +63,12 @@ public class IOSNativeSettingsEditor : Editor {
 
 
 	private static string ISN_AppController_Path 			= ISN_SCRIPTS + "Core/ISN_AppController.cs";
+	private static string ISN_AppController_Native_Path 	= SA.Common.Config.IOS_DESTANATION_PATH + "ISN_AppController.mm";
 
 	private static string ISN_Soomla_Path 					= SA.Common.Config.MODULS_PATH + "IOSNative/Addons/Soomla/Controllers/ISN_SoomlaGrow.cs";
 
+
+	private static string ISN_PermissionsManager_Path		= ISN_SCRIPTS + "System/Privacy/Permissions/ISN_PermissionsManager.cs";
 
 	
 	
@@ -223,9 +227,7 @@ public class IOSNativeSettingsEditor : Editor {
 
 		
 	}
-
-	private static int[] rates = new int[]{0, 20, 50, 80, 100};
-	private string[] FillRateToolbarStrings = new string[] {"0%", "20%", "50%", "80%", "100%"};
+		
 	private void EditorTesting() {
 		EditorGUILayout.Space();
 		EditorGUILayout.HelpBox("Testing Inside Unity Editor", MessageType.None);
@@ -235,35 +237,7 @@ public class IOSNativeSettingsEditor : Editor {
 		EditorGUILayout.LabelField("Store Kit", EditorStyles.boldLabel);
 		Settings.InAppsEditorTesting = SA.Common.Editor.Tools.ToggleFiled("Editor Testing", Settings.InAppsEditorTesting);
 
-
-
-		EditorGUILayout.Space();
-		EditorGUILayout.LabelField("IAd", EditorStyles.boldLabel);
-
-
-		Settings.AdEditorTesting = SA.Common.Editor.Tools.ToggleFiled("Editor Testing", Settings.AdEditorTesting);
-		
-		GUI.enabled = Settings.AdEditorTesting;
-		
-		EditorGUILayout.BeginHorizontal();
-		EditorGUILayout.LabelField("Fill Rate:");
-		Settings.EditorFillRateIndex = GUILayout.Toolbar(Settings.EditorFillRateIndex, FillRateToolbarStrings, EditorStyles.radioButton);
-		Settings.EditorFillRate = rates[Settings.EditorFillRateIndex];
-		EditorGUILayout.Space();
-		EditorGUILayout.EndHorizontal();
-		
-		EditorGUILayout.BeginHorizontal();
-		EditorGUILayout.LabelField("");
-		EditorGUILayout.LabelField("0% - Always Error");
-		EditorGUILayout.EndHorizontal();
-		
-		EditorGUILayout.BeginHorizontal();
-		EditorGUILayout.LabelField("");
-		EditorGUILayout.LabelField("100% - Always Provide Ad");
-		EditorGUILayout.EndHorizontal();
-		
 		GUI.enabled = true;
-
 	}
 
 
@@ -434,7 +408,7 @@ public class IOSNativeSettingsEditor : Editor {
 
 						EditorGUILayout.BeginHorizontal();
 						EditorGUILayout.LabelField("Subtitle");
-						item.Title	 	= EditorGUILayout.TextField(item.Subtitle);
+						item.Subtitle	 	= EditorGUILayout.TextField(item.Subtitle);
 						EditorGUILayout.EndHorizontal();
 
 						EditorGUILayout.BeginHorizontal();
@@ -628,6 +602,9 @@ public class IOSNativeSettingsEditor : Editor {
 			EditorGUILayout.BeginHorizontal();
 			Settings.EnableGestureAPI = EditorGUILayout.Toggle("Gestures API",  Settings.EnableGestureAPI);
 			Settings.EnableForceTouchAPI = EditorGUILayout.Toggle("Force Touch API",  Settings.EnableForceTouchAPI);
+			if(Settings.EnableForceTouchAPI) {
+				Settings.EnableAppEventsAPI = true;
+			}
 
 			EditorGUILayout.EndHorizontal();
 
@@ -635,9 +612,13 @@ public class IOSNativeSettingsEditor : Editor {
 			EditorGUILayout.BeginHorizontal();
 			Settings.EnableContactsAPI = EditorGUILayout.Toggle("Contacts API",  Settings.EnableContactsAPI);
 			Settings.EnableUserNotificationsAPI = EditorGUILayout.Toggle("User Notifications API",  Settings.EnableUserNotificationsAPI);
+			if (Settings.EnableUserNotificationsAPI) {
+				Settings.EnableAppEventsAPI = true;
+			}
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.BeginHorizontal();
+			Settings.EnablePermissionAPI = EditorGUILayout.Toggle("Privay Permissions API",  Settings.EnablePermissionAPI);
 			Settings.EnableAppEventsAPI = EditorGUILayout.Toggle("App Events API",  Settings.EnableAppEventsAPI);
 			EditorGUILayout.EndHorizontal();
 
@@ -1488,10 +1469,12 @@ public class IOSNativeSettingsEditor : Editor {
 	
 	
 	public static void DisableAdditionalFeatures() {
-		SA.Common.Editor.Tools.ChnageDefineState(ISN_ReplayKit_Path, 					"REPLAY_KIT", false);
-		SA.Common.Editor.Tools.ChnageDefineState(ISN_CloudKit_Path, 					"CLOUD_KIT", false);
-		
-		SA.Common.Editor.Tools.ChnageDefineState(ISN_RemoteNotificationsController_Path, 		"PUSH_ENABLED", false);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_ReplayKit_Path, 								"REPLAY_KIT", false);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_CloudKit_Path, 								"CLOUD_KIT", false);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_RemoteNotificationsController_Path, 			"PUSH_ENABLED", false);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_UserNotificationsNativeReceiver_Path, 			"USER_NOTIFICATIONS_API", Settings.EnableUserNotificationsAPI);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_UserNotificationsNotificationCenter_Path, 		"USER_NOTIFICATIONS_API", Settings.EnableUserNotificationsAPI);
+
 	}
 	
 	public static void UpdatePluginSettings() {
@@ -1534,25 +1517,36 @@ public class IOSNativeSettingsEditor : Editor {
 
 
 		SA.Common.Editor.Tools.ChnageDefineState(ISN_ContactStore_Path, 			"CONTACTS_API_ENABLED", Settings.EnableContactsAPI);
-
-		SA.Common.Editor.Tools.ChnageDefineState(ISN_UserNotifications_Path, 			"USER_NOTIFICATIONS_API", Settings.EnableUserNotificationsAPI);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_UserNotificationsNativeReceiver_Path, 			"USER_NOTIFICATIONS_API", Settings.EnableUserNotificationsAPI);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_UserNotificationsNotificationCenter_Path, 			"USER_NOTIFICATIONS_API", Settings.EnableUserNotificationsAPI);
 
 		SA.Common.Editor.Tools.ChnageDefineState(ISN_AppController_Path, 			"APP_CONTROLLER_ENABLED", Settings.EnableAppEventsAPI);
+		SA.Common.Editor.Tools.ChnageDefineState(ISN_PermissionsManager_Path, 			"PERMISSIONS_API_ENABLED", Settings.EnablePermissionAPI);
 
+
+
+		if(!Settings.EnablePermissionAPI) {
+			SA.Common.Editor.Instalation.RemoveIOSFile("ISN_Privacy");
+		} else {
+			SA.Common.Util.Files.CopyFile(SA.Common.Config.IOS_SOURCE_PATH + "ISN_Privacy.mm.txt", 	SA.Common.Config.IOS_DESTANATION_PATH + "ISN_Privacy.mm");
+		}
 
 
 		if(!Settings.EnableUserNotificationsAPI) {
 			SA.Common.Editor.Instalation.RemoveIOSFile("ISN_UserNotifications");
 		} else {
+			SA.Common.Util.Files.CopyFile(SA.Common.Config.IOS_SOURCE_PATH + "ISN_UserNotifications.h.txt", 	SA.Common.Config.IOS_DESTANATION_PATH + "ISN_UserNotifications.h");
 			SA.Common.Util.Files.CopyFile(SA.Common.Config.IOS_SOURCE_PATH + "ISN_UserNotifications.mm.txt", 	SA.Common.Config.IOS_DESTANATION_PATH + "ISN_UserNotifications.mm");
 		}
-
+			
 
 
 		if(!Settings.EnableAppEventsAPI) {
 			SA.Common.Editor.Instalation.RemoveIOSFile("ISN_AppController");
+
 		} else {
 			SA.Common.Util.Files.CopyFile(SA.Common.Config.IOS_SOURCE_PATH + "ISN_AppController.mm.txt", 	SA.Common.Config.IOS_DESTANATION_PATH + "ISN_AppController.mm");
+			SA.Common.Editor.Tools.ChnageDefineState(ISN_AppController_Native_Path, "USER_NOTIFICATIONS_ENABLED", Settings.EnableUserNotificationsAPI);
 		}
 
 		if(!Settings.EnablePushNotificationsAPI) {

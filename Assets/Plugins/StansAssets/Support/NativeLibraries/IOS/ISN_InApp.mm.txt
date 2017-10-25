@@ -315,9 +315,9 @@ static NSMutableDictionary* _views;
         
         [data appendString:productId];
         [data appendString:UNITY_SPLITTER2];
-        [data appendString:@"Product Not Available"];
-        [data appendString:UNITY_SPLITTER];
         [data appendString:@"4"];
+        [data appendString:UNITY_SPLITTER];
+        [data appendString:@"Product Not Available"];
         
         UnitySendMessage(UNITY_PAYMENT_LISTENER, "onTransactionFailed", [ISN_DataConvertor NSStringToChar:data]);
     }

@@ -16,7 +16,17 @@ namespace SA.IOSNative.UserNotifications {
 
 	public class NotificationContent  {
 
+		public NotificationContent() {
+		}
 
+		public NotificationContent(Dictionary<string, object> contentDictionary) {
+			Title = (string)contentDictionary ["title"];
+			Subtitle = (string)contentDictionary ["subtitle"];
+			Body = (string)contentDictionary ["body"];
+			LaunchImageName = (string)contentDictionary ["launchImageName"];
+			Badge = int.Parse(contentDictionary ["badge"].ToString());
+			UserInfo = (Dictionary<string, object>) SA.Common.Data.Json.Deserialize (contentDictionary ["userInfo"].ToString());
+		}
 		/// <summary>
 		/// A short description of the reason for the alert.
 		/// </summary>
@@ -50,7 +60,8 @@ namespace SA.IOSNative.UserNotifications {
 		public Dictionary<string, object> UserInfo =  new Dictionary<string, object>();
 
 		public override string ToString() {
-			return "{" + string.Format ("\"title\" : \"{0}\", \"subtitle\" : \"{1}\", \"body\" : \"{2}\", \"badge\" : {3}, \"launchImageName\" : \"{4}\"", this.Title, this.Subtitle, this.Body, this.Badge, this.LaunchImageName) + "}";
+			string userInfoString = SA.Common.Data.Json.Serialize (UserInfo);
+			return "{" + string.Format ("\"title\" : \"{0}\", \"subtitle\" : \"{1}\", \"body\" : \"{2}\", \"badge\" : {3}, \"launchImageName\" : \"{4}\", \"userInfo\" : {5}", Title, Subtitle, Body, Badge, LaunchImageName, userInfoString) + "}";
 		}
 
 

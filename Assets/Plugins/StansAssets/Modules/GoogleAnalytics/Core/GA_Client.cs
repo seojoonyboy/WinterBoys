@@ -100,6 +100,8 @@ namespace SA.Analytics.Google {
 			
 			DefaultHitData = builder.ToString();
 			builder.Length = 0;
+
+
 			
 			
 			
@@ -132,8 +134,14 @@ namespace SA.Analytics.Google {
 				
 				string userAgent = builder.ToString();
 				builder.Length = 0;
+
+				if(Headers.ContainsKey("User-Agent")) {
+					Headers["User-Agent"] = userAgent;
+				} else {
+					Headers.Add("User-Agent", userAgent);
+				}
 				
-				Headers.Add("User-Agent", userAgent);
+
 				
 			}
 			
@@ -164,7 +172,12 @@ namespace SA.Analytics.Google {
 			
 			
 			
-			Headers.Add("User-Agent", userAgent);
+			if(Headers.ContainsKey("User-Agent")) {
+				Headers["User-Agent"] = userAgent;
+			} else {
+				Headers.Add("User-Agent", userAgent);
+			}
+
 			
 			#endif
 		}
@@ -261,8 +274,9 @@ namespace SA.Analytics.Google {
 		//--------------------------------------
 
 		public void SetUserId(string id) {
-			userId = EscapeString(userId, true);
-			GenerateHeaders(GA_Settings.Instance.GetCurentProfile().TrackingID);
+			userId = EscapeString (id, true);
+			builder.Append("&userId=");
+			builder.Append(userId);
 		} 
 
 		public void SetScreenResolution(int width, int height) {
@@ -515,17 +529,6 @@ namespace SA.Analytics.Google {
 			AppendData("col", col);
 		}
 
-		/*
-		public void ProductImpressionListName(int productIndex, string val) {
-			AppendData("il" + productIndex.ToString() + "nm", val);
-		}
-
-		public void ProductImpressionListName(int productIndex, string val) {
-			AppendData("il" + productIndex.ToString() + "nm", val);
-		}
-		*/
-
-
 		//--------------------------------------
 		// SOCIAL INTERACTIONS PROTOCOL
 		//--------------------------------------
@@ -619,6 +622,12 @@ namespace SA.Analytics.Google {
 		//--------------------------------------
 
 		public void SetExceptionDescription(string description) {
+			if(description.Length > 149) {
+				Debug.Log ("Exception Description is too big, trimmed to 150 characters");
+				description = description.Substring(0, 149);
+			}
+
+
 			AppendData("exd", description, "Exception Description", 150,  HitType.EXCEPTION);
 		}
 
@@ -696,7 +705,7 @@ namespace SA.Analytics.Google {
 
 		
 			if(trackLevelName) {
-				SetScreenName(GA_Settings.Instance.LevelPrefix + GA_Manager.LoadedLevelName + GA_Settings.Instance.LevelPostfix);
+				SetScreenName(GA_Settings.Instance.LevelPrefix + Manager.LoadedLevelName + GA_Settings.Instance.LevelPostfix);
 			}
 
 
@@ -836,7 +845,7 @@ namespace SA.Analytics.Google {
 			string stringData = builder.ToString();
 			builder.Length = 0;
 
-			GA_Manager.Send(stringData);
+			Manager.Send(stringData);
 
 		}
 

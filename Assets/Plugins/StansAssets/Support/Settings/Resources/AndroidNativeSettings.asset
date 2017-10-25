@@ -51,7 +51,7 @@ MonoBehaviour:
   PushService: 0
   SaveCameraImageToGallery: 0
   UseProductNameAsFolderName: 1
-  GalleryFolderName: Skiing
+  GalleryFolderName: 
   MaxImageLoadSize: 512
   CameraCaptureMode: 0
   ImageFormat: 0
@@ -77,6 +77,10 @@ MonoBehaviour:
   CheckAppLicenseAPI: 1
   NetworkStateAPI: 0
   FirebaseAnalytics: 0
+  FirebaseDynamicLinks: 0
+  FirebaseAppId: 
+  FirebaseApiKey: 
+  DynamicLinks: []
   InAppPurchasesAPI: 1
   GooglePlayServicesAPI: 1
   PlayServicesAdvancedSignInAPI: 1

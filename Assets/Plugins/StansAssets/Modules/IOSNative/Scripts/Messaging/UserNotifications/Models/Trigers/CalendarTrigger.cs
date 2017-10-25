@@ -29,13 +29,7 @@ namespace SA.IOSNative.UserNotifications {
 
 	public class CalendarTrigger : NotificationTrigger {
 
-		DateTime? DateToFire;
 		DateComponents ComponentsOfDateToFire;
-
-		public CalendarTrigger(DateTime date) {
-			DateToFire = date;
-			this.SetRepeat (false);
-		}
 
 		public CalendarTrigger(DateComponents dateComponents) {
 			ComponentsOfDateToFire = dateComponents;
@@ -44,42 +38,34 @@ namespace SA.IOSNative.UserNotifications {
 		public override string ToString() {
 			var dict = new Dictionary<string, object> ();
 
-			if (DateToFire != null) {
-				dict.Add ("dateToFire", this.DateToFire.ToString());
-				dict.Add ("repeats", this.repeated);
-			} else {
-
-
-				if (ComponentsOfDateToFire.Year != null) {
-					dict.Add ("year", ComponentsOfDateToFire.Year);
-				}
-				if (ComponentsOfDateToFire.Month != null) {
-					dict.Add ("month", ComponentsOfDateToFire.Month);
-				}
-				if (ComponentsOfDateToFire.Day != null) {
-					dict.Add ("day", ComponentsOfDateToFire.Day);
-				}
-				if (ComponentsOfDateToFire.Hour != null) {
-					dict.Add ("hour", ComponentsOfDateToFire.Hour);
-				}
-				if (ComponentsOfDateToFire.Minute != null) {
-					dict.Add ("minute", ComponentsOfDateToFire.Minute);
-				}
-				if (ComponentsOfDateToFire.Second != null) {
-					dict.Add ("second", ComponentsOfDateToFire.Second);
-				}
-				if (ComponentsOfDateToFire.Weekday != null) {
-					dict.Add ("weekday", ComponentsOfDateToFire.Weekday);
-				}
-				if (ComponentsOfDateToFire.Quarter != null) {
-					dict.Add ("quarter", ComponentsOfDateToFire.Quarter);
-				}
-
-				dict.Add ("repeats", this.repeated);
+			if (ComponentsOfDateToFire.Year != null) {
+				dict.Add ("year", ComponentsOfDateToFire.Year);
+			}
+			if (ComponentsOfDateToFire.Month != null) {
+				dict.Add ("month", ComponentsOfDateToFire.Month);
+			}
+			if (ComponentsOfDateToFire.Day != null) {
+				dict.Add ("day", ComponentsOfDateToFire.Day);
+			}
+			if (ComponentsOfDateToFire.Hour != null) {
+				dict.Add ("hour", ComponentsOfDateToFire.Hour);
+			}
+			if (ComponentsOfDateToFire.Minute != null) {
+				dict.Add ("minute", ComponentsOfDateToFire.Minute);
+			}
+			if (ComponentsOfDateToFire.Second != null) {
+				dict.Add ("second", ComponentsOfDateToFire.Second);
+			}
+			if (ComponentsOfDateToFire.Weekday != null) {
+				dict.Add ("weekday", ComponentsOfDateToFire.Weekday);
+			}
+			if (ComponentsOfDateToFire.Quarter != null) {
+				dict.Add ("quarter", ComponentsOfDateToFire.Quarter);
 			}
 
+			dict.Add ("repeats", this.repeated);
+
 			return SA.Common.Data.Json.Serialize (dict);
-			//			return "{" + string.Format ("\"dateToFire\" : {0}, \"repeats\" : \"{1}\"", DateToFire.ToString(), this.repeated) + "}";
 		}
 
 	}

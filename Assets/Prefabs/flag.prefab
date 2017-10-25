@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 54818868759684522}
   - component: {fileID: 114058818473766438}
   m_Layer: 0
-  m_Name: Flag
+  m_Name: flag
   m_TagString: Flag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

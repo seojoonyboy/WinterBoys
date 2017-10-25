@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appleId: 293622097
-  androidAppUrl: market://details?id=com.google.earth
+  apdroidAppUrl: market://details?id=com.google.earth
 --- !u!4 &844646524
 Transform:
   m_ObjectHideFlags: 0

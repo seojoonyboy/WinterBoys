@@ -21,7 +21,7 @@ using UnityEditor;
 
 public class IOSNativeSettings : ScriptableObject {
 
-	public const string VERSION_NUMBER = "9.7/19";
+	public const string VERSION_NUMBER = "9.10/21";
 
 
 	//--------------------------------------
@@ -45,6 +45,8 @@ public class IOSNativeSettings : ScriptableObject {
 	public bool EnableContactsAPI = false;
 	public bool EnableAppEventsAPI = false;
 	public bool EnableUserNotificationsAPI = false;
+
+	public bool EnablePermissionAPI = false;
 
 
 

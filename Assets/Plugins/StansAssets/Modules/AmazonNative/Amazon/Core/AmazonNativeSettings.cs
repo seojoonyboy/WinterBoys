@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class AmazonNativeSettings : ScriptableObject {
 
-	public const string VERSION_NUMBER = "2.5/19";
+	public const string VERSION_NUMBER = "2.7/21";
 
 	public int ToolbarIndex = 0;
 	public bool ShowActions = true;
