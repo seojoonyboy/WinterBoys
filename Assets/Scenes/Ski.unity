@@ -3392,13 +3392,13 @@ MonoBehaviour:
   - {fileID: 1058845662176276, guid: ebbd581874a758f4da602fe310e9e38e, type: 2}
   - {fileID: 1058845662176276, guid: d06a1d1d1439d384296f648af017bd31, type: 2}
   - {fileID: 1058845662176276, guid: bedf114eff71ba343b57592aef89d6bb, type: 2}
-  - {fileID: 1058845662176276, guid: bedf114eff71ba343b57592aef89d6bb, type: 2}
+  - {fileID: 1058845662176276, guid: 889931f02b8e9de47871c9c3803dac30, type: 2}
   rightPref:
   - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
   - {fileID: 1058845662176276, guid: 5b10acba3a65f3f41ba45387d539fafd, type: 2}
   - {fileID: 1058845662176276, guid: 7030ad26f71447a46afcd9d24acde005, type: 2}
   - {fileID: 1058845662176276, guid: fb783db5fe884bf4eb9371fc2436e3cd, type: 2}
-  - {fileID: 1058845662176276, guid: fb783db5fe884bf4eb9371fc2436e3cd, type: 2}
+  - {fileID: 1058845662176276, guid: 63e7b29202c682349824b87db0934146, type: 2}
   flagPref: {fileID: 1031508603598614, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
   columns: 5
   floorHolder: {fileID: 1793202011}
