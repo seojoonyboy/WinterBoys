@@ -4,22 +4,37 @@ using UnityEngine;
 using Spine.Unity;
 public class downhill_player_coll : MonoBehaviour {
     private DownhillManager dM;
+    private BoardManager bM;
     private void Awake() {
         dM = GameObject.Find("Manager").GetComponent<DownhillManager>();
+        bM = GameObject.Find("BoardHolder").GetComponent<BoardManager>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.tag == "Flag") {
-            var flagComp = other.GetComponent<FlagController>();
-            var anim = other.GetComponent<SkeletonAnimation>();
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Flag") {
+            var flagComp = collision.GetComponent<FlagController>();
+            var anim = collision.GetComponent<SkeletonAnimation>();
             anim.loop = false;
 
             if (flagComp.rayDir == FlagController.type.LEFT) {
                 anim.AnimationName = "broken_left";
             }
-            else if(flagComp.rayDir == FlagController.type.RIGHT) {
+            else if (flagComp.rayDir == FlagController.type.RIGHT) {
                 anim.AnimationName = "broken_right";
             }
+        }
+
+        if(collision.tag == "Tile") {
+            Vector2 pos = collision.transform.position;
+            if (pos.y <= bM.firstTilePos.y - 2) {
+                if (!bM.isMade) {
+                    bM.addToBoard();
+                }
+            }
+        }
+
+        if(collision.tag == "TileEnd") {
+            dM.OnGameOver();
         }
     }
 }

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 60853949674079208}
   m_Layer: 0
   m_Name: downhill_bg_right_5
-  m_TagString: Tile
+  m_TagString: TileEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

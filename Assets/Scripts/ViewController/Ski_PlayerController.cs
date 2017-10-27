@@ -78,7 +78,6 @@ public class Ski_PlayerController : MonoBehaviour {
         else {
             rb.angularVelocity = 0;
         }
-        checkPlayerPos();
         changePlayerImage();
 
         if (transform.eulerAngles.z > 260) {
@@ -130,27 +129,6 @@ public class Ski_PlayerController : MonoBehaviour {
     //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
     Vector2 RightVelocity() {
         return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right);
-    }
-
-    void checkPlayerPos() {
-        Ray2D ray = new Ray2D(transform.position, Vector3.forward);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-
-        if (hit.collider != null) {
-            if (hit.collider.tag == "Tile") {
-                Vector2 pos = hit.collider.transform.position;
-                if (pos.y <= bM.firstTilePos.y - 2) {
-                    if (!bM.isMade) {
-                        bM.addToBoard();
-                    }
-                }
-            }
-        }
-        //타일 밖으로 벗어난 경우
-        else {
-            dM.OnGameOver();
-        }
-        Debug.DrawRay(transform.position, Vector3.forward, Color.red);
     }
 
     void changePlayerImage() {
