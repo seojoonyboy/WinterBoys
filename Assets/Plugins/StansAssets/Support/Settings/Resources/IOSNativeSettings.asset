@@ -27,7 +27,7 @@ MonoBehaviour:
   EnableAppEventsAPI: 0
   EnableUserNotificationsAPI: 0
   EnablePermissionAPI: 0
-  AppleId: XXXXXXXXX
+  AppleId: 1301761262
   ToolbarIndex: 0
   ExpandMoreActionsMenu: 1
   ExpandModulesSettings: 1
@@ -42,21 +42,21 @@ MonoBehaviour:
     _info:
       Title: DownHill
       Description: 
-      Identifier: DownHill
+      Identifier: kr.fbl.dev.wintersports.downhill
       Texture: {fileID: 0}
       MaxRange: 0
   - IsOpen: 1
     _info:
       Title: Skeleton
       Description: 
-      Identifier: Skeleton
+      Identifier: kr.fbl.dev.wintersports.skeleton
       Texture: {fileID: 0}
       MaxRange: 0
   - IsOpen: 1
     _info:
       Title: SkiJump
       Description: 
-      Identifier: SkiJump
+      Identifier: kr.fbl.dev.wintersports.skijump
       Texture: {fileID: 0}
       MaxRange: 0
   Achievements: []
