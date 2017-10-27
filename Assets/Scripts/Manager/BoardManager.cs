@@ -22,7 +22,7 @@ public class BoardManager : MonoBehaviour {
     public bool isMade = false;
     public bool isFlagMade = false;
     private int fstFlagAppearTile = 3;
-    private int floorIndex = 2;
+    private int floorIndex = 0;
     
     private int nextFlagDir = 1;    //다음 폴 생성 방향 (-1 : 왼쪽 / 1 : 오른쪽)
     private int sameDirCount = 0;   //같은 방향으로 폴이 생성된 횟수
@@ -79,8 +79,8 @@ public class BoardManager : MonoBehaviour {
         GameObject leftSide = Instantiate(leftPref[floorIndex]);
         GameObject rightSide = Instantiate(rightPref[floorIndex]);
 
-        if (floorIndex >= columns - 2) {
-            floorIndex = 1;
+        if (floorIndex >= columns - 1) {
+            floorIndex = 0;
         }
         else {
             floorIndex++;

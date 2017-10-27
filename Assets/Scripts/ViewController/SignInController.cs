@@ -17,14 +17,13 @@ public class SignInController : MonoBehaviour {
     private Vector3 inputOriginPos;
 
     private void Awake() {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
+        inputOriginPos = nickname.transform.position;
     }
 
     private void Start() {
         gm = GameManager.Instance;
         getInfo();
-        inputOriginPos = nickname.transform.position;
-        //nickname.shouldHideMobileInput = true;
     }
 
     private void Update() {
@@ -60,6 +59,10 @@ public class SignInController : MonoBehaviour {
     }
 
     public void signIn() {
+        GooglePlayConnection.ActionConnectionResultReceived += _ActionConnectionResultReceived;
+        GooglePlayConnection.Instance.Connect();
+        //UM_GameServiceManager.Instance.Connect();
+
         string nickname = PlayerPrefs.GetString("nickname");
         if (string.IsNullOrEmpty(nickname)) {
             signUp();
@@ -72,6 +75,15 @@ public class SignInController : MonoBehaviour {
             gm.nickname = PlayerPrefs.GetString("nickname");
 
             SceneManager.LoadScene("Main");
+        }
+    }
+
+    private void _ActionConnectionResultReceived(GooglePlayConnectionResult result) {
+        if (result.IsSuccess) {
+            Debug.Log("Connected!");
+        }
+        else {
+            Debug.Log("Cnnection failed with code: " + result.code.ToString());
         }
     }
 
