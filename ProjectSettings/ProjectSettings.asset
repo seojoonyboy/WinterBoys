@@ -215,7 +215,7 @@ PlayerSettings:
   metalEditorSupport: 0
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 1
-  appleDeveloperTeamID: A58V369VM7
+  appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 4dba3094-a0e8-4ed9-9618-2b0eee8d3be7
   tvOSManualSigningProvisioningProfileID: 
   appleEnableAutomaticSigning: 1
