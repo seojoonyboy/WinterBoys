@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager> {
 
     public float panelty_time;              //폴 통과하지 못한 경우 패널티
     public int startTime;
-    public int[] highestScores;                    //각 종목별 최고 점수
+    public float[] highestScores;                    //각 종목별 최고 점수
     
     private void Awake() {
         DontDestroyOnLoad(gameObject);

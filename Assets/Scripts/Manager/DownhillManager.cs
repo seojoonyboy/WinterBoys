@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DownhillManager : MonoBehaviour {
     public GameObject modal;
     private GameManager gm;
+    private UM_GameServiceManager umgm;
     public int remainTime;
     public Text remainTimeTxt;
     public int passNum = 0;
@@ -18,6 +19,8 @@ public class DownhillManager : MonoBehaviour {
     public static event gameOverHandler OngameOver;
     private void Awake() {
         gm = GameManager.Instance;
+        umgm = UM_GameServiceManager.Instance;
+        UM_GameServiceManager.ActionScoreSubmitted += HandleActionScoreSubmitted;
     }
 
     private void Start() {
@@ -34,6 +37,7 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void mainLoad() {
+        UM_GameServiceManager.ActionScoreSubmitted -= HandleActionScoreSubmitted;
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
     }
@@ -72,5 +76,17 @@ public class DownhillManager : MonoBehaviour {
         Vector3 playerEndPos = playerController.playerPos;
         string str = -1 * System.Math.Truncate(playerEndPos.y) + " M 이동";
         dist.text = str;
+
+        umgm.SubmitScore("DownHill", (long)score);
+    }
+
+    private void HandleActionScoreSubmitted(UM_LeaderboardResult res) {
+        if (res.IsSucceeded) {
+            UM_Score playerScore = res.Leaderboard.GetCurrentPlayerScore(UM_TimeSpan.ALL_TIME, UM_CollectionType.GLOBAL);
+            Debug.Log("Score submitted, new player high score: " + playerScore.LongScore);
+        }
+        else {
+            Debug.Log("Score submission failed: " + res.Error.Code + " / " + res.Error.Description);
+        }
     }
 }

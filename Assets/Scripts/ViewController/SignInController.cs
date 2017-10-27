@@ -59,9 +59,9 @@ public class SignInController : MonoBehaviour {
     }
 
     public void signIn() {
-        GooglePlayConnection.ActionConnectionResultReceived += _ActionConnectionResultReceived;
-        GooglePlayConnection.Instance.Connect();
-        //UM_GameServiceManager.Instance.Connect();
+        UM_GameServiceManager.OnPlayerConnected += OnPlayerConnected;
+        UM_GameServiceManager.OnPlayerDisconnected += OnPlayerDisconnected;
+        UM_GameServiceManager.Instance.Connect();
 
         string nickname = PlayerPrefs.GetString("nickname");
         if (string.IsNullOrEmpty(nickname)) {
@@ -78,13 +78,12 @@ public class SignInController : MonoBehaviour {
         }
     }
 
-    private void _ActionConnectionResultReceived(GooglePlayConnectionResult result) {
-        if (result.IsSuccess) {
-            Debug.Log("Connected!");
-        }
-        else {
-            Debug.Log("Cnnection failed with code: " + result.code.ToString());
-        }
+    private void OnPlayerConnected() {
+        Debug.Log("Player Connected");
+    }
+
+    private void OnPlayerDisconnected() {
+        Debug.Log("Player Disconnected");
     }
 
     private void signUp() {
