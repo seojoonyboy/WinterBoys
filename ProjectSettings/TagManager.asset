@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Flag
   - Tile
+  - TileEnd
   layers:
   - Default
   - TransparentFX
