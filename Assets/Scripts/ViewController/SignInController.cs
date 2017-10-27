@@ -17,7 +17,7 @@ public class SignInController : MonoBehaviour {
     private Vector3 inputOriginPos;
 
     private void Awake() {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         inputOriginPos = nickname.transform.position;
     }
 
