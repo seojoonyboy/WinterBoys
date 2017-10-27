@@ -53,9 +53,9 @@ public class BoardManager : MonoBehaviour {
             floor.transform.SetParent(floorHolder, false);
             floor.transform.position = new Vector2(0, -i);
             leftSide.transform.SetParent(floorHolder, false);
-            leftSide.transform.position = new Vector2(-2.0f, -i);
+            leftSide.transform.position = new Vector2(-2.5f, -i);
             rightSide.transform.SetParent(floorHolder, false);
-            rightSide.transform.position = new Vector2(2.0f, -i);
+            rightSide.transform.position = new Vector2(2.5f, -i);
 
             if (i == columns - 1) {
                 lastTilePos = floor.transform.position;
@@ -89,9 +89,9 @@ public class BoardManager : MonoBehaviour {
         newFloor.transform.position = new Vector2(0, lastTilePos.y - 1);
 
         leftSide.transform.SetParent(floorHolder, false);
-        leftSide.transform.position = new Vector2(-2f, lastTilePos.y - 1);
+        leftSide.transform.position = new Vector2(-2.5f, lastTilePos.y - 1);
         rightSide.transform.SetParent(floorHolder, false);
-        rightSide.transform.position = new Vector2(2f, lastTilePos.y - 1);
+        rightSide.transform.position = new Vector2(2.5f, lastTilePos.y - 1);
 
         //첫번째 타일 제거
         resetArr(newFloor, leftSide, rightSide);

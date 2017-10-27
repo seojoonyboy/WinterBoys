@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4434188747868470}
   - component: {fileID: 212965447071784590}
   - component: {fileID: 50884756724880486}
-  - component: {fileID: 61239178119332172}
+  - component: {fileID: 60456636574219684}
   m_Layer: 0
   m_Name: downhill_bg_left_4
   m_TagString: Tile
@@ -62,8 +62,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61239178119332172
-BoxCollider2D:
+--- !u!60 &60456636574219684
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -74,7 +74,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.48258644, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0.5}
@@ -84,9 +84,41 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9554535, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.80078125, y: -0.43164062}
+      - {x: 0.79296875, y: -0.40625}
+      - {x: 0.7636719, y: -0.3359375}
+      - {x: 0.7578125, y: -0.31445312}
+      - {x: 0.7441406, y: -0.27929688}
+      - {x: 0.7324219, y: -0.21875}
+      - {x: 0.73046875, y: -0.16992188}
+      - {x: 0.7324219, y: -0.16796875}
+      - {x: 0.734375, y: -0.15625}
+      - {x: 0.7480469, y: -0.115234375}
+      - {x: 0.7558594, y: -0.09765625}
+      - {x: 0.7734375, y: -0.064453125}
+      - {x: 0.7871094, y: -0.03515625}
+      - {x: 0.7988281, y: -0.0078125}
+      - {x: 0.8046875, y: 0.009765625}
+      - {x: 0.8105469, y: 0.033203125}
+      - {x: 0.8105469, y: 0.1015625}
+      - {x: 0.80078125, y: 0.13867188}
+      - {x: 0.7949219, y: 0.15039062}
+      - {x: 0.76953125, y: 0.2265625}
+      - {x: 0.7578125, y: 0.2734375}
+      - {x: 0.7558594, y: 0.27539062}
+      - {x: 0.7558594, y: 0.33984375}
+      - {x: 0.7578125, y: 0.34179688}
+      - {x: 0.765625, y: 0.40039062}
+      - {x: 0.7714844, y: 0.421875}
+      - {x: 0.80078125, y: 0.49414062}
+      - {x: 0.80078125, y: 0.5}
+      - {x: 0, y: 0.5}
+      - {x: 0, y: -0.5}
+      - {x: 0.8105469, y: -0.5}
+      - {x: 0.8105469, y: -0.48046875}
+      - {x: 0.8046875, y: -0.44726562}
 --- !u!212 &212965447071784590
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4434188747868470}
   - component: {fileID: 212965447071784590}
   - component: {fileID: 50884756724880486}
-  - component: {fileID: 61003959644048254}
+  - component: {fileID: 60308652812164112}
   m_Layer: 0
   m_Name: downhill_bg_left_2
   m_TagString: Tile
@@ -62,8 +62,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61003959644048254
-BoxCollider2D:
+--- !u!60 &60308652812164112
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -74,7 +74,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.40701136, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0.5}
@@ -84,9 +84,33 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8140227, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.8261719, y: -0.33007812}
+      - {x: 0.8261719, y: -0.23828125}
+      - {x: 0.8183594, y: -0.1953125}
+      - {x: 0.7832031, y: -0.119140625}
+      - {x: 0.7578125, y: -0.076171875}
+      - {x: 0.7402344, y: -0.04296875}
+      - {x: 0.7324219, y: -0.017578125}
+      - {x: 0.7128906, y: 0.0390625}
+      - {x: 0.703125, y: 0.10546875}
+      - {x: 0.7011719, y: 0.1640625}
+      - {x: 0.703125, y: 0.16601562}
+      - {x: 0.7089844, y: 0.1953125}
+      - {x: 0.72265625, y: 0.23632812}
+      - {x: 0.73828125, y: 0.27148438}
+      - {x: 0.73828125, y: 0.27539062}
+      - {x: 0.79296875, y: 0.38476562}
+      - {x: 0.80859375, y: 0.41992188}
+      - {x: 0.8203125, y: 0.48046875}
+      - {x: 0.8183594, y: 0.5}
+      - {x: 0, y: 0.5}
+      - {x: 0, y: -0.5}
+      - {x: 0.7519531, y: -0.5}
+      - {x: 0.7910156, y: -0.421875}
+      - {x: 0.80859375, y: -0.3828125}
+      - {x: 0.8183594, y: -0.35546875}
 --- !u!212 &212965447071784590
 SpriteRenderer:
   m_ObjectHideFlags: 1
