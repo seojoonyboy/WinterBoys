@@ -35,33 +35,44 @@ public class FlagController : MonoBehaviour {
         else if (rayDir == type.RIGHT) {
             dir = Vector3.right;
         }
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
-        Debug.DrawRay(transform.position, dir, Color.red);
-        //Debug.Log(hit.collider.name);
-        if(hit.collider.tag == "Player") {
-            Debug.Log(hit.collider.name);
-            if (!isSend) {
-                Debug.Log(hit.collider.tag + " 통과하지 못함");
-                GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir, out hit)) {
+            if (hit.collider.tag == "Player") {
+                if (!isSend) {
+                    Debug.Log(hit.collider.tag + " 통과하지 못함");
+                    GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
+                }
+                isSend = true;
             }
-            isSend = true;
+            //RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
+            //Debug.DrawRay(transform.position, dir, Color.red);
+            ////Debug.Log(hit.collider.name);
+            //if(hit.collider.tag == "Player") {
+            //    Debug.Log(hit.collider.name);
+            //    if (!isSend) {
+            //        Debug.Log(hit.collider.tag + " 통과하지 못함");
+            //        GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
+            //    }
+            //    isSend = true;
+            //}
         }
     }
-
     void IsPass() {
-        //Vector3 dir = Vector3.zero;
-        //if (rayDir == type.LEFT) {
-        //    dir = Vector3.right;
-        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
-        //    Debug.DrawRay(transform.position, dir, Color.red);
-        //    if (hit.collider.tag == "Player") {
-        //        if (!isPassSend) {
-        //            Debug.Log(hit.collider.tag + " 통과");
-        //            GameObject.Find("Manager").GetComponent<DownhillManager>().passNumInc();
-        //        }
-        //        isPassSend = true;
-        //    }
-        //}
+        RaycastHit hit;
+        Vector3 dir = Vector3.zero;
+        if (rayDir == type.LEFT) {
+            dir = Vector3.right;
+
+            if (Physics.Raycast(transform.position, dir, out hit, distance)) {
+                if (hit.collider.tag == "Player") {
+                    if (!isPassSend) {
+                        Debug.Log(hit.collider.tag + " 통과");
+                        GameObject.Find("Manager").GetComponent<DownhillManager>().passNumInc();
+                    }
+                    isPassSend = true;
+                }
+            }
+        }
+
     }
 }
