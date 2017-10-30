@@ -10,7 +10,10 @@ public class BoardManager : MonoBehaviour {
         floorsPref,
         leftPref,
         rightPref;
-    public GameObject flagPref;
+    public Sprite[] treeImages;
+    public GameObject 
+        flagPref,
+        treePref;
 
     public int columns = 3;
     public Transform floorHolder;
@@ -39,6 +42,17 @@ public class BoardManager : MonoBehaviour {
     List<GameObject> leftSides = new List<GameObject>();
     List<GameObject> rightSides = new List<GameObject>();
 
+    private TreeOffset 
+        treeLeftOffset,
+        treeRightOffset;
+
+    private float nextTreePosY = -2;
+
+    private class TreeOffset {
+        public float leftLimit;
+        public float rightLimit;
+    }
+
     private void OnEnable() {
         gm = GameManager.Instance;
         setUp();
@@ -62,10 +76,23 @@ public class BoardManager : MonoBehaviour {
             }
             if (i == 0) {
                 firstTilePos = floor.transform.position;
+
+                treeLeftOffset = new TreeOffset();
+                float val = leftSide.transform.position.x;
+                treeLeftOffset.leftLimit = val;
+                treeLeftOffset.rightLimit = (float)(val + leftSide.transform.localScale.x / 2.0f);
+
+                treeRightOffset = new TreeOffset();
+                val = rightSide.transform.position.x;
+                Debug.Log(val);
+                treeRightOffset.leftLimit = (float)(val - rightSide.transform.localScale.x / 2.0f);
+                treeRightOffset.rightLimit = treeRightOffset.leftLimit + rightSide.transform.localScale.x / 2.0f;
             }
             tiles.Add(floor);
             leftSides.Add(leftSide);
             rightSides.Add(rightSide);
+
+            addTree();
         }
         curFlagPos = new Vector2(0, -4);
         addFlag();
@@ -98,6 +125,8 @@ public class BoardManager : MonoBehaviour {
 
         //다음 폴 생성
         addFlag();
+
+        addTree();
     }
 
     private void resetArr(GameObject newFloor, GameObject leftSide, GameObject rightSide) {
@@ -157,6 +186,27 @@ public class BoardManager : MonoBehaviour {
         //행 평행이동
         if (flagNum != 0 && flagNum % gm.pararell_intervals[2] == 0) {
             lvup(2);
+        }
+    }
+
+    private void addTree() {
+        float val = lastTilePos.y - 1;
+        for (int i=0; i<3; i++) {
+            nextTreePosY = UnityEngine.Random.Range(val, val - 1);
+            int nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
+
+            GameObject tree = Instantiate(treePref);
+            tree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+
+            float nextPosX = UnityEngine.Random.Range(treeLeftOffset.leftLimit, treeLeftOffset.rightLimit);
+            tree.transform.position = new Vector2(nextPosX, nextTreePosY);
+
+            nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
+
+            GameObject rightTree = Instantiate(treePref);
+            nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
+            rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
+            rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
         }
     }
 

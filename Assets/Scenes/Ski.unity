@@ -4227,7 +4227,11 @@ MonoBehaviour:
   - {fileID: 1058845662176276, guid: 7030ad26f71447a46afcd9d24acde005, type: 2}
   - {fileID: 1058845662176276, guid: fb783db5fe884bf4eb9371fc2436e3cd, type: 2}
   - {fileID: 1058845662176276, guid: 63e7b29202c682349824b87db0934146, type: 2}
+  treeImages:
+  - {fileID: 21300000, guid: ceb7df6fa5b18464ebd8aa8ce739a165, type: 3}
+  - {fileID: 21300000, guid: 901074a86d9cbf449bd71642634b3809, type: 3}
   flagPref: {fileID: 1031508603598614, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+  treePref: {fileID: 1104093490267142, guid: 54797d11a03a3214388a7ca7b6fa48fe, type: 2}
   columns: 5
   floorHolder: {fileID: 1793202011}
   lastTilePos: {x: 0, y: 0}

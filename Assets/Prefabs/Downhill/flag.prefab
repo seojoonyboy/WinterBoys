@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114058818473766438}
   - component: {fileID: 61742057627483124}
   - component: {fileID: 210194916956542402}
+  - component: {fileID: 114362568450544114}
   m_Layer: 0
   m_Name: flag
   m_TagString: Flag
@@ -152,6 +153,17 @@ MonoBehaviour:
   _animationName: base
   loop: 1
   timeScale: 1
+--- !u!114 &114362568450544114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031508603598614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5fda7a2624801b44bf616bc4c8a1fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!210 &210194916956542402
 SortingGroup:
   m_ObjectHideFlags: 1

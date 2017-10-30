@@ -11,20 +11,11 @@ public class FlagController : MonoBehaviour {
     private bool isPassSend = false;
     void Start() {
         gameObject.tag = "Flag";
-        InvokeRepeating("IsInArea", 1.0f, 1.0f);
     }
 
     private void FixedUpdate() {
         IsFail();
         IsPass();
-    }
-
-    void IsInArea() {
-        Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
-
-        if(pos.y >= 1.0f) {
-            Destroy(gameObject);
-        }
     }
 
     void IsFail() {
