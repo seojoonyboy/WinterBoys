@@ -92,7 +92,7 @@ public class BoardManager : MonoBehaviour {
             leftSides.Add(leftSide);
             rightSides.Add(rightSide);
 
-            addTree();
+            addTree(true);
         }
         curFlagPos = new Vector2(0, -4);
         addFlag();
@@ -189,24 +189,47 @@ public class BoardManager : MonoBehaviour {
         }
     }
 
-    private void addTree() {
-        float val = lastTilePos.y - 1;
-        for (int i=0; i<3; i++) {
-            nextTreePosY = UnityEngine.Random.Range(val, val - 1);
-            int nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
+    private void addTree(bool isFirst = false) {
+        float val = 0;
+        if (isFirst) {
+            for(int i = 0; i< columns - 1; i++) {
+                val = -(i + 1);
+                nextTreePosY = UnityEngine.Random.Range(val, val - 1);
+                int nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
 
-            GameObject tree = Instantiate(treePref);
-            tree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+                GameObject tree = Instantiate(treePref);
+                tree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
 
-            float nextPosX = UnityEngine.Random.Range(treeLeftOffset.leftLimit, treeLeftOffset.rightLimit);
-            tree.transform.position = new Vector2(nextPosX, nextTreePosY);
+                float nextPosX = UnityEngine.Random.Range(treeLeftOffset.leftLimit, treeLeftOffset.rightLimit);
+                tree.transform.position = new Vector2(nextPosX, nextTreePosY);
 
-            nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
+                nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
 
-            GameObject rightTree = Instantiate(treePref);
-            nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
-            rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
-            rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+                GameObject rightTree = Instantiate(treePref);
+                nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
+                rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
+                rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+            }
+        }
+        else {
+            val = lastTilePos.y - 1;
+            for (int i = 0; i < 3; i++) {
+                nextTreePosY = UnityEngine.Random.Range(val, val - 1);
+                int nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
+
+                GameObject tree = Instantiate(treePref);
+                tree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+
+                float nextPosX = UnityEngine.Random.Range(treeLeftOffset.leftLimit, treeLeftOffset.rightLimit);
+                tree.transform.position = new Vector2(nextPosX, nextTreePosY);
+
+                nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
+
+                GameObject rightTree = Instantiate(treePref);
+                nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
+                rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
+                rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+            }
         }
     }
 
