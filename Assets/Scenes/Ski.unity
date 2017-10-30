@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 155959524}
   - component: {fileID: 155959523}
   - component: {fileID: 155959526}
+  - component: {fileID: 155959527}
   m_Layer: 9
   m_Name: chars_blue_default
   m_TagString: Player
@@ -723,6 +724,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 399751644}
+--- !u!210 &155959527
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155959521}
+  m_Enabled: 1
+  m_SortingLayerID: -762017675
+  m_SortingLayer: 6
+  m_SortingOrder: 0
 --- !u!1 &166062848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,6 +1447,7 @@ GameObject:
   - component: {fileID: 350328392}
   - component: {fileID: 350328391}
   - component: {fileID: 350328390}
+  - component: {fileID: 350328394}
   m_Layer: 9
   m_Name: chars_blue_45_left
   m_TagString: Player
@@ -1538,6 +1550,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350328388}
   m_Mesh: {fileID: 0}
+--- !u!210 &350328394
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 350328388}
+  m_Enabled: 1
+  m_SortingLayerID: -762017675
+  m_SortingLayer: 6
+  m_SortingOrder: 0
 --- !u!1 &362485357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,6 +2587,7 @@ GameObject:
   - component: {fileID: 848892684}
   - component: {fileID: 848892683}
   - component: {fileID: 848892682}
+  - component: {fileID: 848892686}
   m_Layer: 9
   m_Name: chars_blue_45_right
   m_TagString: Player
@@ -2667,6 +2690,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848892680}
   m_Mesh: {fileID: 0}
+--- !u!210 &848892686
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 848892680}
+  m_Enabled: 1
+  m_SortingLayerID: -762017675
+  m_SortingLayer: 6
+  m_SortingOrder: 0
 --- !u!1 &888441024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4434,6 +4467,7 @@ GameObject:
   - component: {fileID: 1865219924}
   - component: {fileID: 1865219923}
   - component: {fileID: 1865219922}
+  - component: {fileID: 1865219926}
   m_Layer: 9
   m_Name: chars_blue_90_right
   m_TagString: Player
@@ -4536,6 +4570,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865219920}
   m_Mesh: {fileID: 0}
+--- !u!210 &1865219926
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1865219920}
+  m_Enabled: 1
+  m_SortingLayerID: -762017675
+  m_SortingLayer: 6
+  m_SortingOrder: 0
 --- !u!1 &1878040760
 GameObject:
   m_ObjectHideFlags: 0
@@ -5099,6 +5143,7 @@ GameObject:
   - component: {fileID: 2046326280}
   - component: {fileID: 2046326279}
   - component: {fileID: 2046326278}
+  - component: {fileID: 2046326282}
   m_Layer: 9
   m_Name: chars_blue_90_left
   m_TagString: Player
@@ -5201,6 +5246,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2046326276}
   m_Mesh: {fileID: 0}
+--- !u!210 &2046326282
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2046326276}
+  m_Enabled: 1
+  m_SortingLayerID: -762017675
+  m_SortingLayer: 6
+  m_SortingOrder: 0
 --- !u!1 &2068286779
 GameObject:
   m_ObjectHideFlags: 0
