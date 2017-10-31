@@ -19,7 +19,8 @@ public class GameManager : Singleton<GameManager> {
         poll_intervals,                     //폴 사이 정보
         vertical_intervals,                 //행간 정보
         pararell_intervals,                 //평행이동 관련 정보
-        bonus_times;                        //보너스 타임 관련 정보
+        bonus_times,                        //보너스 타임 관련 정보
+        points;                             //포인드 획득 관련 정보
 
     public float panelty_time;              //폴 통과하지 못한 경우 패널티
     public int startTime;
@@ -66,5 +67,12 @@ public class GameManager : Singleton<GameManager> {
         panelty_time = float.Parse(str);
 
         startTime = RemoteSettings.GetInt("startTime");
+
+        str = RemoteSettings.GetString("Downhill_Point");
+
+        spl_str = str.Split(',');
+        for (int i=0; i< spl_str.Length; i++) {
+            points[i] = float.Parse(spl_str[i]);
+        }
     }
 }

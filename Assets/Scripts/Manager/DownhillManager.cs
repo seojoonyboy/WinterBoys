@@ -64,7 +64,7 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void scoreInc(int amount) {
-        score += amount;
+        //score += amount;
     }
 
     public void OnGameOver() {
@@ -74,10 +74,16 @@ public class DownhillManager : MonoBehaviour {
         Text dist = modal.transform.Find("InnerModal/Dist").GetComponent<Text>();
 
         Vector3 playerEndPos = playerController.playerPos;
-        string str = -1 * System.Math.Truncate(playerEndPos.y) + " M 이동";
-        dist.text = str;
+        var distOfMeter = System.Math.Truncate(playerEndPos.y);
 
+        //거리 기반 획득 포인트 계산
+        score = (int)(-1 * distOfMeter / gm.points[0]);
         umgm.SubmitScore("DownHill", (long)score);
+
+        string str = -1 * distOfMeter
+            + " M 이동\n"
+            + score + " 포인트 획득";
+        dist.text = str;
     }
 
     private void HandleActionScoreSubmitted(UM_LeaderboardResult res) {

@@ -39,3 +39,6 @@ MonoBehaviour:
   - key: Characters_name
     value: "\uD33B,\uCE90\uC2AC,\uCC60\uB974"
     type: string
+  - key: Downhill_Point
+    value: 25,0.02
+    type: string
