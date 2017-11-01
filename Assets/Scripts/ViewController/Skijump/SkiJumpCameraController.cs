@@ -5,8 +5,11 @@ using UnityEngine;
 public class SkiJumpCameraController : MonoBehaviour {
     public Transform target;
 
+    public delegate void ZoomOutHandler();
+    public static event ZoomOutHandler OffZooming;
+
     private int amount = 0;
-    private bool needZoom = false;
+    public bool needZoom = false;
     private float startTime = 0;
     private float journeyLength;
 
@@ -15,15 +18,15 @@ public class SkiJumpCameraController : MonoBehaviour {
             float distCovered = (Time.time - startTime);
             //Debug.Log(distCovered);
             if(distCovered >= 0.08f) {
+                OffZooming();
+                zoomOut();
                 needZoom = false;
-                Time.timeScale = 1.0f;
             }
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(target.position.x, target.position.y, target.position.z - 10f + amount), fracJourney);
         }
         else {
-            //transform.position = new Vector3(target.position.x, target.position.y, target.position.z - 10f);
-            transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(target.position.x, target.position.y, target.position.z - 10f), 1);
+            transform.position = new Vector3(target.position.x, target.position.y, target.position.z - 10f);
         }
     }
 
@@ -33,5 +36,10 @@ public class SkiJumpCameraController : MonoBehaviour {
         startTime = Time.time;
 
         needZoom = true;
+    }
+
+    public void zoomOut() {
+        OffZooming();
+        transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(target.position.x, target.position.y, target.position.z - 10f), 1);
     }
 }

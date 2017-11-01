@@ -3,26 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SkiJumpManager : MonoBehaviour {
+public class SkiJumpManager : Singleton<SkiJumpManager> {
+    protected SkiJumpManager() { }
+
     private GameManager gm;
     public SkiJumpCameraController cameraController;
-    public GameObject 
+    public SkiJumpPlayerController playerController;
+    public ArrowRotate arrowController;
+
+    public GameObject
         modal,
         character,
         forceButton,                //가속 버튼
-        angleUI;                    //각도기 UI
+        angleUI,                    //각도기 UI
+        jumpButton;                 //점프하기 버튼
+
     public float forceAmount = 0.1f;
     public float 
         slowdownFactor,     //슬로우 모션 정도
         frictionFactor;     //마찰 계수
-        
+
     private void Start() {
         //gm = GameManager.Instance;
         Screen.orientation = ScreenOrientation.LandscapeRight;
 
         initGroundEnv();
         SlowMotion.OnJumpArea += _OnJumpArea;
-        SlowMotion.ExitJumpArea += _ExitJumpArea;
+        SkiJumpCameraController.OffZooming += _OffZooming;
     }
 
     private void FixedUpdate() {
@@ -42,6 +49,8 @@ public class SkiJumpManager : MonoBehaviour {
         Time.timeScale = 1;
 
         Screen.orientation = ScreenOrientation.Portrait;
+
+        SlowMotion.OnJumpArea -= _OnJumpArea;
     }
 
     public void AddForce() {
@@ -56,9 +65,16 @@ public class SkiJumpManager : MonoBehaviour {
 
         forceButton.SetActive(false);
         angleUI.SetActive(true);
+        jumpButton.SetActive(true);
     }
 
-    private void _ExitJumpArea() {
-        angleUI.SetActive(false);
+    //점프 버튼 클릭
+    public void jumping() {
+        arrowController.stopRotating();
+        cameraController.zoomOut();
+    }
+
+    private void _OffZooming() {
+        Time.timeScale = 1.0f;
     }
 }
