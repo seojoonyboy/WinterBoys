@@ -5,8 +5,11 @@ using UnityEngine;
 public class Landing : MonoBehaviour {
     public delegate void EnterColliderHandler();
     public static event EnterColliderHandler OnLanding;
-
+    private bool isFirst = true;
     private void OnCollisionEnter2D(Collision2D collision) {
-        OnLanding();
+        if (isFirst) {
+            OnLanding();
+            isFirst = false;
+        }
     }
 }
