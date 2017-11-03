@@ -25,8 +25,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         ArrowRotate.OnRotatingEnd += RotatingEnd;
         Landing.OnLanding += _OnLanding;
-
-        anim.upd
     }
 
     private void FixedUpdate() {
