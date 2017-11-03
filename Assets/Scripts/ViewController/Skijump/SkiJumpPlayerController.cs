@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Spine.Unity;
 
 public class SkiJumpPlayerController : MonoBehaviour {
     public Transform arrow;
@@ -10,12 +9,12 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private int type = 0;
     private float jumpAmount = 15;
-    private SkeletonAnimation anim;
 
     public float height = 30;
     private bool
         isAscending = false,
-        isLanding = false;
+        isLanding = false,
+        isDescending = false;
 
     public GameObject 
         endSlope,
@@ -41,11 +40,17 @@ public class SkiJumpPlayerController : MonoBehaviour {
             rb.angularVelocity = 25f;
         }
         else {
-            //저항 제거
-            rb.drag = 0f;
-            rb.angularDrag = 0f;
+            if (isDescending) {
+                rb.angularVelocity = -25f;
+                rb.AddForce(-Vector2.up * 15);
+            }
+            else {
+                //저항 제거
+                rb.drag = 0f;
+                rb.angularDrag = 0f;
 
-            rb.angularVelocity = -15f;
+                rb.angularVelocity = -15f;
+            }
         }
 
         if (isLanding) {
@@ -70,9 +75,16 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isAscending = false;
     }
 
+    public void Descending() {
+        isDescending = true;
+    }
+
+    public void EndDescending() {
+        isDescending = false;
+    }
+
     //착지
     private void _OnLanding() {
-        //Debug.Log("착지");
         isLanding = true;
     }
 }
