@@ -25,11 +25,9 @@ public class ArrowRotate : MonoBehaviour {
             transform.Rotate(Vector3.forward);
 
             if (transform.eulerAngles.z >= 80) {
-                //SkiJumpManager.Instance
                 stopRotating();
             }
         }
-        
     }
 
     public void stopRotating() {

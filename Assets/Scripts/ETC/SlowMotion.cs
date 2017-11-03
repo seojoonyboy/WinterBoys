@@ -9,7 +9,8 @@ public class SlowMotion : MonoBehaviour {
     public static event EnterColliderHandler OnJumpArea;
     
     private bool isFirst = true;
-    private void OnCollisionEnter2D(Collision2D collision) {
+
+    private void OnCollisionExit2D(Collision2D collision) {
         if (isFirst) {
             Time.timeScale = sm.slowdownFactor;
             Time.fixedDeltaTime = Time.timeScale * .02f;

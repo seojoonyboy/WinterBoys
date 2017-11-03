@@ -17,6 +17,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
         jumpButton;                 //점프하기 버튼
+    public GameObject[] upAndDownButtons;
 
     public float forceAmount = 0.1f;
     public float 
@@ -76,5 +77,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void _OffZooming() {
         Time.timeScale = 1.0f;
+
+        jumpButton.SetActive(false);
+        angleUI.SetActive(false);
+
+        foreach(GameObject obj in upAndDownButtons) {
+            obj.SetActive(true);
+        }
     }
 }
