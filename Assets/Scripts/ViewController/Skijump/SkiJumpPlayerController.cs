@@ -28,22 +28,33 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         //Debug.Log("속력 : " + rb.velocity.magnitude);
+        //상승 버튼을 누르는 경우
         if (isAscending) {
-            if(transform.position.y <= height) {
-                rb.AddForce(Vector2.up * 30);
-                //회전 저항 부여
-                rb.angularDrag = 0.0001f;
-                //일반 저항 부여
-                rb.drag = 0.0001f;
+            //45도 이상 뒤로 기울지 않게 고정
+            if (transform.eulerAngles.z < 180 && transform.eulerAngles.z > 35) {
+                rb.angularVelocity = 0f;
             }
-
-            rb.angularVelocity = 25f;
+            else {
+                rb.angularVelocity = 25f;
+            }
+            if (transform.position.y <= height) {
+                Debug.Log(rb.velocity.x);
+                if(rb.velocity.x > 0) {
+                    rb.AddForce(Vector2.up * 30);
+                    //회전 저항 부여
+                    rb.angularDrag = 0.0001f;
+                    //일반 저항 부여
+                    rb.drag = 0.0001f;
+                }
+            }
         }
         else {
+            //하강 버튼을 누르는 경우
             if (isDescending) {
                 rb.angularVelocity = -25f;
                 rb.AddForce(-Vector2.up * 15);
             }
+            //자연 하강을 하는 경우
             else {
                 //저항 제거
                 rb.drag = 0f;
@@ -51,6 +62,14 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
                 rb.angularVelocity = -15f;
             }
+        }
+
+        //기본적인 바람 저항
+        float dot = Vector2.Dot(transform.up, Vector2.left);
+        //Debug.Log(dot);
+        if(dot >= 0 && rb.velocity.x >= 0) {
+            Vector2 airResist = new Vector2(-dot * 10, 0);
+            rb.AddForce(airResist);
         }
 
         if (isLanding) {
@@ -68,7 +87,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         //rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y);
         height *= 0.975f;
         isAscending = true;
-        Debug.Log("최대 상승할 수 있는 높이 : " + height);
+        //Debug.Log("최대 상승할 수 있는 높이 : " + height);
     }
 
     public void EndAscending() {
