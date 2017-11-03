@@ -28,6 +28,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         //Debug.Log("속력 : " + rb.velocity.magnitude);
+        if (isLanding) return;
+
         //상승 버튼을 누르는 경우
         if (isAscending) {
             //45도 이상 뒤로 기울지 않게 고정
@@ -79,7 +81,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void RotatingEnd() {
-        rb.AddForce(transform.up * forceAmount, ForceMode2D.Force);
+        rb.AddForce(arrow.transform.right * forceAmount, ForceMode2D.Force);
     }
 
     public void Ascending() {
