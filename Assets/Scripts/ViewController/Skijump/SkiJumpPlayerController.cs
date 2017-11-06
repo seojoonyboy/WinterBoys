@@ -20,6 +20,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     public GameObject 
         endSlope,
         ground;
+    private int ascendingCnt = 0;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -84,8 +85,15 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     public void Ascending() {
-        MaxHeight = transform.position.y * 0.8f;
         isAscending = true;
+
+        if(ascendingCnt > 1) {
+            MaxHeight = transform.position.y * 0.65f;
+        }
+        else {
+            MaxHeight = transform.position.y * 0.8f;
+        }
+        ascendingCnt++;
         Debug.Log("최대 상승할 수 있는 높이 : " + MaxHeight);
     }
 
