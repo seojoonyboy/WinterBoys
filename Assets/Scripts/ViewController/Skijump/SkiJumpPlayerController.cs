@@ -40,7 +40,13 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 rb.angularVelocity = 25f;
             }
 
-            rb.AddForce(Vector2.up * 30);
+
+            if (rb.velocity.y < 0 || (rb.velocity.y > 0 && transform.position.y < MaxHeight)) {
+                rb.AddForce(Vector2.up * 20f);
+            }
+            else {
+                isAscending = false;
+            }
         }
         else {
             //하강 버튼을 누르는 경우
@@ -78,7 +84,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     public void Ascending() {
-        MaxHeight = transform.position.y * 0.5f;
+        MaxHeight = transform.position.y * 0.8f;
         isAscending = true;
         Debug.Log("최대 상승할 수 있는 높이 : " + MaxHeight);
     }
