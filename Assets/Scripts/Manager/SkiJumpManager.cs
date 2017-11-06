@@ -16,7 +16,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         character,
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
-        jumpButton;                 //점프하기 버튼
+        jumpButton,                 //점프하기 버튼
+        speedText;
     public GameObject[] upAndDownButtons;
 
     public float forceAmount = 0.1f;

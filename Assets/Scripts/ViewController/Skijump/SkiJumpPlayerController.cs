@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkiJumpPlayerController : MonoBehaviour {
+    private SkiJumpManager sm;
     public Transform arrow;
     public float forceAmount;
 
@@ -22,10 +24,18 @@ public class SkiJumpPlayerController : MonoBehaviour {
         ground;
     private int ascendingCnt = 0;
 
+    private void Awake() {
+        sm = SkiJumpManager.Instance;
+    }
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         ArrowRotate.OnRotatingEnd += RotatingEnd;
         Landing.OnLanding += _OnLanding;
+    }
+
+    private void Update() {
+        sm.speedText.GetComponent<Text>().text = System.Math.Round(rb.velocity.magnitude * 3, 2) + " km/h";
     }
 
     private void FixedUpdate() {
