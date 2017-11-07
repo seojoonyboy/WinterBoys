@@ -1,0 +1,83 @@
+
+chara.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 1260, 213
+  size: 505, 790
+  orig: 505, 790
+  offset: 0, 0
+  index: -1
+desk
+  rotate: false
+  xy: 2, 472
+  size: 1256, 531
+  orig: 1256, 531
+  offset: 0, 0
+  index: -1
+eye_left
+  rotate: false
+  xy: 143, 127
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+eye_right
+  rotate: false
+  xy: 381, 347
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+eyebrow_left
+  rotate: false
+  xy: 1922, 976
+  size: 110, 27
+  orig: 110, 27
+  offset: 0, 0
+  index: -1
+eyebrow_right
+  rotate: false
+  xy: 1767, 642
+  size: 112, 28
+  orig: 112, 28
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: false
+  xy: 2, 2
+  size: 89, 26
+  orig: 89, 26
+  offset: 0, 0
+  index: -1
+name_tag
+  rotate: false
+  xy: 381, 379
+  size: 110, 91
+  orig: 110, 91
+  offset: 0, 0
+  index: -1
+paper
+  rotate: false
+  xy: 2, 159
+  size: 377, 311
+  orig: 377, 311
+  offset: 0, 0
+  index: -1
+stamp
+  rotate: false
+  xy: 1767, 672
+  size: 153, 331
+  orig: 153, 331
+  offset: 0, 0
+  index: -1
+stamp_text
+  rotate: false
+  xy: 2, 30
+  size: 139, 127
+  orig: 139, 127
+  offset: 0, 0
+  index: -1
