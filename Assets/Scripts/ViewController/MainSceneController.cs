@@ -26,12 +26,18 @@ public class MainSceneController : MonoBehaviour {
         characterName.text = charNames[gm.character];
     }
 
-    public void downhillGameLoad() {
-        SceneManager.LoadScene("Ski");
-    }
-
-    public void skeletonGameLoad() {
-        SceneManager.LoadScene("Skeleton");
+    public void LoadGame(int type) {
+        switch (type) {
+            case 0:
+                SceneManager.LoadScene("DownHill");
+                break;
+            case 1:
+                SceneManager.LoadScene("Skeleton");
+                break;
+            case 2:
+                SceneManager.LoadScene("SkiJump");
+                break;
+        }
     }
 
     public void rankingShow() {

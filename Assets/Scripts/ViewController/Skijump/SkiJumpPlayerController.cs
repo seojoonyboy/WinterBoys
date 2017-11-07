@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SkiJumpPlayerController : MonoBehaviour {
-    private SkiJumpManager sm;
+    public SkiJumpManager sm;
     public Transform arrow;
+    public Transform startPos;
+
     public float forceAmount;
 
     private Rigidbody2D rb;
@@ -24,14 +26,25 @@ public class SkiJumpPlayerController : MonoBehaviour {
         ground;
     private int ascendingCnt = 0;
 
-    private void Awake() {
-        sm = SkiJumpManager.Instance;
+    private void OnEnable() {
+        ArrowRotate.OnRotatingEnd += RotatingEnd;
+        Landing.OnLanding += _OnLanding;
+    }
+
+    private void OnDisable() {
+        ArrowRotate.OnRotatingEnd -= RotatingEnd;
+        Landing.OnLanding -= _OnLanding;
     }
 
     private void Start() {
+        Debug.Log("게임 시작");
         rb = GetComponent<Rigidbody2D>();
-        ArrowRotate.OnRotatingEnd += RotatingEnd;
-        Landing.OnLanding += _OnLanding;
+
+        isDescending = false;
+        isAscending = false;
+        isLanding = false;
+
+        ascendingCnt = 0;
     }
 
     private void Update() {
@@ -41,7 +54,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void FixedUpdate() {
         if (isLanding) return;
 
-        //Debug.Log(rb.velocity);
         if (isAscending) {
             //45도 이상 뒤로 기울지 않게 고정
             if (transform.eulerAngles.z < 180 && transform.eulerAngles.z > 35) {
@@ -84,13 +96,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 rb.AddForce(val);
             }
             //자연 하강을 하는 경우
-            else {
-                //저항 제거
-                rb.drag = 0f;
-                rb.angularDrag = 0f;
-
-                rb.angularVelocity = -15f;
-            }
         }
 
         //기본적인 바람 저항

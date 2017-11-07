@@ -7,16 +7,11 @@ public class ArrowRotate : MonoBehaviour {
     public static event EndRotating OnRotatingEnd;
 
     private Rigidbody2D rb;
-    private SkiJumpManager sm;
     public float rotateAmount = 1;
     public bool canRotate = true;
 
     private Vector3 rotDir = Vector3.forward;
-    private float time = 0;
     private int rotCnt = 0;
-    private void Awake() {
-        sm = SkiJumpManager.Instance;
-    }
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();

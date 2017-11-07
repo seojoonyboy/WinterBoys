@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
-
     private GameManager gm;
     public SkiJumpCameraController cameraController;
     public SkiJumpPlayerController playerController;
@@ -20,23 +19,52 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         speedText;
     public GameObject[] upAndDownButtons;
 
-    public float forceAmount = 0.1f;
+    public float forceAmount;
     public float 
         slowdownFactor,     //슬로우 모션 정도
         frictionFactor;     //마찰 계수
 
+    private bool 
+        isLanded = false,
+        landFinishHandled = false;
+
+    private Rigidbody2D charRb;
+
+    private void OnEnable() {
+        SlowMotion.OnJumpArea += _OnJumpArea;
+        SkiJumpCameraController.OffZooming += _OffZooming;
+        Landing.OnLanding += _OnLanding;
+
+        landFinishHandled = false;
+    }
+
+    private void OnDisable() {
+        SlowMotion.OnJumpArea -= _OnJumpArea;
+        SkiJumpCameraController.OffZooming -= _OffZooming;
+        Landing.OnLanding -= _OnLanding;
+    }
+
     private void Start() {
         //gm = GameManager.Instance;
+        forceButton.SetActive(true);
+        angleUI.SetActive(false);
+        jumpButton.SetActive(false);
         Screen.orientation = ScreenOrientation.LandscapeRight;
 
         initGroundEnv();
-        SlowMotion.OnJumpArea += _OnJumpArea;
-        SkiJumpCameraController.OffZooming += _OffZooming;
+
+        charRb = character.GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate() {
         //var rb = character.GetComponent<Rigidbody2D>();
         //Debug.Log(rb.velocity);
+        if (isLanded && !landFinishHandled) {
+            if(charRb.velocity.magnitude == 0) {
+                modal.SetActive(true);
+                landFinishHandled = true;
+            }
+        }
     }
 
     //마찰 계수 설정
@@ -51,14 +79,15 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         Time.timeScale = 1;
 
         Screen.orientation = ScreenOrientation.Portrait;
+    }
 
-        SlowMotion.OnJumpArea -= _OnJumpArea;
+    public void restart() {
+        SceneManager.LoadScene("SkiJump");
     }
 
     public void AddForce() {
-        var rb = character.GetComponent<Rigidbody2D>();
-        rb.AddForce(character.transform.right * forceAmount);
-        //Debug.Log(rb.velocity);
+        charRb.AddForce(character.transform.right * forceAmount);
+        Debug.Log(charRb.drag);
     }
 
     private void _OnJumpArea() {
@@ -75,8 +104,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         arrowController.stopRotating();
         cameraController.zoomOut();
 
-        var rb = character.GetComponent<Rigidbody2D>();
-        rb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
+        charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
     }
 
     private void _OffZooming() {
@@ -88,5 +116,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         foreach(GameObject obj in upAndDownButtons) {
             obj.SetActive(true);
         }
+    }
+
+    private void _OnLanding() {
+        isLanded = true;
     }
 }

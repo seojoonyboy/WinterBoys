@@ -57,18 +57,8 @@ public class Ski_PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-        //float deltaTime = Time.fixedDeltaTime;
-        ////Debug.Log(deltaTime);
-        //if (tmp != null) {
-        //    float dist = Vector3.Distance(tmp, transform.position);
-        //    Debug.Log("속력 : " + dist / deltaTime);
-        //}
-        //tmp = transform.position;
-        //rb.velocity = ForwardVelocity() + RightVelocity() * driftFactorSlippy;
         rb.AddForce(__ForwardVelocity());
 
-        //rb.angularVelocity = Input.GetAxis("Horizontal") * torqueForce;
         if(rb.velocity.y >= 0) {
             rb.velocity = new Vector2(rb.velocity.x, -0.1f);
         }
