@@ -24,18 +24,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         slowdownFactor,     //슬로우 모션 정도
         frictionFactor;     //마찰 계수
 
-    private bool 
-        isLanded = false,
-        landFinishHandled = false;
-
     private Rigidbody2D charRb;
-
+    private bool isLanded = false;
     private void OnEnable() {
         SlowMotion.OnJumpArea += _OnJumpArea;
         SkiJumpCameraController.OffZooming += _OffZooming;
         Landing.OnLanding += _OnLanding;
 
-        landFinishHandled = false;
         Time.timeScale = 1;
     }
 
@@ -43,6 +38,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         SlowMotion.OnJumpArea -= _OnJumpArea;
         SkiJumpCameraController.OffZooming -= _OffZooming;
         Landing.OnLanding -= _OnLanding;
+
+        isLanded = false;
     }
 
     private void Start() {
@@ -58,12 +55,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void FixedUpdate() {
-        //var rb = character.GetComponent<Rigidbody2D>();
-        if (isLanded && !landFinishHandled) {
-            if(charRb.velocity.magnitude == 0) {
-                modal.SetActive(true);
-                landFinishHandled = true;
-            }
+        if (isLanded && charRb.velocity.x <= 0) {
+            modal.SetActive(true);
         }
     }
 
@@ -118,6 +111,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void _OnLanding() {
+        Debug.Log("착지");
         isLanded = true;
     }
 }
