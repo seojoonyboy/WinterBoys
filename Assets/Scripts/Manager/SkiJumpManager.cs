@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
@@ -26,6 +27,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private Rigidbody2D charRb;
     private bool isLanded = false;
+    private double score = 0;
+
     private void OnEnable() {
         SlowMotion.OnJumpArea += _OnJumpArea;
         SkiJumpCameraController.OffZooming += _OffZooming;
@@ -57,6 +60,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private void FixedUpdate() {
         if (isLanded && charRb.velocity.x <= 0) {
             modal.SetActive(true);
+
+            //착지 위치 기반 점수 계산
+            score = System.Math.Round(character.transform.position.x / 6.0f);
+            modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + score + " 점 획득";
+            isLanded = false;
         }
     }
 
