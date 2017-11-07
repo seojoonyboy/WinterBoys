@@ -29,15 +29,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void OnEnable() {
         ArrowRotate.OnRotatingEnd += RotatingEnd;
         Landing.OnLanding += _OnLanding;
-    }
 
-    private void OnDisable() {
-        ArrowRotate.OnRotatingEnd -= RotatingEnd;
-        Landing.OnLanding -= _OnLanding;
-    }
-
-    private void Start() {
-        Debug.Log("게임 시작");
         rb = GetComponent<Rigidbody2D>();
 
         isDescending = false;
@@ -45,6 +37,13 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isLanding = false;
 
         ascendingCnt = 0;
+
+        Time.fixedDeltaTime = 0.02f;
+    }
+
+    private void OnDisable() {
+        ArrowRotate.OnRotatingEnd -= RotatingEnd;
+        Landing.OnLanding -= _OnLanding;
     }
 
     private void Update() {

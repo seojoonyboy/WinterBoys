@@ -36,6 +36,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         Landing.OnLanding += _OnLanding;
 
         landFinishHandled = false;
+        Time.timeScale = 1;
     }
 
     private void OnDisable() {
@@ -58,7 +59,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void FixedUpdate() {
         //var rb = character.GetComponent<Rigidbody2D>();
-        //Debug.Log(rb.velocity);
         if (isLanded && !landFinishHandled) {
             if(charRb.velocity.magnitude == 0) {
                 modal.SetActive(true);
@@ -87,7 +87,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public void AddForce() {
         charRb.AddForce(character.transform.right * forceAmount);
-        Debug.Log(charRb.drag);
     }
 
     private void _OnJumpArea() {

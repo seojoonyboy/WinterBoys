@@ -857,10 +857,10 @@ RectTransform:
   m_Father: {fileID: 126266813}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 729, y: 965}
-  m_SizeDelta: {x: -1540, y: 110}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -231, y: -115}
+  m_SizeDelta: {x: 380, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &548276885
 MonoBehaviour:
@@ -1122,7 +1122,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 856077814}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 976ab54b051bdb84780fac1e16b4f01a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
