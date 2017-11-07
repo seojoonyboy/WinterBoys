@@ -63,7 +63,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
             //하강 버튼을 누르는 경우
             if (isDescending) {
                 rb.angularVelocity = -25f;
-                Vector2 val = new Vector2(rb.velocity.x * 0.1f, -1);
+                Vector2 val = new Vector2(rb.velocity.x * 0.1f, -0.01f);
                 rb.AddForce(val);
             }
             //자연 하강을 하는 경우
