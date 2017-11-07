@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Spine;
+using Spine.Unity;
 
 public class SignInController : MonoBehaviour {
     public GameObject 
@@ -15,7 +17,7 @@ public class SignInController : MonoBehaviour {
 
     public Transform inputPos;
     private Vector3 inputOriginPos;
-
+    public SkeletonGraphic chara;
     private void Awake() {
         //PlayerPrefs.DeleteAll();
         inputOriginPos = nickname.transform.position;
@@ -96,8 +98,13 @@ public class SignInController : MonoBehaviour {
         gm.nickname = nickname.text;
         PlayerPrefs.SetInt("character", gm.character);
 
-        signupPanel.SetActive(false);
+        TrackEntry track = chara.AnimationState.SetAnimation(0, "approval", false);
+        Invoke("changeScene", track.AnimationEnd + 0.5f);
+    }
+
+    private void changeScene() {
         SceneManager.LoadScene("Main");
+        //signupPanel.SetActive(false);
     }
 
     private void ActionConnectionResultReceived(GooglePlayConnectionResult result) {
