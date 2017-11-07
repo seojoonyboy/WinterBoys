@@ -11,6 +11,9 @@ public class ArrowRotate : MonoBehaviour {
     public float rotateAmount = 1;
     public bool canRotate = true;
 
+    private Vector3 rotDir = Vector3.forward;
+    private float time = 0;
+    private int rotCnt = 0;
     private void Awake() {
         sm = SkiJumpManager.Instance;
     }
@@ -20,11 +23,17 @@ public class ArrowRotate : MonoBehaviour {
     }
 
     private void Update() {
-        //transform.Rotate(Vector3.forward);
         if (canRotate) {
-            transform.Rotate(Vector3.forward);
+            if(transform.eulerAngles.z >= 80) {
+                rotDir = Vector3.forward * -1;
+            }
+            if (transform.eulerAngles.z < 10) {
+                rotDir = Vector3.forward;
+                rotCnt++;
+            }
+            transform.Rotate(rotDir * 5f);
 
-            if (transform.eulerAngles.z >= 80) {
+            if(rotCnt > 4) {
                 stopRotating();
             }
         }

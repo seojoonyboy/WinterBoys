@@ -13,7 +13,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private float jumpAmount = 15;
 
     //최대 상승 가능 높이
-    private float MaxHeight;
+    private float MaxHeight = 100;
     private bool
         isAscending = false,
         isLanding = false,
@@ -52,13 +52,30 @@ public class SkiJumpPlayerController : MonoBehaviour {
             }
 
 
-            if (rb.velocity.y < 0 || (rb.velocity.y > 0 && transform.position.y < MaxHeight)) {
-                rb.AddForce(Vector2.up * 20f);
+            //if (rb.velocity.y < 0 || (rb.velocity.y > 0 && transform.position.y < MaxHeight)) {
+            //    rb.AddForce(Vector2.up * 20f);
+            //}
+            //else {
+            //    isAscending = false;
+            //}
+            
+            if (rb.velocity.y <= 0) {
+                //Debug.Log("하강중");
+                rb.AddForce(Vector2.up * rb.velocity.magnitude);
+                //Debug.Log(Vector2.up * -rb.velocity.y * 10f);
             }
             else {
-                isAscending = false;
+                Debug.Log(transform.position.y);
+                Debug.Log("최대 상승할 수 있는 높이 : " + MaxHeight);
+                if (transform.position.y <= MaxHeight) {
+                    rb.AddForce(Vector2.up * 20f);
+                }
+                else {
+                    isAscending = false;
+                }
             }
         }
+
         else {
             //하강 버튼을 누르는 경우
             if (isDescending) {
@@ -97,14 +114,13 @@ public class SkiJumpPlayerController : MonoBehaviour {
     public void Ascending() {
         isAscending = true;
 
-        if(ascendingCnt > 1) {
+        if (ascendingCnt > 1) {
             MaxHeight = transform.position.y * 0.65f;
         }
         else {
             MaxHeight = transform.position.y * 0.8f;
         }
         ascendingCnt++;
-        Debug.Log("최대 상승할 수 있는 높이 : " + MaxHeight);
     }
 
     public void EndAscending() {

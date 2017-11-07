@@ -74,6 +74,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public void jumping() {
         arrowController.stopRotating();
         cameraController.zoomOut();
+
+        var rb = character.GetComponent<Rigidbody2D>();
+        rb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
     }
 
     private void _OffZooming() {

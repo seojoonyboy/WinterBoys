@@ -12,16 +12,13 @@ public class SkiJumpCameraController : MonoBehaviour {
     public bool needZoom = false;
     private float startTime = 0;
     private float journeyLength;
-
+    private void Awake() {
+        ArrowRotate.OnRotatingEnd += endRotating;
+    }
     private void Update() {
         if (needZoom) {
             float distCovered = (Time.time - startTime);
-            //Debug.Log(distCovered);
-            if(distCovered >= 0.08f) {
-                OffZooming();
-                zoomOut();
-                needZoom = false;
-            }
+
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(target.position.x, target.position.y, target.position.z - 10f + amount), fracJourney);
         }
@@ -40,6 +37,11 @@ public class SkiJumpCameraController : MonoBehaviour {
 
     public void zoomOut() {
         OffZooming();
+        needZoom = false;
         transform.position = Vector3.Lerp(gameObject.transform.position, new Vector3(target.position.x, target.position.y, target.position.z - 10f), 1);
+    }
+
+    void endRotating() {
+        zoomOut();
     }
 }
