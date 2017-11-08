@@ -26,13 +26,16 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         frictionFactor;     //마찰 계수
 
     private Rigidbody2D charRb;
-    private bool isLanded = false;
+    private bool 
+        isLanded = false,
+        isUnstableLand = false;
     private double score = 0;
 
     private void OnEnable() {
         SlowMotion.OnJumpArea += _OnJumpArea;
         SkiJumpCameraController.OffZooming += _OffZooming;
         Landing.OnLanding += _OnLanding;
+        Landing.UnstableLanding += _UnstableLanding;
 
         Time.timeScale = 1;
     }
@@ -58,13 +61,19 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void FixedUpdate() {
-        if (isLanded && charRb.velocity.x <= 0) {
-            modal.SetActive(true);
+        if (isLanded) {
+            if(charRb.velocity.x <= 0) {
+                modal.SetActive(true);
 
-            //착지 위치 기반 점수 계산
-            score = System.Math.Round(character.transform.position.x / 6.0f);
-            modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + score + " 점 획득";
-            isLanded = false;
+                //착지 위치 기반 점수 계산
+                score = System.Math.Round(character.transform.position.x / 6.0f);
+                if (isUnstableLand) {
+                    Debug.Log("불안정 착지로 인한 감점");
+                    score = System.Math.Round(score * 0.75f);
+                }
+                modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + score + " 점 획득";
+                isLanded = false;
+            }
         }
     }
 
@@ -119,7 +128,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void _OnLanding() {
-        Debug.Log("착지");
         isLanded = true;
+    }
+
+    private void _UnstableLanding() {
+        isUnstableLand = true;
     }
 }

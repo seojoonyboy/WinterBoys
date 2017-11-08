@@ -20,11 +20,9 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isAscending = false,
         isLanding = false,
         isDescending = false;
-
-    public GameObject 
-        endSlope,
-        ground;
     private int ascendingCnt = 0;
+
+    public Collider2D plates;
 
     private void OnEnable() {
         ArrowRotate.OnRotatingEnd += RotatingEnd;
@@ -104,11 +102,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
         //    Vector2 airResist = new Vector2(-dot * 10, 0);
         //    rb.AddForce(airResist);
         //}
-
-        if (isLanding) {
-            //불안정 자세로 착지시
-            rb.angularVelocity = -1 * rb.velocity.x * 30f;
-        }
     }
 
     private void RotatingEnd() {

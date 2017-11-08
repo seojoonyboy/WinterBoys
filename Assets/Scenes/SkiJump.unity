@@ -438,7 +438,6 @@ GameObject:
   - component: {fileID: 319997721}
   - component: {fileID: 319997720}
   - component: {fileID: 319997722}
-  - component: {fileID: 319997723}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -457,6 +456,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1456673680}
+  - {fileID: 669996466}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -495,8 +495,6 @@ MonoBehaviour:
   arrow: {fileID: 289324445}
   startPos: {fileID: 592322201}
   forceAmount: 10000
-  endSlope: {fileID: 0}
-  ground: {fileID: 0}
 --- !u!61 &319997722
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -522,21 +520,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.54}
   m_EdgeRadius: 0
---- !u!70 &319997723
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 319997718}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.08}
-  m_Size: {x: 2.13, y: 0.36}
-  m_Direction: 1
 --- !u!1 &329621443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,6 +1142,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &669996465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 669996466}
+  - component: {fileID: 669996467}
+  m_Layer: 9
+  m_Name: Plates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &669996466
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669996465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 319997719}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &669996467
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669996465}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.16}
+  m_Size: {x: 2.19, y: 0.44}
+  m_Direction: 1
 --- !u!1 &856077814
 GameObject:
   m_ObjectHideFlags: 0
