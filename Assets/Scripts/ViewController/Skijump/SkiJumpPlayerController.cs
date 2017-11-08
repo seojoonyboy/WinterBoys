@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Spine;
 
 public class SkiJumpPlayerController : MonoBehaviour {
     public SkiJumpManager sm;
@@ -23,7 +24,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private int ascendingCnt = 0;
 
     public Collider2D plates;
-
     private void OnEnable() {
         ArrowRotate.OnRotatingEnd += RotatingEnd;
         Landing.OnLanding += _OnLanding;

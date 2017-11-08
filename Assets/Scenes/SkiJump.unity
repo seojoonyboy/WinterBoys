@@ -495,6 +495,7 @@ MonoBehaviour:
   arrow: {fileID: 289324445}
   startPos: {fileID: 592322201}
   forceAmount: 10000
+  plates: {fileID: 0}
 --- !u!61 &319997722
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2122,6 +2123,7 @@ GameObject:
   - component: {fileID: 1456673678}
   - component: {fileID: 1456673677}
   - component: {fileID: 1456673681}
+  - component: {fileID: 1456673682}
   m_Layer: 0
   m_Name: Spine
   m_TagString: Untagged
@@ -2157,7 +2159,7 @@ MonoBehaviour:
   logErrors: 0
   disableRenderingOnOverride: 1
   _animationName: animation
-  loop: 0
+  loop: 1
   timeScale: 1
 --- !u!23 &1456673678
 MeshRenderer:
@@ -2223,6 +2225,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 319997719}
+--- !u!114 &1456673682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1456673676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1728d95635750f4fa9fbdd290810fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1686210157
 Prefab:
   m_ObjectHideFlags: 0
