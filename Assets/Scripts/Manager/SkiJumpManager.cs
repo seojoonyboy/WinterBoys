@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
     private GameManager gm;
-    public SkiJumpCameraController cameraController;
     public SkiJumpPlayerController playerController;
     public ArrowRotate arrowController;
+    public SkiJumpCM_controller CM_controller;
 
     public GameObject
         modal,
@@ -95,14 +95,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         SceneManager.LoadScene("SkiJump");
     }
 
+    //가속 버튼
     public void AddForce() {
         charRb.AddForce(character.transform.right * forceAmount);
+        CM_controller.PlayMain();
     }
 
     private void _OnJumpArea() {
-        //Debug.Log("점프대 도착");
-        cameraController.zoomIn(5);
-
         forceButton.SetActive(false);
         angleUI.SetActive(true);
         jumpButton.SetActive(true);
@@ -111,7 +110,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     //점프 버튼 클릭
     public void jumping() {
         arrowController.stopRotating();
-        cameraController.zoomOut();
 
         charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
     }
