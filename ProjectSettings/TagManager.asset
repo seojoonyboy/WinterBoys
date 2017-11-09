@@ -62,3 +62,6 @@ TagManager:
   - name: AxisSorting
     uniqueID: 3532949621
     locked: 0
+  - name: Slope
+    uniqueID: 1455903691
+    locked: 0
