@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MainSceneController : MonoBehaviour {
     private GameManager gm;
+    public ReadyController ready;
     public Text 
         nickname,
         characterName;
@@ -29,13 +29,13 @@ public class MainSceneController : MonoBehaviour {
     public void LoadGame(int type) {
         switch (type) {
             case 0:
-                SceneManager.LoadScene("DownHill");
+                ready.open(SportType.DOWNHILL);
                 break;
             case 1:
-                SceneManager.LoadScene("Skeleton");
+                ready.open(SportType.SKELETON);
                 break;
             case 2:
-                SceneManager.LoadScene("SkiJump");
+                ready.open(SportType.SKIJUMP);
                 break;
         }
     }
