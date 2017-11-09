@@ -24,6 +24,9 @@ public class SkiJumpBoardHolder : MonoBehaviour {
 
     private int mountainIndex = 0;
     private int cloudIndex = 0;
+
+    public Transform holder;
+    private Vector2 lastPrefPos;
     private void Awake() {
         
     }
@@ -32,12 +35,18 @@ public class SkiJumpBoardHolder : MonoBehaviour {
         init();
     }
 
+    private void Update() {
+        float camXPos = Camera.main.transform.position.x;
+    }
+
     private void init() {
         mountainIndex = 0;
         cloudIndex = 0;
 
-        Generate(bundleOfMountains, 0);
-        Generate(bundleOfClouds, 1);
+        for(int i=0; i<=30; i++) {
+            Generate(bundleOfMountains, 0);
+            Generate(bundleOfClouds, 1);
+        }
     }
 
     private Vector2 randPoses(Vector2 origin, int type) {
@@ -71,29 +80,30 @@ public class SkiJumpBoardHolder : MonoBehaviour {
             //산악지형
             case 0:
                 int mntRndIndex = Random.Range(0, mountainPrefs.Length - 1);
-                GameObject originObj = Instantiate(mountainPrefs[mntRndIndex]);
-                originObj.transform.position = new Vector2(intervalsOfMountains * mountainIndex, 0);
+                Vector2 originPos = new Vector2(intervalsOfMountains * mountainIndex, 0);
+
                 float totalMountainNum = Random.Range(1, num);
                 if (totalMountainNum > 1) {
                     for (int i = 0; i < num - 1; i++) {
                         mntRndIndex = Random.Range(0, mountainPrefs.Length);
-                        Debug.Log(mntRndIndex);
+                        //Debug.Log(mntRndIndex);
                         GameObject obj = Instantiate(mountainPrefs[mntRndIndex]);
-                        obj.transform.position = randPoses(originObj.transform.position, 0);
+                        obj.transform.position = randPoses(originPos, 0);
+                        obj.transform.SetParent(holder, false);
                     }
                 }
                 break;
-            case 1:
             //구름
+            case 1:
                 int cloudRndIndex = Random.Range(0, cloudPrefs.Length - 1);
-                GameObject cloudObj = Instantiate(cloudPrefs[cloudRndIndex]);
-                cloudObj.transform.position = new Vector2(intervalOfClouds * cloudIndex, 150);
+                Vector2 cloudOriginPos = new Vector2(intervalOfClouds * cloudIndex, 100);
                 float totalCloudNum = Random.Range(1, num);
                 if(totalCloudNum > 1) {
                     for (int i = 0; i < num - 1; i++) {
                         cloudRndIndex = Random.Range(0, cloudPrefs.Length);
                         GameObject _obj = Instantiate(cloudPrefs[cloudRndIndex]);
-                        _obj.transform.position = randPoses(cloudObj.transform.position, 1);
+                        _obj.transform.position = randPoses(cloudOriginPos, 1);
+                        _obj.transform.SetParent(holder, false);
                     }
                 }
                 break;
