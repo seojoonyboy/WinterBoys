@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics.MiniJSON;
 
-public enum SportType {
-	SKIJUMP,
-	SKELETON,
-	DOWNHILL
-}
-
 public class PointData {
 	public int point = 0;
 	public int speedLv = 0;
@@ -16,10 +10,9 @@ public class PointData {
 
 	public int speedNeed {get {return pointNeed(speedLv);}}
 
-	public int controlNeed {
-		get {return pointNeed(controlLv);}}
-	public float speedPercent {get{return 100f + speedLv * 0.5f;}}
-	public float controlPercent {get{return 100f + controlLv * 0.5f;}}
+	public int controlNeed {get {return pointNeed(controlLv);}}
+	public float speedPercent {get{return speedLv * 0.5f;}}
+	public float controlPercent {get{return controlLv * 0.5f;}}
 
 	private int pointNeed(int level) {
 		level /= 10;
@@ -57,7 +50,6 @@ public class PointManager : Singleton<PointManager> {
 		for(int i = 0; i <= (int)SportType.DOWNHILL; i++) {
 			pointData[i] = JsonUtility.FromJson<PointData>((string)savefile[i]);
 		}
-		save();
 	}
 
 	private void save() {
@@ -106,5 +98,9 @@ public class PointManager : Singleton<PointManager> {
 
 	public float getControlPercent(SportType sport) {
 		return pointData[(int)sport].controlPercent;
+	}
+
+	public int getPointLeft(SportType sport) {
+		return pointData[(int)sport].point;
 	}
 }
