@@ -33,26 +33,22 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void OnEnable() {
         SlowMotion.OnJumpArea += _OnJumpArea;
-        SkiJumpCameraController.OffZooming += _OffZooming;
         Landing.OnLanding += _OnLanding;
         Landing.UnstableLanding += _UnstableLanding;
+        ArrowRotate.OnRotatingEnd += _OffZooming;
 
         Time.timeScale = 1;
     }
 
     private void OnDisable() {
         SlowMotion.OnJumpArea -= _OnJumpArea;
-        SkiJumpCameraController.OffZooming -= _OffZooming;
         Landing.OnLanding -= _OnLanding;
+        ArrowRotate.OnRotatingEnd -= _OffZooming;
 
         isLanded = false;
     }
 
     private void Start() {
-        //gm = GameManager.Instance;
-        forceButton.SetActive(true);
-        angleUI.SetActive(false);
-        jumpButton.SetActive(false);
         Screen.orientation = ScreenOrientation.LandscapeRight;
 
         initGroundEnv();
@@ -98,18 +94,21 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     //가속 버튼
     public void AddForce() {
         charRb.AddForce(character.transform.right * forceAmount);
-        CM_controller.PlayMain();
+        CM_controller.Play(1);
     }
 
     private void _OnJumpArea() {
         forceButton.SetActive(false);
         angleUI.SetActive(true);
         jumpButton.SetActive(true);
+
+        CM_controller.Play(2);
     }
 
     //점프 버튼 클릭
     public void jumping() {
         arrowController.stopRotating();
+        _OffZooming();
 
         charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
     }
@@ -123,6 +122,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         foreach(GameObject obj in upAndDownButtons) {
             obj.SetActive(true);
         }
+
+        CM_controller.Play(3);
     }
 
     private void _OnLanding() {

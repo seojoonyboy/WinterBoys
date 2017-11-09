@@ -11,13 +11,13 @@ public class SlowMotion : MonoBehaviour {
     private bool isFirst = true;
 
     private void OnCollisionExit2D(Collision2D collision) {
-        //if (isFirst) {
-        //    Time.timeScale = sm.slowdownFactor;
-        //    Time.fixedDeltaTime = Time.timeScale * .02f;
+        if (isFirst) {
+            Time.timeScale = sm.slowdownFactor;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
 
-        //    OnJumpArea();
+            OnJumpArea();
 
-        //    isFirst = false;
-        //}
+            isFirst = false;
+        }
     }
 }
