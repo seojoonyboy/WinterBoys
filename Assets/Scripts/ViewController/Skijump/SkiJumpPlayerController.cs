@@ -20,7 +20,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private bool
         isAscending = false,
         isLanding = false,
-        isDescending = false;
+        isDescending = false,
+        tmp = false;
     private int ascendingCnt = 0;
 
     public Collider2D plates;
@@ -33,6 +34,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isDescending = false;
         isAscending = false;
         isLanding = false;
+        tmp = false;
 
         ascendingCnt = 0;
 
@@ -51,31 +53,37 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void FixedUpdate() {
         if (isLanding) return;
 
+        float angle = transform.eulerAngles.z;
+
+        if (tmp) {
+            //반시계방향 회전중
+            if (rb.angularVelocity > 0) {
+                //Debug.Log("반시계 방향 회전중");
+                if(angle > 45 && angle <= 180) {
+                    transform.eulerAngles = new Vector3(0, 0, angle - 0.1f);
+                    rb.angularVelocity = 0;
+                }
+            }
+            //시계방향 회전중
+            else {
+                //Debug.Log("시계 방향 회전중");
+                if(angle < 305 && angle >= 180) {
+                    transform.eulerAngles = new Vector3(0, 0, angle + 0.1f);
+                    rb.angularVelocity = 0;
+                }
+            }
+        }
+
         if (isAscending) {
             //45도 이상 뒤로 기울지 않게 고정
-            if (transform.eulerAngles.z < 180 && transform.eulerAngles.z > 35) {
-                rb.angularVelocity = 0f;
-            }
-            else {
-                rb.angularVelocity = 25f;
+            if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
+                rb.angularVelocity = 35f;
             }
 
-
-            //if (rb.velocity.y < 0 || (rb.velocity.y > 0 && transform.position.y < MaxHeight)) {
-            //    rb.AddForce(Vector2.up * 20f);
-            //}
-            //else {
-            //    isAscending = false;
-            //}
-            
             if (rb.velocity.y <= 0) {
-                //Debug.Log("하강중");
                 rb.AddForce(Vector2.up * rb.velocity.magnitude);
-                //Debug.Log(Vector2.up * -rb.velocity.y * 10f);
             }
             else {
-                Debug.Log(transform.position.y);
-                Debug.Log("최대 상승할 수 있는 높이 : " + MaxHeight);
                 if (transform.position.y <= MaxHeight) {
                     rb.AddForce(Vector2.up * 20f);
                 }
@@ -88,24 +96,20 @@ public class SkiJumpPlayerController : MonoBehaviour {
         else {
             //하강 버튼을 누르는 경우
             if (isDescending) {
-                rb.angularVelocity = -25f;
+                if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
+                    rb.angularVelocity = -35f;
+                }
+
                 Vector2 val = new Vector2(rb.velocity.x * 0.1f, -0.01f);
                 rb.AddForce(val);
             }
             //자연 하강을 하는 경우
         }
-
-        //기본적인 바람 저항
-        //float dot = Vector2.Dot(transform.up, Vector2.left);
-        ////Debug.Log(dot);
-        //if(dot >= 0 && rb.velocity.x >= 0) {
-        //    Vector2 airResist = new Vector2(-dot * 10, 0);
-        //    rb.AddForce(airResist);
-        //}
     }
 
     private void RotatingEnd() {
         rb.AddForce(arrow.transform.right * forceAmount, ForceMode2D.Force);
+        tmp = true;
     }
 
     public void Ascending() {
