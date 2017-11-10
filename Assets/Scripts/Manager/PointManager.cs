@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.Analytics.MiniJSON;
 
 public class PointData {
-	public int point = 0;
+	public int point = 10000;
 	public int speedLv = 0;
 	public int controlLv = 0;
+	public float maxRecord = 0f;
 
 	public int speedNeed {get {return pointNeed(speedLv);}}
 
@@ -33,8 +34,10 @@ public class PointData {
 }
 
 public class PointManager : Singleton<PointManager> {
+	protected PointManager() { }
 	private PointData[] pointData;
 	private void Awake() {
+		DontDestroyOnLoad(gameObject);
 		load();
 	}
 
@@ -102,5 +105,17 @@ public class PointManager : Singleton<PointManager> {
 
 	public int getPointLeft(SportType sport) {
 		return pointData[(int)sport].point;
+	}
+
+	public bool setRecord(float record, SportType sport) {
+		if(pointData[(int)sport].maxRecord < record) {
+			pointData[(int)sport].maxRecord = record;
+			return true;
+		}
+		return false;
+	}
+
+	public float getRecord(SportType sport) {
+		return pointData[(int)sport].maxRecord;
 	}
 }

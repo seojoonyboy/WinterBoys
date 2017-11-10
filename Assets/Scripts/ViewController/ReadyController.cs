@@ -35,9 +35,12 @@ public class ReadyController : MonoBehaviour {
 
 	public void open(SportType sport) {
 		this.sport = sport;
+		gameObject.SetActive(true);
+	}
+
+	private void OnEnable() {
 		init();
 		setScene();
-		gameObject.SetActive(true);
 	}
 
 	private void init() {
