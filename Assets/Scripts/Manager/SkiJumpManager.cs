@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
-    private GameManager gm;
+
+    private PointManager pm;
     public SkiJumpPlayerController playerController;
     public ArrowRotate arrowController;
     public SkiJumpCM_controller CM_controller;
@@ -49,6 +50,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         isLanded = false;
     }
 
+    private void Awake() {
+        pm = PointManager.Instance;
+    }
+
     private void Start() {
         Screen.orientation = ScreenOrientation.LandscapeRight;
 
@@ -70,6 +75,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
                 }
                 modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + score + " 점 획득";
                 isLanded = false;
+
+                pm.setRecord((float)score, SportType.SKIJUMP);
+                pm.addPoint((int)score, SportType.SKIJUMP);
             }
         }
     }

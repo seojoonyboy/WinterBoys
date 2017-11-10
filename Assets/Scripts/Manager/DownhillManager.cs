@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DownhillManager : MonoBehaviour {
     public GameObject modal;
     private GameManager gm;
+    private PointManager pm;
     private UM_GameServiceManager umgm;
     public int remainTime;
     public Text remainTimeTxt;
@@ -20,6 +21,7 @@ public class DownhillManager : MonoBehaviour {
     private void Awake() {
         gm = GameManager.Instance;
         umgm = UM_GameServiceManager.Instance;
+        pm = PointManager.Instance;
         UM_GameServiceManager.ActionScoreSubmitted += HandleActionScoreSubmitted;
     }
 
@@ -84,6 +86,9 @@ public class DownhillManager : MonoBehaviour {
             + " M 이동\n"
             + score + " 포인트 획득";
         dist.text = str;
+
+        pm.setRecord(score, SportType.DOWNHILL);
+        pm.addPoint(score, SportType.DOWNHILL);
     }
 
     private void HandleActionScoreSubmitted(UM_LeaderboardResult res) {
