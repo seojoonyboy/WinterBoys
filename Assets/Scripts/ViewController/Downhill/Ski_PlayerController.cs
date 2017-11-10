@@ -6,11 +6,10 @@ using Spine.Unity;
 using UnityEngine.UI;
 
 public class Ski_PlayerController : MonoBehaviour {
-    public float speedForce = 1.0f;
-    public float torqueForce = 1.0f;
+    public float speedForce = 0.8f;             //캐릭터 속도
     public float driftFactor = 1.0f;
     public float angleV = 45.0f;
-    public float input_sensitive = 0.3f;
+    public float input_sensitive = 5.0f;        //캐릭터 회전 정도
     public int rotateDir = 1;
     bool buttonDown = false;
 
@@ -28,10 +27,13 @@ public class Ski_PlayerController : MonoBehaviour {
     private int characterIndex = 0;
     private GameObject[] selectedCharacters;
     private GameObject preObj;
-    //private Vector3 tmp;
+
     public Vector3 playerPos;
+
+    private Rigidbody2D rb;
     private void Awake() {
         gm = GameManager.Instance;
+        rb = GetComponent<Rigidbody2D>();
     }
     private void Start() {
         characterIndex = gm.character;
@@ -56,21 +58,18 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(__ForwardVelocity());
+        rb.AddForce(ForwardForce());
 
-        if(rb.velocity.y >= 0) {
-            rb.velocity = new Vector2(rb.velocity.x, -0.1f);
-        }
         if (buttonDown) {
             rb.angularVelocity += input_sensitive * rotateDir;
         }
         else {
             rb.angularVelocity = 0;
         }
-        changePlayerImage();
 
-        if (transform.eulerAngles.z > 260) {
+        float angle = transform.eulerAngles.z;
+        //최대회전 각도 지정 (우측)
+        if (angle > 260) {
             if (rb.angularVelocity == 0) {
                 rb.constraints = RigidbodyConstraints2D.None;
                 transform.eulerAngles = new Vector3(0, 0, 259.5f);
@@ -80,7 +79,7 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         //최대회전 각도 지정 (좌측)
-        if (transform.eulerAngles.z < 100) {
+        if (angle < 100) {
             if (rb.angularVelocity == 0) {
                 rb.constraints = RigidbodyConstraints2D.None;
                 transform.eulerAngles = new Vector3(0, 0, 100.5f);
@@ -89,10 +88,10 @@ public class Ski_PlayerController : MonoBehaviour {
             }
         }
 
-        float angle = Vector3.Angle(transform.up, -Vector3.up);
+        angle = Vector3.Angle(transform.up, -Vector3.up);
 
+        //특정 각도 (angleV)에 따른 미끄러짐 효과 부여
         if (angle >= angleV) {
-            //Debug.Log(transform.up.x);
             Vector3 val;
             if (transform.up.x < 0) {
                 val = new Vector3(-1, 0.6f, 0) * (angle / 150.0f);
@@ -101,21 +100,23 @@ public class Ski_PlayerController : MonoBehaviour {
             }
             rb.AddForce(val);
         }
-        //rb.AddForce(ForwardVelocity() * 2f);
         else {
-            rb.velocity = ForwardVelocity() + RightVelocity() * driftFactor;
+            rb.velocity = AdditionalForce() + RightVelocity() * driftFactor;
         }
+
+        changePlayerImage();
     }
 
-    //전방으로 얼마나 추가적으로 힘을 가할지 (현재 속도 기준)
-    Vector2 ForwardVelocity() {
+    //전방으로의 가속도 부여
+    Vector3 ForwardForce() {
+        return transform.up * Vector3.Dot(-Vector3.up, transform.up) * speedForce;
+    }
+
+    //추가적인 전방으로의 속도
+    Vector2 AdditionalForce() {
         return transform.up * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.up);
     }
 
-    Vector3 __ForwardVelocity() {
-        return transform.up * Vector3.Dot(-Vector3.up, transform.up) * speedForce;
-    }
-    
     //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
     Vector2 RightVelocity() {
         return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right);

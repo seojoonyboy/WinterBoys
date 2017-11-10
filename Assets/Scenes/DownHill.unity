@@ -2924,7 +2924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08f99d3bf59e144aea893a54584d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedForce: 0.83
+  speedForce: 0.8
   torqueForce: -120
   driftFactor: 1
   angleV: 70
