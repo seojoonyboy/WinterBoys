@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Analytics.MiniJSON;
 
 public class PointData {
-	public int point = 10000;
+	public int point = 999999;
 	public int speedLv = 0;
 	public int controlLv = 0;
 	public float maxRecord = 0f;
@@ -12,12 +12,12 @@ public class PointData {
 	public int speedNeed {get {return pointNeed(speedLv);}}
 
 	public int controlNeed {get {return pointNeed(controlLv);}}
-	public float speedPercent {get{return speedLv * 0.5f;}}
-	public float controlPercent {get{return controlLv * 0.5f;}}
+	public float speedPercent {get{return 1.0f + speedLv * 0.005f;}}
+	public float controlPercent {get{return 1.0f + controlLv * 0.005f;}}
 
 	private int pointNeed(int level) {
-		level /= 10;
-		switch(level) {
+		int switchLv = level / 10;
+		switch(switchLv) {
 			case 0 : case 1 :
 			return (int)(50f * Mathf.Pow(1.2f, level));
 			case 2 : case 3 :
@@ -58,7 +58,6 @@ public class PointManager : Singleton<PointManager> {
 	private void save() {
 		List<object> savefile = new List<object>();
 		for(int i = 0; i <= (int)SportType.DOWNHILL ; i++) {
-			pointData[i] = new PointData();
 			savefile.Add(JsonUtility.ToJson(pointData[i]));
 		}
 		PlayerPrefs.SetString("savefile", Json.Serialize(savefile));

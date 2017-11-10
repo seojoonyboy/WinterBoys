@@ -87,7 +87,7 @@ public class DownhillManager : MonoBehaviour {
             + score + " 포인트 획득";
         dist.text = str;
 
-        pm.setRecord(score, SportType.DOWNHILL);
+        pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
         pm.addPoint(score, SportType.DOWNHILL);
     }
 

@@ -76,7 +76,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
                 modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + score + " 점 획득";
                 isLanded = false;
 
-                pm.setRecord((float)score, SportType.SKIJUMP);
+                pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
                 pm.addPoint((int)score, SportType.SKIJUMP);
             }
         }

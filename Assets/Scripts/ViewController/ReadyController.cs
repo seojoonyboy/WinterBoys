@@ -44,11 +44,12 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void init() {
-		speed.percent.text = pointManager.getSpeedPercent(sport).ToString("00.#");
+		maxScore.text = pointManager.getRecord(sport).ToString("#0.00");
+		speed.percent.text = (100f * pointManager.getSpeedPercent(sport) - 100f).ToString("00.0");
 		speed.needPoint.text = pointManager.getSpeedPointNeed(sport).ToString();
 		setGrade(speed.grade, pointManager.getSpeedPercent(sport));
 
-		control.percent.text = pointManager.getControlPercent(sport).ToString("00.#");
+		control.percent.text = (100f * pointManager.getControlPercent(sport)- 100f).ToString("00.0");
 		control.needPoint.text = pointManager.getControlPointNeed(sport).ToString();
 		setGrade(control.grade, pointManager.getControlPercent(sport));
 
@@ -56,9 +57,9 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void setGrade(Image grade, float num) {
-		if(num < 13f) grade.sprite = gradeSprite[3];
-		else if(num < 25f) grade.sprite = gradeSprite[2];
-		else if(num < 35f) grade.sprite = gradeSprite[1];
+		if(num < 1.13f) grade.sprite = gradeSprite[3];
+		else if(num < 1.25f) grade.sprite = gradeSprite[2];
+		else if(num < 1.35f) grade.sprite = gradeSprite[1];
 		else grade.sprite = gradeSprite[0];
 
 		grade.SetNativeSize();
@@ -77,6 +78,7 @@ public class ReadyController : MonoBehaviour {
 		if (pointManager.levelUpControl(sport)) {
 			Debug.Log(sport+"level up!!");
 			init();
+			return;
 		}
 		Debug.Log(sport+" level up Fail");
 	}
