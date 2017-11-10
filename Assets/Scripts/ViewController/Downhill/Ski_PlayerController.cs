@@ -6,10 +6,12 @@ using Spine.Unity;
 using UnityEngine.UI;
 
 public class Ski_PlayerController : MonoBehaviour {
-    public float speedForce = 0.8f;             //캐릭터 속도
+    public float speedForce = 0.8f;             //캐릭터 가속도의 힘
+    private float statBasedSpeedForce;          //Stat을 적용한 가속도의 힘
     public float driftFactor = 1.0f;
     public float angleV = 45.0f;
-    public float input_sensitive = 5.0f;        //캐릭터 회전 정도
+    public float input_sensitive = 5.0f;        //캐릭터 회전력
+    private float statBasedRotSenstive;         //Stat을 적용한 캐릭터 회전력
     public int rotateDir = 1;
     bool buttonDown = false;
 
@@ -23,6 +25,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public BoardManager bM;
     public DownhillManager dM;
     private GameManager gm;
+    private PointManager pm;
 
     private int characterIndex = 0;
     private GameObject[] selectedCharacters;
@@ -33,6 +36,7 @@ public class Ski_PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private void Awake() {
         gm = GameManager.Instance;
+        pm = PointManager.Instance;
         rb = GetComponent<Rigidbody2D>();
     }
     private void Start() {
@@ -51,6 +55,9 @@ public class Ski_PlayerController : MonoBehaviour {
 
         selectedCharacters[0].SetActive(true);
         transform.Find("Plate").GetComponent<SpriteRenderer>().sprite = plates[characterIndex];
+
+        statBasedSpeedForce = speedForce * pm.getSpeedPercent(SportType.DOWNHILL);
+        statBasedRotSenstive = input_sensitive * pm.getControlPercent(SportType.DOWNHILL);
     }
 
     private void Update() {
@@ -61,7 +68,7 @@ public class Ski_PlayerController : MonoBehaviour {
         rb.AddForce(ForwardForce());
 
         if (buttonDown) {
-            rb.angularVelocity += input_sensitive * rotateDir;
+            rb.angularVelocity += statBasedRotSenstive * rotateDir;
         }
         else {
             rb.angularVelocity = 0;
@@ -109,7 +116,7 @@ public class Ski_PlayerController : MonoBehaviour {
 
     //전방으로의 가속도 부여
     Vector3 ForwardForce() {
-        return transform.up * Vector3.Dot(-Vector3.up, transform.up) * speedForce;
+        return transform.up * Vector3.Dot(-Vector3.up, transform.up) * statBasedSpeedForce;
     }
 
     //추가적인 전방으로의 속도

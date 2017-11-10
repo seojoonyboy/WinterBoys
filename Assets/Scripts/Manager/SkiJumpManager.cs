@@ -21,7 +21,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         speedText;
     public GameObject[] upAndDownButtons;
 
-    public float forceAmount;
+    public float forceAmount;           //가속 정도
+    private float statBasedSpeedForce;  //Stat을 적용한 가속 정도
     public float 
         slowdownFactor,     //슬로우 모션 정도
         frictionFactor;     //마찰 계수
@@ -60,6 +61,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         initGroundEnv();
 
         charRb = character.GetComponent<Rigidbody2D>();
+
+        statBasedSpeedForce = forceAmount * pm.getSpeedPercent(SportType.SKIJUMP);
     }
 
     private void FixedUpdate() {
@@ -102,7 +105,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     //가속 버튼
     public void AddForce() {
-        charRb.AddForce(character.transform.right * forceAmount);
+        charRb.AddForce(character.transform.right * statBasedSpeedForce);
         CM_controller.Play(1);
         if (tmp) {
             playerController.SkelAnimChange("run", true);

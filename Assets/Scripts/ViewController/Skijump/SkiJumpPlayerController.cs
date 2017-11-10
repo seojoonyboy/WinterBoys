@@ -6,6 +6,8 @@ using Spine.Unity;
 
 public class SkiJumpPlayerController : MonoBehaviour {
     private GameManager gm;
+    private PointManager pm;
+
     public SkiJumpManager sm;
     public Transform arrow;
     public Transform startPos;
@@ -15,7 +17,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private int type = 0;
     private float jumpAmount = 15;
-
+    private float rotateAmount = 35;        //회전력
+    private float statBasedRotAmount;       //Stat을 적용한 회전력
     //최대 상승 가능 높이
     private float MaxHeight = 100;
 
@@ -31,7 +34,13 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private SkeletonAnimation anim;
     private void Awake() {
         gm = GameManager.Instance;
+        pm = PointManager.Instance;
+
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start() {
+        statBasedRotAmount = rotateAmount * pm.getControlPercent(SportType.SKIJUMP);
     }
 
     private void OnEnable() {
@@ -96,7 +105,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         if (isAscending) {
             //45도 이상 뒤로 기울지 않게 고정
             if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
-                rb.angularVelocity = 35f;
+                rb.angularVelocity = statBasedRotAmount;
             }
 
             if (rb.velocity.y <= 0) {
@@ -116,7 +125,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
             //하강 버튼을 누르는 경우
             if (isDescending) {
                 if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
-                    rb.angularVelocity = -35f;
+                    rb.angularVelocity = -statBasedRotAmount;
                 }
 
                 Vector2 val = new Vector2(rb.velocity.x * 0.1f, -0.01f);

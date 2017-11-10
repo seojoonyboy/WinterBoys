@@ -84,7 +84,7 @@ public class BoardManager : MonoBehaviour {
 
                 treeRightOffset = new TreeOffset();
                 val = rightSide.transform.position.x;
-                Debug.Log(val);
+
                 treeRightOffset.leftLimit = (float)(val - rightSide.transform.localScale.x / 2.0f);
                 treeRightOffset.rightLimit = treeRightOffset.leftLimit + rightSide.transform.localScale.x / 2.0f;
             }
