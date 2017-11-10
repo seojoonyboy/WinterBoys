@@ -2925,7 +2925,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedForce: 0.8
-  torqueForce: -120
   driftFactor: 1
   angleV: 70
   input_sensitive: 5

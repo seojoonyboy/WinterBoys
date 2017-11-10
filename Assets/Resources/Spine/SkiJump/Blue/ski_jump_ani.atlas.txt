@@ -1,0 +1,34 @@
+
+ski_jump_ani.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+character
+  rotate: true
+  xy: 2, 13
+  size: 192, 294
+  orig: 192, 294
+  offset: 0, 0
+  index: -1
+hand
+  rotate: true
+  xy: 298, 2
+  size: 69, 124
+  orig: 69, 124
+  offset: 0, 0
+  index: -1
+shoes_back
+  rotate: false
+  xy: 298, 73
+  size: 326, 132
+  orig: 326, 132
+  offset: 0, 0
+  index: -1
+shoes_front
+  rotate: false
+  xy: 626, 73
+  size: 326, 132
+  orig: 326, 132
+  offset: 0, 0
+  index: -1

@@ -28,7 +28,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private Rigidbody2D charRb;
     private bool 
         isLanded = false,
-        isUnstableLand = false;
+        isUnstableLand = false,
+        tmp = true;
     private double score = 0;
 
     private void OnEnable() {
@@ -95,6 +96,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public void AddForce() {
         charRb.AddForce(character.transform.right * forceAmount);
         CM_controller.Play(1);
+        if (tmp) {
+            playerController.SkelAnimChange("run", true);
+            tmp = false;
+        }
     }
 
     private void _OnJumpArea() {

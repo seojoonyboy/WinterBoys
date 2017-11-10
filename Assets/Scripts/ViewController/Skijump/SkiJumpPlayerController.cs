@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Spine;
+using Spine.Unity;
 
 public class SkiJumpPlayerController : MonoBehaviour {
+    private GameManager gm;
     public SkiJumpManager sm;
     public Transform arrow;
     public Transform startPos;
@@ -17,19 +18,31 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     //최대 상승 가능 높이
     private float MaxHeight = 100;
+
     private bool
         isAscending = false,
         isLanding = false,
         isDescending = false,
         tmp = false;
-    private int ascendingCnt = 0;
 
-    public Collider2D plates;
+    private int ascendingCnt = 0;
+    private int characterIndex = 0;
+    public GameObject[] characters;
+    private SkeletonAnimation anim;
+    private void Awake() {
+        gm = GameManager.Instance;
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void OnEnable() {
+        characterIndex = gm.character;
+
+        initChar(characterIndex);                   //Spine Character 설정
+        anim = characters[characterIndex].GetComponent<SkeletonAnimation>();
+        SkelAnimChange("starting", false);
+
         ArrowRotate.OnRotatingEnd += RotatingEnd;
         Landing.OnLanding += _OnLanding;
-
-        rb = GetComponent<Rigidbody2D>();
 
         isDescending = false;
         isAscending = false;
@@ -38,7 +51,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         ascendingCnt = 0;
 
-        Time.fixedDeltaTime = 0.02f;
+        Time.fixedDeltaTime = 0.02f;                //슬로우모션 제거
     }
 
     private void OnDisable() {
@@ -54,6 +67,12 @@ public class SkiJumpPlayerController : MonoBehaviour {
         if (isLanding) return;
 
         float angle = transform.eulerAngles.z;
+
+        if(rb.velocity.magnitude >= 20) {
+            if(anim.AnimationName == "run") {
+                SkelAnimChange("run_loop", true);
+            }
+        }
 
         if (tmp) {
             //반시계방향 회전중
@@ -139,5 +158,21 @@ public class SkiJumpPlayerController : MonoBehaviour {
     //착지
     private void _OnLanding() {
         isLanding = true;
+    }
+
+    private void initChar(int index) {
+        for(int i=0; i<characters.Length; i++) {
+            if(i == index) {
+                characters[i].SetActive(true);
+            }
+            else {
+                characters[i].SetActive(false);
+            }
+        }
+    }
+
+    public void SkelAnimChange(string name, bool needLoop = false) {
+        anim.loop = needLoop;
+        anim.AnimationName = name;
     }
 }
