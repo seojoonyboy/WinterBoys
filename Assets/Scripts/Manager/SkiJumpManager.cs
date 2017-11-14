@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,9 @@ using UnityEngine.UI;
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
 
+    private EventManager _eventManger;
     private PointManager pm;
+
     public SkiJumpPlayerController playerController;
     public ArrowRotate arrowController;
     public SkiJumpCM_controller CM_controller;
@@ -34,8 +37,14 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         tmp = true;
     private double score = 0;
 
+    private void Awake() {
+        _eventManger = EventManager.Instance;
+        pm = PointManager.Instance;
+    }
+
     private void OnEnable() {
-        SlowMotion.OnJumpArea += _OnJumpArea;
+        _eventManger.AddListener<SkiJumpEvent>(_OnJumpArea);
+
         Landing.OnLanding += _OnLanding;
         Landing.UnstableLanding += _UnstableLanding;
         ArrowRotate.OnRotatingEnd += _OffZooming;
@@ -44,15 +53,20 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void OnDisable() {
-        SlowMotion.OnJumpArea -= _OnJumpArea;
+        _eventManger.RemoveListener<SkiJumpEvent>(_OnJumpArea);
+
         Landing.OnLanding -= _OnLanding;
         ArrowRotate.OnRotatingEnd -= _OffZooming;
 
         isLanded = false;
     }
 
-    private void Awake() {
-        pm = PointManager.Instance;
+    private void _OnJumpArea(SkiJumpEvent e) {
+        forceButton.SetActive(false);
+        angleUI.SetActive(true);
+        jumpButton.SetActive(true);
+
+        CM_controller.Play(2);
     }
 
     private void Start() {
@@ -111,14 +125,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             playerController.SkelAnimChange("run", true);
             tmp = false;
         }
-    }
-
-    private void _OnJumpArea() {
-        forceButton.SetActive(false);
-        angleUI.SetActive(true);
-        jumpButton.SetActive(true);
-
-        CM_controller.Play(2);
     }
 
     //점프 버튼 클릭
