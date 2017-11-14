@@ -7,7 +7,7 @@ public class PointData {
 	public int point = 999999;
 	public int speedLv = 0;
 	public int controlLv = 0;
-	public float maxRecord = 0f;
+	public float[] maxRecord = {0f, 0f, 0f};
 
 	public int speedNeed {get {return pointNeed(speedLv);}}
 
@@ -35,86 +35,85 @@ public class PointData {
 
 public class PointManager : Singleton<PointManager> {
 	protected PointManager() { }
-	private PointData[] pointData;
+	private PointData pointData;
 	private void Awake() {
 		DontDestroyOnLoad(gameObject);
 		load();
 	}
 
 	private void load() {
-		pointData = new PointData[(int)SportType.DOWNHILL + 1];
 		string saveString = PlayerPrefs.GetString("savefile");
 		if(string.IsNullOrEmpty(saveString)) {
-			for(int i = 0; i <= (int)SportType.DOWNHILL ; i++)
-				pointData[i] = new PointData();
+			pointData = new PointData();
 			return;
 		}
 		List<object> savefile = Json.Deserialize(saveString) as List<object>;
-		for(int i = 0; i <= (int)SportType.DOWNHILL; i++) {
-			pointData[i] = JsonUtility.FromJson<PointData>((string)savefile[i]);
+		if(savefile != null) {
+			Debug.Log("Delete old save file");
+			Debug.Log(saveString);
+			pointData = new PointData();
+			return;
 		}
+		pointData = JsonUtility.FromJson<PointData>(saveString);
 	}
 
 	private void save() {
-		List<object> savefile = new List<object>();
-		for(int i = 0; i <= (int)SportType.DOWNHILL ; i++) {
-			savefile.Add(JsonUtility.ToJson(pointData[i]));
-		}
-		PlayerPrefs.SetString("savefile", Json.Serialize(savefile));
+		Debug.Log(JsonUtility.ToJson(pointData));
+		PlayerPrefs.SetString("savefile", JsonUtility.ToJson(pointData));
 	}
 
-	public void addPoint(int point, SportType sport) {
-		pointData[(int)sport].point += point;
+	public void addPoint(int point) {
+		pointData.point += point;
 		save();
 	}
 
-	public bool levelUpSpeed(SportType sport) {
-		if(pointData[(int)sport].point < pointData[(int)sport].speedNeed)
+	public bool levelUpSpeed() {
+		if(pointData.point < pointData.speedNeed)
 			return false;
-		pointData[(int)sport].point -= pointData[(int)sport].speedNeed;
-		pointData[(int)sport].speedLv++;
+		pointData.point -= pointData.speedNeed;
+		pointData.speedLv++;
 		save();
 		return true;
 	}
 
-	public bool levelUpControl(SportType sport) {
-		if(pointData[(int)sport].point < pointData[(int)sport].controlNeed)
+	public bool levelUpControl() {
+		if(pointData.point < pointData.controlNeed)
 			return false;
-		pointData[(int)sport].point -= pointData[(int)sport].controlNeed;
-		pointData[(int)sport].controlLv++;
+		pointData.point -= pointData.controlNeed;
+		pointData.controlLv++;
 		save();
 		return true;
 	}
 
-	public int getSpeedPointNeed(SportType sport) {
-		return pointData[(int)sport].speedNeed;
+	public int getSpeedPointNeed() {
+		return pointData.speedNeed;
 	}
 
-	public int getControlPointNeed(SportType sport) {
-		return pointData[(int)sport].controlNeed;
+	public int getControlPointNeed() {
+		return pointData.controlNeed;
 	}
 
-	public float getSpeedPercent(SportType sport) {
-		return pointData[(int)sport].speedPercent;
+	public float getSpeedPercent() {
+		return pointData.speedPercent;
 	}
 
-	public float getControlPercent(SportType sport) {
-		return pointData[(int)sport].controlPercent;
+	public float getControlPercent() {
+		return pointData.controlPercent;
 	}
 
-	public int getPointLeft(SportType sport) {
-		return pointData[(int)sport].point;
+	public int getPointLeft() {
+		return pointData.point;
 	}
 
 	public bool setRecord(float record, SportType sport) {
-		if(pointData[(int)sport].maxRecord < record) {
-			pointData[(int)sport].maxRecord = record;
+		if(pointData.maxRecord[(int)sport] < record) {
+			pointData.maxRecord[(int)sport] = record;
 			return true;
 		}
 		return false;
 	}
 
 	public float getRecord(SportType sport) {
-		return pointData[(int)sport].maxRecord;
+		return pointData.maxRecord[(int)sport];
 	}
 }

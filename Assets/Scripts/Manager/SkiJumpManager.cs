@@ -76,7 +76,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         charRb = character.GetComponent<Rigidbody2D>();
 
-        statBasedSpeedForce = forceAmount * pm.getSpeedPercent(SportType.SKIJUMP);
+        statBasedSpeedForce = forceAmount * pm.getSpeedPercent();
     }
 
     private void FixedUpdate() {
@@ -94,7 +94,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
                 isLanded = false;
 
                 pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
-                pm.addPoint((int)score, SportType.SKIJUMP);
+                pm.addPoint((int)score);
             }
         }
     }

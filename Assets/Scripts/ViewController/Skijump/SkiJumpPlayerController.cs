@@ -40,7 +40,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void Start() {
-        statBasedRotAmount = rotateAmount * pm.getControlPercent(SportType.SKIJUMP);
+        statBasedRotAmount = rotateAmount * pm.getControlPercent();
     }
 
     private void OnEnable() {
