@@ -15,7 +15,10 @@ public class EventManager : Singleton<EventManager> {
     private Dictionary<System.Type, EventDelegate> delegates = new Dictionary<System.Type, EventDelegate>();
     private Dictionary<System.Delegate, EventDelegate> delegateLookup = new Dictionary<System.Delegate, EventDelegate>();
     private Dictionary<System.Delegate, System.Delegate> onceLookups = new Dictionary<System.Delegate, System.Delegate>();
-    
+
+    private void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private EventDelegate AddDelegate<T>(EventDelegate<T> del) where T : GameEvent {
         // Early-out if we've already registered this delegate
