@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Spine.Unity;
+using GameEvents;
+using System;
 
 public class SkiJumpPlayerController : MonoBehaviour {
+    private EventManager _eventManger;
     private GameManager gm;
     private PointManager pm;
 
@@ -33,6 +36,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
     public GameObject[] characters;
     private SkeletonAnimation anim;
     private void Awake() {
+        _eventManger = EventManager.Instance;
+
         gm = GameManager.Instance;
         pm = PointManager.Instance;
 
@@ -50,8 +55,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         anim = characters[characterIndex].GetComponent<SkeletonAnimation>();
         SkelAnimChange("starting", false);
 
-        ArrowRotate.OnRotatingEnd += RotatingEnd;
-        Landing.OnLanding += _OnLanding;
+        _eventManger.AddListenerOnce<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.AddListenerOnce<SkiJump_ArrowRotEndEvent>(RotatingEnd);
 
         isDescending = false;
         isAscending = false;
@@ -61,11 +66,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
         ascendingCnt = 0;
 
         Time.fixedDeltaTime = 0.02f;                //슬로우모션 제거
-    }
-
-    private void OnDisable() {
-        ArrowRotate.OnRotatingEnd -= RotatingEnd;
-        Landing.OnLanding -= _OnLanding;
     }
 
     private void Update() {
@@ -135,7 +135,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
     }
 
-    private void RotatingEnd() {
+    private void RotatingEnd(SkiJump_ArrowRotEndEvent e) {
         rb.AddForce(arrow.transform.right * forceAmount, ForceMode2D.Force);
         tmp = true;
     }
@@ -164,11 +164,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isDescending = false;
     }
 
-    //착지
-    private void _OnLanding() {
-        isLanding = true;
-    }
-
     private void initChar(int index) {
         for(int i=0; i<characters.Length; i++) {
             if(i == index) {
@@ -183,5 +178,9 @@ public class SkiJumpPlayerController : MonoBehaviour {
     public void SkelAnimChange(string name, bool needLoop = false) {
         anim.loop = needLoop;
         anim.AnimationName = name;
+    }
+
+    private void _OnLanding(SkiJump_LandingEvent e) {
+        isLanding = true;
     }
 }

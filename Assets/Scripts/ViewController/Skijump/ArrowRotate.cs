@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameEvents;
 
 public class ArrowRotate : MonoBehaviour {
-    public delegate void EndRotating();
-    public static event EndRotating OnRotatingEnd;
-
     private Rigidbody2D rb;
     public float rotateAmount = 1;
     public bool canRotate = true;
@@ -35,7 +33,7 @@ public class ArrowRotate : MonoBehaviour {
     }
 
     public void stopRotating() {
-        OnRotatingEnd();
+        EventManager.Instance.TriggerEvent(new SkiJump_ArrowRotEndEvent());
         canRotate = false;
     }
 }

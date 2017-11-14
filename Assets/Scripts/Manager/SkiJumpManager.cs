@@ -44,21 +44,15 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void OnEnable() {
-        _eventManger.AddListener<SkiJump_JumpEvent>(_OnJumpArea);
-
-        Landing.OnLanding += _OnLanding;
-        Landing.UnstableLanding += _UnstableLanding;
-        ArrowRotate.OnRotatingEnd += _OffZooming;
+        _eventManger.AddListenerOnce<SkiJump_JumpEvent>(_OnJumpArea);
+        _eventManger.AddListenerOnce<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.AddListenerOnce<SkiJump_UnstableLandingEvent>(_UnstableLanding);
+        _eventManger.AddListenerOnce<SkiJump_ArrowRotEndEvent>(_OffZooming);
 
         Time.timeScale = 1;
     }
 
     private void OnDisable() {
-        _eventManger.RemoveListener<SkiJump_JumpEvent>(_OnJumpArea);
-
-        Landing.OnLanding -= _OnLanding;
-        ArrowRotate.OnRotatingEnd -= _OffZooming;
-
         isLanded = false;
     }
 
@@ -131,29 +125,27 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     //점프 버튼 클릭
     public void jumping() {
         arrowController.stopRotating();
-        _OffZooming();
-
         charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
     }
 
-    private void _OffZooming() {
+    private void _UnstableLanding(SkiJump_UnstableLandingEvent e) {
+        isUnstableLand = true;
+    }
+
+    private void _OnLanding(SkiJump_LandingEvent e) {
+        isLanded = true;
+    }
+
+    private void _OffZooming(SkiJump_ArrowRotEndEvent e) {
         Time.timeScale = 1.0f;
 
         jumpButton.SetActive(false);
         angleUI.SetActive(false);
 
-        foreach(GameObject obj in upAndDownButtons) {
+        foreach (GameObject obj in upAndDownButtons) {
             obj.SetActive(true);
         }
 
         CM_controller.Play(3);
-    }
-
-    private void _OnLanding() {
-        isLanded = true;
-    }
-
-    private void _UnstableLanding() {
-        isUnstableLand = true;
     }
 }

@@ -11,12 +11,12 @@ public class SpineModify : MonoBehaviour {
         skeletonAnim = GetComponent<SkeletonAnimation>();
         skel = skeletonAnim.Skeleton;
 
-        bone = skel.FindBone("character");
+        //bone = skel.FindBone("character");
 
         skeletonAnim.UpdateLocal += UpdateBones;
     }
 
     void UpdateBones(ISkeletonAnimation s) {
-        bone.rotation = 90f;
+        //bone.rotation = 90f;
     }
 }
