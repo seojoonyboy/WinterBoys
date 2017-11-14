@@ -88,7 +88,7 @@ public class DownhillManager : MonoBehaviour {
         dist.text = str;
 
         pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
-        pm.addPoint(score, SportType.DOWNHILL);
+        pm.addPoint(score);
     }
 
     private void HandleActionScoreSubmitted(UM_LeaderboardResult res) {

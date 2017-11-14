@@ -56,8 +56,8 @@ public class Ski_PlayerController : MonoBehaviour {
         selectedCharacters[0].SetActive(true);
         transform.Find("Plate").GetComponent<SpriteRenderer>().sprite = plates[characterIndex];
 
-        statBasedSpeedForce = speedForce * pm.getSpeedPercent(SportType.DOWNHILL);
-        statBasedRotSenstive = input_sensitive * pm.getControlPercent(SportType.DOWNHILL);
+        statBasedSpeedForce = speedForce * pm.getSpeedPercent();
+        statBasedRotSenstive = input_sensitive * pm.getControlPercent();
     }
 
     private void Update() {
