@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using GameEvents;
 
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
@@ -43,7 +44,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void OnEnable() {
-        _eventManger.AddListener<SkiJumpEvent>(_OnJumpArea);
+        _eventManger.AddListener<SkiJump_JumpEvent>(_OnJumpArea);
 
         Landing.OnLanding += _OnLanding;
         Landing.UnstableLanding += _UnstableLanding;
@@ -53,7 +54,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void OnDisable() {
-        _eventManger.RemoveListener<SkiJumpEvent>(_OnJumpArea);
+        _eventManger.RemoveListener<SkiJump_JumpEvent>(_OnJumpArea);
 
         Landing.OnLanding -= _OnLanding;
         ArrowRotate.OnRotatingEnd -= _OffZooming;
@@ -61,7 +62,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         isLanded = false;
     }
 
-    private void _OnJumpArea(SkiJumpEvent e) {
+    private void _OnJumpArea(SkiJump_JumpEvent e) {
         forceButton.SetActive(false);
         angleUI.SetActive(true);
         jumpButton.SetActive(true);
