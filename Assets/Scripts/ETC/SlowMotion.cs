@@ -22,7 +22,7 @@ public class SlowMotion : MonoBehaviour {
         isFirst = false;
     }
 
-    private void OnCollisionExit2D(Collision2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision) {
         if (isFirst) {
             _eventManger.TriggerEvent(new SkiJump_JumpEvent());
         }

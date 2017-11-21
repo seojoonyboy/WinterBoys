@@ -29,7 +29,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isAscending = false,
         isLanding = false,
         isDescending = false,
-        tmp = false;
+        tmp = false,
+        isFirstAsc = true;
 
     private int ascendingCnt = 0;
     private int characterIndex = 0;
@@ -77,6 +78,13 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         float angle = transform.eulerAngles.z;
 
+        if(rb.velocity.y < 0 && tmp && isFirstAsc) {
+            MaxHeight = transform.position.y;
+            isFirstAsc = false;
+
+            Debug.Log("최초 최대 고도 지정 : " + MaxHeight);
+        }
+
         if(rb.velocity.magnitude >= 20) {
             if(anim.AnimationName == "run") {
                 SkelAnimChange("run_loop", true);
@@ -108,16 +116,9 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 rb.angularVelocity = statBasedRotAmount;
             }
 
-            if (rb.velocity.y <= 0) {
-                rb.AddForce(Vector2.up * rb.velocity.magnitude);
-            }
-            else {
-                if (transform.position.y <= MaxHeight) {
-                    rb.AddForce(Vector2.up * 20f);
-                }
-                else {
-                    isAscending = false;
-                }
+            if (transform.position.y <= MaxHeight) {
+                Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 20f);
+                rb.AddForce(vec);
             }
         }
 
@@ -136,19 +137,15 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void RotatingEnd(SkiJump_ArrowRotEndEvent e) {
-        rb.AddForce(arrow.transform.right * forceAmount, ForceMode2D.Impulse);
+        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 10f, arrow.transform.right.y * forceAmount);
+        rb.AddForce(forceDir);
         tmp = true;
     }
 
     public void Ascending() {
         isAscending = true;
+        MaxHeight *= 0.7f;
 
-        if (ascendingCnt > 1) {
-            MaxHeight = transform.position.y * 0.65f;
-        }
-        else {
-            MaxHeight = transform.position.y * 0.8f;
-        }
         ascendingCnt++;
     }
 
