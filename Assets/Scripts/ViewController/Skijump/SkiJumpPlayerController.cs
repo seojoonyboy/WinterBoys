@@ -123,7 +123,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
             }
             else {
                 if(rb.transform.position.y > MaxHeight) {
-                    Vector2 vec = new Vector2(0, 2f);
+                    Vector2 vec = new Vector2(0, 3f);
                     rb.AddForce(vec, ForceMode2D.Impulse);
                     isAscending = false;
                 }

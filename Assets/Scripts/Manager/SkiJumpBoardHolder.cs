@@ -31,7 +31,8 @@ public class SkiJumpBoardHolder : MonoBehaviour {
     private Vector2 
         lastMountainPos,
         nextSetPos,
-        nextStarPos;
+        nextStarPos,
+        cloudStartPos;
 
     private void Awake() {
         
@@ -49,11 +50,13 @@ public class SkiJumpBoardHolder : MonoBehaviour {
         lastMountainPos = new Vector2(-20, 0);
         nextSetPos = new Vector2(120, 0);
         nextStarPos = new Vector2(-16, 28);
+        cloudStartPos = new Vector2(-11, 15);
 
         mountainIndex = 0;
         cloudIndex = 0;
 
         Generate(10, 0);
+        Generate(20, 1);
         Generate(20, 2);
 
         for (int i=0; i<=30; i++) {
@@ -115,8 +118,8 @@ public class SkiJumpBoardHolder : MonoBehaviour {
             //구름
             case 1:
                 int cloudRndIndex = Random.Range(0, cloudPrefs.Length - 1);
-                Vector2 cloudOriginPos = new Vector2(intervalOfClouds * cloudIndex, 100);
-                float totalCloudNum = Random.Range(1, num);
+                Vector2 cloudOriginPos = new Vector2(cloudStartPos.x + intervalOfClouds * cloudIndex, cloudStartPos.y);
+                float totalCloudNum = Random.Range(15, num);
                 if(totalCloudNum > 1) {
                     for (int i = 0; i < num - 1; i++) {
                         cloudRndIndex = Random.Range(0, cloudPrefs.Length);
@@ -125,7 +128,9 @@ public class SkiJumpBoardHolder : MonoBehaviour {
                         _obj.transform.SetParent(holder, false);
                     }
                 }
+                cloudIndex++;
                 break;
+            //별
             case 2:
                 int starImgIndx = Random.Range(0, starPrefs.Length);
                 Vector2 otherLayerPos = new Vector2(nextSetPos.x, 25);
@@ -142,7 +147,6 @@ public class SkiJumpBoardHolder : MonoBehaviour {
                 }
                 break;
         }
-        cloudIndex++;
         mountainIndex++;
     }
 
@@ -159,6 +163,7 @@ public class SkiJumpBoardHolder : MonoBehaviour {
         nextSetPos = new Vector2(nextSetPos.x + 60f, nextSetPos.y);
 
         Generate(10, 0);
+        Generate(20, 1);
         Generate(20, 2);
     }
 }
