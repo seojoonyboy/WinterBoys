@@ -136,7 +136,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void RotatingEnd(SkiJump_ArrowRotEndEvent e) {
-        rb.AddForce(arrow.transform.right * forceAmount, ForceMode2D.Force);
+        rb.AddForce(arrow.transform.right * forceAmount, ForceMode2D.Impulse);
         tmp = true;
     }
 
