@@ -30,7 +30,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isLanding = false,
         isDescending = false,
         tmp = false,
-        isFirstAsc = true;
+        isFirstAsc = true,
+        tmp2 = true;
 
     private int ascendingCnt = 0;
     private int characterIndex = 0;
@@ -79,7 +80,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         float angle = transform.eulerAngles.z;
 
         if(rb.velocity.y < 0 && tmp && isFirstAsc) {
-            MaxHeight = transform.position.y;
+            MaxHeight = transform.position.y * 0.7f;
             isFirstAsc = false;
 
             Debug.Log("최초 최대 고도 지정 : " + MaxHeight);
@@ -116,9 +117,20 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 rb.angularVelocity = statBasedRotAmount;
             }
 
-            if (transform.position.y <= MaxHeight) {
+            if(rb.velocity.y < 0) {
                 Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 20f);
                 rb.AddForce(vec);
+            }
+            else {
+                if(rb.transform.position.y > MaxHeight) {
+                    Vector2 vec = new Vector2(0, 2f);
+                    rb.AddForce(vec, ForceMode2D.Impulse);
+                    isAscending = false;
+                }
+                else {
+                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 20f);
+                    rb.AddForce(vec);
+                }
             }
         }
 

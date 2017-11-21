@@ -8,7 +8,10 @@ public class SkiJumpBoardHolder : MonoBehaviour {
         cloudPrefs,
         starPrefs;
 
-    public GameObject skyPref;
+    public GameObject 
+        skyPref,
+        groundPref;
+
     //생성된 프리팹간 간격
     public float intervalOfClouds;
 
@@ -147,6 +150,10 @@ public class SkiJumpBoardHolder : MonoBehaviour {
     public void GenerateNextSet() {
         GameObject obj = Instantiate(skyPref);
         obj.transform.position = nextSetPos;
+        obj.transform.SetParent(holder, false);
+
+        obj = Instantiate(groundPref);
+        obj.transform.position = new Vector2(nextSetPos.x, 0);
         obj.transform.SetParent(holder, false);
 
         nextSetPos = new Vector2(nextSetPos.x + 60f, nextSetPos.y);
