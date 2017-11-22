@@ -31,6 +31,15 @@ public class ReadyController : MonoBehaviour {
 	private void setButton() {
 		speed.levelUp.onClick.AddListener(levelUpSpeed);
 		control.levelUp.onClick.AddListener(levelUpControl);
+		checkButton();
+	}
+
+	private void checkButton() {
+		if(pointManager.getSpeedPercent() >= 1.5f)
+			speed.levelUp.onClick.RemoveAllListeners();
+
+		if(pointManager.getControlPercent() >= 1.5f)
+			control.levelUp.onClick.RemoveAllListeners();
 	}
 
 	public void open(SportType sport) {
@@ -69,6 +78,7 @@ public class ReadyController : MonoBehaviour {
 		if(pointManager.levelUpSpeed()) {
 			Debug.Log(sport+" level up!!");
 			init();
+			checkButton();
 			return;
 		}
 		Debug.Log(sport+" level up Fail");
@@ -78,6 +88,7 @@ public class ReadyController : MonoBehaviour {
 		if (pointManager.levelUpControl()) {
 			Debug.Log(sport+"level up!!");
 			init();
+			checkButton();
 			return;
 		}
 		Debug.Log(sport+" level up Fail");
