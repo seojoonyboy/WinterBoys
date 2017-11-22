@@ -15,7 +15,7 @@ public class SkiJumpCM_controller : MonoBehaviour {
         playableDirectors[index].Play();
     }
 
-    private void Off(PlayableDirector target) {
+    public void Off(PlayableDirector target) {
         foreach(PlayableDirector director in playableDirectors) {
             if(director == target) {
                 director.gameObject.SetActive(true);

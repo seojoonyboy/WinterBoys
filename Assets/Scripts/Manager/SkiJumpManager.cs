@@ -60,8 +60,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         forceButton.SetActive(false);
         angleUI.SetActive(true);
         jumpButton.SetActive(true);
-
-        CM_controller.Play(2);
     }
 
     private void Start() {
@@ -119,7 +117,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     //가속 버튼
     public void AddForce() {
-        CM_controller.Play(1);
+        CM_controller.playableDirectors[0].gameObject.SetActive(false);
         if (tmp) {
             playerController.SkelAnimChange("run", true);
             tmp = false;
@@ -149,7 +147,5 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         foreach (GameObject obj in upAndDownButtons) {
             obj.SetActive(true);
         }
-
-        CM_controller.Play(1);
     }
 }
