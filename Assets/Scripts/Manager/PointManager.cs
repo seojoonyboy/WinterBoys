@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Analytics.MiniJSON;
 
 public class PointData {
-	public int point = 999999;
+	public int point = 99999;
 	public int speedLv = 0;
 	public int controlLv = 0;
 	public float[] maxRecord = {0f, 0f, 0f};
@@ -12,23 +12,14 @@ public class PointData {
 	public int speedNeed {get {return pointNeed(speedLv);}}
 
 	public int controlNeed {get {return pointNeed(controlLv);}}
-	public float speedPercent {get{return 1.0f + speedLv * 0.005f;}}
-	public float controlPercent {get{return 1.0f + controlLv * 0.005f;}}
+	public float speedPercent {get{return 1.0f + speedLv * 0.01f;}}
+	public float controlPercent {get{return 1.0f + controlLv * 0.01f;}}
 
 	private int pointNeed(int level) {
 		int switchLv = level / 10;
-		switch(switchLv) {
-			case 0 : case 1 :
-			return (int)(50f * Mathf.Pow(1.2f, level));
-			case 2 : case 3 :
-			return (int)(50f * Mathf.Pow(1.2f, 20) * Mathf.Pow(1.1f, level - 20));
-			case 4 : case 5 :
-			return (int)(50f * Mathf.Pow(1.2f, 20) * Mathf.Pow(1.1f, 20) * Mathf.Pow(1.07f, level - 40));
-			case 6 : case 7 :
-			return (int)(50f * Mathf.Pow(1.2f, 20) * Mathf.Pow(1.1f, 20) * Mathf.Pow(1.07f, 20) * Mathf.Pow(1.04f, level - 60));
-			default :
-			return (int)(50f * Mathf.Pow(1.2f, 20) * Mathf.Pow(1.1f, 20) * Mathf.Pow(1.07f, 20) * Mathf.Pow(1.04f, 20) * Mathf.Pow(1.01f, level - 80));
-		}
+		if(level <= 15)		return 20 + (20 * level);
+		if(level <= 30)		return 20 + (20 * 20) + (40 * (level - 15));
+		/*if(level <= 50)*/	return 20 + (20 * 20) + (40 * 20) + (60 * (level - 30));
 	}
 
 }
@@ -86,11 +77,11 @@ public class PointManager : Singleton<PointManager> {
 	}
 
 	public int getSpeedPointNeed() {
-		return pointData.speedNeed;
+		return pointData.speedLv == 50 ? 0 : pointData.speedNeed;
 	}
 
 	public int getControlPointNeed() {
-		return pointData.controlNeed;
+		return pointData.controlLv == 50 ? 0 : pointData.controlNeed;
 	}
 
 	public float getSpeedPercent() {
