@@ -35,6 +35,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private int ascendingCnt = 0;
     private int characterIndex = 0;
+    private string Slopetag;
+
     public GameObject[] characters;
     private SkeletonAnimation anim;
     private void Awake() {
@@ -149,9 +151,23 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void RotatingEnd(SkiJump_ArrowRotEndEvent e) {
-        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 10f, arrow.transform.right.y * forceAmount);
+        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 15f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 10f * pm.getSpeedPercent());
         rb.AddForce(forceDir);
         tmp = true;
+    }
+
+    //가속 버튼
+    public void AddForce() {
+        if(Slopetag == "StartSlope") {
+            //최대치
+            //rb.AddForce(transform.right * sm.statBasedSpeedForce * 0.6f);
+
+            //최저치
+            rb.AddForce(transform.right * sm.statBasedSpeedForce);
+        }
+        else {
+            rb.AddForce(transform.right * sm.statBasedSpeedForce * 2f);
+        }
     }
 
     public void Ascending() {
@@ -191,5 +207,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void _OnLanding(SkiJump_LandingEvent e) {
         isLanding = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        Slopetag = collision.transform.tag;
+        //Debug.Log(collision.transform.tag);
     }
 }

@@ -12,7 +12,7 @@ public class SelfDestroyer : MonoBehaviour {
     void IsInArea() {
         Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
         if(_type == type.SKIJUMP) {
-            Debug.Log(pos);
+            //Debug.Log(pos);
             if(pos.x <= -1.0f) {
                 Destroy(gameObject);
             }

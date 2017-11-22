@@ -160,7 +160,7 @@ public class SkiJumpBoardHolder : MonoBehaviour {
         obj.transform.position = new Vector2(nextSetPos.x, 0);
         obj.transform.SetParent(holder, false);
 
-        nextSetPos = new Vector2(nextSetPos.x + 60f, nextSetPos.y);
+        nextSetPos = new Vector2(nextSetPos.x + 66.5f, nextSetPos.y);
 
         Generate(10, 0);
         Generate(20, 1);
