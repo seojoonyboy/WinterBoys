@@ -1158,7 +1158,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 12.19286
+    OrthographicSize: 13.25631
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -1580,7 +1580,7 @@ SpriteRenderer:
   m_Size: {x: 7.066896, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &864287629
 GameObject:
@@ -1766,7 +1766,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 12.19286
+  orthographic size: 13.25631
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4217,7 +4217,7 @@ SpriteRenderer:
   m_Size: {x: 1.372073, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &2031442324
 GameObject:
