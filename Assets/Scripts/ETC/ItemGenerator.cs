@@ -10,9 +10,10 @@ public class ItemGenerator : MonoBehaviour {
     private float interval;
     private Camera cam;
 
+    public SkiJumpPlayerController playerController;
     private void Start() {
         if(gameType == SportType.SKIJUMP) {
-            interval = 300;
+            interval = 100;
             cam = Camera.main;
         }
     }
@@ -44,7 +45,7 @@ public class ItemGenerator : MonoBehaviour {
         switch (type) {
             case SportType.SKIJUMP:
                 float randX = Random.Range(0, Screen.width);
-                float randY = Random.Range(0, Screen.height);
+                float randY = Random.Range(0, Screen.height - playerController.MaxHeight);
 
                 pos = cam.ScreenToWorldPoint(new Vector3(randX + Screen.width, randY, 0));
                 pos.z = 0;

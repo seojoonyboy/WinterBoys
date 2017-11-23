@@ -23,7 +23,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private float rotateAmount = 35;        //회전력
     private float statBasedRotAmount;       //Stat을 적용한 회전력
     //최대 상승 가능 높이
-    private float MaxHeight = 100;
+    public float MaxHeight = 100;
 
     private bool
         isAscending = false,
@@ -152,7 +152,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void RotatingEnd(SkiJump_ArrowRotEndEvent e) {
-        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 15f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 10f * pm.getSpeedPercent());
+        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 5f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 10f * pm.getSpeedPercent());
         rb.AddForce(forceDir);
         tmp = true;
     }
