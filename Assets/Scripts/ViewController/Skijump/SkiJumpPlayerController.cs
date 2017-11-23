@@ -23,7 +23,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private float rotateAmount = 35;        //회전력
     private float statBasedRotAmount;       //Stat을 적용한 회전력
     //최대 상승 가능 높이
-    public float MaxHeight = 100;
+    public float MaxHeight = 30;
 
     private bool
         isAscending = false,
@@ -96,8 +96,12 @@ public class SkiJumpPlayerController : MonoBehaviour {
             isFirstAsc = false;
         }
 
+        if(MaxHeight > 25) {
+            MaxHeight = 25f;
+        }
+
         //하얀 새 효과
-        if(playerState == PlayerState.IMMORTAL) {
+        if (playerState == PlayerState.IMMORTAL) {
             whiteBirdCoolTime -= Time.deltaTime;
             if(whiteBirdCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
@@ -118,8 +122,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
             if(balloonCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
                 balloonCoolTime = 2.0f;
+                MaxHeight = 30f;
+                Debug.Log(MaxHeight);
             }
             else {
+                rb.velocity = new Vector2(rb.velocity.x, 10f);
                 rb.AddForce(Vector3.up * 12f);
             }
             return;
