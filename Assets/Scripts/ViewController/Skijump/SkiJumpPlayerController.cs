@@ -118,21 +118,20 @@ public class SkiJumpPlayerController : MonoBehaviour {
             if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
                 rb.angularVelocity = statBasedRotAmount;
             }
-            Debug.Log(rb.velocity.y);
 
             if(rb.velocity.y < 0) {
                 if(rb.transform.position.y < MaxHeight) {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.995f);
-                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 20f);
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9995f);
+                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 60f);
                     rb.AddForce(vec);
                 }
             }
             else {
-                if(rb.transform.position.y > MaxHeight) {
+                if(rb.transform.position.y >= MaxHeight) {
                     isAscending = false;
                 }
                 else {
-                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 20f);
+                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 30f);
                     rb.AddForce(vec);
                 }
             }
