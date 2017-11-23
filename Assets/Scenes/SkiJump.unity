@@ -253,7 +253,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playableDirectors:
   - {fileID: 453643745}
-  - {fileID: 0}
 --- !u!114 &41442879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +282,21 @@ MonoBehaviour:
   offSetOfCloud: 140000003c000000000000000a000000
   offsetOfStar: 010000000a000000190000001c000000
   holder: {fileID: 1228306076}
+--- !u!114 &41442880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41442877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab28a6583ea3c76499cc9517519ad513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 0
+  items:
+  - {fileID: 1612707128261008, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
+  parent: {fileID: 1228306076}
 --- !u!1 &80830877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1172,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 12.2979
+    OrthographicSize: 13.55223
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -1766,7 +1780,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 12.2979
+  orthographic size: 13.55223
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
