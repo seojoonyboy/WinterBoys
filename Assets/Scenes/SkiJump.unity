@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 9.854264
+    OrthographicSize: 13.48336
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -1784,7 +1784,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 9.854264
+  orthographic size: 13.48336
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2067,7 +2067,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.25, y: 7.17}
+  m_Offset: {x: 1.25, y: 2.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2078,7 +2078,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 14.52}
+  m_Size: {x: 1, y: 6.25}
   m_EdgeRadius: 0
 --- !u!114 &1171103657
 MonoBehaviour:
@@ -3470,11 +3470,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4471722291994398, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.05
+      value: -4.71
       objectReference: {fileID: 0}
     - target: {fileID: 4471722291994398, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4471722291994398, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3499,6 +3499,10 @@ Prefab:
     - target: {fileID: 4471722291994398, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612707128261008, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}

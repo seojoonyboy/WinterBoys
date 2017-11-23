@@ -29,8 +29,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isAscending = false,
         isLanding = false,
         isDescending = false,
+        isFirstAsc = false,
         tmp = false,
-        isFirstAsc = true,
         tmp2 = true;
 
     private int ascendingCnt = 0;
@@ -39,6 +39,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public GameObject[] characters;
     private SkeletonAnimation anim;
+
+    private float whiteBirdCoolTime;
+    private PlayerState playerState;
+    private float preGravityScale;
     private void Awake() {
         _eventManger = EventManager.Instance;
 
@@ -50,6 +54,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void Start() {
         statBasedRotAmount = rotateAmount * pm.getControlPercent();
+        whiteBirdCoolTime = 3.0f;
+
+        playerState = PlayerState.NORMAL;
+        preGravityScale = rb.gravityScale;
     }
 
     private void OnEnable() {
@@ -79,14 +87,28 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void FixedUpdate() {
         if (isLanding) return;
 
-        float angle = transform.eulerAngles.z;
-
-        if(rb.velocity.y < 0 && tmp && isFirstAsc) {
+        if (isFirstAsc && rb.velocity.y < 0) {
             MaxHeight = transform.position.y * 0.7f;
             isFirstAsc = false;
-
-            Debug.Log("최초 최대 고도 지정 : " + MaxHeight);
         }
+
+        //하얀 새 효과
+        if(playerState == PlayerState.IMMORTAL) {
+            whiteBirdCoolTime -= Time.deltaTime;
+            if(whiteBirdCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                rb.gravityScale = preGravityScale;
+                whiteBirdCoolTime = 3.0f;
+            }
+            else {
+                rb.angularVelocity = 0;
+                rb.AddForce(-transform.right * 0.01f);
+                rb.gravityScale = 0;
+            }
+            return;
+        }
+
+        float angle = transform.eulerAngles.z;
 
         if(rb.velocity.magnitude >= 20) {
             if(anim.AnimationName == "run") {
@@ -119,22 +141,16 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 rb.angularVelocity = statBasedRotAmount;
             }
 
-            if(rb.velocity.y < 0) {
-                if(rb.velocity.y < -5) {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.95f);
-                }
-                if (rb.transform.position.y < MaxHeight) {
-                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 60f);
-                    rb.AddForce(vec);
-                }
+            Vector2 force = new Vector2(rb.velocity.x * 0.01f, 20f);
+            rb.AddForce(force);
+
+            if (rb.velocity.y < 0) {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9995f);
             }
             else {
-                if(rb.transform.position.y >= MaxHeight) {
+                if(transform.position.y > MaxHeight * 0.9f) {
+                    MaxHeight = transform.position.y * 0.7f;
                     isAscending = false;
-                }
-                else {
-                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 60f);
-                    rb.AddForce(vec);
                 }
             }
         }
@@ -157,6 +173,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 5f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 10f * pm.getSpeedPercent());
         rb.AddForce(forceDir);
         tmp = true;
+        isFirstAsc = true;
     }
 
     //가속 버튼
@@ -175,7 +192,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public void Ascending() {
         isAscending = true;
-        MaxHeight *= 0.7f;
 
         ascendingCnt++;
     }
@@ -228,9 +244,28 @@ public class SkiJumpPlayerController : MonoBehaviour {
             switch (type.type) {
                 case itemType.BLACK_BIRD:
                     //감속 효과
-                    rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
+                    rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y * 0.85f);
+                    break;
+                case itemType.WHITE_BIRD:
+                    //무적효과, 다른 아이템 무시
+                    //3초간 캐릭터 정면으로 이동 (중력 3초간 제거)
+                    playerState = PlayerState.IMMORTAL;
                     break;
             }
+            Destroy(obj);
         }
     }
+
+    //버프 효과 부여
+    private void Buff(float sec) {
+
+    }
+}
+
+public enum PlayerState {
+    NORMAL,
+    IMMORTAL,
+    REVERSE_ROTATE,
+    GRAVITY_CHANGE,
+    BALLOON
 }
