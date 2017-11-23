@@ -131,7 +131,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     isAscending = false;
                 }
                 else {
-                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 30f);
+                    Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 60f);
                     rb.AddForce(vec);
                 }
             }
