@@ -120,8 +120,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
             }
 
             if(rb.velocity.y < 0) {
-                if(rb.transform.position.y < MaxHeight) {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9995f);
+                if(rb.velocity.y < -5) {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.95f);
+                }
+                if (rb.transform.position.y < MaxHeight) {
                     Vector2 vec = new Vector2(rb.velocity.magnitude * 0.1f, 60f);
                     rb.AddForce(vec);
                 }
@@ -213,5 +215,22 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         Slopetag = collision.transform.tag;
         //Debug.Log(collision.transform.tag);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        GameObject obj = collision.gameObject;
+        itemCheck(obj);
+    }
+
+    private void itemCheck(GameObject obj) {
+        if (obj.tag == "Item") {
+            ItemType type = obj.GetComponent<ItemType>();
+            switch (type.type) {
+                case itemType.BLACK_BIRD:
+                    //감속 효과
+                    rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
+                    break;
+            }
+        }
     }
 }

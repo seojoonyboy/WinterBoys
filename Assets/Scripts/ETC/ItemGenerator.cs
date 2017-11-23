@@ -10,12 +10,19 @@ public class ItemGenerator : MonoBehaviour {
     private float interval;
     private Camera cam;
 
+    private float maxTime = 10f;
+    private float minTime = 5f;
+    private float time;
+    private float spawnTime;
+
+    private int[] randNums = { 0, 3, 4, 5 };
     public SkiJumpPlayerController playerController;
     private void Start() {
         if(gameType == SportType.SKIJUMP) {
             interval = 100;
             cam = Camera.main;
         }
+        time = minTime;
     }
 
     private void Update() {
@@ -28,12 +35,23 @@ public class ItemGenerator : MonoBehaviour {
         }
     }
 
+    private void FixedUpdate() {
+        time += Time.deltaTime;
+
+        if(time >= spawnTime) {
+            makeBird();
+            SetRandomTime();
+        }
+    }
+
+    //새 이외의 고정되어있는 아이템
     public void Generate(SportType type) {
         switch (type) {
             case SportType.SKIJUMP:
                 Vector3 itemPos = randPos(SportType.SKIJUMP);
-                int randIndex = Random.Range(0, items.Length);
-                GameObject item = Instantiate(items[randIndex]);
+                int randNum = randNums.Random();
+                GameObject item = Instantiate(items[0]);
+                item.GetComponent<ItemType>().type = (itemType)randNum;
                 item.transform.position = itemPos;
                 item.transform.SetParent(parent);
                 break;
@@ -52,5 +70,17 @@ public class ItemGenerator : MonoBehaviour {
                 break;
         }
         return pos;
+    }
+
+    private void makeBird() {
+        time = 0;
+        int[] randNums = { 1, 2 };
+        int randNum = randNums.Random();
+        GameObject obj = Instantiate(items[randNum]);
+        obj.transform.position = randPos(SportType.SKIJUMP);
+    }
+
+    private void SetRandomTime() {
+        spawnTime = Random.Range(minTime, maxTime);
     }
 }
