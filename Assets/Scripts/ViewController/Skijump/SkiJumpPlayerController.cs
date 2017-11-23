@@ -40,7 +40,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
     public GameObject[] characters;
     private SkeletonAnimation anim;
 
-    private float whiteBirdCoolTime;
+    private float 
+        whiteBirdCoolTime,
+        balloonCoolTime;
+
     private PlayerState playerState;
     private float preGravityScale;
     private void Awake() {
@@ -55,6 +58,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void Start() {
         statBasedRotAmount = rotateAmount * pm.getControlPercent();
         whiteBirdCoolTime = 3.0f;
+        balloonCoolTime = 2.0f;
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
@@ -108,6 +112,19 @@ public class SkiJumpPlayerController : MonoBehaviour {
             return;
         }
 
+        //풍선 효과
+        if(playerState == PlayerState.BALLOON) {
+            balloonCoolTime -= Time.deltaTime;
+            if(balloonCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                balloonCoolTime = 2.0f;
+            }
+            else {
+                rb.AddForce(Vector3.up * 12f);
+            }
+            return;
+        }
+
         float angle = transform.eulerAngles.z;
 
         if(rb.velocity.magnitude >= 20) {
@@ -145,7 +162,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
             rb.AddForce(force);
 
             if (rb.velocity.y < 0) {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.9995f);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.999995f);
             }
             else {
                 if(transform.position.y > MaxHeight * 0.9f) {
@@ -250,6 +267,9 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     //무적효과, 다른 아이템 무시
                     //3초간 캐릭터 정면으로 이동 (중력 3초간 제거)
                     playerState = PlayerState.IMMORTAL;
+                    break;
+                case itemType.BALLOON:
+                    playerState = PlayerState.BALLOON;
                     break;
             }
             Destroy(obj);
