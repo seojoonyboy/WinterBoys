@@ -43,7 +43,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private float 
         whiteBirdCoolTime,
         balloonCoolTime,
-        reverseCoolTime;
+        reverseCoolTime,
+        thunderCoolTime;
 
     private PlayerState playerState;
     private float preGravityScale;
@@ -61,6 +62,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         whiteBirdCoolTime = 3.0f;
         balloonCoolTime = 2.0f;
         reverseCoolTime = 7.0f;
+        thunderCoolTime = 7.0f;
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
@@ -140,6 +142,19 @@ public class SkiJumpPlayerController : MonoBehaviour {
             if(reverseCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
                 reverseCoolTime = 7.0f;
+            }
+        }
+
+        //번개 먹구름 효과
+        if (playerState == PlayerState.GRAVITY_CHANGE) {
+            thunderCoolTime -= Time.deltaTime;
+            if(thunderCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                thunderCoolTime = 7.0f;
+                rb.gravityScale = 0.8f;
+            }
+            else {
+                rb.gravityScale = 1.0f;
             }
         }
 
@@ -322,6 +337,12 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     break;
                 case itemType.BLACK_CLOUND:
                     playerState = PlayerState.REVERSE_ROTATE;
+                    break;
+                case itemType.POINT:
+                    sm.bonusScore += 50;
+                    break;
+                case itemType.THUNDER_CLOUD:
+                    playerState = PlayerState.GRAVITY_CHANGE;
                     break;
             }
             Destroy(obj);

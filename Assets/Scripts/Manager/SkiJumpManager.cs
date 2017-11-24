@@ -36,7 +36,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         isLanded = false,
         isUnstableLand = false,
         tmp = true;
-    private double score = 0;
+    public double 
+        score = 0,
+        bonusScore = 0;
 
     private void Awake() {
         _eventManger = EventManager.Instance;
@@ -50,6 +52,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.AddListenerOnce<SkiJump_ArrowRotEndEvent>(_OffZooming);
 
         Time.timeScale = 1;
+        bonusScore = 0;
     }
 
     private void OnDisable() {
@@ -88,11 +91,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
                     Debug.Log("불안정 착지로 인한 감점");
                     score = System.Math.Round(score * 0.75f);
                 }
-                modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + score + " 점 획득";
+                double totalScore = score + bonusScore;
+                modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + totalScore + " 점 획득";
                 isLanded = false;
 
                 pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
-                pm.addPoint((int)score);
+                pm.addPoint((int)totalScore);
             }
         }
     }
