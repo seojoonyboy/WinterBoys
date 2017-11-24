@@ -30,7 +30,7 @@ public class FlagController : MonoBehaviour {
         if (Physics.Raycast(transform.position, dir, out hit)) {
             if (hit.collider.tag == "Player") {
                 if (!isSend) {
-                    Debug.Log(hit.collider.tag + " 통과하지 못함");
+                    //Debug.Log(hit.collider.tag + " 통과하지 못함");
                     GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
                 }
                 isSend = true;
@@ -57,7 +57,7 @@ public class FlagController : MonoBehaviour {
             if (Physics.Raycast(transform.position, dir, out hit, distance)) {
                 if (hit.collider.tag == "Player") {
                     if (!isPassSend) {
-                        Debug.Log(hit.collider.tag + " 통과");
+                        //Debug.Log(hit.collider.tag + " 통과");
                         GameObject.Find("Manager").GetComponent<DownhillManager>().passNumInc();
                     }
                     isPassSend = true;

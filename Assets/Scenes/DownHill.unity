@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 152105119}
   - component: {fileID: 152105118}
   - component: {fileID: 152105117}
+  - component: {fileID: 152105121}
   m_Layer: 0
   m_Name: chars_red_90_right
   m_TagString: Player
@@ -600,7 +601,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &152105120
 MeshFilter:
@@ -609,6 +610,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 152105115}
   m_Mesh: {fileID: 0}
+--- !u!210 &152105121
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 152105115}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &155959521
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &155959522
 Transform:
   m_ObjectHideFlags: 0
@@ -703,8 +714,8 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayer: 8
+  m_SortingOrder: 0
 --- !u!33 &155959525
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -731,9 +742,9 @@ SortingGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 155959521}
   m_Enabled: 1
-  m_SortingLayerID: -762017675
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &166062848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1039,7 @@ GameObject:
   - component: {fileID: 245010194}
   - component: {fileID: 245010193}
   - component: {fileID: 245010196}
+  - component: {fileID: 245010197}
   m_Layer: 0
   m_Name: chars_red_default
   m_TagString: Player
@@ -1109,7 +1121,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &245010195
 MeshFilter:
@@ -1130,6 +1142,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 399751644}
+--- !u!210 &245010197
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245010191}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &285576360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1355,7 @@ GameObject:
   - component: {fileID: 330596350}
   - component: {fileID: 330596349}
   - component: {fileID: 330596348}
+  - component: {fileID: 330596352}
   m_Layer: 0
   m_Name: chars_red_90_left
   m_TagString: Player
@@ -1426,7 +1449,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &330596351
 MeshFilter:
@@ -1435,6 +1458,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 330596346}
   m_Mesh: {fileID: 0}
+--- !u!210 &330596352
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330596346}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &350328388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,7 +1574,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &350328393
 MeshFilter:
@@ -1557,9 +1590,9 @@ SortingGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350328388}
   m_Enabled: 1
-  m_SortingLayerID: -762017675
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &362485357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 399751644}
   - component: {fileID: 399751645}
+  - component: {fileID: 399751646}
   m_Layer: 8
   m_Name: Plate
   m_TagString: Untagged
@@ -1707,8 +1741,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayer: 8
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7d975c20885a44b249bd4d5af5b22947, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1719,6 +1753,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!210 &399751646
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 399751643}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 0
 --- !u!1 &509529451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,6 +1849,7 @@ GameObject:
   - component: {fileID: 551373269}
   - component: {fileID: 551373268}
   - component: {fileID: 551373267}
+  - component: {fileID: 551373271}
   m_Layer: 0
   m_Name: chars_yellow_45_left
   m_TagString: Player
@@ -1898,7 +1943,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &551373270
 MeshFilter:
@@ -1907,6 +1952,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 551373265}
   m_Mesh: {fileID: 0}
+--- !u!210 &551373271
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 551373265}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &564349242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,7 +2736,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &848892685
 MeshFilter:
@@ -2697,9 +2752,9 @@ SortingGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 848892680}
   m_Enabled: 1
-  m_SortingLayerID: -762017675
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &888441024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,6 +2984,7 @@ MonoBehaviour:
   angleV: 70
   input_sensitive: 5
   rotateDir: 1
+  playerState: 0
   playerImage: {fileID: 155959521}
   blue_chars:
   - {fileID: 155959521}
@@ -3565,6 +3621,7 @@ GameObject:
   - component: {fileID: 1480822384}
   - component: {fileID: 1480822383}
   - component: {fileID: 1480822382}
+  - component: {fileID: 1480822386}
   m_Layer: 0
   m_Name: chars_yellow_45_right
   m_TagString: Player
@@ -3658,7 +3715,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &1480822385
 MeshFilter:
@@ -3667,6 +3724,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1480822380}
   m_Mesh: {fileID: 0}
+--- !u!210 &1480822386
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1480822380}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &1502139021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3753,6 +3820,7 @@ GameObject:
   - component: {fileID: 1535378812}
   - component: {fileID: 1535378811}
   - component: {fileID: 1535378810}
+  - component: {fileID: 1535378814}
   m_Layer: 0
   m_Name: chars_yellow_90_right
   m_TagString: Player
@@ -3846,7 +3914,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &1535378813
 MeshFilter:
@@ -3855,6 +3923,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1535378808}
   m_Mesh: {fileID: 0}
+--- !u!210 &1535378814
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1535378808}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &1568082656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3996,6 +4074,7 @@ GameObject:
   - component: {fileID: 1612347259}
   - component: {fileID: 1612347258}
   - component: {fileID: 1612347257}
+  - component: {fileID: 1612347261}
   m_Layer: 0
   m_Name: chars_red_45_left
   m_TagString: Player
@@ -4089,7 +4168,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &1612347260
 MeshFilter:
@@ -4098,6 +4177,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1612347255}
   m_Mesh: {fileID: 0}
+--- !u!210 &1612347261
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1612347255}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &1701723067
 GameObject:
   m_ObjectHideFlags: 0
@@ -4181,6 +4270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1793202011}
   - component: {fileID: 1793202012}
+  - component: {fileID: 1793202013}
   m_Layer: 0
   m_Name: BoardHolder
   m_TagString: Untagged
@@ -4241,6 +4331,31 @@ MonoBehaviour:
   poll_interval_lv: 1
   row_interval_lv: 1
   row_parallel_move_lv: 1
+--- !u!114 &1793202013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1793202010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab28a6583ea3c76499cc9517519ad513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 2
+  items:
+  - {fileID: 1371896405713514, guid: 7dd07a8c0bd3a41449845ad0992566a3, type: 2}
+  - {fileID: 1136230696182516, guid: 33245ee7dec01834da223012a701017b, type: 2}
+  - {fileID: 1091398409385102, guid: b41227ca1900faf4c9c01dfcfff1e1f0, type: 2}
+  - {fileID: 1266674942859614, guid: 4f0be0085e8c41945beac99af1a78a56, type: 2}
+  - {fileID: 1884966913179050, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+  - {fileID: 1892794990887796, guid: ceb6d119464800f4aa20e9c195b4c513, type: 2}
+  - {fileID: 1437026857763308, guid: 8b434db0d00bc86408a534ab97634228, type: 2}
+  parent: {fileID: 1793202011}
+  maxTime: 10
+  minTime: 5
+  playerController: {fileID: 0}
+  downhillPlayerController: {fileID: 952238717}
 --- !u!1 &1821503896
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,7 +4679,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &1865219925
 MeshFilter:
@@ -4580,9 +4695,9 @@ SortingGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865219920}
   m_Enabled: 1
-  m_SortingLayerID: -762017675
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &1878040760
 GameObject:
   m_ObjectHideFlags: 0
@@ -4745,6 +4860,7 @@ GameObject:
   - component: {fileID: 2015306672}
   - component: {fileID: 2015306671}
   - component: {fileID: 2015306670}
+  - component: {fileID: 2015306674}
   m_Layer: 0
   m_Name: chars_yellow_default
   m_TagString: Player
@@ -4838,7 +4954,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &2015306673
 MeshFilter:
@@ -4847,6 +4963,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2015306668}
   m_Mesh: {fileID: 0}
+--- !u!210 &2015306674
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2015306668}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &2020148857
 GameObject:
   m_ObjectHideFlags: 0
@@ -5240,7 +5366,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &2046326281
 MeshFilter:
@@ -5256,9 +5382,9 @@ SortingGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2046326276}
   m_Enabled: 1
-  m_SortingLayerID: -762017675
-  m_SortingLayer: 6
-  m_SortingOrder: 0
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &2068286779
 GameObject:
   m_ObjectHideFlags: 0
@@ -5312,6 +5438,7 @@ GameObject:
   - component: {fileID: 2071809589}
   - component: {fileID: 2071809588}
   - component: {fileID: 2071809587}
+  - component: {fileID: 2071809591}
   m_Layer: 0
   m_Name: chars_yellow_90_left
   m_TagString: Player
@@ -5405,7 +5532,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &2071809590
 MeshFilter:
@@ -5414,6 +5541,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2071809585}
   m_Mesh: {fileID: 0}
+--- !u!210 &2071809591
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2071809585}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &2112356862
 GameObject:
   m_ObjectHideFlags: 0
@@ -5426,6 +5563,7 @@ GameObject:
   - component: {fileID: 2112356866}
   - component: {fileID: 2112356865}
   - component: {fileID: 2112356864}
+  - component: {fileID: 2112356868}
   m_Layer: 0
   m_Name: chars_red_45_right
   m_TagString: Player
@@ -5519,7 +5657,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1310618287
-  m_SortingLayer: 3
+  m_SortingLayer: 8
   m_SortingOrder: 1
 --- !u!33 &2112356867
 MeshFilter:
@@ -5528,6 +5666,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2112356862}
   m_Mesh: {fileID: 0}
+--- !u!210 &2112356868
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2112356862}
+  m_Enabled: 1
+  m_SortingLayerID: -1310618287
+  m_SortingLayer: 8
+  m_SortingOrder: 1
 --- !u!1 &2125213064
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using Spine.Unity;
 public class downhill_player_coll : MonoBehaviour {
     private DownhillManager dM;
     private BoardManager bM;
+    
+
     private void Awake() {
         dM = GameObject.Find("Manager").GetComponent<DownhillManager>();
         bM = GameObject.Find("BoardHolder").GetComponent<BoardManager>();
@@ -36,5 +38,18 @@ public class downhill_player_coll : MonoBehaviour {
         if(collision.tag == "TileEnd") {
             dM.OnGameOver();
         }
+
+        if(collision.tag == "Item") {
+            GameObject obj = collision.gameObject;
+            itemCheck(obj);
+        }
+    }
+
+    public void itemCheck(GameObject obj) {
+        if (obj.transform.tag == "Item") {
+            Downhill_ItemType type = obj.GetComponent<Downhill_ItemType>();
+            dM.playerController.playerState = type.type;
+        }
+        Destroy(obj);
     }
 }

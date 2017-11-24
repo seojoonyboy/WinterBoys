@@ -15,6 +15,8 @@ public class Ski_PlayerController : MonoBehaviour {
     public int rotateDir = 1;
     bool buttonDown = false;
 
+    public Downhill_itemType playerState;
+
     public GameObject playerImage;
     public GameObject[]
         blue_chars,
@@ -34,6 +36,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public Vector3 playerPos;
 
     private Rigidbody2D rb;
+
     private void Awake() {
         gm = GameManager.Instance;
         pm = PointManager.Instance;
@@ -61,7 +64,7 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void Update() {
-        playerPos = transform.position;
+        playerPos = selectedCharacters[0].transform.position;
     }
 
     private void FixedUpdate() {

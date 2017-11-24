@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class DownhillManager : MonoBehaviour {
     public GameObject modal;
+
     private GameManager gm;
     private PointManager pm;
     private UM_GameServiceManager umgm;
@@ -61,7 +62,7 @@ public class DownhillManager : MonoBehaviour {
             passNum = 0;
             Debug.Log("시간 증가");
         }
-        Debug.Log("통과 갯수 : " + passNum);
+        //Debug.Log("통과 갯수 : " + passNum);
         scoreInc(5);
     }
 

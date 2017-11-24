@@ -297,15 +297,15 @@ public class BoardManager : MonoBehaviour {
     private void lvup(int index) {
         switch (index) {
             case 0:
-                Debug.Log("폴 간격 Lv 증가");
+                //Debug.Log("폴 간격 Lv 증가");
                 poll_interval_lv++;
                 break;
             case 1:
-                Debug.Log("행 간격 Lv 증가");
+                //Debug.Log("행 간격 Lv 증가");
                 row_interval_lv++;
                 break;
             case 2:
-                Debug.Log("폴 평행이동 Lv 증가");
+                //Debug.Log("폴 평행이동 Lv 증가");
                 row_parallel_move_lv++;
                 break;
         }
