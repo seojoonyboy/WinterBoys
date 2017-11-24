@@ -13,6 +13,15 @@ public class Ski_PlayerController : MonoBehaviour {
     public float input_sensitive = 5.0f;        //캐릭터 회전력
     private float statBasedRotSenstive;         //Stat을 적용한 캐릭터 회전력
     public int rotateDir = 1;
+
+    private float
+        boostCoolTime,
+        speedReduceCoolTime,
+        speedZeroCoolTime,
+        reverseCoolTime,
+        rotateIncCoolTime,
+        rotateDecCoolTime;
+
     bool buttonDown = false;
 
     public Downhill_itemType playerState;
@@ -36,7 +45,8 @@ public class Ski_PlayerController : MonoBehaviour {
     public Vector3 playerPos;
 
     private Rigidbody2D rb;
-
+    private float additionalForceByEffect = 1f;
+    private float additionalAngularForceByEffect = 1.0f;
     private void Awake() {
         gm = GameManager.Instance;
         pm = PointManager.Instance;
@@ -61,6 +71,13 @@ public class Ski_PlayerController : MonoBehaviour {
 
         statBasedSpeedForce = speedForce * pm.getSpeedPercent();
         statBasedRotSenstive = input_sensitive * pm.getControlPercent();
+
+        boostCoolTime = 3.0f;
+        speedReduceCoolTime = 5.0f;
+        speedZeroCoolTime = 1.5f;
+        reverseCoolTime = 7.0f;
+        rotateIncCoolTime = 7.0f;
+        rotateDecCoolTime = 7.0f;
     }
 
     private void Update() {
@@ -68,10 +85,83 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        rb.AddForce(ForwardForce());
+        rb.AddForce(ForwardForce() * additionalForceByEffect);
+
+        //부스팅 효과
+        if(playerState == Downhill_itemType.BOOST) {
+            boostCoolTime -= Time.deltaTime;
+            if(boostCoolTime < 0) {
+                playerState = Downhill_itemType.NORMAL;
+                boostCoolTime = 3.0f;
+                additionalForceByEffect = 1.0f;
+            }
+            else {
+                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
+            }
+        }
+
+        //눈덩이 과속방지턱 효과
+        if(playerState == Downhill_itemType.SPEED_REDUCE) {
+            speedReduceCoolTime -= Time.deltaTime;
+            if(speedReduceCoolTime < 0) {
+                playerState = Downhill_itemType.NORMAL;
+                speedReduceCoolTime = 5.0f;
+                additionalForceByEffect = 1.0f;
+            }
+            else {
+                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
+            }
+        }
+
+        //고라니 효과
+        if(playerState == Downhill_itemType.SPEED_ZERO) {
+            speedZeroCoolTime -= Time.deltaTime;
+            if(speedZeroCoolTime < 0) {
+                playerState = Downhill_itemType.NORMAL;
+                speedZeroCoolTime = 1.5f;
+                additionalForceByEffect = 1.0f;
+            }
+            else {
+                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
+            }
+        }
+
+        //날벌레 효과
+        if(playerState == Downhill_itemType.REVERSE_ROTATE) {
+            reverseCoolTime -= Time.deltaTime;
+            if(reverseCoolTime < 0) {
+                playerState = Downhill_itemType.NORMAL;
+                reverseCoolTime = 7.0f;
+            }
+        }
+
+        //눈에 박혀있는 폴 효과
+        if (playerState == Downhill_itemType.ROTATE_INCREASE) {
+            rotateIncCoolTime -= Time.deltaTime;
+            if(rotateIncCoolTime < 0) {
+                playerState = Downhill_itemType.NORMAL;
+                rotateIncCoolTime = 7.0f;
+                additionalAngularForceByEffect = 1.0f;
+            }
+        }
+
+        //눈에 뿌려진 검은 기름 효과
+        if (playerState == Downhill_itemType.ROTATE_REDUCE) {
+            rotateDecCoolTime -= Time.deltaTime;
+            if(rotateDecCoolTime < 0) {
+                playerState = Downhill_itemType.NORMAL;
+                rotateDecCoolTime = 7.0f;
+                additionalAngularForceByEffect = 1.0f;
+            }
+        }
 
         if (buttonDown) {
-            rb.angularVelocity += statBasedRotSenstive * rotateDir;
+            if(playerState == Downhill_itemType.REVERSE_ROTATE) {
+                rb.angularVelocity += statBasedRotSenstive * -rotateDir * additionalAngularForceByEffect;
+            }
+            else {
+                rb.angularVelocity += statBasedRotSenstive * rotateDir * additionalAngularForceByEffect;
+            }
         }
         else {
             rb.angularVelocity = 0;
@@ -127,6 +217,10 @@ public class Ski_PlayerController : MonoBehaviour {
         return transform.up * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.up);
     }
 
+    Vector2 AdditionalForceByEffect(float amount) {
+        return transform.up * amount;
+    }
+
     //코너링시 코너링 방향으로 밀리는 힘의 크기 (현재 속도 기준)
     Vector2 RightVelocity() {
         return transform.right * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right);
@@ -176,5 +270,37 @@ public class Ski_PlayerController : MonoBehaviour {
         }
         selectedCharacters[index].SetActive(true);
         preObj = selectedCharacters[index];
+    }
+
+    public void itemCheck(GameObject obj) {
+        if (obj.tag == "Item") {
+            Downhill_ItemType type = obj.GetComponent<Downhill_ItemType>();
+            playerState = type.type;
+            Debug.Log(type.type);
+            switch (type.type) {
+                case Downhill_itemType.BOOST:
+                    additionalForceByEffect = 1.0f;
+                    break;
+                case Downhill_itemType.POINT:
+
+                    break;
+                case Downhill_itemType.SPEED_REDUCE:
+                    additionalForceByEffect = 0.3f;
+                    break;
+                case Downhill_itemType.SPEED_ZERO:
+                    additionalForceByEffect = 0;
+                    break;
+                case Downhill_itemType.REVERSE_ROTATE:
+
+                    break;
+                case Downhill_itemType.ROTATE_INCREASE:
+                    additionalAngularForceByEffect = 1.5f;
+                    break;
+                case Downhill_itemType.ROTATE_REDUCE:
+                    additionalAngularForceByEffect = 0.5f;
+                    break;
+            }
+            Destroy(obj);
+        }
     }
 }

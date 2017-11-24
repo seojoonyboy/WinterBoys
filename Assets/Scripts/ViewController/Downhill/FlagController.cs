@@ -29,23 +29,15 @@ public class FlagController : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit)) {
             if (hit.collider.tag == "Player") {
+                if(GameObject.Find("Manager").GetComponent<DownhillManager>().playerController.playerState == Downhill_itemType.BOOST) {
+                    return;
+                }
+
                 if (!isSend) {
-                    //Debug.Log(hit.collider.tag + " 통과하지 못함");
                     GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
                 }
                 isSend = true;
             }
-            //RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
-            //Debug.DrawRay(transform.position, dir, Color.red);
-            ////Debug.Log(hit.collider.name);
-            //if(hit.collider.tag == "Player") {
-            //    Debug.Log(hit.collider.name);
-            //    if (!isSend) {
-            //        Debug.Log(hit.collider.tag + " 통과하지 못함");
-            //        GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
-            //    }
-            //    isSend = true;
-            //}
         }
     }
     void IsPass() {

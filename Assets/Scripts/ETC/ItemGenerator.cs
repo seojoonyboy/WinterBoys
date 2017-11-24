@@ -74,7 +74,7 @@ public class ItemGenerator : MonoBehaviour {
                 break;
             case SportType.DOWNHILL:
                 Vector3 downhillItemPos = randPos(SportType.DOWNHILL);
-                randNum = Random.Range(0, items.Length);
+                randNum = Random.Range(1, items.Length);
                 GameObject downhillItem = Instantiate(items[randNum]);
                 downhillItem.GetComponent<Downhill_ItemType>().type = (Downhill_itemType)randNum;
                 downhillItem.transform.SetParent(parent);

@@ -8,6 +8,7 @@ public class Downhill_ItemType : MonoBehaviour {
 
 
 public enum Downhill_itemType {
+    NORMAL,
     BOOST,
     SPEED_REDUCE,
     SPEED_ZERO,
