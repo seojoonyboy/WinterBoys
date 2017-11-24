@@ -42,7 +42,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private float 
         whiteBirdCoolTime,
-        balloonCoolTime;
+        balloonCoolTime,
+        reverseCoolTime;
 
     private PlayerState playerState;
     private float preGravityScale;
@@ -59,6 +60,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         statBasedRotAmount = rotateAmount * pm.getControlPercent();
         whiteBirdCoolTime = 3.0f;
         balloonCoolTime = 2.0f;
+        reverseCoolTime = 7.0f;
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
@@ -132,6 +134,15 @@ public class SkiJumpPlayerController : MonoBehaviour {
             return;
         }
 
+        //먹구름 효과
+        if(playerState == PlayerState.REVERSE_ROTATE) {
+            reverseCoolTime -= Time.deltaTime;
+            if(reverseCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                reverseCoolTime = 7.0f;
+            }
+        }
+
         float angle = transform.eulerAngles.z;
 
         if(rb.velocity.magnitude >= 20) {
@@ -160,21 +171,32 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
 
         if (isAscending) {
-            //45도 이상 뒤로 기울지 않게 고정
+            int mark = 1;
+            if(playerState == PlayerState.REVERSE_ROTATE) {
+                mark *= -1;
+            }
+
             if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
-                rb.angularVelocity = statBasedRotAmount;
+                rb.angularVelocity = mark * statBasedRotAmount;
             }
 
-            Vector2 force = new Vector2(rb.velocity.x * 0.01f, 20f);
-            rb.AddForce(force);
-
-            if (rb.velocity.y < 0) {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.999995f);
+            if(playerState == PlayerState.REVERSE_ROTATE) {
+                Vector2 val = new Vector2(rb.velocity.x * 0.1f, -0.01f);
+                rb.AddForce(val);
             }
+
             else {
-                if(transform.position.y > MaxHeight * 0.9f) {
-                    MaxHeight = transform.position.y * 0.7f;
-                    isAscending = false;
+                Vector2 force = new Vector2(rb.velocity.x * 0.01f, 20f);
+                rb.AddForce(force);
+
+                if (rb.velocity.y < 0) {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.999995f);
+                }
+                else {
+                    if (transform.position.y > MaxHeight * 0.9f) {
+                        MaxHeight = transform.position.y * 0.7f;
+                        isAscending = false;
+                    }
                 }
             }
         }
@@ -182,14 +204,34 @@ public class SkiJumpPlayerController : MonoBehaviour {
         else {
             //하강 버튼을 누르는 경우
             if (isDescending) {
-                if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
-                    rb.angularVelocity = -statBasedRotAmount;
+                int mark = -1;
+                if(playerState == PlayerState.REVERSE_ROTATE) {
+                    mark *= -1;
                 }
 
-                Vector2 val = new Vector2(rb.velocity.x * 0.1f, -0.01f);
-                rb.AddForce(val);
+                if(playerState == PlayerState.REVERSE_ROTATE) {
+                    Vector2 force = new Vector2(rb.velocity.x * 0.01f, 20f);
+                    rb.AddForce(force);
+
+                    if (rb.velocity.y < 0) {
+                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.999995f);
+                    }
+                    else {
+                        if (transform.position.y > MaxHeight * 0.9f) {
+                            MaxHeight = transform.position.y * 0.7f;
+                            isAscending = false;
+                        }
+                    }
+                }
+                else {
+                    if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
+                        rb.angularVelocity = mark * statBasedRotAmount;
+                    }
+
+                    Vector2 val = new Vector2(rb.velocity.x * 0.1f, -0.01f);
+                    rb.AddForce(val);
+                }
             }
-            //자연 하강을 하는 경우
         }
     }
 
@@ -278,14 +320,12 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 case itemType.BALLOON:
                     playerState = PlayerState.BALLOON;
                     break;
+                case itemType.BLACK_CLOUND:
+                    playerState = PlayerState.REVERSE_ROTATE;
+                    break;
             }
             Destroy(obj);
         }
-    }
-
-    //버프 효과 부여
-    private void Buff(float sec) {
-
     }
 }
 

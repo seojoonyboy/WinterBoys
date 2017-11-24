@@ -323,13 +323,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 80830877}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.005470022, z: -0, w: 0.99998504}
   m_LocalPosition: {x: -2.78, y: 3.127, z: 0.046875}
   m_LocalScale: {x: 1.2972544, y: 1.2972544, z: 1}
   m_Children: []
   m_Father: {fileID: 1014799245}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.62700003, z: 0}
 --- !u!60 &80830879
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -820,7 +820,7 @@ Rigidbody2D:
   m_Mass: 0.8
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.8
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 14.99841
+    OrthographicSize: 13.15934
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -1784,7 +1784,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 14.99841
+  orthographic size: 13.15934
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3515,7 +3515,7 @@ Prefab:
     - target: {fileID: 114990632430255472, guid: 0f18be3236487b241b23be78f216e3c6,
         type: 2}
       propertyPath: type
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
