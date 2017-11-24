@@ -11,7 +11,11 @@ public class FixPosition : MonoBehaviour {
     private void Awake() {
     }
     private void Update() {
-        if(_type == type.SKIJUMP_MAINCAM) {
+        
+    }
+
+    private void FixedUpdate() {
+        if (_type == type.SKIJUMP_MAINCAM) {
             Vector2 camPos = transform.position;
             Vector2 targetPos = target.position;
             camSize = GetComponent<Camera>().orthographicSize;
@@ -31,7 +35,7 @@ public class FixPosition : MonoBehaviour {
                 transform.position = new Vector3(targetPos.x, targetPos.y, -10);
             }
         }
-        else if(_type == type.SKIJUMP_CAM_TARGET) {
+        else if (_type == type.SKIJUMP_CAM_TARGET) {
             transform.position = new Vector3(target.position.x + 3f, target.position.y + 1f, -10f);
         }
     }
