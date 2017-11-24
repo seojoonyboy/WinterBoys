@@ -40,7 +40,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         score = 0,
         bonusScore = 0;
 
-    public Text height;
+    public Text 
+        height,
+        itemEffect;
+
     public Slider heightSlider;
 
     private void Awake() {
@@ -84,6 +87,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void FixedUpdate() {
+        itemEffect.text = playerController.playerState + " 효과 적용중";
         if (isLanded) {
             charRb.velocity = new Vector2(charRb.velocity.x, 0);
             if(charRb.velocity.x <= 0) {

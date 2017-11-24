@@ -46,7 +46,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         reverseCoolTime,
         thunderCoolTime;
 
-    private PlayerState playerState;
+    public PlayerState playerState;
     private float preGravityScale;
     private void Awake() {
         _eventManger = EventManager.Instance;
