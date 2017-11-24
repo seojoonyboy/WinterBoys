@@ -85,6 +85,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void FixedUpdate() {
         if (isLanded) {
+            charRb.velocity = new Vector2(charRb.velocity.x, 0);
             if(charRb.velocity.x <= 0) {
                 modal.SetActive(true);
 

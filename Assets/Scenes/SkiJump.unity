@@ -411,7 +411,10 @@ MonoBehaviour:
   - {fileID: 1434396536108152, guid: cb3595e90833b934684efda01bdf2554, type: 2}
   - {fileID: 1141318061693022, guid: f35d8b1875d80a14dac31efadb63b545, type: 2}
   parent: {fileID: 1228306076}
+  maxTime: 10
+  minTime: 5
   playerController: {fileID: 319997721}
+  downhillPlayerController: {fileID: 0}
 --- !u!1001 &53071913
 Prefab:
   m_ObjectHideFlags: 0
@@ -2540,7 +2543,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 14.01819
+    OrthographicSize: 3
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -5828,7 +5831,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 14.01819
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
