@@ -20,7 +20,6 @@ public class CameraBgGenerator : MonoBehaviour {
             GameObject obj = Instantiate(stars[randIndex]);
             obj.transform.SetParent(cam.transform);
             obj.transform.position = Vector3.zero;
-            Debug.Log(randX + " , " + randY);
             obj.transform.position = new Vector3(randX, randY, 10f);
         }
     }

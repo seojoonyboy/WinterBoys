@@ -208,7 +208,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.999995f);
                 }
                 else {
-                    if (transform.position.y > MaxHeight * 0.9f) {
+                    if (transform.position.y > MaxHeight) {
+                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.95f);
                         MaxHeight = transform.position.y * 0.7f;
                         isAscending = false;
                     }
@@ -319,9 +320,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
         itemCheck(obj);
     }
 
-    private void itemCheck(GameObject obj) {
+    public void itemCheck(GameObject obj) {
         if (obj.tag == "Item") {
             ItemType type = obj.GetComponent<ItemType>();
+            Debug.Log(type.type);
             switch (type.type) {
                 case itemType.BLACK_BIRD:
                     //감속 효과

@@ -135,6 +135,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void _UnstableLanding(SkiJump_UnstableLandingEvent e) {
+        charRb.velocity = new Vector2(charRb.velocity.x, 0);
         isUnstableLand = true;
     }
 
