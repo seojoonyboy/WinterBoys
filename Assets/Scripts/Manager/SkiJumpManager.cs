@@ -40,6 +40,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         score = 0,
         bonusScore = 0;
 
+    public Text height;
+    public Slider heightSlider;
+
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = PointManager.Instance;
@@ -99,6 +102,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
                 pm.addPoint((int)totalScore);
             }
         }
+        double value = System.Math.Round(charRb.transform.position.y * 3f);
+        height.text = value + " M";
+        heightSlider.value = (float)value;
     }
 
     //마찰 계수 설정
