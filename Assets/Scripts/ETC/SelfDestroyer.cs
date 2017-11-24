@@ -17,8 +17,8 @@ public class SelfDestroyer : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
-        else {
-            if (pos.y >= -1.0f) {
+        else if(_type == type.DOWNHILL) {
+            if (pos.y >= 1.0f) {
                 Destroy(gameObject);
             }
         }
