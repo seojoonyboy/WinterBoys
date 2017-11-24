@@ -12,7 +12,9 @@ public class DownhillManager : MonoBehaviour {
     private PointManager pm;
     private UM_GameServiceManager umgm;
     public int remainTime;
-    public Text remainTimeTxt;
+    public Text 
+        remainTimeTxt,
+        effectTxt;
     public int passNum = 0;
     private int score = 0;
 
@@ -32,7 +34,13 @@ public class DownhillManager : MonoBehaviour {
         remainTimeTxt.text = "남은 시간 : " + gm.startTime + " 초";
         InvokeRepeating("timeDec", 1.0f, 1.0f);
 
+        score = 0;
+
         initEventHandler();
+    }
+
+    private void Update() {
+        effectTxt.text = "아이템 효과 : " + playerController.playerState.ToString();
     }
 
     private void initEventHandler() {
@@ -63,11 +71,11 @@ public class DownhillManager : MonoBehaviour {
             Debug.Log("시간 증가");
         }
         //Debug.Log("통과 갯수 : " + passNum);
-        scoreInc(5);
+        //scoreInc(5);
     }
 
     public void scoreInc(int amount) {
-        //score += amount;
+        score += amount;
     }
 
     public void OnGameOver() {
@@ -79,8 +87,7 @@ public class DownhillManager : MonoBehaviour {
         Vector3 playerEndPos = playerController.playerPos;
         var distOfMeter = System.Math.Truncate(playerEndPos.y);
 
-        //거리 기반 획득 포인트 계산
-        score = (int)(-1 * distOfMeter / gm.points[0]);
+        score += (int)(-1 * distOfMeter / gm.points[0]);
         umgm.SubmitScore("DownHill", (long)score);
 
         string str = -1 * distOfMeter

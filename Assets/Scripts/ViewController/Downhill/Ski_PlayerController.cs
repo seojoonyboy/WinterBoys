@@ -282,7 +282,7 @@ public class Ski_PlayerController : MonoBehaviour {
                     additionalForceByEffect = 1.0f;
                     break;
                 case Downhill_itemType.POINT:
-
+                    dM.scoreInc(50);
                     break;
                 case Downhill_itemType.SPEED_REDUCE:
                     additionalForceByEffect = 0.3f;
