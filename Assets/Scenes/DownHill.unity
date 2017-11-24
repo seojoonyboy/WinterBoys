@@ -3306,11 +3306,11 @@ Prefab:
     - target: {fileID: 114589081554566050, guid: 33245ee7dec01834da223012a701017b,
         type: 2}
       propertyPath: type
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1136230696182516, guid: 33245ee7dec01834da223012a701017b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33245ee7dec01834da223012a701017b, type: 2}
