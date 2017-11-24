@@ -75,10 +75,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         charRb = character.GetComponent<Rigidbody2D>();
 
-        //statBasedSpeedForce = forceAmount * pm.getSpeedPercent();
+        statBasedSpeedForce = forceAmount * pm.getSpeedPercent();
 
         //최저치
-        statBasedSpeedForce = forceAmount;
+        //statBasedSpeedForce = forceAmount;
         //최대치
         //statBasedSpeedForce = forceAmount * 1.5f;
     }
