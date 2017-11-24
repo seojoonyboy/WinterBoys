@@ -21,12 +21,12 @@ public class FixPosition : MonoBehaviour {
             camSize = GetComponent<Camera>().orthographicSize;
             //카메라의 상단이 하늘 영역을 벗어나지 않도록 고정
             GetComponent<Camera>().orthographicSize = 10f;
-            if (targetPos.y > 23) {
-                transform.position = new Vector3(target.position.x, transform.position.y, -10f);
-            }
+            //if (targetPos.y > 23) {
+            //    transform.position = new Vector3(target.position.x, transform.position.y, -10f);
+            //}
 
             //카메라의 하단이 바닥 영역을 벗어나지 않도록 고정
-            else if (targetPos.y < 10) {
+            if (targetPos.y < 10) {
                 transform.position = new Vector3(target.position.x, camSize, -10f);
             }
 
