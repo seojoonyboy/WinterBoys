@@ -55,13 +55,9 @@ public class UM_NotificationsExample : BaseIOSFeaturePreview {
 
 	private void OnPushIdLoaded (UM_PushRegistrationResult res) {
 		if(res.IsSucceeded) {
-			MNPopup popup = new MNPopup ("Succeeded", "Device Id: " + res.deviceId);
-			popup.AddAction ("Ok", () => {});
-			popup.Show ();
+			new MobileNativeMessage("Succeeded", "Device Id: " + res.deviceId);
 		} else {
-			MNPopup popup = new MNPopup ("Failed", "No device id");
-			popup.AddAction ("Ok", () => {});
-			popup.Show ();
+			new MobileNativeMessage("Failed", "No device id");
 		}
 	}
 }

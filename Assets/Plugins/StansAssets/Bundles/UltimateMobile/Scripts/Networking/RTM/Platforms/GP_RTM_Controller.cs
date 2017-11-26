@@ -50,7 +50,7 @@ public class GP_RTM_Controller : iRTM_Matchmaker {
 	}
 
 	public void SendDataToPlayer(byte[] data, UM_RTM_PackageType type, params string[] receivers) {
-		GooglePlayRTM.Instance.SendDataToPlayers(data, type.GetGPPackageType(), receivers);
+		GooglePlayRTM.Instance.sendDataToPlayers(data, type.GetGPPackageType(), receivers);
 	}
 
 	public void LeaveMatch() {

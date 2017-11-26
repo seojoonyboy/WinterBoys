@@ -2,9 +2,6 @@
 using System.Collections;
 using System;
 
-using SA.IOSNative.UIKit;
-using SA.IOSNative.Privacy;
-
 public class NativeIOSActionsExample : BaseIOSFeaturePreview {
 
 	public Texture2D hello_texture;
@@ -14,10 +11,9 @@ public class NativeIOSActionsExample : BaseIOSFeaturePreview {
 	void Awake() {
 		time = new DateTime (1997, 05, 11);
 
-//		IOSNative.UIKit.DateTimePicker.OnDateChanged += OnDateChanged;
-//		IOSNative.UIKit.DateTimePicker.OnDateChanged += OnPickerClosed;
-//		IOSDateTimePicker.Instance.OnDateChanged 
-//		IOSDateTimePicker.Instance.OnPickerClosed 
+
+		IOSDateTimePicker.Instance.OnDateChanged += OnDateChanged;
+		IOSDateTimePicker.Instance.OnPickerClosed += OnPickerClosed;
 
 
 		Debug.Log("Subscribed");
@@ -39,14 +35,6 @@ public class NativeIOSActionsExample : BaseIOSFeaturePreview {
 
 		SA.IOSNative.Gestures.ForceTouch.Instance.OnForceTouchFinished += () => {
 			Debug.Log ("OnForceTouchFinished");
-		};
-
-
-
-		Debug.Log (SA.IOSNative.Gestures.ForceTouch.AppOpenshortcutItem);
-
-		SA.IOSNative.Gestures.ForceTouch.Instance.OnAppShortcutClick += (string action) => {
-			Debug.Log ("Menu Item With action: " + action + " was clicked");
 		};
 			
 /*
@@ -173,74 +161,35 @@ public class NativeIOSActionsExample : BaseIOSFeaturePreview {
 
 		StartY+= YLableStep;
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Time")) {
-			DateTimePicker.Show(DateTimePickerMode.Time, (dateTime) => {
 
-			});
-//			IOSDateTimePicker.Instance.Show
+			IOSDateTimePicker.Instance.Show(IOSDateTimePickerMode.Time);
 		}
 
 
 		StartX += XButtonStep;
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Date")) {
-			DateTimePicker.Show(DateTimePickerMode.Date, (dateTime) => {
-
-			});
+			IOSDateTimePicker.Instance.Show(IOSDateTimePickerMode.Date);
 		}
 
 		StartX += XButtonStep;
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Date And Time")) {
-			DateTimePicker.Show(DateTimePickerMode.DateAndTime, (dateTime) => {
-
-			});
-//			IOSDateTimePicker.Instance.Show(IOSDateTimePickerMode.DateAndTime);
+			IOSDateTimePicker.Instance.Show(IOSDateTimePickerMode.DateAndTime);
 		}
 
 		StartX += XButtonStep;
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Countdown Timer")) {
-			DateTimePicker.Show(DateTimePickerMode.CountdownTimer, (dateTime) => {
-
-			});
+			IOSDateTimePicker.Instance.Show(IOSDateTimePickerMode.CountdownTimer);
 		}
 
 		StartX = XStartPos;
 		StartY+= YButtonStep;
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Set Date Without UI")) {
-			DateTimePicker.Show(DateTimePickerMode.Date, time, (dateTime) => {
-
-			});
+			IOSDateTimePicker.Instance.Show(IOSDateTimePickerMode.Date, time);
 		}
-
-		StartX = XStartPos;
-		StartY+= YButtonStep;
-
-		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Show Calendar Picker")) {
-			Calendar.PickDate ((dateTime) => {
-				ISN_Logger.Log("OnDateChanged: " + dateTime.ToShortDateString());
-			}, 1989);
-
-			SA.IOSNative.Privacy.PermissionsManager.RequestPermission(Permission.NSPhotoLibrary, (permissionStatus) => {
-				Debug.Log("PermissionsManager.RequestPermission: " + Permission.NSPhotoLibrary + permissionStatus.ToString());
-			});
-
-			SA.IOSNative.Privacy.PermissionsManager.RequestPermission(Permission.NSLocationWhenInUse, (permissionStatus) => {
-				Debug.Log("PermissionsManager.RequestPermission: " + Permission.NSLocationWhenInUse + permissionStatus.ToString());
-			});
-
-			SA.IOSNative.Privacy.PermissionsManager.RequestPermission(Permission.NSMicrophone, (permissionStatus) => {
-				Debug.Log("PermissionsManager.RequestPermission: " + Permission.NSMicrophone + permissionStatus.ToString());
-			});
-
-
-
-		}
-
 
 		StartX = XStartPos;
 		StartY+= YButtonStep;
 		StartY+= YLableStep;
-
-
-
 
 
 		GUI.Label(new Rect(StartX, StartY, Screen.width, 40), "Video", style);

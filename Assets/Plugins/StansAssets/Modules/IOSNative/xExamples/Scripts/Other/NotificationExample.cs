@@ -162,10 +162,7 @@ public class NotificationExample : BaseIOSFeaturePreview {
 
 		if(UnityEngine.GUI.Button(new UnityEngine.Rect(StartX, StartY, buttonWidth, buttonHeight), "Reg Device For User Notif. ")) {
 
-			SA.IOSNative.UserNotifications.NotificationCenter.RequestPermissions ((result) => {
-				ISN_Logger.Log("RequestPermissions callback" + result.ToString());
-
-			});
+			SA.IOSNative.UserNotifications.NotificationCenter.RequestPermissions ();
 		}
 
 		StartX += XButtonStep;
@@ -175,16 +172,14 @@ public class NotificationExample : BaseIOSFeaturePreview {
 			content.Title = "Title_";
 			content.Subtitle = "Subtitle_";
 			content.Body = "Body_";
-			content.Badge = 1;
-			content.UserInfo ["404"] = "test User Info";
+			content.Badge = 5;
 
 
-			var trigger = new SA.IOSNative.UserNotifications.TimeIntervalTrigger (5);
+			var trigger = new SA.IOSNative.UserNotifications.TimeIntervalTrigger (20);
 			var request = new SA.IOSNative.UserNotifications.NotificationRequest ("some0id0", content, trigger);
-			ISN_Logger.Log("request Schedule for 5 sec");
+
 			SA.IOSNative.UserNotifications.NotificationCenter.AddNotificationRequest (request, (result) => {
-				ISN_Logger.Log("request callback");
-				ISN_Logger.Log(result.ToString());
+
 			});
 		}
 
@@ -195,12 +190,12 @@ public class NotificationExample : BaseIOSFeaturePreview {
 			content.Title = "Calendar - Date Components";
 			content.Subtitle = "Subtitle_";
 			content.Body = "Body_";
-			content.Badge = 1;
-			content.UserInfo ["404"] = "test User Info";
+			content.Badge = 5;
 
 			var dateComponents = new SA.IOSNative.UserNotifications.DateComponents () {
 				Second = 32,
-					// 			You can use any of this fields or their combination; In this example, trigger will fire every 32nd second 
+				Weekday = 6
+					// 			You can use any of this fields or their combination; In this example, trigger will fire every Friday, every 32nd second 
 
 	//			public int? Year;
 	//			public int? Month;
@@ -217,8 +212,7 @@ public class NotificationExample : BaseIOSFeaturePreview {
 			var request = new SA.IOSNative.UserNotifications.NotificationRequest ("some0id1", content, trigger);
 
 			SA.IOSNative.UserNotifications.NotificationCenter.AddNotificationRequest (request, (result) => {
-				ISN_Logger.Log("request callback");
-				ISN_Logger.Log(result.ToString());
+
 			});
 		}
 
@@ -229,56 +223,16 @@ public class NotificationExample : BaseIOSFeaturePreview {
 			content.Title = "Calendar - Date";
 			content.Subtitle = "Subtitle_";
 			content.Body = "Body_";
-			content.Badge = 1;
-			content.UserInfo ["404"] = 1;
+			content.Badge = 5;
 
-			var dateComponents = new SA.IOSNative.UserNotifications.DateComponents () {
-				Second = 32,
-				Year = 2017,
-				Month = 6,
-				Day = 6,
-				Hour = 13,
-				Minute = 01
-					// 			You can use any of this fields or their combination; In this example, trigger will fire every Friday, every 32nd second 
+			DateTime dateTime = DateTime.Now;
+			dateTime.AddMinutes (10);
 
-					//			public int? Year;
-					//			public int? Month;
-					//			public int? Day;
-					//			public int? Hour;
-					//			public int? Minute;
-					//			public int? Second;
-					//			public int? Weekday; (1 - Sunday, 7 - Saturday)
-					//			public int? Quarter;
-			};
-
-			var trigger = new SA.IOSNative.UserNotifications.CalendarTrigger (dateComponents);
+			var trigger = new SA.IOSNative.UserNotifications.CalendarTrigger (dateTime);
 			var request = new SA.IOSNative.UserNotifications.NotificationRequest ("some0id2", content, trigger);
 
 			SA.IOSNative.UserNotifications.NotificationCenter.AddNotificationRequest (request, (result) => {
-				ISN_Logger.Log("request callback");
-				ISN_Logger.Log(result.ToString());
-			});
-		}
 
-		StartX += XButtonStep;
-		if(UnityEngine.GUI.Button(new UnityEngine.Rect(StartX, StartY, buttonWidth, buttonHeight), "Cancel All User Notifications")) {
-
-			SA.IOSNative.UserNotifications.NotificationCenter.CancelAllNotifications ();
-		}
-
-		StartX += XButtonStep;
-		if(UnityEngine.GUI.Button(new UnityEngine.Rect(StartX, StartY, buttonWidth, buttonHeight), "Cancel some0id2")) {
-
-			SA.IOSNative.UserNotifications.NotificationCenter.CancelUserNotificationById("some0id2");
-		}
-
-		StartX += XButtonStep;
-		if(UnityEngine.GUI.Button(new UnityEngine.Rect(StartX, StartY, buttonWidth, buttonHeight), "Get Pending UserNotifications")) {
-
-			SA.IOSNative.UserNotifications.NotificationCenter.GetPendingNotificationRequests(requests => {
-				for (int i = 0; i < requests.Count; i++) {
-					ISN_Logger.Log(requests[i].Content.Title);	
-				}
 			});
 		}
 		

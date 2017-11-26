@@ -16,7 +16,7 @@ MonoBehaviour:
   EnableAppInviteAPI: 1
   EnableDriveAPI: 0
   LoadProfileIcons: 1
-  LoadProfileImages: 0
+  LoadProfileImages: 1
   LoadQuestsImages: 1
   LoadQuestsIcons: 1
   LoadEventsIcons: 1
@@ -77,10 +77,6 @@ MonoBehaviour:
   CheckAppLicenseAPI: 1
   NetworkStateAPI: 0
   FirebaseAnalytics: 0
-  FirebaseDynamicLinks: 0
-  FirebaseAppId: 
-  FirebaseApiKey: 
-  DynamicLinks: []
   InAppPurchasesAPI: 1
   GooglePlayServicesAPI: 1
   PlayServicesAdvancedSignInAPI: 1
@@ -93,31 +89,13 @@ MonoBehaviour:
   GalleryAPI: 1
   CameraAPI: 1
   KeepManifestClean: 1
-  GooglePlayServiceAppID: 487564575414
+  GooglePlayServiceAppID: 216817929098
   ToolbarSelectedIndex: 0
   base64EncodedPublicKey: REPLACE_WITH_YOUR_PUBLIC_KEY
   ShowStoreProducts: 1
   InAppProducts: []
   ShowLeaderboards: 1
-  Leaderboards:
-  - IsOpen: 1
-    _id: CgkItoX0qJgOEAIQAA
-    _name: DownHill
-    _description: 
-    _Texture: {fileID: 0}
-    CurrentPlayerScore: []
-  - IsOpen: 1
-    _id: CgkItoX0qJgOEAIQAQ
-    _name: Skeleton
-    _description: 
-    _Texture: {fileID: 0}
-    CurrentPlayerScore: []
-  - IsOpen: 1
-    _id: CgkItoX0qJgOEAIQAg
-    _name: SkiJump
-    _description: 
-    _Texture: {fileID: 0}
-    CurrentPlayerScore: []
+  Leaderboards: []
   ShowAchievements: 1
   Achievements: []
   ShowWhenAppIsForeground: 1

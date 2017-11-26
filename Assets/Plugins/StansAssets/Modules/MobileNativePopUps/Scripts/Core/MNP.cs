@@ -13,6 +13,11 @@ public class MNP {
 		MNIOSNative.ShowPreloader();
 		#endif
 
+		#if UNITY_WP8
+		WP8PopUps.PopUp.ShowPreLoader(100);
+		#endif
+
+
 	}
 	
 	public static void HidePreloader() {
@@ -25,7 +30,11 @@ public class MNP {
 		#if UNITY_IPHONE 
 		MNIOSNative.HidePreloader();
 		#endif
-		
+
+
+		#if UNITY_WP8
+		WP8PopUps.PopUp.HidePreLoader();
+		#endif
 	}
 }
 

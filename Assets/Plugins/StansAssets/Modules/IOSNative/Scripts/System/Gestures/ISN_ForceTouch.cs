@@ -112,7 +112,7 @@ namespace SA.IOSNative.Gestures {
 		public static string AppOpenshortcutItem {
 			get {
 				#if UNITY_IPHONE && !UNITY_EDITOR && FORCE_TOUCH_API
-				return _ISN_FT_AppOpenshortcutItem();
+				_ISN_FT_AppOpenshortcutItem();
 				#else
 				return string.Empty;
 				#endif

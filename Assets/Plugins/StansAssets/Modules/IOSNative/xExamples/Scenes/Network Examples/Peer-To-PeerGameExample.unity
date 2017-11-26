@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &5
 NavMeshSettings:
   serializedVersion: 2
@@ -381,6 +381,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1772642886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b04d48f3cee474e9abd04189c3d863cd, type: 3}
+  m_Script: {fileID: 11500000, guid: c534c339cfbff43d1beaceaf654f0360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

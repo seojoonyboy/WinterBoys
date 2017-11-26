@@ -1,12 +1,3 @@
-9.8/20
-New user notifications API
-Embeded freamworks support 
-Product.PriceInMicros fixed
-MultiplayerExample scene fixed
-Replay kit mic record permissions request fixed
-Xcode compilation warnings fixed
-
-
 9.4/17
 FIXES:
 Plugin's Editor Resources now removed from a user build

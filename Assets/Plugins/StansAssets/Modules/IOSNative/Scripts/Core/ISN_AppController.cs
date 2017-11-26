@@ -33,8 +33,6 @@ namespace SA.IOSNative.Core {
 		[DllImport ("__Internal")]
 		private static extern string _ISN_GetLunchUniversalLink();
 
-
-	
 		#endif
 
 
@@ -47,6 +45,8 @@ namespace SA.IOSNative.Core {
 		public static event Action<Models.LaunchUrl> OnOpenURL 						= delegate {};
 		public static event Action<Models.UniversalLink> OnContinueUserActivity 	= delegate {};
 
+
+		
 		void Awake() {
 			DontDestroyOnLoad(gameObject);
 			#if (UNITY_IPHONE && !UNITY_EDITOR && APP_CONTROLLER_ENABLED) 
@@ -62,6 +62,8 @@ namespace SA.IOSNative.Core {
 		public static void Subscribe() {
 			AppController.Instance.enabled = true;
 		}
+
+
 
 		//--------------------------------------
 		//  Get / Set
@@ -91,18 +93,6 @@ namespace SA.IOSNative.Core {
 				#endif
 			}
 		}
-
-		//--------------------------------------
-		//  Launch User Notification Property
-		//--------------------------------------
-
-
-		public static SA.IOSNative.UserNotifications.NotificationRequest launchNotification {
-			get {
-				return SA.IOSNative.UserNotifications.NotificationCenter.launchNotification;
-			}
-		}
-
 
 
 		//--------------------------------------
@@ -141,12 +131,6 @@ namespace SA.IOSNative.Core {
 		
 		private void applicationWillTerminate() {
 			OnApplicationWillTerminate();
-		}
-
-
-		protected override void OnApplicationQuit ()  {
-			base.OnApplicationQuit ();
-			AppController.OnApplicationWillTerminate ();
 		}
 
 

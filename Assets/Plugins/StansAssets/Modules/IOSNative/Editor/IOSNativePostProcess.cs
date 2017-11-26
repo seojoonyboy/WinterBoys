@@ -48,13 +48,6 @@ public class IOSNativePostProcess  {
 		}
 
 
-		if(IOSNativeSettings.Instance.EnablePermissionAPI) {
-			SA.IOSDeploy.ISD_Settings.Instance.AddFramework (SA.IOSDeploy.iOSFramework.Photos);
-			SA.IOSDeploy.ISD_Settings.Instance.AddFramework (SA.IOSDeploy.iOSFramework.Contacts);
-			SA.IOSDeploy.ISD_Settings.Instance.AddFramework (SA.IOSDeploy.iOSFramework.EventKit);
-		}
-
-
 		if(IOSNativeSettings.Instance.EnablePushNotificationsAPI) {
 			SA.IOSDeploy.Variable UIBackgroundModes =  new SA.IOSDeploy.Variable();
 			UIBackgroundModes.Name = "UIBackgroundModes";
@@ -241,15 +234,6 @@ public class IOSNativePostProcess  {
 
 			SA.IOSDeploy.ISD_Settings.Instance.AddVariable(NSPhotoLibraryUsageDescription);
 
-
-			var NSPhotoLibraryAddUsageDescription =  new SA.IOSDeploy.Variable();
-			NSPhotoLibraryAddUsageDescription.Name = "NSPhotoLibraryAddUsageDescription";
-			NSPhotoLibraryAddUsageDescription.StringValue = IOSNativeSettings.Instance.PhotoLibraryUsageDescription;
-			NSPhotoLibraryAddUsageDescription.Type = SA.IOSDeploy.PlistValueTypes.String;
-
-
-			SA.IOSDeploy.ISD_Settings.Instance.AddVariable(NSPhotoLibraryAddUsageDescription);
-
 		}
 
 		if(IOSNativeSettings.Instance.EnableReplayKit) {
@@ -286,7 +270,7 @@ public class IOSNativePostProcess  {
 
 			var NSContactsUsageDescription =  new SA.IOSDeploy.Variable();
 			NSContactsUsageDescription.Name = "NSContactsUsageDescription";
-			NSContactsUsageDescription.StringValue = IOSNativeSettings.Instance.ContactsUsageDescription;
+			NSContactsUsageDescription.StringValue = IOSNativeSettings.Instance.CameraUsageDescription;
 			NSContactsUsageDescription.Type = SA.IOSDeploy.PlistValueTypes.String;
 
 
@@ -308,10 +292,6 @@ public class IOSNativePostProcess  {
 			SA.IOSDeploy.ISD_Settings.Instance.AddLinkerFlag (soomlaLinkerFlag);
 		}
 
-		if(IOSNativeSettings.Instance.EnableUserNotificationsAPI) {
-			var AssetsLibrary = SA.IOSDeploy.ISD_Settings.Instance.AddFramework (SA.IOSDeploy.iOSFramework.UserNotifications);
-			AssetsLibrary.IsOptional = false;
-		}
 
 		Debug.Log("ISN Postprocess Done");
 

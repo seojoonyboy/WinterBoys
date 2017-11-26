@@ -28,25 +28,12 @@ namespace SA.IOSNative.UserNotifications {
 		/// <param name="content"> The content associated with the notification. </param>
 		/// <param name="trigger"> The conditions that trigger the delivery of the notification. </param>
 		/// </summary>
-		public NotificationRequest() {
-		}
-
 		public NotificationRequest(string id, NotificationContent content, NotificationTrigger trigger) {
 			_Id = id;
 			_Content = content;
 			_Trigger = trigger;
 		}
 
-		public NotificationRequest(string data) {
-			
-			Dictionary<string, object> notificationDictionary = (Dictionary<string, object>) SA.Common.Data.Json.Deserialize (data);
-			_Id = (string)notificationDictionary ["id"];
-			Dictionary<string, object> contentDictionary = (Dictionary<string, object>) notificationDictionary ["content"];
-			Dictionary<string, object> triggerDictionary = (Dictionary<string, object>) notificationDictionary ["trigger"];
-
-			_Content = new NotificationContent (contentDictionary);
-			_Trigger = NotificationTrigger.triggerFromDictionary (triggerDictionary);
-		}
 
 		/// <summary>
 		/// The unique identifier for this notification request.

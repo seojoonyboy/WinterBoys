@@ -51,14 +51,14 @@ namespace SA.Common {
 
 
 
-        public const string SPOTIFY_VERSION_INFO_PATH   = VERSION_INFO_PATH     + "Spotify_VersionInfo.txt";
-        public const string AN_VERSION_INFO_PATH 	    = VERSION_INFO_PATH 	+ "AN_VersionInfo.txt";
-		public const string UM_VERSION_INFO_PATH 	    = VERSION_INFO_PATH 	+ "UM_VersionInfo.txt";
-		public const string GMA_VERSION_INFO_PATH 	    = VERSION_INFO_PATH 	+ "GMA_VersionInfo.txt";
-		public const string MSP_VERSION_INFO_PATH 	    = VERSION_INFO_PATH 	+ "MSP_VersionInfo.txt";
-		public const string ISN_VERSION_INFO_PATH 	    = VERSION_INFO_PATH 	+ "ISN_VersionInfo.txt";
-		public const string MNP_VERSION_INFO_PATH 	    = VERSION_INFO_PATH 	+ "MNP_VersionInfo.txt";
-		public const string AMN_VERSION_INFO_PATH	    = VERSION_INFO_PATH 	+ "AMN_VersionInfo.txt";
+
+		public const string AN_VERSION_INFO_PATH 	= VERSION_INFO_PATH 	+ "AN_VersionInfo.txt";
+		public const string UM_VERSION_INFO_PATH 	= VERSION_INFO_PATH 	+ "UM_VersionInfo.txt";
+		public const string GMA_VERSION_INFO_PATH 	= VERSION_INFO_PATH 	+ "GMA_VersionInfo.txt";
+		public const string MSP_VERSION_INFO_PATH 	= VERSION_INFO_PATH 	+ "MSP_VersionInfo.txt";
+		public const string ISN_VERSION_INFO_PATH 	= VERSION_INFO_PATH 	+ "ISN_VersionInfo.txt";
+		public const string MNP_VERSION_INFO_PATH 	= VERSION_INFO_PATH 	+ "MNP_VersionInfo.txt";
+		public const string AMN_VERSION_INFO_PATH	= VERSION_INFO_PATH 	+ "AMN_VersionInfo.txt";
 
 
 

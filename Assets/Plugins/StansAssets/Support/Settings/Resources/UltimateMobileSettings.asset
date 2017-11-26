@@ -18,28 +18,7 @@ MonoBehaviour:
   InApps_EditorFillRate: 100
   Is_InApps_EditorTestingEnabled: 1
   IsInAppSettingsProductsOpen: 1
-  Leaderboards:
-  - id: DownHill
-    IsOpen: 1
-    IOSId: kr.fbl.dev.wintersports.downhill
-    AndroidId: CgkItoX0qJgOEAIQAA
-    AmazonId: new leaderboard1
-    _Description: 
-    _Texture: {fileID: 0}
-  - id: Skeleton
-    IsOpen: 1
-    IOSId: kr.fbl.dev.wintersports.skeleton
-    AndroidId: CgkItoX0qJgOEAIQAQ
-    AmazonId: new leaderboard2
-    _Description: 
-    _Texture: {fileID: 0}
-  - id: SkiJump
-    IsOpen: 1
-    IOSId: kr.fbl.dev.wintersports.skijump
-    AndroidId: CgkItoX0qJgOEAIQAg
-    AmazonId: new leaderboard3
-    _Description: 
-    _Texture: {fileID: 0}
+  Leaderboards: []
   Achievements: []
   AutoLoadUsersSmallImages: 1
   AutoLoadUsersBigImages: 0

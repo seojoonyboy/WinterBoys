@@ -15,11 +15,10 @@ namespace SA.IOSDeploy {
 
 		public iOSFramework Type;
 		public bool IsOptional;
-		public bool IsEmbeded;
+
 	
-		public Framework(iOSFramework type, bool Embaded = false){
+		public Framework(iOSFramework type){
 			Type = type;
-			IsEmbeded = Embaded;
 		}
 
 		public Framework(string frameworkName){

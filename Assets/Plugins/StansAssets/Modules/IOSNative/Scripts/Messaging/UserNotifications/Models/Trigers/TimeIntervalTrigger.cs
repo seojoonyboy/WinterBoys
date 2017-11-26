@@ -29,6 +29,7 @@ namespace SA.IOSNative.UserNotifications {
 			dict.Add ("repeats", this.repeated);
 
 			return SA.Common.Data.Json.Serialize (dict);
+//			return "{" + string.Format ("\"intervalToFire\" : {0}, \"repeats\" : \"{1}\"", this.intervalToFire, this.repeated) + "}";
 		}
 
 

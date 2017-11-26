@@ -26,7 +26,7 @@ using UnityEngine.SceneManagement;
 namespace SA.Analytics.Google {
 
 
-	public class Manager : MonoBehaviour {
+	public class GA_Manager : MonoBehaviour {
 		
 		
 		public const string GOOGLE_ANALYTICS_CLIENTID_PREF_KEY = "google_analytics_clientid_pref_key";
@@ -34,7 +34,7 @@ namespace SA.Analytics.Google {
 		public const string SYSTEM_INFO = "SystemInfo";
 		
 		
-		private static Manager Instance = null;
+		private static GA_Manager Instance = null;
 		
 		private static string _ClientId;
 		
@@ -128,15 +128,9 @@ namespace SA.Analytics.Google {
 		
 		
 		public static void StartTracking() {
-			Instance = GameObject.FindObjectOfType<Manager> ();
 			if(Instance == null) {
-				var objectName = "Google Analytics";
-				GameObject an = GameObject.Find(objectName);
-				if (an == null) { 
-					an = new GameObject(objectName); 
-				}
-
-				an.AddComponent<Manager>();
+				GameObject an = new GameObject("Google Analytics");
+				an.AddComponent<GA_Manager>();
 			}
 		}
 		
@@ -363,7 +357,8 @@ namespace SA.Analytics.Google {
 					Client.SendEventHit(SYSTEM_INFO, "supportsLocationService", SystemInfo.supportsLocationService ? "true" : "false", SystemInfo.supportsLocationService ? 1 : 0);
 					Client.SendEventHit(SYSTEM_INFO, "supportsVibration", SystemInfo.supportsVibration ? "true" : "false", SystemInfo.supportsVibration ? 1 : 0);
 					
-
+					#pragma warning disable 0618
+					Client.SendEventHit(SYSTEM_INFO, "supportsRenderTextures", SystemInfo.supportsRenderTextures ? "true" : "false", SystemInfo.supportsRenderTextures ? 1 : 0);
 					Client.SendEventHit(SYSTEM_INFO, "supportsImageEffects", SystemInfo.supportsImageEffects ? "true" : "false", SystemInfo.supportsImageEffects ? 1 : 0);
 					Client.SendEventHit(SYSTEM_INFO, "supportsShadows", SystemInfo.supportsShadows ? "true" : "false", SystemInfo.supportsShadows ? 1 : 0);
 					
@@ -395,9 +390,9 @@ namespace SA.Analytics.Google {
 			#endif
 		}
 		
-		public static WWW SendSkipCache(string request) {
+		public static void SendSkipCache(string request) {
 			byte[] data = System.Text.Encoding.UTF8.GetBytes(request);
-			return Client.GenerateWWW(data);
+			Client.GenerateWWW(data);
 		}
 		
 		
@@ -413,10 +408,9 @@ namespace SA.Analytics.Google {
 			if(www.error != null) {
 				RequestCache.SaveRequest(cache);
 			} else {
-				RequestCache.SendCachedRequests();
+				RequestCache.SendChashedRequests();
 			}
-
-			yield return null;
+			
 		}
 		
 		

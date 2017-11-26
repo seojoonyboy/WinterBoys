@@ -25,13 +25,16 @@ namespace SA.Analytics.Google {
 	#endif
 	public class GA_Settings : ScriptableObject {
 
-		public static string VERSION_NUMBER = "4.7/21";
+		public static string VERSION_NUMBER = "4.5/19";
+
 		
 		[SerializeField]
 		public List<Profile> accounts =  new List<Profile>();
 
 		[SerializeField]
 		public List<PlatfromBound> platfromBounds =  new List<PlatfromBound>();
+
+
 
 		public bool showAdditionalParams = false;
 		public bool showAdvancedParams = false;
@@ -41,6 +44,8 @@ namespace SA.Analytics.Google {
 		public bool showPlatfroms = false;
 		public bool showTestingMode = false;
 
+
+
 		public string AppName = "My App";
 		public string AppVersion = "0.0.1";
 
@@ -49,15 +54,19 @@ namespace SA.Analytics.Google {
 		public bool EditorAnalytics = true;
 		public bool IsDisabled = false;
 
+
 		public bool IsTestingModeEnabled = false;
 		public int TestingModeAccIndex = 0;
 
+
 		public bool IsRequetsCachingEnabled= true;
-		public bool IsQueueTimeEnabled = true;		
+		public bool IsQueueTimeEnabled = true;
+		
 
 		public bool AutoLevelTracking = true;
 		public string LevelPrefix = "Level_";
 		public string LevelPostfix = "";
+
 
 		public bool AutoAppQuitTracking = true;
 		public bool AutoCampaignTracking  = false;
@@ -65,19 +74,28 @@ namespace SA.Analytics.Google {
 		public bool AutoAppResumeTracking = true;
 		public bool SubmitSystemInfoOnFirstLaunch = true;
 
+
+
+
 		public bool UsePlayerSettingsForAppInfo = true;
 
-		public bool EnableFirebase = false;
-		public string FirebaseAppId = string.Empty;
+
 
 		private const string AnalyticsSettingsAssetName = "GA_Settings";
 		private const string AnalyticsSettingsAssetExtension = ".asset";
 
+
+
+
+
 		private static GA_Settings instance = null;
+
+
 
 		public static GA_Settings Instance {
 
 			get {
+
 
 				if (instance == null) {
 					instance = Resources.Load(AnalyticsSettingsAssetName) as GA_Settings;

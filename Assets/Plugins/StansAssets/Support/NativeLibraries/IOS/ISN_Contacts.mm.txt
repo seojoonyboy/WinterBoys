@@ -7,8 +7,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#if !TARGET_OS_TV
-
 #import "ISN_NativeCore.h"
 #import "AppDelegateListener.h"
 
@@ -187,5 +185,3 @@ extern "C" {
     }
     
 }
-
-#endif
