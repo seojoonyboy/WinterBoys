@@ -1663,7 +1663,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.8
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.8
@@ -1692,6 +1692,7 @@ MonoBehaviour:
   - {fileID: 1430398801}
   - {fileID: 1498580563}
   - {fileID: 1810893685}
+  playerState: 0
 --- !u!61 &319997722
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2544,7 +2545,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 12.93175
+    OrthographicSize: 14.69961
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -3885,8 +3886,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.34}
-  m_Size: {x: 2.19, y: 0.83}
+  m_Offset: {x: 0, y: 0.18}
+  m_Size: {x: 2.19, y: 0.47}
   m_Direction: 1
 --- !u!1 &680941338
 GameObject:
@@ -5832,7 +5833,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 12.93175
+  orthographic size: 14.69961
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

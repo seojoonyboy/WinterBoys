@@ -209,7 +209,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 }
                 else {
                     if (transform.position.y > MaxHeight * 0.8) {
-                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.99995f);
+                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.85f);
                         MaxHeight = transform.position.y * 0.7f;
                         isAscending = false;
                     }
