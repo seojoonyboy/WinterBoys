@@ -43,7 +43,9 @@ public class FlagController : MonoBehaviour {
 
                 if (!isSend) {
                     dm.remainTime -= (int)GameManager.Instance.panelty_time;
-                    bm.flags.RemoveAt(0);
+                    if(bm.flags.Count != 0) {
+                        bm.flags.RemoveAt(0);
+                    }
                 }
                 isSend = true;
             }
@@ -58,7 +60,9 @@ public class FlagController : MonoBehaviour {
                 if (hit.collider.tag == "Player") {
                     if (!isPassSend) {
                         dm.passNumInc();
-                        bm.flags.RemoveAt(0);
+                        if (bm.flags.Count != 0) {
+                            bm.flags.RemoveAt(0);
+                        }
                     }
                     isPassSend = true;
                 }

@@ -154,6 +154,7 @@ public class BoardManager : MonoBehaviour {
         for(int i=0; i<3; i++) {
             GameObject leftFlag = Instantiate(flagPref);
             leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
+            flags.Add(leftFlag);
             //좌측 폴의 다음 위치 계산
             Vector2 nextPos = calcNextFlagPos();
             leftFlag.transform.position = nextPos;
@@ -170,9 +171,6 @@ public class BoardManager : MonoBehaviour {
             rightFlag.transform.position = new Vector2(rightX, nextPos.y);
 
             curFlagPos = nextPos;
-
-            flags.Add(leftFlag);
-
             flagNum++;
         }
 
