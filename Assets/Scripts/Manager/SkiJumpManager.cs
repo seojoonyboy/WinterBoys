@@ -89,7 +89,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private void FixedUpdate() {
         itemEffect.text = playerController.playerState + " 효과 적용중";
         if (isLanded) {
-            charRb.velocity = new Vector2(charRb.velocity.x * 0.995f, charRb.velocity.y * 0.995f);
+            charRb.velocity = new Vector2(charRb.velocity.x * 0.999995f, charRb.velocity.y * 0.995f);
             if(charRb.velocity.x <= 0) {
                 modal.SetActive(true);
 
