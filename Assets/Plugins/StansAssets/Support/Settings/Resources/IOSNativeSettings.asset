@@ -26,7 +26,7 @@ MonoBehaviour:
   EnableContactsAPI: 0
   EnableAppEventsAPI: 0
   EnableUserNotificationsAPI: 0
-  AppleId: XXXXXXXXX
+  AppleId: 1301761262
   ToolbarIndex: 0
   ExpandMoreActionsMenu: 1
   ExpandModulesSettings: 1
@@ -36,7 +36,28 @@ MonoBehaviour:
   DefaultStoreProductsView: []
   InAppProducts: []
   ShowStoreKitProducts: 1
-  Leaderboards: []
+  Leaderboards:
+  - IsOpen: 1
+    _info:
+      Title: kr.fbl.dev.wintersports.downhill DownHill
+      Description: 
+      Identifier: 1301761262
+      Texture: {fileID: 0}
+      MaxRange: 0
+  - IsOpen: 1
+    _info:
+      Title: Skeleton
+      Description: 
+      Identifier: kr.fbl.dev.wintersports.skeleton
+      Texture: {fileID: 0}
+      MaxRange: 0
+  - IsOpen: 1
+    _info:
+      Title: SkiJump
+      Description: 
+      Identifier: kr.fbl.dev.wintersports.skijump
+      Texture: {fileID: 0}
+      MaxRange: 0
   Achievements: []
   UseGCRequestCaching: 0
   UsePPForAchievements: 0

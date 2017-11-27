@@ -64,7 +64,7 @@ MonoBehaviour:
   ExpandPSAPI: 0
   ExpandBillingAPI: 0
   ExpandSocialAPI: 0
-  ExpandCameraAPI: 0
+  ExpandCameraAPI: 1
   ThirdPartyParams: 0
   ShowPSSettingsResources: 0
   ShowActions: 0
@@ -95,7 +95,25 @@ MonoBehaviour:
   ShowStoreProducts: 1
   InAppProducts: []
   ShowLeaderboards: 1
-  Leaderboards: []
+  Leaderboards:
+  - IsOpen: 1
+    _id: CgkItoX0qJgOEAIQAA
+    _name: DownHill
+    _description: 
+    _Texture: {fileID: 0}
+    CurrentPlayerScore: []
+  - IsOpen: 1
+    _id: CgkItoX0qJgOEAIQAQ
+    _name: 'Skeleton '
+    _description: 
+    _Texture: {fileID: 0}
+    CurrentPlayerScore: []
+  - IsOpen: 1
+    _id: CgkItoX0qJgOEAIQAg
+    _name: SkiJump
+    _description: 
+    _Texture: {fileID: 0}
+    CurrentPlayerScore: []
   ShowAchievements: 1
   Achievements: []
   ShowWhenAppIsForeground: 1
