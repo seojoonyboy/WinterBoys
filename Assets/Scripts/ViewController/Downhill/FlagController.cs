@@ -9,8 +9,16 @@ public class FlagController : MonoBehaviour {
 
     private bool isSend = false;
     private bool isPassSend = false;
+
+    private DownhillManager dm;
+    private BoardManager bm;
     void Start() {
         gameObject.tag = "Flag";
+    }
+
+    private void Awake() {
+        dm = GameObject.Find("Manager").GetComponent<DownhillManager>();
+        bm = GameObject.Find("BoardHolder").GetComponent<BoardManager>();
     }
 
     private void FixedUpdate() {
@@ -29,12 +37,13 @@ public class FlagController : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit)) {
             if (hit.collider.tag == "Player") {
-                if(GameObject.Find("Manager").GetComponent<DownhillManager>().playerController.playerState == Downhill_itemType.BOOST) {
+                if(dm.playerController.playerState == Downhill_itemType.BOOST) {
                     return;
                 }
 
                 if (!isSend) {
-                    GameObject.Find("Manager").GetComponent<DownhillManager>().remainTime -= (int)GameManager.Instance.panelty_time;
+                    dm.remainTime -= (int)GameManager.Instance.panelty_time;
+                    bm.flags.RemoveAt(0);
                 }
                 isSend = true;
             }
@@ -45,12 +54,11 @@ public class FlagController : MonoBehaviour {
         Vector3 dir = Vector3.zero;
         if (rayDir == type.LEFT) {
             dir = Vector3.right;
-
             if (Physics.Raycast(transform.position, dir, out hit, distance)) {
                 if (hit.collider.tag == "Player") {
                     if (!isPassSend) {
-                        //Debug.Log(hit.collider.tag + " 통과");
-                        GameObject.Find("Manager").GetComponent<DownhillManager>().passNumInc();
+                        dm.passNumInc();
+                        bm.flags.RemoveAt(0);
                     }
                     isPassSend = true;
                 }

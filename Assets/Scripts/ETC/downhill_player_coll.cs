@@ -24,6 +24,8 @@ public class downhill_player_coll : MonoBehaviour {
             else if (flagComp.rayDir == FlagController.type.RIGHT) {
                 anim.AnimationName = "broken_right";
             }
+
+            bM.flags.RemoveAt(0);
         }
 
         if(collision.tag == "Tile") {

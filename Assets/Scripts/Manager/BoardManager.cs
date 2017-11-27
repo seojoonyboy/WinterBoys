@@ -31,7 +31,7 @@ public class BoardManager : MonoBehaviour {
     private int sameDirCount = 0;   //같은 방향으로 폴이 생성된 횟수
 
     private Vector2 curFlagPos;     //좌측 기준 현재 폴의 위치
-
+    public float deltaX;
     public int 
         flagNum = 0,
         poll_interval_lv = 1,       //폴과 폴 사이의 간격
@@ -41,6 +41,7 @@ public class BoardManager : MonoBehaviour {
     List<GameObject> tiles = new List<GameObject>();
     List<GameObject> leftSides = new List<GameObject>();
     List<GameObject> rightSides = new List<GameObject>();
+    public List<GameObject> flags = new List<GameObject>();
 
     private TreeOffset 
         treeLeftOffset,
@@ -163,12 +164,14 @@ public class BoardManager : MonoBehaviour {
             GameObject rightFlag = Instantiate(flagPref);
 
             leftFlag.GetComponent<FlagController>().distance = deltaX;
-
+            this.deltaX = rightX / 2.0f;
             rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
 
             rightFlag.transform.position = new Vector2(rightX, nextPos.y);
 
             curFlagPos = nextPos;
+
+            flags.Add(leftFlag);
 
             flagNum++;
         }

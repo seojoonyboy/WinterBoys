@@ -35,6 +35,8 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public BoardManager bM;
     public DownhillManager dM;
+    public IndicatorController ic;
+
     private GameManager gm;
     private PointManager pm;
 
