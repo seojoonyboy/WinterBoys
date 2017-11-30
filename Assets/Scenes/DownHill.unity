@@ -3607,6 +3607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268347494}
   - component: {fileID: 1268347495}
+  - component: {fileID: 1268347496}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3644,6 +3645,37 @@ MonoBehaviour:
   effectTxt: {fileID: 532938021}
   passNum: 0
   playerController: {fileID: 952238717}
+--- !u!114 &1268347496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1268347493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab28a6583ea3c76499cc9517519ad513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 1371896405713514, guid: 7dd07a8c0bd3a41449845ad0992566a3, type: 2}
+  - {fileID: 1136230696182516, guid: 33245ee7dec01834da223012a701017b, type: 2}
+  - {fileID: 1091398409385102, guid: b41227ca1900faf4c9c01dfcfff1e1f0, type: 2}
+  - {fileID: 1266674942859614, guid: 4f0be0085e8c41945beac99af1a78a56, type: 2}
+  - {fileID: 1884966913179050, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+  - {fileID: 1892794990887796, guid: ceb6d119464800f4aa20e9c195b4c513, type: 2}
+  - {fileID: 1437026857763308, guid: 8b434db0d00bc86408a534ab97634228, type: 2}
+  gameType: 2
+  parent: {fileID: 1793202011}
+  maxTime: 10
+  minTime: 5
+  sj_playerController: {fileID: 0}
+  dh_playerController: {fileID: 952238717}
+  dh_coolTime: 0
+  dh_minTime: 10
+  dh_maxTime: 5
+  sj_coolTime: 0
+  sj_minTime: 0
+  sj_maxTime: 0
 --- !u!1 &1416105441
 GameObject:
   m_ObjectHideFlags: 0
@@ -4503,7 +4535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1793202011}
   - component: {fileID: 1793202012}
-  - component: {fileID: 1793202013}
   m_Layer: 0
   m_Name: BoardHolder
   m_TagString: Untagged
@@ -4567,31 +4598,6 @@ MonoBehaviour:
   row_interval_lv: 1
   row_parallel_move_lv: 1
   flags: []
---- !u!114 &1793202013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1793202010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab28a6583ea3c76499cc9517519ad513, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameType: 2
-  items:
-  - {fileID: 1371896405713514, guid: 7dd07a8c0bd3a41449845ad0992566a3, type: 2}
-  - {fileID: 1136230696182516, guid: 33245ee7dec01834da223012a701017b, type: 2}
-  - {fileID: 1091398409385102, guid: b41227ca1900faf4c9c01dfcfff1e1f0, type: 2}
-  - {fileID: 1266674942859614, guid: 4f0be0085e8c41945beac99af1a78a56, type: 2}
-  - {fileID: 1884966913179050, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
-  - {fileID: 1892794990887796, guid: ceb6d119464800f4aa20e9c195b4c513, type: 2}
-  - {fileID: 1437026857763308, guid: 8b434db0d00bc86408a534ab97634228, type: 2}
-  parent: {fileID: 1793202011}
-  maxTime: 10
-  minTime: 5
-  playerController: {fileID: 0}
-  downhillPlayerController: {fileID: 952238717}
 --- !u!1 &1821503896
 GameObject:
   m_ObjectHideFlags: 0

@@ -405,16 +405,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab28a6583ea3c76499cc9517519ad513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameType: 0
   items:
   - {fileID: 1612707128261008, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
   - {fileID: 1434396536108152, guid: cb3595e90833b934684efda01bdf2554, type: 2}
   - {fileID: 1141318061693022, guid: f35d8b1875d80a14dac31efadb63b545, type: 2}
+  gameType: 0
   parent: {fileID: 1228306076}
   maxTime: 10
   minTime: 5
-  playerController: {fileID: 319997721}
-  downhillPlayerController: {fileID: 0}
+  sj_playerController: {fileID: 319997721}
+  dh_playerController: {fileID: 0}
+  dh_coolTime: 0
+  dh_minTime: 0
+  dh_maxTime: 0
+  sj_coolTime: 0
+  sj_minTime: 0
+  sj_maxTime: 0
 --- !u!1001 &53071913
 Prefab:
   m_ObjectHideFlags: 0
@@ -2471,7 +2477,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 13.55689
+    OrthographicSize: 13.61624
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -3812,8 +3818,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.18}
-  m_Size: {x: 2.19, y: 0.47}
+  m_Offset: {x: 0.04, y: 0.18}
+  m_Size: {x: 1.63, y: 0.47}
   m_Direction: 1
 --- !u!1001 &690230623
 Prefab:
@@ -5538,7 +5544,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 13.55689
+  orthographic size: 13.61624
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

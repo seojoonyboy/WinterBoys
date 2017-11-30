@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ItemGenerator : MonoBehaviour {
-    public SportType gameType;
     public GameObject[] items;
+    
+    public SportType gameType;
     public Transform parent;
 
     private float interval;
@@ -16,8 +18,16 @@ public class ItemGenerator : MonoBehaviour {
     private float spawnTime;
 
     private int[] randNums = { 0, 3, 4, 5 };
-    public SkiJumpPlayerController playerController;
-    public Ski_PlayerController downhillPlayerController;
+    public SkiJumpPlayerController sj_playerController;
+    public Ski_PlayerController dh_playerController;
+
+    public int dh_coolTime;
+    public int dh_minTime;
+    public int dh_maxTime;
+
+    public int sj_coolTime;
+    public int sj_minTime;
+    public int sj_maxTime;
 
     private void Start() {
         if(gameType == SportType.SKIJUMP) {
@@ -42,7 +52,7 @@ public class ItemGenerator : MonoBehaviour {
         }
         else if(gameType == SportType.DOWNHILL) {
             //Debug.Log(camPos.y);
-            if (downhillPlayerController.playerPos.y < interval + 2) {
+            if (dh_playerController.playerPos.y < interval + 2) {
                 //Debug.Log("아이템 생성");
                 Generate(SportType.DOWNHILL);
                 interval *= 2;
@@ -74,11 +84,12 @@ public class ItemGenerator : MonoBehaviour {
                 break;
             case SportType.DOWNHILL:
                 Vector3 downhillItemPos = randPos(SportType.DOWNHILL);
-                randNum = Random.Range(1, items.Length);
+                randNum = UnityEngine.Random.Range(1, items.Length);
                 GameObject downhillItem = Instantiate(items[randNum]);
                 downhillItem.GetComponent<Downhill_ItemType>().type = (Downhill_itemType)randNum;
                 downhillItem.transform.SetParent(parent);
                 downhillItem.transform.position = downhillItemPos;
+                Debug.Log("아이템 생성");
                 break;
         }
     }
@@ -89,17 +100,17 @@ public class ItemGenerator : MonoBehaviour {
         float randY = 0;
         switch (type) {
             case SportType.SKIJUMP:
-                randX = Random.Range(0, Screen.width);
-                randY = Random.Range(0, Screen.height - playerController.MaxHeight);
+                randX = UnityEngine.Random.Range(0, Screen.width);
+                randY = UnityEngine.Random.Range(0, Screen.height - sj_playerController.MaxHeight);
 
                 pos = cam.ScreenToWorldPoint(new Vector3(randX + Screen.width, randY, 0));
                 pos.z = 0;
                 break;
             case SportType.DOWNHILL:
-                randX = Random.Range(30f, Screen.width - 30f);
-                randY = Random.Range(0, Screen.height);
+                randX = UnityEngine.Random.Range(60f, Screen.width - 60f);
+                randY = UnityEngine.Random.Range(0, Screen.height);
 
-                pos = cam.ScreenToWorldPoint(new Vector3(randX + Screen.width, downhillPlayerController.playerPos.y - Screen.height, 3.5f));
+                pos = cam.ScreenToWorldPoint(new Vector3(randX + Screen.width, dh_playerController.playerPos.y - Screen.height, 3.5f));
                 pos.z = 0;
                 break;
         }
@@ -115,6 +126,6 @@ public class ItemGenerator : MonoBehaviour {
     }
 
     private void SetRandomTime() {
-        spawnTime = Random.Range(minTime, maxTime);
+        spawnTime = UnityEngine.Random.Range(minTime, maxTime);
     }
 }
