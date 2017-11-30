@@ -207,7 +207,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 rb.AddForce(force);
 
                 if (rb.velocity.y < 0) {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.999995f);
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.99999f);
                 }
                 else {
                     if (transform.position.y > MaxHeight * 0.8) {
