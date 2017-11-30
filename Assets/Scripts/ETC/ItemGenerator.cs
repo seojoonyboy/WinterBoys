@@ -86,7 +86,7 @@ public class ItemGenerator : MonoBehaviour {
                 Vector3 downhillItemPos = randPos(SportType.DOWNHILL);
                 randNum = UnityEngine.Random.Range(1, items.Length);
                 GameObject downhillItem = Instantiate(items[randNum]);
-                downhillItem.GetComponent<Downhill_ItemType>().type = (Downhill_itemType)randNum;
+                downhillItem.GetComponent<Downhill_ItemType>().type = (Downhill_ItemType.itemType)randNum;
                 downhillItem.transform.SetParent(parent);
                 downhillItem.transform.position = downhillItemPos;
                 Debug.Log("아이템 생성");

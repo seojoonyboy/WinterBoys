@@ -24,7 +24,7 @@ public class Ski_PlayerController : MonoBehaviour {
 
     bool buttonDown = false;
 
-    public Downhill_itemType playerState;
+    public Downhill_ItemType.itemType playerState;
 
     public GameObject playerImage;
     public GameObject[]
@@ -90,10 +90,10 @@ public class Ski_PlayerController : MonoBehaviour {
         rb.AddForce(ForwardForce() * additionalForceByEffect);
 
         //부스팅 효과
-        if(playerState == Downhill_itemType.BOOST) {
+        if(playerState == Downhill_ItemType.itemType.BOOST) {
             boostCoolTime -= Time.deltaTime;
             if(boostCoolTime < 0) {
-                playerState = Downhill_itemType.NORMAL;
+                playerState = Downhill_ItemType.itemType.NORMAL;
                 boostCoolTime = 3.0f;
                 additionalForceByEffect = 1.0f;
             }
@@ -103,10 +103,10 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         //눈덩이 과속방지턱 효과
-        if(playerState == Downhill_itemType.SPEED_REDUCE) {
+        if(playerState == Downhill_ItemType.itemType.SPEED_REDUCE) {
             speedReduceCoolTime -= Time.deltaTime;
             if(speedReduceCoolTime < 0) {
-                playerState = Downhill_itemType.NORMAL;
+                playerState = Downhill_ItemType.itemType.NORMAL;
                 speedReduceCoolTime = 5.0f;
                 additionalForceByEffect = 1.0f;
             }
@@ -116,10 +116,10 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         //고라니 효과
-        if(playerState == Downhill_itemType.SPEED_ZERO) {
+        if(playerState == Downhill_ItemType.itemType.SPEED_ZERO) {
             speedZeroCoolTime -= Time.deltaTime;
             if(speedZeroCoolTime < 0) {
-                playerState = Downhill_itemType.NORMAL;
+                playerState = Downhill_ItemType.itemType.NORMAL;
                 speedZeroCoolTime = 1.5f;
                 additionalForceByEffect = 1.0f;
             }
@@ -129,36 +129,36 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         //날벌레 효과
-        if(playerState == Downhill_itemType.REVERSE_ROTATE) {
+        if(playerState == Downhill_ItemType.itemType.REVERSE_ROTATE) {
             reverseCoolTime -= Time.deltaTime;
             if(reverseCoolTime < 0) {
-                playerState = Downhill_itemType.NORMAL;
+                playerState = Downhill_ItemType.itemType.NORMAL;
                 reverseCoolTime = 7.0f;
             }
         }
 
         //눈에 박혀있는 폴 효과
-        if (playerState == Downhill_itemType.ROTATE_INCREASE) {
+        if (playerState == Downhill_ItemType.itemType.ROTATE_INCREASE) {
             rotateIncCoolTime -= Time.deltaTime;
             if(rotateIncCoolTime < 0) {
-                playerState = Downhill_itemType.NORMAL;
+                playerState = Downhill_ItemType.itemType.NORMAL;
                 rotateIncCoolTime = 7.0f;
                 additionalAngularForceByEffect = 1.0f;
             }
         }
 
         //눈에 뿌려진 검은 기름 효과
-        if (playerState == Downhill_itemType.ROTATE_REDUCE) {
+        if (playerState == Downhill_ItemType.itemType.ROTATE_REDUCE) {
             rotateDecCoolTime -= Time.deltaTime;
             if(rotateDecCoolTime < 0) {
-                playerState = Downhill_itemType.NORMAL;
+                playerState = Downhill_ItemType.itemType.NORMAL;
                 rotateDecCoolTime = 7.0f;
                 additionalAngularForceByEffect = 1.0f;
             }
         }
 
         if (buttonDown) {
-            if(playerState == Downhill_itemType.REVERSE_ROTATE) {
+            if(playerState == Downhill_ItemType.itemType.REVERSE_ROTATE) {
                 rb.angularVelocity += statBasedRotSenstive * -rotateDir * additionalAngularForceByEffect;
             }
             else {
@@ -280,25 +280,25 @@ public class Ski_PlayerController : MonoBehaviour {
             playerState = type.type;
             Debug.Log(type.type);
             switch (type.type) {
-                case Downhill_itemType.BOOST:
+                case Downhill_ItemType.itemType.BOOST:
                     additionalForceByEffect = 1.0f;
                     break;
-                case Downhill_itemType.POINT:
+                case Downhill_ItemType.itemType.POINT:
                     dM.scoreInc(50);
                     break;
-                case Downhill_itemType.SPEED_REDUCE:
+                case Downhill_ItemType.itemType.SPEED_REDUCE:
                     additionalForceByEffect = 0.3f;
                     break;
-                case Downhill_itemType.SPEED_ZERO:
+                case Downhill_ItemType.itemType.SPEED_ZERO:
                     additionalForceByEffect = 0;
                     break;
-                case Downhill_itemType.REVERSE_ROTATE:
+                case Downhill_ItemType.itemType.REVERSE_ROTATE:
 
                     break;
-                case Downhill_itemType.ROTATE_INCREASE:
+                case Downhill_ItemType.itemType.ROTATE_INCREASE:
                     additionalAngularForceByEffect = 1.5f;
                     break;
-                case Downhill_itemType.ROTATE_REDUCE:
+                case Downhill_ItemType.itemType.ROTATE_REDUCE:
                     additionalAngularForceByEffect = 0.5f;
                     break;
             }
