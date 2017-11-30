@@ -4846,10 +4846,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gradeSprite:
-  - {fileID: 21300000, guid: 0ea2690516e28484f83b209aead60693, type: 3}
-  - {fileID: 21300000, guid: 07689ba6e367b4e67a05d1bd8a6eccfa, type: 3}
-  - {fileID: 21300000, guid: c39bee97520ce472ba2a6e2175a19545, type: 3}
   - {fileID: 21300000, guid: 0850e45642f1943169dac07a4cb2969f, type: 3}
+  - {fileID: 21300000, guid: c39bee97520ce472ba2a6e2175a19545, type: 3}
+  - {fileID: 21300000, guid: 07689ba6e367b4e67a05d1bd8a6eccfa, type: 3}
+  - {fileID: 21300000, guid: 0ea2690516e28484f83b209aead60693, type: 3}
+  - {fileID: 21300000, guid: 0ea2690516e28484f83b209aead60693, type: 3}
+  - {fileID: 21300000, guid: 0ea2690516e28484f83b209aead60693, type: 3}
+  - {fileID: 21300000, guid: 0ea2690516e28484f83b209aead60693, type: 3}
+  - {fileID: 21300000, guid: 0ea2690516e28484f83b209aead60693, type: 3}
   maxScore: {fileID: 869223050}
   speed:
     grade: {fileID: 764383617}

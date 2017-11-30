@@ -12,14 +12,15 @@ public class PointData {
 	public int speedNeed {get {return pointNeed(speedLv);}}
 
 	public int controlNeed {get {return pointNeed(controlLv);}}
-	public float speedPercent {get{return 1.0f + speedLv * 0.01f;}}
-	public float controlPercent {get{return 1.0f + controlLv * 0.01f;}}
+	public float speedPercent {get{return 1.0f + speedLv * 0.01f - (speedLv > 50 ? (speedLv - 50) * 0.005f : 0f);}}
+	public float controlPercent {get{return 1.0f + controlLv * 0.01f - (controlLv > 50 ? (controlLv - 50) * 0.005f : 0f);}}
 
 	private int pointNeed(int level) {
 		int switchLv = level / 10;
-		if(level <= 15)		return 20 + (20 * level);
-		if(level <= 30)		return 20 + (20 * 20) + (40 * (level - 15));
-		/*if(level <= 50)*/	return 20 + (20 * 20) + (40 * 20) + (60 * (level - 30));
+		if(level <= 15)		return 20 + (30 * level);
+		if(level <= 30)		return 20 + (30 * 15) + (60 * (level - 15));
+		if(level <= 50)		return 20 + (30 * 15) + (60 * 15) + (120 * (level - 30));
+		return 20 + (30 * 15) + (60 * 15) + (120 * 20) + (80 * (level - 50));
 	}
 
 }
@@ -77,11 +78,11 @@ public class PointManager : Singleton<PointManager> {
 	}
 
 	public int getSpeedPointNeed() {
-		return pointData.speedLv == 50 ? 0 : pointData.speedNeed;
+		return pointData.speedLv == 110 ? 0 : pointData.speedNeed;
 	}
 
 	public int getControlPointNeed() {
-		return pointData.controlLv == 50 ? 0 : pointData.controlNeed;
+		return pointData.controlLv == 110 ? 0 : pointData.controlNeed;
 	}
 
 	public float getSpeedPercent() {

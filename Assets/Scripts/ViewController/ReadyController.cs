@@ -35,10 +35,10 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void checkButton() {
-		if(pointManager.getSpeedPercent() >= 1.5f)
+		if(pointManager.getSpeedPercent() >= 1.8f)
 			speed.levelUp.onClick.RemoveAllListeners();
 
-		if(pointManager.getControlPercent() >= 1.5f)
+		if(pointManager.getControlPercent() >= 1.8f)
 			control.levelUp.onClick.RemoveAllListeners();
 	}
 
@@ -66,10 +66,14 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void setGrade(Image grade, float num) {
-		if(num < 1.13f) grade.sprite = gradeSprite[3];
-		else if(num < 1.25f) grade.sprite = gradeSprite[2];
-		else if(num < 1.35f) grade.sprite = gradeSprite[1];
-		else grade.sprite = gradeSprite[0];
+		if(num < 1.13f) grade.sprite = gradeSprite[0];
+		else if(num < 1.25f) grade.sprite = gradeSprite[1];
+		else if(num < 1.35f) grade.sprite = gradeSprite[2];
+		else if(num < 1.45f) grade.sprite = gradeSprite[3];
+		else if(num < 1.5f)  grade.sprite = gradeSprite[4];
+		else if(num < 1.65f) grade.sprite = gradeSprite[5];
+		else if(num < 1.8f)  grade.sprite = gradeSprite[6];
+		else 				 grade.sprite = gradeSprite[7];
 
 		grade.SetNativeSize();
 	}
