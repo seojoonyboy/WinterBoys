@@ -66,6 +66,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
+
+        rb.centerOfMass = new Vector2(0, -0.6f);
     }
 
     private void OnEnable() {
@@ -261,14 +263,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
     //가속 버튼
     public void AddForce() {
         if(Slopetag == "StartSlope") {
-            //최대치
-            //rb.AddForce(transform.right * sm.statBasedSpeedForce * 0.6f);
-
-            //최저치
-            rb.AddForce(transform.right * sm.statBasedSpeedForce);
+            rb.AddForce(transform.right * sm.statBasedSpeedForce * 0.4f);
         }
         else {
-            rb.AddForce(transform.right * sm.statBasedSpeedForce * 2f);
+            rb.AddForce(transform.right * sm.statBasedSpeedForce * 2.5f);
         }
     }
 

@@ -83,7 +83,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         //최저치
         //statBasedSpeedForce = forceAmount;
         //최대치
-        //statBasedSpeedForce = forceAmount * 1.5f;
+        //statBasedSpeedForce = forceAmount * 1.8f;
     }
 
     private void FixedUpdate() {
