@@ -687,6 +687,16 @@ Prefab:
       propertyPath: skeleton_bonus_times.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: sj_percentages.values.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.11704296
@@ -768,6 +778,71 @@ Prefab:
         type: 2}
       propertyPath: pararell_intervals.Array.data[1]
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.data[2]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.data[3]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.data[4]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.data[5]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: dh_percentages.values.Array.data[6]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: sj_percentages.values.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: sj_percentages.values.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: sj_percentages.values.Array.data[2]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: sj_percentages.values.Array.data[3]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: sj_percentages.values.Array.data[4]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: sj_percentages.values.Array.data[5]
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}

@@ -8,6 +8,10 @@ public class GameManager : Singleton<GameManager> {
 
     public Sprite[] players;
 
+    public percentages dh_percentages;
+    public percentages sj_percentages;
+    public percentages st_percentages;
+
     public int pixelPerUnit = 1024;
 
     //유저 닉네임
@@ -65,5 +69,10 @@ public class GameManager : Singleton<GameManager> {
     private void getRemoteData(string remote_key, ref float data) {
         string str = RemoteSettings.GetString(remote_key);
         data = float.Parse(str);
+    }
+
+    [System.Serializable]
+    public class percentages {
+        public float[] values;
     }
 }
