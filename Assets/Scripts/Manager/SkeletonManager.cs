@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SkeletonManager : MonoBehaviour {
-    [SerializeField] private GameManager gm;
+    private GameManager gm;
     [SerializeField] private Transform background;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject warningImg;
@@ -14,18 +14,22 @@ public class SkeletonManager : MonoBehaviour {
     [SerializeField] private Text distanceUI;
     [SerializeField] private Text leftTimeUI;
     [SerializeField] private GameObject showAddTimeUI;
+    [SerializeField] private Skeleton_TrackController track;
     private float dangerTime;
     private float currentSpeed = 0f;
     private float maxSpeed;
     private float totalDistance = 0f;
     private float leftTime;
     private float distanceBonusTime = 0f;
-    bool showTime = true;
-    int showCount = 0;
+    private float turnTime = 0f;
+    private float turnWhen = 200f;
+    private float turnCount = 10f;
+    private bool showTime = true;
+    private int showCount = 0;
 
     void Start() {
         gm = GameManager.Instance;
-        maxSpeed = gm.skeleton_stats[0];
+        maxSpeed = gm.skeleton_stats[0] * PointManager.Instance.getSpeedPercent();
         leftTime = gm.startTime;
     }
     public void mainLoad() {
@@ -68,13 +72,16 @@ public class SkeletonManager : MonoBehaviour {
         if(currentSpeed < 0f) currentSpeed = 0f;
         if(currentSpeed > maxSpeed) currentSpeed = maxSpeed;
         speedUI.text = currentSpeed.ToString("##.0");
-        background.GetComponent<Animator>().speed = currentSpeed * 0.03f;
+        track.setSpeed(currentSpeed * 0.03f);
+        //background.GetComponent<Animator>().speed = currentSpeed * 0.03f;
     }
 
     private void addDistance(float time) {
         float move = (currentSpeed * time * 0.28f);//0.28 시속 보정
         totalDistance += move;
         distanceBonusTime += move;
+        turnTime += move;
+        checkTurn();
         distanceUI.text = totalDistance.ToString("#0");
     }
 
@@ -87,6 +94,15 @@ public class SkeletonManager : MonoBehaviour {
             InvokeRepeating("showAddTime",0f, 0.5f);
         }
         if(leftTime <= 0f) gameOver();
+    }
+
+    private void checkTurn() {
+        if(turnTime >= turnWhen) {
+            turnTime -= turnWhen;
+            if(turnWhen > 30f) 
+                turnWhen -= turnCount;
+            track.triggerTurn();
+        }
     }
 
     private void gameOver() {
