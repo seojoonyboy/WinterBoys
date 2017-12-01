@@ -320,40 +320,40 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public void itemCheck(GameObject obj) {
         if (obj.tag == "Item") {
-            ItemType type = obj.GetComponent<ItemType>();
-            Debug.Log(type.type);
-            switch (type.type) {
-                case itemType.BLACK_BIRD:
+            Item item = obj.GetComponent<Item>();
+            switch (item.item_sj) {
+                case ItemType.SJ.BL_BIRD:
                     //감속 효과
                     rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y * 0.85f);
                     break;
-                case itemType.WHITE_BIRD:
+                case ItemType.SJ.WH_BIRD:
                     //무적효과, 다른 아이템 무시
                     //3초간 캐릭터 정면으로 이동 (중력 3초간 제거)
                     playerState = PlayerState.IMMORTAL;
                     break;
-                case itemType.BALLOON:
+                case ItemType.SJ.BALLOON:
                     playerState = PlayerState.BALLOON;
                     break;
-                case itemType.BLACK_CLOUND:
+                case ItemType.SJ.DK_CLOUD:
                     playerState = PlayerState.REVERSE_ROTATE;
                     break;
-                case itemType.POINT:
+                case ItemType.SJ.POINT:
                     sm.bonusScore += 50;
                     break;
-                case itemType.THUNDER_CLOUD:
+                case ItemType.SJ.THUNDER_CLOUD:
                     playerState = PlayerState.GRAVITY_CHANGE;
                     break;
             }
             Destroy(obj);
         }
     }
+
+    public enum PlayerState {
+        NORMAL,
+        IMMORTAL,
+        REVERSE_ROTATE,
+        GRAVITY_CHANGE,
+        BALLOON
+    }
 }
 
-public enum PlayerState {
-    NORMAL,
-    IMMORTAL,
-    REVERSE_ROTATE,
-    GRAVITY_CHANGE,
-    BALLOON
-}

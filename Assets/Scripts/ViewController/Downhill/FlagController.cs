@@ -37,7 +37,7 @@ public class FlagController : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit)) {
             if (hit.collider.tag == "Player") {
-                if(dm.playerController.playerState == Downhill_ItemType.itemType.BOOST) {
+                if(dm.playerController.playerState == Ski_PlayerController.PlayerState.BOOSTING) {
                     return;
                 }
 

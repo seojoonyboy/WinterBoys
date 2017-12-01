@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212951403599768396}
   - component: {fileID: 114133510216533818}
   - component: {fileID: 61900668071350040}
-  - component: {fileID: 114048367712588982}
+  - component: {fileID: 114076540080148644}
   m_Layer: 0
   m_Name: OilItem
   m_TagString: Item
@@ -68,7 +68,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5337499, y: 1.53125}
   m_EdgeRadius: 0
---- !u!114 &114048367712588982
+--- !u!114 &114076540080148644
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -76,10 +76,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1437026857763308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 890cbad4d837d5f45a1ebcc41d52f35e, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f71be1a421d254194476c2119239d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
+  gameType: 2
+  item_dh: 6
+  item_sj: 0
+  item_st: 0
 --- !u!114 &114133510216533818
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212354929464890440}
   - component: {fileID: 114500327005024662}
   - component: {fileID: 61495447767347640}
-  - component: {fileID: 114095745539770392}
+  - component: {fileID: 114994720184060122}
   m_Layer: 0
   m_Name: SpeedZeroItem
   m_TagString: Item
@@ -68,18 +68,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5337499, y: 1.53125}
   m_EdgeRadius: 0
---- !u!114 &114095745539770392
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1266674942859614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 890cbad4d837d5f45a1ebcc41d52f35e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
 --- !u!114 &114500327005024662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,6 +80,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 2
+--- !u!114 &114994720184060122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1266674942859614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f71be1a421d254194476c2119239d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 2
+  item_dh: 3
+  item_sj: 0
+  item_st: 0
 --- !u!212 &212354929464890440
 SpriteRenderer:
   m_ObjectHideFlags: 1

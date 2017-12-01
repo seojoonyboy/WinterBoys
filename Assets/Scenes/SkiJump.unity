@@ -406,9 +406,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 1612707128261008, guid: 0f18be3236487b241b23be78f216e3c6, type: 2}
+  - {fileID: 1434396536108152, guid: befae3c4c8b15f748a977c361299e803, type: 2}
   - {fileID: 1434396536108152, guid: cb3595e90833b934684efda01bdf2554, type: 2}
   - {fileID: 1141318061693022, guid: f35d8b1875d80a14dac31efadb63b545, type: 2}
+  - {fileID: 1434396536108152, guid: efd89b21db2d6014fb508345ded62b25, type: 2}
+  - {fileID: 1434396536108152, guid: 904d999970c15a148b92c97250a1500b, type: 2}
+  - {fileID: 1434396536108152, guid: 60fc81c4ba66d114b9af2230870bea21, type: 2}
   gameType: 0
   parent: {fileID: 1228306076}
   maxTime: 10
@@ -2474,7 +2477,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 14.02562
+    OrthographicSize: 7.37271
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -5541,7 +5544,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 14.02562
+  orthographic size: 7.37271
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

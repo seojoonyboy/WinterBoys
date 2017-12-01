@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 33035358359166798}
   - component: {fileID: 23974707781284212}
   - component: {fileID: 114777840932525074}
-  - component: {fileID: 114641237461245136}
   - component: {fileID: 61719861290585762}
   - component: {fileID: 114716220615441430}
   - component: {fileID: 114820452204625964}
+  - component: {fileID: 114858688206400120}
   m_Layer: 0
   m_Name: WhiteBird
   m_TagString: Item
@@ -110,18 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8599999, y: 1.6999999}
   m_EdgeRadius: 0
---- !u!114 &114641237461245136
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1434396536108152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4585bf5bc7d4edd4491bc28d6fc0e90d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
 --- !u!114 &114716220615441430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,3 +163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 1
+--- !u!114 &114858688206400120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434396536108152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f71be1a421d254194476c2119239d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 0
+  item_dh: 0
+  item_sj: 1
+  item_st: 0

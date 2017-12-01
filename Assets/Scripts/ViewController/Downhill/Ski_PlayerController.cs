@@ -24,7 +24,7 @@ public class Ski_PlayerController : MonoBehaviour {
 
     bool buttonDown = false;
 
-    public Downhill_ItemType.itemType playerState;
+    public PlayerState playerState;
 
     public GameObject playerImage;
     public GameObject[]
@@ -80,6 +80,8 @@ public class Ski_PlayerController : MonoBehaviour {
         reverseCoolTime = 7.0f;
         rotateIncCoolTime = 7.0f;
         rotateDecCoolTime = 7.0f;
+
+        playerState = PlayerState.NORMAL;
     }
 
     private void Update() {
@@ -90,10 +92,10 @@ public class Ski_PlayerController : MonoBehaviour {
         rb.AddForce(ForwardForce() * additionalForceByEffect);
 
         //부스팅 효과
-        if(playerState == Downhill_ItemType.itemType.BOOST) {
+        if(playerState == PlayerState.BOOSTING) {
             boostCoolTime -= Time.deltaTime;
             if(boostCoolTime < 0) {
-                playerState = Downhill_ItemType.itemType.NORMAL;
+                playerState = PlayerState.NORMAL;
                 boostCoolTime = 3.0f;
                 additionalForceByEffect = 1.0f;
             }
@@ -103,10 +105,10 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         //눈덩이 과속방지턱 효과
-        if(playerState == Downhill_ItemType.itemType.SPEED_REDUCE) {
+        if(playerState == PlayerState.SPEED_REDUCING) {
             speedReduceCoolTime -= Time.deltaTime;
             if(speedReduceCoolTime < 0) {
-                playerState = Downhill_ItemType.itemType.NORMAL;
+                playerState = PlayerState.NORMAL;
                 speedReduceCoolTime = 5.0f;
                 additionalForceByEffect = 1.0f;
             }
@@ -115,11 +117,11 @@ public class Ski_PlayerController : MonoBehaviour {
             }
         }
 
-        //고라니 효과
-        if(playerState == Downhill_ItemType.itemType.SPEED_ZERO) {
+        //곰 충돌 효과
+        if(playerState == PlayerState.SPEED_ZERO) {
             speedZeroCoolTime -= Time.deltaTime;
             if(speedZeroCoolTime < 0) {
-                playerState = Downhill_ItemType.itemType.NORMAL;
+                playerState = PlayerState.NORMAL;
                 speedZeroCoolTime = 1.5f;
                 additionalForceByEffect = 1.0f;
             }
@@ -129,36 +131,36 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         //날벌레 효과
-        if(playerState == Downhill_ItemType.itemType.REVERSE_ROTATE) {
+        if(playerState == PlayerState.REVERSE_ROTATE) {
             reverseCoolTime -= Time.deltaTime;
             if(reverseCoolTime < 0) {
-                playerState = Downhill_ItemType.itemType.NORMAL;
+                playerState = PlayerState.NORMAL;
                 reverseCoolTime = 7.0f;
             }
         }
 
         //눈에 박혀있는 폴 효과
-        if (playerState == Downhill_ItemType.itemType.ROTATE_INCREASE) {
+        if (playerState == PlayerState.ROTATING_INC) {
             rotateIncCoolTime -= Time.deltaTime;
             if(rotateIncCoolTime < 0) {
-                playerState = Downhill_ItemType.itemType.NORMAL;
+                playerState = PlayerState.NORMAL;
                 rotateIncCoolTime = 7.0f;
                 additionalAngularForceByEffect = 1.0f;
             }
         }
 
         //눈에 뿌려진 검은 기름 효과
-        if (playerState == Downhill_ItemType.itemType.ROTATE_REDUCE) {
+        if (playerState == PlayerState.ROTATING_DEC) {
             rotateDecCoolTime -= Time.deltaTime;
             if(rotateDecCoolTime < 0) {
-                playerState = Downhill_ItemType.itemType.NORMAL;
+                playerState = PlayerState.NORMAL;
                 rotateDecCoolTime = 7.0f;
                 additionalAngularForceByEffect = 1.0f;
             }
         }
 
         if (buttonDown) {
-            if(playerState == Downhill_ItemType.itemType.REVERSE_ROTATE) {
+            if(playerState == PlayerState.REVERSE_ROTATE) {
                 rb.angularVelocity += statBasedRotSenstive * -rotateDir * additionalAngularForceByEffect;
             }
             else {
@@ -276,33 +278,46 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public void itemCheck(GameObject obj) {
         if (obj.tag == "Item") {
-            Downhill_ItemType type = obj.GetComponent<Downhill_ItemType>();
-            playerState = type.type;
-            Debug.Log(type.type);
-            switch (type.type) {
-                case Downhill_ItemType.itemType.BOOST:
+            Item item = obj.GetComponent<Item>();
+            switch (item.item_dh) {
+                case ItemType.DH.BOOSTING_HILL:
+                    playerState = PlayerState.BOOSTING;
                     additionalForceByEffect = 1.0f;
                     break;
-                case Downhill_ItemType.itemType.POINT:
+                case ItemType.DH.POINT:
                     dM.scoreInc(50);
                     break;
-                case Downhill_ItemType.itemType.SPEED_REDUCE:
+                case ItemType.DH.ANTI_SPEED_HILL:
+                    playerState = PlayerState.SPEED_REDUCING;
                     additionalForceByEffect = 0.3f;
                     break;
-                case Downhill_ItemType.itemType.SPEED_ZERO:
+                case ItemType.DH.ENEMY_BEAR:
+                    playerState = PlayerState.SPEED_ZERO;
                     additionalForceByEffect = 0;
                     break;
-                case Downhill_ItemType.itemType.REVERSE_ROTATE:
-
+                case ItemType.DH.ENEMY_BUGS:
+                    playerState = PlayerState.REVERSE_ROTATE;
                     break;
-                case Downhill_ItemType.itemType.ROTATE_INCREASE:
+                case ItemType.DH.OBSTACLE_POLL:
+                    playerState = PlayerState.ROTATING_INC;
                     additionalAngularForceByEffect = 1.5f;
                     break;
-                case Downhill_ItemType.itemType.ROTATE_REDUCE:
+                case ItemType.DH.OBSTACLE_OIL:
+                    playerState = PlayerState.ROTATING_DEC;
                     additionalAngularForceByEffect = 0.5f;
                     break;
             }
             Destroy(obj);
         }
+    }
+
+    public enum PlayerState {
+        NORMAL,
+        BOOSTING,
+        SPEED_REDUCING,
+        SPEED_ZERO,
+        REVERSE_ROTATE,
+        ROTATING_INC,
+        ROTATING_DEC
     }
 }

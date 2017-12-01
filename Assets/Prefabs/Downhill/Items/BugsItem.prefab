@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212791711947284592}
   - component: {fileID: 114399042297796460}
   - component: {fileID: 61883485685027606}
-  - component: {fileID: 114790095482277228}
+  - component: {fileID: 114722959394393698}
   m_Layer: 0
   m_Name: BugsItem
   m_TagString: Item
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 2
---- !u!114 &114790095482277228
+--- !u!114 &114722959394393698
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,10 +88,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1884966913179050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 890cbad4d837d5f45a1ebcc41d52f35e, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f71be1a421d254194476c2119239d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  gameType: 2
+  item_dh: 4
+  item_sj: 0
+  item_st: 0
 --- !u!212 &212791711947284592
 SpriteRenderer:
   m_ObjectHideFlags: 1

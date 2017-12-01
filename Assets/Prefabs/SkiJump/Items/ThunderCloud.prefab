@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1892794990887796}
+  m_RootGameObject: {fileID: 1434396536108152}
   m_IsPrefabParent: 1
---- !u!1 &1892794990887796
+--- !u!1 &1434396536108152
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4304049036748306}
-  - component: {fileID: 212937442446213928}
-  - component: {fileID: 114767155906896800}
-  - component: {fileID: 61230550774578538}
-  - component: {fileID: 114490636639683146}
+  - component: {fileID: 4561308543635282}
+  - component: {fileID: 114820452204625964}
+  - component: {fileID: 114858688206400120}
+  - component: {fileID: 212552704211233650}
+  - component: {fileID: 61719861290585762}
   m_Layer: 0
-  m_Name: PollObstacleItem
+  m_Name: ThunderCloud
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4304049036748306
+--- !u!4 &4561308543635282
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1892794990887796}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.279, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_GameObject: {fileID: 1434396536108152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.71, y: 21.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61230550774578538
+--- !u!61 &61719861290585762
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1892794990887796}
+  m_GameObject: {fileID: 1434396536108152}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -60,7 +60,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.5337499, y: 1.53125}
-    newSize: {x: 2.3964844, y: 2.3925781}
+    newSize: {x: 1.5337499, y: 1.53125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -68,39 +68,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5337499, y: 1.53125}
   m_EdgeRadius: 0
---- !u!114 &114490636639683146
+--- !u!114 &114820452204625964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1892794990887796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8f71be1a421d254194476c2119239d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameType: 2
-  item_dh: 5
-  item_sj: 0
-  item_st: 0
---- !u!114 &114767155906896800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1892794990887796}
+  m_GameObject: {fileID: 1434396536108152}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5fda7a2624801b44bf616bc4c8a1fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 2
---- !u!212 &212937442446213928
+  _type: 1
+--- !u!114 &114858688206400120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434396536108152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f71be1a421d254194476c2119239d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 0
+  item_dh: 0
+  item_sj: 5
+  item_st: 0
+--- !u!212 &212552704211233650
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1892794990887796}
+  m_GameObject: {fileID: 1434396536108152}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.3964844, y: 2.3925781}
+  m_Size: {x: 1.5337499, y: 1.53125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
