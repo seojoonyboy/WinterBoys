@@ -16,7 +16,7 @@ MonoBehaviour:
   EnableAppInviteAPI: 1
   EnableDriveAPI: 0
   LoadProfileIcons: 1
-  LoadProfileImages: 1
+  LoadProfileImages: 0
   LoadQuestsImages: 1
   LoadQuestsIcons: 1
   LoadEventsIcons: 1
@@ -90,7 +90,7 @@ MonoBehaviour:
   CameraAPI: 1
   KeepManifestClean: 1
   GooglePlayServiceAppID: 216817929098
-  ToolbarSelectedIndex: 0
+  ToolbarSelectedIndex: 1
   base64EncodedPublicKey: REPLACE_WITH_YOUR_PUBLIC_KEY
   ShowStoreProducts: 1
   InAppProducts: []
@@ -104,13 +104,31 @@ MonoBehaviour:
     CurrentPlayerScore: []
   - IsOpen: 1
     _id: CgkItoX0qJgOEAIQAQ
-    _name: 'Skeleton '
+    _name: Skeleton
     _description: 
     _Texture: {fileID: 0}
     CurrentPlayerScore: []
   - IsOpen: 1
     _id: CgkItoX0qJgOEAIQAg
     _name: SkiJump
+    _description: 
+    _Texture: {fileID: 0}
+    CurrentPlayerScore: []
+  - IsOpen: 1
+    _id: CgkItoX0qJgOEAIQAA
+    _name: new leaderboard1
+    _description: 
+    _Texture: {fileID: 0}
+    CurrentPlayerScore: []
+  - IsOpen: 1
+    _id: CgkItoX0qJgOEAIQAQ
+    _name: new leaderboard2
+    _description: 
+    _Texture: {fileID: 0}
+    CurrentPlayerScore: []
+  - IsOpen: 1
+    _id: CgkItoX0qJgOEAIQAg
+    _name: new leaderboard3
     _description: 
     _Texture: {fileID: 0}
     CurrentPlayerScore: []
