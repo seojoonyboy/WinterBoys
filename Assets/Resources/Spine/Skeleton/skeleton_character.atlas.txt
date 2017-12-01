@@ -1,0 +1,62 @@
+
+skeleton_character.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bar_l
+  rotate: true
+  xy: 986, 181
+  size: 69, 207
+  orig: 69, 207
+  offset: 0, 0
+  index: -1
+bar_r
+  rotate: true
+  xy: 986, 110
+  size: 69, 207
+  orig: 69, 207
+  offset: 0, 0
+  index: -1
+blue
+  rotate: false
+  xy: 2, 2
+  size: 232, 248
+  orig: 232, 248
+  offset: 0, 0
+  index: -1
+foot_l
+  rotate: true
+  xy: 704, 3
+  size: 63, 115
+  orig: 63, 115
+  offset: 0, 0
+  index: -1
+foot_r
+  rotate: false
+  xy: 1195, 136
+  size: 63, 114
+  orig: 63, 114
+  offset: 0, 0
+  index: -1
+plat
+  rotate: false
+  xy: 704, 68
+  size: 280, 182
+  orig: 280, 182
+  offset: 0, 0
+  index: -1
+red
+  rotate: false
+  xy: 236, 2
+  size: 232, 248
+  orig: 232, 248
+  offset: 0, 0
+  index: -1
+yellow
+  rotate: false
+  xy: 470, 2
+  size: 232, 248
+  orig: 232, 248
+  offset: 0, 0
+  index: -1
