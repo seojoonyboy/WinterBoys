@@ -10,6 +10,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System;
 
 
 #if (UNITY_IPHONE && !UNITY_EDITOR) || SA_DEBUG_MODE
@@ -47,7 +48,12 @@ public class ISN_Build  {
 		string[] dataArray 		= data.Split(SA.Common.Data.Converter.DATA_SPLITTER);
 
 		_Version = dataArray[0];
-		_Number = System.Convert.ToInt32(dataArray[1]);
+
+		string temp_number = dataArray[1].Trim();
+		if(String.IsNullOrEmpty(temp_number))
+			_Number = 1;
+		else			
+			_Number = System.Convert.ToInt32(temp_number);
 	}
 
 

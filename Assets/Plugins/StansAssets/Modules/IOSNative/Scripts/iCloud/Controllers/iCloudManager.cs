@@ -27,20 +27,24 @@ public class iCloudManager : SA.Common.Pattern.Singleton<iCloudManager> {
 	public static event Action<List<iCloudData>> OnStoreDidChangeExternally = delegate {};
 
 
+    private Dictionary<string, List<Action<iCloudData>>> s_requestDataCallbacks = new Dictionary<string, List<Action<iCloudData>>>();
+
+
+
 
 	#if ( (UNITY_IPHONE || UNITY_TVOS)  && !UNITY_EDITOR) || SA_DEBUG_MODE
 
 	[DllImport ("__Internal")]
-	private static extern void _setString(string key, string val);
+    private static extern void _ISN_SetString(string key, string val);
 
 	[DllImport ("__Internal")]
-	private static extern void _setDouble(string key, float val);
+    private static extern void _ISN_SetDouble(string key, float val);
 	
 	[DllImport ("__Internal")]
-	private static extern void _setData(string key, string val);
+    private static extern void _ISN_SetData(string key, string val);
 
 	[DllImport ("__Internal")]
-	private static extern void _requestDataForKey(string key);
+    private static extern void _ISN_RequestDataForKey(string key);
 	#endif
 	
 
@@ -51,33 +55,110 @@ public class iCloudManager : SA.Common.Pattern.Singleton<iCloudManager> {
 	void Awake() {
 		DontDestroyOnLoad(gameObject);
 	}
-		
 
-	public void setString(string key, string val) {
+    [System.Obsolete("use SetString instead")]
+    public void setString(string key, string val) {
+        SetString(key, val);
+    }
+
+
+	public void SetString(string key, string val) {
 		#if ( (UNITY_IPHONE || UNITY_TVOS)  && !UNITY_EDITOR) || SA_DEBUG_MODE
-			_setString(key, val);
+        _ISN_SetString(key, val);
 		#endif
 	}
 
-	public void setFloat(string key, float val) {
+
+    [System.Obsolete("use SetFloat instead")]
+    public void setFloat(string key, float val) {
+        SetFloat(key, val);
+    }
+
+    public void SetFloat(string key, float val) {
 		#if ( (UNITY_IPHONE || UNITY_TVOS)  && !UNITY_EDITOR) || SA_DEBUG_MODE
-			_setDouble(key, val);
+        _ISN_SetDouble(key, val);
 		#endif
 	}
 
-	public void setData(string key, byte[] val) {
+
+    [System.Obsolete("use SetData instead")]
+    public void setData(string key, byte[] val) {
+        SetData(key, val);
+    }
+
+
+    public void SetData(string key, byte[] val) {
+
+        //JsonUtility.to
 
 
 		#if ( (UNITY_IPHONE || UNITY_TVOS)  && !UNITY_EDITOR) || SA_DEBUG_MODE
 			string bytesString = System.Convert.ToBase64String (val);
-			_setData(key, bytesString);
+            _ISN_SetData(key, bytesString);
 		#endif
 	}
 
-	public void requestDataForKey(string key) {
-		#if ( (UNITY_IPHONE || UNITY_TVOS)  && !UNITY_EDITOR) || SA_DEBUG_MODE
-			_requestDataForKey(key);
-		#endif
+
+    public void SetObject(string key, object val) {
+#if UNITY_2017
+		string serializedValue = JsonUtility.ToJson(val);
+        SetString(key, serializedValue);
+#endif
+    }
+
+
+    public void SetInt(string key, int val) {
+        string serializedValue = System.Convert.ToString(val);
+        SetString(key, serializedValue);
+    }
+
+    public void SetLong(string key, long val) {
+        string serializedValue = System.Convert.ToString(val);
+        SetString(key, serializedValue);
+    }
+
+    public void SetUlong(string key, ulong val) {
+        string serializedValue = System.Convert.ToString(val);
+        SetString(key, serializedValue);
+    }
+
+    public void SetArray(string key, List<object> val) {
+        string serializedValue = SA.Common.Data.Json.Serialize(val);
+        SetString(key, serializedValue);
+    }
+
+    public void SetDictionary(string key, Dictionary<object, object> val) {
+        string serializedValue = SA.Common.Data.Json.Serialize(val);
+        SetString(key, serializedValue);
+    }
+
+
+    [System.Obsolete("use RequestDataForKey instead")]
+    public void requestDataForKey(string key) {
+        RequestDataForKey(key);
+    }
+
+
+    public void RequestDataForKey(string key) {
+        RequestDataForKey(key, null);
+    }
+
+    public void RequestDataForKey(string key, Action<iCloudData> callback) {
+
+
+        if(callback != null) {
+            if (s_requestDataCallbacks.ContainsKey(key)) {
+                s_requestDataCallbacks[key].Add(callback);
+                return;
+            } else {
+                s_requestDataCallbacks.Add(key, new List<Action<iCloudData>>() { callback });
+            }
+        }
+       
+
+#if ((UNITY_IPHONE || UNITY_TVOS) && !UNITY_EDITOR) || SA_DEBUG_MODE
+        _ISN_RequestDataForKey(key);
+#endif
 	}
 
 
@@ -128,6 +209,19 @@ public class iCloudManager : SA.Common.Pattern.Singleton<iCloudManager> {
 		data = array.Split(SA.Common.Data.Converter.DATA_SPLITTER); 
 
 		iCloudData package = new iCloudData (data[0], data [1]);
+
+
+
+        if(s_requestDataCallbacks.ContainsKey(package.Key)) {
+            List<Action<iCloudData>> registredCallbacks = s_requestDataCallbacks[package.Key];
+            s_requestDataCallbacks.Remove(package.Key);
+
+            foreach (var cb in registredCallbacks) {
+                cb.Invoke(package);
+            }
+        }
+
+       
 
 		OnCloudDataReceivedAction(package);
 	}

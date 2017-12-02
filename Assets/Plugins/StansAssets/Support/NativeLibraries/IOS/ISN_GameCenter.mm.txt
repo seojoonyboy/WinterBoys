@@ -1641,13 +1641,7 @@ static ISN_SaveGame *sg_sharedHelper = nil;
                               [data appendString:@""];
                           }
                           
-                          
-                          
-                          NSString *str = [data copy];
-#if UNITY_VERSION < 500
-                          [str autorelease];
-#endif
-                          UnitySendMessage("GameCenterManager", "OnUserInfoLoadedEvent", [ISN_DataConvertor NSStringToChar:str]);
+                          UnitySendMessage("GameCenterManager", "OnUserInfoLoadedEvent", [ISN_DataConvertor NSStringToChar:data]);
                           
                       }
                       
@@ -2129,13 +2123,20 @@ static ISN_SaveGame *sg_sharedHelper = nil;
                       -(void) startBrowsingForNearbyPlayers {
                           [[GKMatchmaker sharedMatchmaker] startBrowsingForNearbyPlayersWithHandler:^(GKPlayer *player, BOOL reachable) {
                               
+                              
+                              [[ISN_GameCenterManager sharedInstance] savePlayerInfo:player];
+                              
                               NSMutableString * data = [[NSMutableString alloc] init];
-                              
-                              
                               [data appendString:player.playerID];
                               [data appendString: UNITY_SPLITTER];
                               
-                              [data appendString: [NSString stringWithFormat:@"%d", reachable]];
+                              if(reachable) {
+                                  [data appendString: @"True"];
+                              } else {
+                                   [data appendString: @"False"];
+                              }
+                              
+                              
                               
                               UnitySendMessage("GameCenter_RTM", "OnNearbyPlayerInfoReceived", [ISN_DataConvertor NSStringToChar:data]);
                               
@@ -3203,7 +3204,12 @@ static ISN_SaveGame *sg_sharedHelper = nil;
                           
                           void _ISN_loadGKPlayerPhoto(char* playerId, int size) {
                               NSString* mPlayerId = [ISN_DataConvertor charToNSString:playerId];
-                              [[ISN_GameCenterManager sharedInstance] loadImageForPlayerWithPlayerId:mPlayerId size:GKPhotoSizeNormal];
+                              
+                              if(size == 0) {
+                                  [[ISN_GameCenterManager sharedInstance] loadImageForPlayerWithPlayerId:mPlayerId size:GKPhotoSizeSmall];
+                              } else {
+                                  [[ISN_GameCenterManager sharedInstance] loadImageForPlayerWithPlayerId:mPlayerId size:GKPhotoSizeNormal];
+                              }
                           }
                           
                           void _ISN_RetrieveFriends() {

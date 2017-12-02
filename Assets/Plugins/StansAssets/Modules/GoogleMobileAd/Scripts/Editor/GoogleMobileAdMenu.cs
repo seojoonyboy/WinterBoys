@@ -87,19 +87,24 @@ public class GoogleMobileAdMenu : EditorWindow {
 		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/interstitial-181");
 	}
 
+	[MenuItem("Window/Stan's Assets/GoogleMobileAd/Documentation/Implementation/Rewarded Ads", false, 106)]
+	public static void GMAIRewardedAds() {
+		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/rewarded-ads-539");
+	}
+
 	[MenuItem("Window/Stan's Assets/GoogleMobileAd/Documentation/Implementation/In App Purchase Listener", false, 106)]
 	public static void GMAIInAppPurchaseListener() {
 		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/inapppurchaselistener-122");
 	}
 
+	[MenuItem("Window/Stan's Assets/GoogleMobileAd/Documentation/Implementation/Mediation Networks", false, 106)]
+	public static void GMAIMediationNetworks() {
+		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/mediation-networks-534");
+	}
+
 	[MenuItem("Window/Stan's Assets/GoogleMobileAd/Documentation/Implementation/Prefab Solution", false, 106)]
 	public static void GMAIPrefabSolution() {
 		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/prefab-solution-185");
-	}
-
-	[MenuItem("Window/Stan's Assets/GoogleMobileAd/Documentation/Implementation/Video Tutorials", false, 106)]
-	public static void GMAIVideoTutorials() {
-		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/video-tutorials-184");
 	}
 
 	//--------------------------------------
@@ -130,7 +135,15 @@ public class GoogleMobileAdMenu : EditorWindow {
 	public static void GMAMMigratingToUnity5() {
 		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/migrating-to-unity5-365");
 	}
-	
+
+	//--------------------------------------
+	//  Troubleshooting
+	//--------------------------------------
+
+	[MenuItem("Window/Stan's Assets/GoogleMobileAd/Documentation/Troubleshooting", false, 106)]
+	public static void GMATroubleshooting() {
+		Application.OpenURL("https://unionassets.com/google-mobile-ads-sdk/manual#troubleshooting");
+	}
 	#endif
 
 }

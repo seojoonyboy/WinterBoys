@@ -53,7 +53,7 @@ public interface GoogleMobileAdInterface  {
 
 	//Actions
 	event Action OnInterstitialLoaded;
-	event Action OnInterstitialFailedLoading;
+    event Action<int> OnInterstitialFailedLoading;
 	event Action OnInterstitialOpened;
 	event Action OnInterstitialClosed;
 	event Action OnInterstitialLeftApplication;

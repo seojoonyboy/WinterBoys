@@ -20,7 +20,7 @@ public class WP8AdMobController : SA.Common.Pattern.Singleton<WP8AdMobController
 	
 	//Actions
 	public event Action OnInterstitialLoaded 			= delegate {};
-	public event Action OnInterstitialFailedLoading 	= delegate {};
+	public event Action<int> OnInterstitialFailedLoading 	= delegate {};
 	public event Action OnInterstitialOpened 			= delegate {};
 	public event Action OnInterstitialClosed 			= delegate {};
 	public event Action OnInterstitialLeftApplication  	= delegate {};
@@ -424,7 +424,7 @@ public class WP8AdMobController : SA.Common.Pattern.Singleton<WP8AdMobController
 	}
 	
 	private void OnInterstitialAdFailedToLoad(string data) {
-		OnInterstitialFailedLoading();
+		OnInterstitialFailedLoading(0);
 	}
 	
 	private void OnInterstitialAdOpened(string data) {

@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class UltimateMobileSettings : ScriptableObject {
 
-	public const string VERSION_NUMBER = "9.9/19";
+	public const string VERSION_NUMBER = "10.2/" + SA.Common.Config.LIB_VERSION;
 	
 	private const string UMSettingsAssetName = "UltimateMobileSettings";
 	private const string UMSettingsAssetExtension = ".asset";

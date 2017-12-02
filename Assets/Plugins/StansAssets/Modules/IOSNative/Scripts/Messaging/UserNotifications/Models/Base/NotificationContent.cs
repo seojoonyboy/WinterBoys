@@ -16,7 +16,18 @@ namespace SA.IOSNative.UserNotifications {
 
 	public class NotificationContent  {
 
+		public NotificationContent() {
+		}
 
+		public NotificationContent(Dictionary<string, object> contentDictionary) {
+			Title = (string)contentDictionary ["title"];
+			Subtitle = (string)contentDictionary ["subtitle"];
+			Body = (string)contentDictionary ["body"];
+            Sound = (string)contentDictionary["sound"];
+			LaunchImageName = (string)contentDictionary ["launchImageName"];
+			Badge = int.Parse(contentDictionary ["badge"].ToString());
+			UserInfo = (Dictionary<string, object>) SA.Common.Data.Json.Deserialize (contentDictionary ["userInfo"].ToString());
+		}
 		/// <summary>
 		/// A short description of the reason for the alert.
 		/// </summary>
@@ -31,6 +42,11 @@ namespace SA.IOSNative.UserNotifications {
 		/// The message displayed in the notification alert.
 		/// </summary>
 		public string Body = string.Empty;
+
+        /// <summary>
+        /// The notification soound name.
+        /// </summary>
+        public string Sound = string.Empty;
 
 
 		/// <summary>
@@ -50,7 +66,16 @@ namespace SA.IOSNative.UserNotifications {
 		public Dictionary<string, object> UserInfo =  new Dictionary<string, object>();
 
 		public override string ToString() {
-			return "{" + string.Format ("\"title\" : \"{0}\", \"subtitle\" : \"{1}\", \"body\" : \"{2}\", \"badge\" : {3}, \"launchImageName\" : \"{4}\"", this.Title, this.Subtitle, this.Body, this.Badge, this.LaunchImageName) + "}";
+			string userInfoString = SA.Common.Data.Json.Serialize (UserInfo);
+			return "{" + string.Format ("\"title\" : \"{0}\", " +
+                                        "\"subtitle\" : \"{1}\", " +
+                                        "\"body\" : \"{2}\", " +
+                                        "\"sound\" : \"{3}\", " +
+                                        "\"badge\" : {4}, " +
+                                        "\"launchImageName\" : \"{5}\", " +
+                                        "\"userInfo\" : {6}", 
+
+                                        Title, Subtitle, Body, Sound, Badge, LaunchImageName, userInfoString) + "}";
 		}
 
 

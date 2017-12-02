@@ -21,7 +21,7 @@ using UnityEditor;
 
 public class IOSNativeSettings : ScriptableObject {
 
-	public const string VERSION_NUMBER = "9.7/19";
+    public const string VERSION_NUMBER = "9.11/" + SA.Common.Config.LIB_VERSION;
 
 
 	//--------------------------------------
@@ -45,6 +45,8 @@ public class IOSNativeSettings : ScriptableObject {
 	public bool EnableContactsAPI = false;
 	public bool EnableAppEventsAPI = false;
 	public bool EnableUserNotificationsAPI = false;
+
+	public bool EnablePermissionAPI = false;
 
 
 
@@ -70,6 +72,7 @@ public class IOSNativeSettings : ScriptableObject {
 
 	public bool InAppsEditorTesting = true;
 	public bool CheckInternetBeforeLoadRequest = false;
+	public bool PromotedPurchaseSupport = true;
 	public TransactionsHandlingMode  TransactionsHandlingMode = TransactionsHandlingMode.Automatic;
 
 	public List<string> DefaultStoreProductsView = new List<string>();

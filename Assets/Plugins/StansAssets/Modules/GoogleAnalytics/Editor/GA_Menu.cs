@@ -33,7 +33,7 @@ namespace SA.Analytics.Google {
 		[MenuItem("Window/Stan's Assets/Google Analytics/Create Analytics GameObject")]
 		public static void Create() {
 			GameObject an = new GameObject("Google Analytics");
-			an.AddComponent<GA_Manager>();
+			an.AddComponent<Manager>();
 			Selection.activeObject = an;
 		}
 

@@ -71,6 +71,8 @@ public class GoogleMobileAdSettingsEditor : Editor {
 
 		GeneralOptions();
 		EditorGUILayout.Space();
+		DownloadSDK();
+		EditorGUILayout.Space();
 		MainSettings();
 		EditorGUILayout.Space();
 		EditorTesting();
@@ -211,6 +213,26 @@ public class GoogleMobileAdSettingsEditor : Editor {
 		EditorGUILayout.Space();
 		
 	}
+
+	private void DownloadSDK() {
+		EditorGUILayout.HelpBox("Download SDK", MessageType.None);
+
+		EditorGUILayout.BeginHorizontal ();
+
+		EditorGUILayout.LabelField ("Google AdMob", GUILayout.Width (150.0f));
+
+		EditorGUILayout.Space();
+
+		if (GUILayout.Button ("[Download SDK]", GUILayout.Width (120.0f))) {
+			Application.OpenURL ("https://developers.google.com/admob/ios/download");
+		}
+		
+		EditorGUILayout.EndHorizontal ();
+		EditorGUILayout.Space ();
+
+	}
+
+
 	
 
 	private void PluginSettings() {
@@ -291,7 +313,7 @@ public class GoogleMobileAdSettingsEditor : Editor {
 		
 		GoogleMobileAdSettings.Instance.Android_BannersUnitId = "ca-app-pub-6101605888755494/1824764765";
 		GoogleMobileAdSettings.Instance.Android_InterstisialsUnitId = "ca-app-pub-6101605888755494/3301497967";
-		GoogleMobileAdSettings.Instance.Android_RewardedVideoAdUnitId = "ca-app-pub-6101605888755494/4996523169";
+		GoogleMobileAdSettings.Instance.Android_RewardedVideoAdUnitId = "ca-app-pub-6101605888755494/5378283960";
 
 
 		
@@ -318,12 +340,12 @@ public class GoogleMobileAdSettingsEditor : Editor {
 		dev.IsOpen = false;
 		GoogleMobileAdSettings.Instance.AddDevice(dev);
 
-
-
-
-
-		
-		
+		if(EditorUserBuildSettings.activeBuildTarget.Equals(BuildTarget.Android))
+			SA.Common.Editor.Tools.ApplicationIdentifier = "com.unionassets.android.plugin.preview";
+		else if(EditorUserBuildSettings.activeBuildTarget.Equals(BuildTarget.iOS))
+			SA.Common.Editor.Tools.ApplicationIdentifier = "com.stansassets.iosnative.dev";
+		else
+			SA.Common.Editor.Tools.ApplicationIdentifier = "com.sa.gma";		
 	}
 	
 	public static void ResetSettings() {
@@ -592,7 +614,7 @@ public class GoogleMobileAdSettingsEditor : Editor {
 		SA.Manifest.ActivityTemplate launcherActivity = application.GetLauncherActivity();
 
 		SA.Manifest.PropertyTemplate targetSdk = Manifest.GetOrCreatePropertyWithTag ("uses-sdk");
-		targetSdk.SetValue ("android:targetSdkVersion", "25");
+		targetSdk.SetValue ("android:targetSdkVersion", "26");
 
 		SA.Manifest.ActivityTemplate AdActivity = application.GetOrCreateActivityWithName("com.google.android.gms.ads.AdActivity");
 		AdActivity.SetValue("android:configChanges", "keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize");

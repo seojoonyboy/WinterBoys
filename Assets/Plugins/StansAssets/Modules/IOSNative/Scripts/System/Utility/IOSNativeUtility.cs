@@ -22,6 +22,9 @@ public class IOSNativeUtility : SA.Common.Pattern.Singleton<IOSNativeUtility> {
 
 	#if (UNITY_IPHONE && !UNITY_EDITOR) || SA_DEBUG_MODE
 	[DllImport ("__Internal")]
+	private static extern void _ISN_CopyToClipboard(string text);
+
+	[DllImport ("__Internal")]
 	private static extern void _ISN_RedirectToAppStoreRatingPage(string appId);
 
 	[DllImport ("__Internal")]
@@ -64,6 +67,13 @@ public class IOSNativeUtility : SA.Common.Pattern.Singleton<IOSNativeUtility> {
 	public void GetLocale() {
 		#if (UNITY_IPHONE && !UNITY_EDITOR) || SA_DEBUG_MODE
 		_ISN_GetLocale();
+		#endif
+	}
+
+
+	public static void CopyToClipboard(string text) {
+		#if (UNITY_IPHONE && !UNITY_EDITOR) || SA_DEBUG_MODE
+		_ISN_CopyToClipboard(text);
 		#endif
 	}
 

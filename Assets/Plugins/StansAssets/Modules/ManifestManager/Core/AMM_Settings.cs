@@ -16,6 +16,6 @@ namespace SA.Manifest {
 
 	public class Settings  {
 
-		public const string VERSION_NUMBER = "2.5/19";
+        public const string VERSION_NUMBER = "2.9/" + Common.Config.LIB_VERSION;
 	}
 }

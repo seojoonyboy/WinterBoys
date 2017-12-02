@@ -5,7 +5,7 @@ using System.Collections;
 public static class UM_AdManager  {
 
 	public static event Action OnInterstitialLoaded 		= delegate{};
-	public static event Action OnInterstitialLoadFail 		= delegate{};
+	public static event Action<int> OnInterstitialLoadFail 		= delegate{};
 	public static event Action OnInterstitialClosed 		= delegate{};
 
 	private static bool _IsInited = false ;
@@ -426,8 +426,8 @@ public static class UM_AdManager  {
 		OnInterstitialLoaded();
 	}
 
-	private static void InterstitialLoadFailHandler() {
-		OnInterstitialLoadFail();
+	private static void InterstitialLoadFailHandler(int errorCode) {
+		OnInterstitialLoadFail(errorCode);
 	}
 
 	private static void InterstitialClosedHandler() {
@@ -445,7 +445,7 @@ public static class UM_AdManager  {
 				SA_AmazonAdsManager.Instance.ShowInterstitial();
 			}
 		} else {
-			OnInterstitialLoadFail();
+			OnInterstitialLoadFail(0);
 		}
 	}
 

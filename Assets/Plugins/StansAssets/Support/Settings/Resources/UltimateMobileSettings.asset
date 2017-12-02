@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91a7deec5b9f48e785f526d406a9b0f, type: 3}
   m_Name: UltimateMobileSettings
   m_EditorClassIdentifier: 
-  ToolbarSelectedIndex: 1
+  ToolbarSelectedIndex: 0
   InAppProducts: []
   TransactionsHandlingMode: 0
   InApps_EditorFillRateIndex: 4

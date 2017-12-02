@@ -10,7 +10,7 @@ using System.Collections;
 
 public class MNUseExample : MNFeaturePreview {
 
-	public string appleId = "";
+	public string appleId = "itms-apps://itunes.apple.com/id375380948?mt=8";
 	public string androidAppUrl = "market://details?id=com.google.earth";
 
 	void Awake() {
@@ -24,32 +24,38 @@ public class MNUseExample : MNFeaturePreview {
 		GUI.Label(new Rect(StartX, StartY, Screen.width, 40), "Native Pop Ups", style);
 		StartY+= YLableStep;
 
-
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Rate PopUp with events")) {
-			MobileNativeRateUs ratePopUp =  new MobileNativeRateUs("Like this game?", "Please rate to support future updates!");
-			ratePopUp.SetAppleId(appleId);
-			ratePopUp.SetAndroidAppUrl(androidAppUrl);
-			ratePopUp.OnComplete += OnRatePopUpClose;
 
-			ratePopUp.Start();
+			MNRateUsPopup rateUs = new MNRateUsPopup ("rate us", "rate us, please", "Rate Us", "No, Thanks", "Later");
+			rateUs.SetAppleId (appleId);
+			rateUs.SetAndroidAppUrl (androidAppUrl);
+			rateUs.AddDeclineListener (() => { Debug.Log("rate us declined"); });
+			rateUs.AddRemindListener (() => { Debug.Log("remind me later"); });
+			rateUs.AddRateUsListener (() => { Debug.Log("rate us!!!"); });
+			rateUs.AddDismissListener (() => { Debug.Log("rate us dialog dismissed :("); });
+			rateUs.Show ();
 
-
-		}
-		
+		}		
 		
 		StartX += XButtonStep;
-		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Dialog PopUp")) {
-			MobileNativeDialog dialog = new MobileNativeDialog("Dialog Titile", "Dialog message");
-			dialog.OnComplete += OnDialogClose;
+		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Dialog PopUp")) {			
 
-			Invoke("Dismiss", 2.0f);
-		}
-		
+			MNPopup popup = new MNPopup ("title", "dialog message");
+			popup.AddAction ("action1", () => {Debug.Log("action 1 action callback");});
+			popup.AddAction ("action2", () => {Debug.Log("action 2 action callback");});
+			popup.AddDismissListener (() => {Debug.Log("dismiss listener");});
+			popup.Show ();
+
+		}		
 		
 		StartX += XButtonStep;
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Message PopUp")) {
-			MobileNativeMessage msg = new MobileNativeMessage("Message Titile", "Message message");
-			msg.OnComplete += OnMessageClose;
+						
+			MNPopup popup = new MNPopup ("title", "dialog message");
+			popup.AddAction ("Ok", () => {Debug.Log("Ok action callback");});
+			popup.AddDismissListener (() => {Debug.Log("dismiss listener");});
+			popup.Show ();
+			
 		}
 
 		StartY += YButtonStep;
@@ -65,11 +71,6 @@ public class MNUseExample : MNFeaturePreview {
 		}
 		
 	}
-
-	private void Dismiss() {
-		Debug.Log("DIALOG DISMISS");
-		MNAndroidNative.dismissDialog();
-	}
 	
 	//--------------------------------------
 	//  GET/SET
@@ -79,55 +80,8 @@ public class MNUseExample : MNFeaturePreview {
 	//  EVENTS
 	//--------------------------------------
 
-
 	private void OnPreloaderTimeOut() {
 		MNP.HidePreloader();
 	}
-	
-
-	
-	private void OnRatePopUpClose(MNDialogResult result) {
-
-		//parsing result
-		switch(result) {
-		case MNDialogResult.RATED:
-			Debug.Log ("Rate Option pickied");
-			break;
-		case MNDialogResult.REMIND:
-			Debug.Log ("Remind Option pickied");
-			break;
-		case MNDialogResult.DECLINED:
-			Debug.Log ("Declined Option pickied");
-			break;
-		}
-
-		new MobileNativeMessage("Result", result.ToString() + " button pressed");
-
-	}
-	
-	private void OnDialogClose(MNDialogResult result) {
-		
-
-		//parsing result
-		switch(result) {
-		case MNDialogResult.YES:
-			Debug.Log ("Yes button pressed");
-			break;
-		case MNDialogResult.NO:
-			Debug.Log ("No button pressed");
-			break;
-			
-		}
-
-		new MobileNativeMessage("Result", result.ToString() + " button pressed");
-	}
-	
-	private void OnMessageClose() {
-
-		new MobileNativeMessage("Result", "Message Closed");
-	}
-
-
-
 
 }

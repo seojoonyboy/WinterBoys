@@ -17,6 +17,27 @@
 #endif
 
 
+@interface NonRotatingUIImagePickerController : UIImagePickerController
+
+@end
+
+@implementation NonRotatingUIImagePickerController
+
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait || [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown) {
+        return [[UIDevice currentDevice] orientation];
+    }
+
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+@end
 
 @interface UIImage (fixOrientation)
 
@@ -251,10 +272,11 @@ static UIImagePickerController *_imagePicker = NULL;
     UIViewController *vc =  UnityGetGLViewController();
     
     if(_imagePicker == NULL) {
-        _imagePicker = [[UIImagePickerController alloc] init];
+        _imagePicker = [[NonRotatingUIImagePickerController alloc] init];
         _imagePicker.delegate = self;
 
     }
+    //NonRotatingUIImagePickerController
     
     _imagePicker.sourceType = source;
     

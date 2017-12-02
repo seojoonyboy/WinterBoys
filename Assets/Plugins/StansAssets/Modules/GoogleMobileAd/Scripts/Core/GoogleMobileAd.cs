@@ -23,7 +23,7 @@ public class GoogleMobileAd  {
 	
 	//Actions
 	public static event Action OnInterstitialLoaded 			= delegate {};
-	public static event Action OnInterstitialFailedLoading	 	= delegate {};
+	public static event Action<int> OnInterstitialFailedLoading	 	= delegate {};
 	public static event Action OnInterstitialOpened 			= delegate {};
 	public static event Action OnInterstitialClosed 			= delegate {};
 	public static event Action OnInterstitialLeftApplication	= delegate {};
@@ -423,9 +423,9 @@ public class GoogleMobileAd  {
 		OnInterstitialLoaded();
 	}
 
-	private static void OnInterstitialFailedLoadingListner () {
+	private static void OnInterstitialFailedLoadingListner (int errorCode) {
 		_IsInterstitialReady = false;
-		OnInterstitialFailedLoading();
+		OnInterstitialFailedLoading(errorCode);
 	}
 
 	private static void OnInterstitialOpenedListner () {

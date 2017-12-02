@@ -17,7 +17,6 @@ public class UM_SocialExample : MonoBehaviour {
 
 	public Texture2D textureForPost;
 
-
 	void Awake() {
 		InitStyles();
 	}

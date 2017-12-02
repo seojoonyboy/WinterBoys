@@ -12,6 +12,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+using SA.IOSNative.StoreKit;
+
 public class PopUpExamples : BaseIOSFeaturePreview {
 
 	//--------------------------------------
@@ -88,6 +90,17 @@ public class PopUpExamples : BaseIOSFeaturePreview {
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Get Locale")) {
 			IOSNativeUtility.OnLocaleLoaded += GetLocale;
 			IOSNativeUtility.Instance.GetLocale();
+		}
+
+
+		StartX += XButtonStep;
+		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Store Review Popop")) {
+			
+			if(SK_StoreReviewController.IsAvaliable) {
+				SK_StoreReviewController.RrequestReview();
+			} else {
+				Debug.Log("StoreReviewController is not avaliable");
+			}
 		}
 
 

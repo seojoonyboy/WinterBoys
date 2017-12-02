@@ -16,10 +16,10 @@ using System.Collections.Generic;
 public class iCloudData  {
 
 
-	private string _key;
-	private string _val;
+    private string m_key;
+    private string m_val;
 
-	private bool _IsEmpty = false;
+    private bool m_IsEmpty = false;
 
 	
 	//--------------------------------------
@@ -27,68 +27,143 @@ public class iCloudData  {
 	//--------------------------------------
 
 	public iCloudData(string k, string v) {
-		_key = k;
-		_val = v;
+		m_key = k;
+		m_val = v;
 
-		if(_val.Equals("null")) {
+		if(m_val.Equals("null")) {
 			if(!IOSNativeSettings.Instance.DisablePluginLogs) 
 				ISN_Logger.Log ("ISN iCloud Empty set");
-			_IsEmpty = true;
+			m_IsEmpty = true;
 		}
 	}
 
 	//--------------------------------------
 	//  PUBLIC METHODS
 	//--------------------------------------
+
+
+    public T GetObject<T>() {
+#if UNITY_2017
+		return JsonUtility.FromJson<T>(StringValue);
+#else
+		return default(T);
+#endif
+	}
+
 	
 	//--------------------------------------
 	//  GET/SET
 	//--------------------------------------
 
-	public string key {
+    [System.Obsolete("use Key instead")]
+    public string key {get { return Key; } }
+
+	public string Key {
 		get {
-			return _key;
+			return m_key;
 		}
 	}
 
-	public string stringValue {
+    public bool IsEmpty {
+        get {
+            return m_IsEmpty;
+        }
+    }
+
+
+
+    [System.Obsolete("use StringValue instead")]
+    public string stringValue { get { return StringValue; } }
+
+	public string StringValue {
 		get {
-			if(_IsEmpty) {
+			if(m_IsEmpty) {
 				return null;
 			}
 
-			return _val;
+			return m_val;
 		}
 	}
 
-	public float floatValue {
+    [System.Obsolete("use FloatValue instead")]
+    public float floatValue { get { return FloatValue; } }
+
+	public float FloatValue {
 		get {
 
-			if(_IsEmpty) {
+			if(m_IsEmpty) {
 				return 0f;
 			}
 
-			return System.Convert.ToSingle (_val);
+			return System.Convert.ToSingle (m_val);
 		}
 	}
 
-	public byte[] bytesValue {
+    [System.Obsolete("use BytesValue instead")]
+    public byte[] bytesValue { get { return BytesValue; } }
+
+	public byte[] BytesValue {
 		get {
 
-			if(_IsEmpty) {
+			if(m_IsEmpty) {
 				return null;
 			}
 
-			return System.Convert.FromBase64String(_val);
+			return System.Convert.FromBase64String(m_val);
 		}
 	}
 
+    public List<object> ListValue {
+        get {
 
-	public bool IsEmpty {
-		get {
-			return _IsEmpty;
-		}
-	}
+            if (m_IsEmpty) {
+                return new List<object>();
+            }
+
+            return (List<object>) SA.Common.Data.Json.Deserialize(m_val);
+        }
+    }
+
+    public Dictionary<string, object> DictionaryValue {
+        get {
+
+            if (m_IsEmpty) {
+                return new Dictionary<string, object>();
+            }
+
+            return (Dictionary<string, object>)SA.Common.Data.Json.Deserialize(m_val);
+        }
+    }
+  
+
+
+    public int IntValue {
+        get {
+            if (m_IsEmpty) {
+                return 0;
+            }
+            return System.Convert.ToInt32(m_val);
+        }
+    }
+
+    public long LongValue {
+        get {
+            if (m_IsEmpty) {
+                return 0;
+            }
+            return System.Convert.ToInt64(m_val);
+        }
+    }
+
+    public ulong UlongValue {
+        get {
+            if (m_IsEmpty) {
+                return 0;
+            }
+            return System.Convert.ToUInt64(m_val);
+        }
+    }
+
 
 	
 	//--------------------------------------

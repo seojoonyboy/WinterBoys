@@ -64,7 +64,7 @@ MonoBehaviour:
   ExpandPSAPI: 0
   ExpandBillingAPI: 0
   ExpandSocialAPI: 0
-  ExpandCameraAPI: 1
+  ExpandCameraAPI: 0
   ThirdPartyParams: 0
   ShowPSSettingsResources: 0
   ShowActions: 0
@@ -77,6 +77,10 @@ MonoBehaviour:
   CheckAppLicenseAPI: 1
   NetworkStateAPI: 0
   FirebaseAnalytics: 0
+  FirebaseDynamicLinks: 0
+  FirebaseAppId: 
+  FirebaseApiKey: 
+  DynamicLinks: []
   InAppPurchasesAPI: 1
   GooglePlayServicesAPI: 1
   PlayServicesAdvancedSignInAPI: 1
@@ -89,8 +93,8 @@ MonoBehaviour:
   GalleryAPI: 1
   CameraAPI: 1
   KeepManifestClean: 1
-  GooglePlayServiceAppID: 216817929098
-  ToolbarSelectedIndex: 1
+  GooglePlayServiceAppID: 487564575414
+  ToolbarSelectedIndex: 0
   base64EncodedPublicKey: REPLACE_WITH_YOUR_PUBLIC_KEY
   ShowStoreProducts: 1
   InAppProducts: []
@@ -111,24 +115,6 @@ MonoBehaviour:
   - IsOpen: 1
     _id: CgkItoX0qJgOEAIQAg
     _name: SkiJump
-    _description: 
-    _Texture: {fileID: 0}
-    CurrentPlayerScore: []
-  - IsOpen: 1
-    _id: CgkItoX0qJgOEAIQAA
-    _name: new leaderboard1
-    _description: 
-    _Texture: {fileID: 0}
-    CurrentPlayerScore: []
-  - IsOpen: 1
-    _id: CgkItoX0qJgOEAIQAQ
-    _name: new leaderboard2
-    _description: 
-    _Texture: {fileID: 0}
-    CurrentPlayerScore: []
-  - IsOpen: 1
-    _id: CgkItoX0qJgOEAIQAg
-    _name: new leaderboard3
     _description: 
     _Texture: {fileID: 0}
     CurrentPlayerScore: []

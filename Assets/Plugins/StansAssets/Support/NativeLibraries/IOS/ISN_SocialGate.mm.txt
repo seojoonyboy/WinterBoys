@@ -603,6 +603,8 @@ static IOSInstaPlugin *_sharedInstance;
     [[ISN_NativeUtility sharedInstance] ISN_NativeLog: @"willBeginSendingToApplication"];
     UnitySendMessage("IOSInstagramManager", "OnInstaPostSuccess", [ISN_DataConvertor NSStringToChar:@""]);
     UnitySendMessage("IOSSocialManager", "OnInstaPostSuccess", [ISN_DataConvertor NSStringToChar:@""]);
+
+     controller.delegate = nil;
 }
 
 

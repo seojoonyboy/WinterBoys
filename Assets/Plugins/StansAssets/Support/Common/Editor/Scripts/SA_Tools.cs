@@ -33,17 +33,13 @@ namespace SA.Common.Editor {
 
 					string path = "Assets/" + SA.Common.Config.SUPPORT_MODULS_PATH + "Common/Editor/Content/";
 
-					if(EditorGUIUtility.isProSkin) {
-						path = path + "sa_logo_small.png";
-					} else {
-						path = path + "sa_logo_small_light.png";
-					}
+                    if (EditorGUIUtility.isProSkin) {
+                        path = path + "sa_logo_small.png";
+                    } else {
+                        path = path + "sa_logo_small_light.png";
+                    }
 
-					TextureImporter importer = (TextureImporter)TextureImporter.GetAtPath(path);
-					importer.textureType = TextureImporterType.GUI;
-					AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
-			
-					_SALogo = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
+                    _SALogo = EditorIcon.GetIconAtPath(path);
 				} 
 				
 				return _SALogo;

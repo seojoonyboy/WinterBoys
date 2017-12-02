@@ -368,59 +368,8 @@ public class UMSettingEditor : Editor {
 		EditorGUILayout.BeginHorizontal();
 		EditorGUILayout.Space();
 		
-		if(GUILayout.Button("Load Example Settings",  GUILayout.Width(140))) {
-			
-			UltimateMobileSettings.Instance.Leaderboards.Clear();
-			
-			UM_Leaderboard lb = new UM_Leaderboard();
-			lb.id = "LeaderBoardSample_1";
-			lb.AndroidId = "CgkIipfs2qcGEAIQAA";
-			UltimateMobileSettings.Instance.Leaderboards.Add(lb);
-			
-			
-			lb = new UM_Leaderboard();
-			lb.id = "LeaderBoardSample_2";
-			lb.AndroidId = "CgkIipfs2qcGEAIQFQ";
-			UltimateMobileSettings.Instance.Leaderboards.Add(lb);
-			
-			
-			settings.InAppProducts.Clear();
-			
-			UM_InAppProduct p;
-			
-			p =  new UM_InAppProduct();
-			p.id = "coins_bonus";
-			p.IOSId = "purchase.example.coins_bonus";
-			p.AndroidId = "coins_bonus";
-			p.Type =  UM_InAppType.Consumable;
-			
-			settings.AddProduct(p);
-			
-			
-			p =  new UM_InAppProduct();
-			p.id = "coins_pack";
-			p.IOSId = "purchase.example.small_coins_bag";
-			p.AndroidId = "pm_coins";
-			p.Type =  UM_InAppType.NonConsumable;
-			
-			settings.AddProduct(p);
-
-			
-			#if UNITY_IOS || UNITY_IPHONE
-			
-			SA.Common.Editor.Tools.ApplicationIdentifier = "com.iosnative.preview";
-			
-			
-			#endif
-			
-			#if UNITY_ANDROID
-			
-			SA.Common.Editor.Tools.ApplicationIdentifier = "com.unionassets.android.plugin.preview";
-			
-			
-			#endif
-			
-			AndroidNativeSettingsEditor.LoadExampleSettings();				
+		if(GUILayout.Button("Load Example Settings",  GUILayout.Width(140))) {			
+			LoadExampleSettings ();
 		}		
 
 		if(GUILayout.Button("Remove",  GUILayout.Width(140))) {
@@ -429,7 +378,57 @@ public class UMSettingEditor : Editor {
 
 		EditorGUILayout.EndHorizontal();
 	}
-	
+
+	public static void LoadExampleSettings() {
+
+		//--------------------------------------
+		//  Game Service
+		//--------------------------------------
+		UltimateMobileSettings.Instance.Leaderboards.Clear();
+
+		UM_Leaderboard lb = new UM_Leaderboard();
+		lb.id = "LeaderBoardSample_1";
+		lb.AndroidId = "CgkIipfs2qcGEAIQAA";
+		UltimateMobileSettings.Instance.Leaderboards.Add(lb);
+
+
+		lb = new UM_Leaderboard();
+		lb.id = "LeaderBoardSample_2";
+		lb.AndroidId = "CgkIipfs2qcGEAIQFQ";
+		UltimateMobileSettings.Instance.Leaderboards.Add(lb);
+
+		//--------------------------------------
+		//  InApp products
+		//--------------------------------------
+
+		UltimateMobileSettings.Instance.InAppProducts.Clear();
+
+		UM_InAppProduct p;
+
+		p =  new UM_InAppProduct();
+		p.id = "coins_bonus";
+		p.IOSId = "purchase.example.coins_bonus";
+		p.AndroidId = "coins_bonus";
+		p.Type =  UM_InAppType.Consumable;
+		UltimateMobileSettings.Instance.AddProduct(p);
+
+		p =  new UM_InAppProduct();
+		p.id = "coins_pack";
+		p.IOSId = "purchase.example.small_coins_bag";
+		p.AndroidId = "pm_coins";
+		p.Type =  UM_InAppType.NonConsumable;
+		UltimateMobileSettings.Instance.AddProduct(p);
+
+		AndroidNativeSettingsEditor.LoadExampleSettings();
+		IOSNativeSettingsEditor.LoadExampleSettings ();
+
+		if(EditorUserBuildSettings.activeBuildTarget.Equals(BuildTarget.Android))
+			SA.Common.Editor.Tools.ApplicationIdentifier = "com.unionassets.android.plugin.preview";
+		else if(EditorUserBuildSettings.activeBuildTarget.Equals(BuildTarget.iOS))
+			SA.Common.Editor.Tools.ApplicationIdentifier = "com.stansassets.iosnative.dev";
+		else
+			SA.Common.Editor.Tools.ApplicationIdentifier = "com.sa.um";
+	}
 	
 	public static void UpdateGoogleAdIOSAPI(bool forseDisable = false) {
 		
@@ -1488,7 +1487,7 @@ public class UMSettingEditor : Editor {
 	
 	public static void UpdatePluginSettings() {
 		AndroidNativeSettingsEditor.UpdatePluginDefines();
-		IOSNativeSettingsEditor.UpdatePluginSettings();
+		IOSNativeSettingsEditor.UpdateDefines();
 		
 		if(IsInstalled && IsUpToDate) {
 			AndroidNativeSettingsEditor.UpdateManifest();

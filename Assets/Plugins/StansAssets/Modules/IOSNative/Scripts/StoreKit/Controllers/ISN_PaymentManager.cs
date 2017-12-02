@@ -32,6 +32,8 @@ namespace SA.IOSNative.StoreKit {
 
 		public static event Action<string> OnTransactionStarted 	= delegate{};
 		public static event Action<PurchaseResult> OnTransactionComplete = delegate{};
+		public static event Action<string> OnProductPurchasedExternally = delegate{};
+
 
 		public static event Action<VerificationResponse> OnVerificationComplete = delegate{};
 
@@ -97,6 +99,11 @@ namespace SA.IOSNative.StoreKit {
 				if(IOSNativeSettings.Instance.TransactionsHandlingMode == TransactionsHandlingMode.Manual) {
 					BillingNativeBridge.EnableManulaTransactionsMode ();
 				}
+
+				if(!IOSNativeSettings.Instance.PromotedPurchaseSupport) {
+					BillingNativeBridge.DisablePromotedPurchases ();
+				}
+
 			} else {
 				if(IOSNativeSettings.Instance.InAppsEditorTesting) {
 					Invoke("EditorFakeInitEvent", 1f);
@@ -329,6 +336,11 @@ namespace SA.IOSNative.StoreKit {
 			FireProductBoughtEvent(productId, data [2], data [3], data [4], IsRestored);
 
 		}
+
+		private void onProductPurchasedExternally(string productIdentifier) {
+			OnProductPurchasedExternally (productIdentifier);
+		}
+
 
 		private void onProductStateDeferred(string productIdentifier) {
 			PurchaseResult response = new PurchaseResult (productIdentifier, PurchaseState.Deferred);

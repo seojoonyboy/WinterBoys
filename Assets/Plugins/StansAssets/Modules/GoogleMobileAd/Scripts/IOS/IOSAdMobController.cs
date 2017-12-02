@@ -88,7 +88,7 @@ public class IOSAdMobController : SA.Common.Pattern.Singleton<IOSAdMobController
 	#pragma warning disable
 	//Actions
 	public event Action OnInterstitialLoaded 			= delegate {};
-	public event Action OnInterstitialFailedLoading 	= delegate {};
+	public event Action<int> OnInterstitialFailedLoading 	= delegate {};
 	public event Action OnInterstitialOpened 			= delegate {};
 	public event Action OnInterstitialClosed 			= delegate {};
 	public event Action OnInterstitialLeftApplication  	= delegate {};
@@ -480,7 +480,7 @@ public class IOSAdMobController : SA.Common.Pattern.Singleton<IOSAdMobController
 	}
 	
 	private void OnInterstitialAdFailedToLoad() {
-		OnInterstitialFailedLoading();
+		OnInterstitialFailedLoading(0);
 	}
 	
 	private void OnInterstitialAdOpened() {

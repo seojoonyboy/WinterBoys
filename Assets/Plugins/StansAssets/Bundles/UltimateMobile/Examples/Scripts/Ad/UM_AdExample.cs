@@ -56,8 +56,8 @@ public class UM_AdExample : MonoBehaviour {
 		UM_AdManager.OnInterstitialClosed -= HandleOnInterstitialClosed;
 	}
 
-	void HandleOnInterstitialLoadFail () {
-		Debug.Log ("Interstitial is failed to load");
+	void HandleOnInterstitialLoadFail (int errorCode) {
+		Debug.Log ("Interstitial is failed to load. Error Code: " + errorCode);
 
 		UM_AdManager.OnInterstitialLoaded -= HandleOnInterstitialLoaded;
 		UM_AdManager.OnInterstitialLoadFail -= HandleOnInterstitialLoadFail;

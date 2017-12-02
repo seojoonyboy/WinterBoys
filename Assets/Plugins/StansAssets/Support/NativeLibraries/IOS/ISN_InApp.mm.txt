@@ -29,6 +29,7 @@ const char* UNITY_PAYMENT_LISTENER = "SA.IOSNative.StoreKit.PaymentManager";
 
 
 static bool MANUAL_TRANSACTIONS_HANDLING = false;
+static bool PROMOTED_PURCHASES_ALLOWED = true;
 static NSMutableArray* completedTransactions = [[NSMutableArray alloc] init];
 
 
@@ -141,7 +142,7 @@ static NSMutableDictionary* _views;
     [[ISN_NativeUtility sharedInstance] ISN_NativeLog: @"init"];
     if(self = [super init]){
         _views = [[NSMutableDictionary alloc] init];
-
+        
         
         [self setProductIdentifiers:[[NSMutableArray alloc] init]];
         [self setProducts:[[NSMutableDictionary alloc] init]];
@@ -149,10 +150,10 @@ static NSMutableDictionary* _views;
         
         
         if([SKPaymentQueue canMakePayments]) {
-             [[SKPaymentQueue defaultQueue] addTransactionObserver:[self storeServer]];
+            [[SKPaymentQueue defaultQueue] addTransactionObserver:[self storeServer]];
         }
         
-       
+        
     }
     return self;
 }
@@ -204,7 +205,7 @@ static NSMutableDictionary* _views;
     
     [data appendString:descr];
     
-  
+    
     UnitySendMessage(UNITY_PAYMENT_LISTENER, "OnStoreKitInitFailed", [ISN_DataConvertor NSStringToChar:data]);
 }
 
@@ -299,7 +300,7 @@ static NSMutableDictionary* _views;
 
 
 -(void) restorePurchases {
-   // [[SKPaymentQueue defaultQueue] addTransactionObserver:_storeServer];
+    // [[SKPaymentQueue defaultQueue] addTransactionObserver:_storeServer];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
@@ -315,9 +316,9 @@ static NSMutableDictionary* _views;
         
         [data appendString:productId];
         [data appendString:UNITY_SPLITTER2];
-        [data appendString:@"Product Not Available"];
-        [data appendString:UNITY_SPLITTER];
         [data appendString:@"4"];
+        [data appendString:UNITY_SPLITTER];
+        [data appendString:@"Product Not Available"];
         
         UnitySendMessage(UNITY_PAYMENT_LISTENER, "onTransactionFailed", [ISN_DataConvertor NSStringToChar:data]);
     }
@@ -339,7 +340,7 @@ static NSMutableDictionary* _views;
     }
     
     completedTransactions = newTransactionsList;
-
+    
     
 }
 
@@ -444,6 +445,18 @@ static NSMutableDictionary* _views;
 NSString* lastTransactionReceipt = @"";
 
 
+- (BOOL)paymentQueue:(SKPaymentQueue *)queue shouldAddStorePayment:(SKPayment *)payment forProduct:(SKProduct *)product {
+    
+    if(PROMOTED_PURCHASES_ALLOWED) {
+        NSMutableString * data = [[NSMutableString alloc] init];
+        [data appendString:product.productIdentifier];
+        UnitySendMessage(UNITY_PAYMENT_LISTENER, "onProductPurchasedExternally", [ISN_DataConvertor NSStringToChar:data]);
+    }
+    
+    return PROMOTED_PURCHASES_ALLOWED;
+}
+
+
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
     
     
@@ -504,7 +517,7 @@ NSString* lastTransactionReceipt = @"";
     [data appendString:transaction.payment.productIdentifier];
     [data appendString:UNITY_SPLITTER2];
     [data appendString:serializedError];
-
+    
     UnitySendMessage(UNITY_PAYMENT_LISTENER, "onTransactionFailed", [ISN_DataConvertor NSStringToChar:data]);
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
@@ -758,6 +771,10 @@ extern "C" {
         MANUAL_TRANSACTIONS_HANDLING = true;
     }
     
+    void _ISN_DisablePromotedPurchases () {
+        PROMOTED_PURCHASES_ALLOWED = false;
+    }
+    
     void _ISN_FinishTransaction(char* productIdentifier) {
         NSString *productId = [ISN_DataConvertor charToNSString:productIdentifier];
         [[InAppPurchaseManager instance] finishTransaction:productId];
@@ -790,6 +807,26 @@ extern "C" {
     
     void _ISN_ShowProductView(int viewId) {
         [[InAppPurchaseManager instance] ShowProductView:viewId];
+    }
+    
+    
+    //--------------------------------------
+    //  SKStoreReviewController
+    //--------------------------------------
+    
+    bool _ISN_StoreReviewControllerAvaliable() {
+        if([SKStoreReviewController class]){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    void _ISN_StoreRrequestReview() {
+        
+        if(_ISN_StoreReviewControllerAvaliable()) {
+            [SKStoreReviewController requestReview] ;
+        }
     }
     
     
@@ -898,6 +935,3 @@ extern "C" {
     
     
 }
-
-
-

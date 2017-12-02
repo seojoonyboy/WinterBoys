@@ -15,7 +15,7 @@ public class MNP_PlatformSettings : ScriptableObject {
 
     public MNAndroidDialogTheme AndroidDialogTheme = MNAndroidDialogTheme.ThemeDeviceDefaultDark;
 
-	public const string VERSION_NUMBER = "4.9/19";
+	public const string VERSION_NUMBER = "5.1/24";
 
 	private static MNP_PlatformSettings instance = null;
 

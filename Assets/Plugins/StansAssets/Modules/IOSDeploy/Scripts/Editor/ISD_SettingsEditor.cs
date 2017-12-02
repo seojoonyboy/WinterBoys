@@ -222,8 +222,18 @@ GUI_ENABLED = true;
 					EditorGUILayout.BeginHorizontal ();
 
 					framework.IsOpen = EditorGUILayout.Foldout(framework.IsOpen, framework.TypeString);
-					if(framework.IsOptional) {
-						EditorGUILayout.LabelField("(Optional)");
+					if (framework.IsOptional && framework.IsEmbeded) {
+						EditorGUILayout.LabelField("(Optional & Embeded)");
+					} else if (framework.IsOptional) {
+						EditorGUILayout.LabelField ("(Optional)");
+					} else if (framework.IsEmbeded) {
+						EditorGUILayout.LabelField("(Embeded)");
+					}
+
+
+
+					if(framework.IsEmbeded) {
+						
 					}
 
 					bool ItemWasRemoved = SA.Common.Editor.Tools.SrotingButtons ((object)framework, ISD_Settings.Instance.Frameworks);
@@ -235,6 +245,7 @@ GUI_ENABLED = true;
 					if (framework.IsOpen) {
 						EditorGUI.indentLevel++;
 						framework.IsOptional = SA.Common.Editor.Tools.YesNoFiled ("Optional", framework.IsOptional);
+						framework.IsEmbeded = SA.Common.Editor.Tools.YesNoFiled ("Embeded", framework.IsEmbeded);
 						EditorGUILayout.Space ();
 						EditorGUI.indentLevel--;
 					}
@@ -467,51 +478,6 @@ GUI_ENABLED = true;
 			EditorGUILayout.EndHorizontal();
 		}
 
-		//		public static void CompilerFlags() {
-		////			ISD_Settings.Instance.IscompilerSettingsOpen = EditorGUILayout.Foldout(ISD_Settings.Instance.IscompilerSettingsOpen, "Compiler Flags");
-		////			
-		////			if(ISD_Settings.Instance.IscompilerSettingsOpen) {
-		//				if (ISD_Settings.Instance.compileFlags.Count == 0) {
-		//					EditorGUILayout.HelpBox("No Compiler Flags added", MessageType.None);
-		//				}
-		//
-		//				foreach(string flasg in ISD_Settings.Instance.compileFlags) {
-		//					EditorGUILayout.BeginVertical (GUI.skin.box);
-		//					
-		//					EditorGUILayout.BeginHorizontal();
-		//					EditorGUILayout.SelectableLabel(flasg, GUILayout.Height(18));
-		//					
-		//					EditorGUILayout.Space();
-		//					
-		//					bool pressed  = GUILayout.Button("x",  EditorStyles.miniButton, GUILayout.Width(20));
-		//					if(pressed) {
-		//						ISD_Settings.Instance.compileFlags.Remove(flasg);
-		//						return;
-		//					}
-		//					EditorGUILayout.EndHorizontal();
-		//					EditorGUILayout.EndVertical ();
-		//				}
-		//
-		//				EditorGUILayout.Space();
-		//				EditorGUILayout.BeginHorizontal();
-		//				EditorGUILayout.LabelField("Add New Flag");
-		//				NewCompilerFlag = EditorGUILayout.TextField(NewCompilerFlag, GUILayout.Width(200));
-		//				EditorGUILayout.EndHorizontal();
-		//				
-		//				EditorGUILayout.BeginHorizontal();
-		//				
-		//				EditorGUILayout.Space();
-		//				
-		//				if(GUILayout.Button("Add",  GUILayout.Width(100))) {
-		//					if(!ISD_Settings.Instance.compileFlags.Contains(NewCompilerFlag) && NewCompilerFlag.Length > 0) {
-		//						ISD_Settings.Instance.compileFlags.Add(NewCompilerFlag);
-		//						NewCompilerFlag = string.Empty;
-		//					}
-		//				}
-		//				EditorGUILayout.EndHorizontal();
-		//			//}
-		//		}
-
 		public static void PlistValues ()	{
 
 			SA.Common.Editor.Tools.BlockHeader ("PLIST VALUES");
@@ -533,9 +499,6 @@ GUI_ENABLED = true;
 			} EditorGUI.indentLevel--;
 
 
-
-			SA.Common.Editor.Tools.BlockHeader ("Add New Variable");
-
 			EditorGUILayout.BeginVertical (GUI.skin.box);
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.PrefixLabel(" New Variable Name");
@@ -555,8 +518,63 @@ GUI_ENABLED = true;
 			EditorGUILayout.EndHorizontal();
 			EditorGUILayout.Space();
 			EditorGUILayout.EndVertical ();
-			//	}
+
+
+
+            SA.Common.Editor.Tools.BlockHeader("FILES");
+            EditorGUI.indentLevel++;
+            {
+                foreach (AssetFile file in ISD_Settings.Instance.Files) {
+                    bool removed = DrawAssetFile(file, (object)file, ISD_Settings.Instance.Files);
+                    if(removed) {
+                        break;
+                    }
+                }
+                EditorGUILayout.Space();
+            }
+            EditorGUI.indentLevel--;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.Space();
+            bool addFile = GUILayout.Button("Add", GUILayout.Width(100));
+            if (addFile) {
+                ISD_Settings.Instance.Files.Add(new AssetFile());
+            }
+            EditorGUILayout.EndHorizontal();
+
 		}
+
+
+        public static bool DrawAssetFile(AssetFile file, object valuePointer, IList valueOrigin) {
+           
+            EditorGUILayout.BeginVertical(GUI.skin.box);
+            EditorGUILayout.BeginHorizontal();
+
+            file.IsOpen = EditorGUILayout.Foldout(file.IsOpen, file.XCodeRelativePath);
+            bool ItemWasRemoved = SA.Common.Editor.Tools.SrotingButtons(valuePointer, valueOrigin);
+
+            EditorGUILayout.EndHorizontal();
+
+            if (file.IsOpen) {
+                EditorGUI.indentLevel++;
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("Asset: ");
+                    file.Asset = EditorGUILayout.ObjectField(file.Asset, typeof(UnityEngine.Object), false);
+                    EditorGUILayout.EndHorizontal();
+
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("XCode Path:");
+                    file.XCodePath = EditorGUILayout.TextField(file.XCodePath);
+                    EditorGUILayout.EndHorizontal();
+                }
+                EditorGUI.indentLevel--;
+            }
+
+            EditorGUILayout.EndVertical();
+
+            return ItemWasRemoved;
+
+        }
 
 
 		public static void DrawPlistVariable(Variable var, object valuePointer, IList valueOrigin) {

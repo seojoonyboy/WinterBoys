@@ -33,12 +33,12 @@ public class AndroidAdMobController : SA.Common.Pattern.Singleton<AndroidAdMobCo
 	public event Action OnRewardedVideoAdOpened 				= delegate {};
 	public event Action OnRewardedVideoStarted 					= delegate {};
 
-	public event Action OnInterstitialLoaded 			= delegate {};
-	public event Action OnInterstitialFailedLoading 	= delegate {};
-	public event Action OnInterstitialOpened 			= delegate {};
-	public event Action OnInterstitialClosed 			= delegate {};
-	public event Action OnInterstitialLeftApplication 	= delegate {};
-	public event Action<string> OnAdInAppRequest		= delegate {};
+	public event Action OnInterstitialLoaded 			    = delegate {};
+    public event Action<int> OnInterstitialFailedLoading 	= delegate {};
+	public event Action OnInterstitialOpened 			    = delegate {};
+	public event Action OnInterstitialClosed 			    = delegate {};
+	public event Action OnInterstitialLeftApplication 	    = delegate {};
+	public event Action<string> OnAdInAppRequest		    = delegate {};
 
 
 
@@ -286,7 +286,7 @@ public class AndroidAdMobController : SA.Common.Pattern.Singleton<AndroidAdMobCo
 				ShowInterstitialAd();
 			}
 		} else {
-			OnInterstitialFailedLoading();
+			OnInterstitialFailedLoading(0);
 		}
 	}
 	
@@ -522,8 +522,8 @@ public class AndroidAdMobController : SA.Common.Pattern.Singleton<AndroidAdMobCo
 		OnInterstitialLoaded();
 	}
 	
-	private void OnInterstitialAdFailedToLoad() {
-		OnInterstitialFailedLoading();;
+	private void OnInterstitialAdFailedToLoad(string errorCode) {
+        OnInterstitialFailedLoading(Int32.Parse(errorCode));
 	}
 	
 	private void OnInterstitialAdOpened() {

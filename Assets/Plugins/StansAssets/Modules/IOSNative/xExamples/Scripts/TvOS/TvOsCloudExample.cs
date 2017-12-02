@@ -10,11 +10,18 @@ public class TvOsCloudExample : MonoBehaviour {
 		iCloudManager.OnCloudDataReceivedAction += OnCloudDataReceivedAction;
 
 
-		iCloudManager.Instance.setString("Test", "test");
+		iCloudManager.Instance.SetString("Test", "test");
 
 
 
-		iCloudManager.Instance.requestDataForKey ("Test");
+        iCloudManager.Instance.RequestDataForKey ("Test", (iCloudData data) => {
+            Debug.Log("Internal callback");
+            if (data.IsEmpty) {
+                Debug.Log(data.Key + " / " + "data is empty");
+            } else {
+                Debug.Log(data.Key + " / " + data.StringValue);
+            }
+        });
 	}
 
 
@@ -22,9 +29,9 @@ public class TvOsCloudExample : MonoBehaviour {
 	private void OnCloudDataReceivedAction (iCloudData data) {
 		Debug.Log("OnCloudDataReceivedAction");
 		if(data.IsEmpty) {
-			Debug.Log(data.key + " / " + "data is empty");
+            Debug.Log(data.Key + " / " + "data is empty");
 		} else {
-			Debug.Log(data.key + " / " + data.stringValue);
+            Debug.Log(data.Key + " / " + data.StringValue);
 		}
 	}	
 }

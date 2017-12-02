@@ -30,6 +30,9 @@ namespace SA.IOSNative.StoreKit {
 		[DllImport ("__Internal")]
 		private static extern void _ISN_EnableManulaTransactionsMode();
 
+		[DllImport ("__Internal")]
+		private static extern void _ISN_DisablePromotedPurchases();
+
 
 		[DllImport ("__Internal")]
 		private static extern void _ISN_BuyProduct(string id);
@@ -80,6 +83,12 @@ namespace SA.IOSNative.StoreKit {
 		public static void EnableManulaTransactionsMode() {
 			#if ( (UNITY_IPHONE || UNITY_TVOS)  && !UNITY_EDITOR && INAPP_API_ENABLED) 
 			_ISN_EnableManulaTransactionsMode();
+			#endif
+		}
+
+		public static void DisablePromotedPurchases() {
+			#if ( (UNITY_IPHONE || UNITY_TVOS)  && !UNITY_EDITOR && INAPP_API_ENABLED) 
+			_ISN_DisablePromotedPurchases();
 			#endif
 		}
 

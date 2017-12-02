@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class IOSNativeFeaturesPreview : BaseIOSFeaturePreview {
 
+    public float x;
+
+
 
 	public static IOSNativePreviewBackButton back = null;
 
@@ -13,7 +16,6 @@ public class IOSNativeFeaturesPreview : BaseIOSFeaturePreview {
 		if(back == null) {
 			back = IOSNativePreviewBackButton.Create();
 		}
-			
 	}
 
 
@@ -49,16 +51,6 @@ public class IOSNativeFeaturesPreview : BaseIOSFeaturePreview {
 		StartY += YLableStep;
 		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "Billing")) {
 			LoadLevel("BillingExample");
-		}
-
-		StartX += XButtonStep;
-		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "iAd App Network")) {
-			LoadLevel("iAdExample");
-		}
-
-		StartX += XButtonStep;
-		if(GUI.Button(new Rect(StartX, StartY, buttonWidth, buttonHeight), "iAd No Coding Example")) {
-			LoadLevel("iAdNoCodingExample");
 		}
 
 		StartX = XStartPos;

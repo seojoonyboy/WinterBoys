@@ -33,6 +33,10 @@ namespace SA.IOSNative.Core {
 		[DllImport ("__Internal")]
 		private static extern string _ISN_GetLunchUniversalLink();
 
+
+        [DllImport ("__Internal")]
+        private static extern string _ISN_GetLunchUserNotification();
+	
 		#endif
 
 
@@ -45,8 +49,6 @@ namespace SA.IOSNative.Core {
 		public static event Action<Models.LaunchUrl> OnOpenURL 						= delegate {};
 		public static event Action<Models.UniversalLink> OnContinueUserActivity 	= delegate {};
 
-
-		
 		void Awake() {
 			DontDestroyOnLoad(gameObject);
 			#if (UNITY_IPHONE && !UNITY_EDITOR && APP_CONTROLLER_ENABLED) 
@@ -62,8 +64,6 @@ namespace SA.IOSNative.Core {
 		public static void Subscribe() {
 			AppController.Instance.enabled = true;
 		}
-
-
 
 		//--------------------------------------
 		//  Get / Set
@@ -93,6 +93,29 @@ namespace SA.IOSNative.Core {
 				#endif
 			}
 		}
+
+		//--------------------------------------
+		//  Launch User Notification Property
+		//--------------------------------------
+
+
+
+        public static UserNotifications.NotificationRequest LaunchNotification {
+            get {
+                #if (UNITY_IPHONE && !UNITY_EDITOR && APP_CONTROLLER_ENABLED)
+                string data = _ISN_GetLunchUserNotification();
+                if(!string.IsNullOrEmpty(data)) {
+                    SA.IOSNative.UserNotifications.NotificationRequest request = new SA.IOSNative.UserNotifications.NotificationRequest(data);
+                    return request;
+                } else {
+                    return new SA.IOSNative.UserNotifications.NotificationRequest();
+                }
+                #else
+                return new SA.IOSNative.UserNotifications.NotificationRequest();
+                #endif
+            }
+        }
+
 
 
 		//--------------------------------------
@@ -131,6 +154,12 @@ namespace SA.IOSNative.Core {
 		
 		private void applicationWillTerminate() {
 			OnApplicationWillTerminate();
+		}
+
+
+		protected override void OnApplicationQuit ()  {
+			base.OnApplicationQuit ();
+			AppController.OnApplicationWillTerminate ();
 		}
 
 

@@ -20,6 +20,7 @@ public class GK_SavedGame  {
 	private string _Name;
 	private string _DeviceName;
 	private DateTime _ModificationDate;
+	private string _OriginalDateString;
 
 	private byte[] _Data = null;
 	private bool _IsDataLoaded = false;
@@ -31,7 +32,17 @@ public class GK_SavedGame  {
 		_Id = id;
 		_Name = name;
 		_DeviceName = device;
-		_ModificationDate  = DateTime.Parse(dateString);
+
+		_OriginalDateString = dateString;
+
+		_ModificationDate = DateTime.Now;
+		try {
+			_ModificationDate  = DateTime.Parse(dateString);
+		} catch(Exception ex) {
+			Debug.Log ("GK_SavedGame Date parsing issue, cnonsider to parce date byyourself using  _OriginalDateString property");
+            Debug.Log(ex.Message);
+		}
+
 	}
 
 
@@ -121,6 +132,15 @@ public class GK_SavedGame  {
 	public DateTime ModificationDate {
 		get {
 			return _ModificationDate;
+		}
+	}
+
+	/// <summary>
+	/// Original date string  provided by Apple (read-only)
+	/// </summary>
+	public string OriginalDateString {
+		get {
+			return _OriginalDateString;
 		}
 	}
 

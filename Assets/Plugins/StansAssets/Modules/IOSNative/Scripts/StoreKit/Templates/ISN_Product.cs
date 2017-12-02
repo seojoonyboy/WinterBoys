@@ -118,9 +118,9 @@ namespace SA.IOSNative.StoreKit {
 			}
 		}
 
-		public int PriceInMicros {
+		public long PriceInMicros {
 			get {
-				return Convert.ToInt32(_Price * 1000000f);
+				return Convert.ToInt64(_Price * 1000000f);
 			} 
 
 		}

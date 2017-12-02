@@ -35,7 +35,7 @@ public class iCloudUseExample : BaseIOSFeaturePreview {
 
 	void HandleOnStoreDidChangeExternally (System.Collections.Generic.List<iCloudData> changedData) {
 		foreach(iCloudData data in changedData) {
-			ISN_Logger.Log("Cloud data with key:  " + data.key + " was chnaged");
+			ISN_Logger.Log("Cloud data with key:  " + data.Key + " was chnaged");
 		}
 	}
 
@@ -45,11 +45,11 @@ public class iCloudUseExample : BaseIOSFeaturePreview {
 
 	void OnGUI() {
 		if(GUI.Button(new Rect(170, 70, 150, 50), "Set String")) {
-			iCloudManager.Instance.setString ("TestStringKey", "Hello World");
+            iCloudManager.Instance.SetString ("TestStringKey", "Hello World");
 		}
 
 		if(GUI.Button(new Rect(170, 130, 150, 50), "Get String")) {
-			iCloudManager.Instance.requestDataForKey ("TestStringKey");
+			iCloudManager.Instance.RequestDataForKey ("TestStringKey");
 		}
 
 
@@ -57,11 +57,15 @@ public class iCloudUseExample : BaseIOSFeaturePreview {
 
 		if(GUI.Button(new Rect(330, 70, 150, 50), "Set Float")) {
 			v += 1.1f;
-			iCloudManager.Instance.setFloat ("TestFloatKey", v);
+			iCloudManager.Instance.SetFloat ("TestFloatKey", v);
 		}
 
 		if(GUI.Button(new Rect(330, 130, 150, 50), "Get Float")) {
-			iCloudManager.Instance.requestDataForKey ("TestFloatKey");
+            iCloudManager.Instance.RequestDataForKey ("TestFloatKey" ,(iCloudData obj) => {
+
+                Debug.Log(obj.FloatValue);
+            });
+
 		}
 
 
@@ -69,11 +73,11 @@ public class iCloudUseExample : BaseIOSFeaturePreview {
 			string msg = "hello world";
 			System.Text.UTF8Encoding  encoding = new System.Text.UTF8Encoding();
 			byte[] data = encoding.GetBytes(msg);
-			iCloudManager.Instance.setData ("TestByteKey", data);
+			iCloudManager.Instance.SetData ("TestByteKey", data);
 		}
 
 		if(GUI.Button(new Rect(490, 130, 150, 50), "Get Bytes")) {
-			iCloudManager.Instance.requestDataForKey ("TestByteKey");
+			iCloudManager.Instance.RequestDataForKey ("TestByteKey");
 		}
 
 		if(GUI.Button(new Rect(170, 500, 150, 50), "TestConnection")) {
@@ -102,9 +106,9 @@ public class iCloudUseExample : BaseIOSFeaturePreview {
 
 	private void OnCloudDataReceivedAction (iCloudData data) {
 		if(data.IsEmpty) {
-			IOSNativePopUpManager.showMessage(data.key, "data is empty");
+            IOSNativePopUpManager.showMessage(data.Key, "data is empty");
 		} else {
-			IOSNativePopUpManager.showMessage(data.key, data.stringValue);
+			IOSNativePopUpManager.showMessage(data.Key, data.StringValue);
 		}
 	}	
 	

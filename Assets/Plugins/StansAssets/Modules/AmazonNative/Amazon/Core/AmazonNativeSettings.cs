@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class AmazonNativeSettings : ScriptableObject {
 
-	public const string VERSION_NUMBER = "2.5/19";
+	public const string VERSION_NUMBER = "2.8/" + SA.Common.Config.LIB_VERSION;
 
 	public int ToolbarIndex = 0;
 	public bool ShowActions = true;
@@ -48,9 +48,10 @@ public class AmazonNativeSettings : ScriptableObject {
 
 	public string AmazonDeveloperConsoleLink = "https://goo.gl/EKAKSJ";
 
-	public string GameCircleDownloadLink = "https://db.tt/71Rgmuqw";
-	public string BillingDownloadLink = "https://db.tt/vBh98Yvt";
-	public string AdvertisingDownloadLink = "https://db.tt/AkvhCMTk";
+	public string GameCircleDownloadLink = "https://goo.gl/mMvNEM";
+	public string BillingDownloadLink = "https://goo.gl/NyLUJG";
+	public string AdvertisingDownloadLink = "https://goo.gl/3ZKs5t";
+
 
 	//--------------------------------------
 	// PATHS
