@@ -263,9 +263,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
     //가속 버튼
     public void AddForce() {
         if(Slopetag == "StartSlope") {
-            rb.AddForce(transform.right * sm.statBasedSpeedForce * 0.4f);
+            rb.AddForce(transform.right * 20f);
         }
-        else {
+
+        else if(Slopetag == "MainSlope") {
             rb.AddForce(transform.right * sm.statBasedSpeedForce * 2.5f);
         }
     }
@@ -309,8 +310,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        Slopetag = collision.transform.tag;
-        //Debug.Log(collision.transform.tag);
+        if(Slopetag == "MainSlope") {
+            return;
+        }
+        Slopetag = collision.gameObject.tag;
+        Debug.Log(collision.transform.tag);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

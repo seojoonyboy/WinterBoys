@@ -9,6 +9,7 @@ TagManager:
   - TileEnd
   - StartSlope
   - Item
+  - MainSlope
   layers:
   - Default
   - TransparentFX
