@@ -67,7 +67,7 @@ MonoBehaviour:
   ExpandCameraAPI: 0
   ThirdPartyParams: 0
   ShowPSSettingsResources: 0
-  ShowActions: 0
+  ShowActions: 1
   GCMSettingsActinve: 0
   LocalNotificationsAPI: 1
   ImmersiveModeAPI: 1
