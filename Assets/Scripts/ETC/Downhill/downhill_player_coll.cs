@@ -26,6 +26,9 @@ public class downhill_player_coll : MonoBehaviour {
             }
 
             bM.flags.RemoveAt(0);
+
+            Rigidbody2D rb = dM.playerController.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
         }
 
         if(collision.tag == "Tile") {

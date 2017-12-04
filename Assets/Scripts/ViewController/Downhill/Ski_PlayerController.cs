@@ -91,6 +91,10 @@ public class Ski_PlayerController : MonoBehaviour {
     private void FixedUpdate() {
         rb.AddForce(ForwardForce() * additionalForceByEffect);
 
+        if(rb.velocity.y >= 0) {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        }
+
         //부스팅 효과
         if(playerState == PlayerState.BOOSTING) {
             boostCoolTime -= Time.deltaTime;
