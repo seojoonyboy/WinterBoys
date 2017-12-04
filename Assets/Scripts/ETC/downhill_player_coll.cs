@@ -49,7 +49,6 @@ public class downhill_player_coll : MonoBehaviour {
 
     public void itemCheck(GameObject obj) {
         if (obj.transform.tag == "Item") {
-            Downhill_ItemType type = obj.GetComponent<Downhill_ItemType>();
             dM.playerController.itemCheck(obj);
         }
         Destroy(obj);
