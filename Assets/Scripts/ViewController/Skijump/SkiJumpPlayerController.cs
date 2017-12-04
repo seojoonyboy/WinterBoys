@@ -258,6 +258,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         rb.AddForce(forceDir);
         tmp = true;
         isFirstAsc = true;
+
+        sm.CM_controller.off(1);
     }
 
     //가속 버튼
@@ -269,6 +271,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         else if(Slopetag == "MainSlope") {
             rb.AddForce(transform.right * sm.statBasedSpeedForce * 2.5f);
         }
+
+        sm.CM_controller.Play(1);
     }
 
     public void Ascending() {
@@ -314,7 +318,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
             return;
         }
         Slopetag = collision.gameObject.tag;
-        Debug.Log(collision.transform.tag);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

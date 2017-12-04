@@ -21,6 +21,8 @@ public class FixPosition : MonoBehaviour {
             camSize = GetComponent<Camera>().orthographicSize;
             //카메라의 상단이 하늘 영역을 벗어나지 않도록 고정
             GetComponent<Camera>().orthographicSize = 10f;
+            GetComponent<Camera>().farClipPlane = 100f;
+            GetComponent<Camera>().transform.rotation = Quaternion.identity;
             //if (targetPos.y > 23) {
             //    transform.position = new Vector3(target.position.x, transform.position.y, -10f);
             //}

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_Id: 0
   m_NextId: 0
   m_Tracks:
-  - {fileID: 114259121203435588}
+  - {fileID: 114230964176355310}
   m_FixedDuration: 0
   m_EditorSettings:
     fps: 60
   m_UpdateMode: 0
   m_ParameterName: 
   m_DurationMode: 0
---- !u!114 &114259121203435588
+--- !u!114 &114230964176355310
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
