@@ -30,7 +30,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public float 
         slowdownFactor,     //슬로우 모션 정도
         frictionFactor;     //마찰 계수
-
+    public float qte_magnification = 0;
     private Rigidbody2D charRb;
     private bool 
         isLanded = false,
@@ -45,7 +45,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         itemEffect;
 
     public Slider heightSlider;
-
+    public GameObject qteButton;
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = PointManager.Instance;
@@ -59,6 +59,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         Time.timeScale = 1;
         bonusScore = 0;
+
+        qte_magnification = 0;
     }
 
     private void OnDisable() {
@@ -100,11 +102,16 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
                     score = System.Math.Round(score * 0.75f);
                 }
                 double totalScore = score + bonusScore;
+
+                score *= (1 + qte_magnification);
+
                 modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + totalScore + " 점 획득";
                 isLanded = false;
 
                 pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
                 pm.addPoint((int)totalScore);
+
+                Debug.Log("추가 배율 : " + qte_magnification);
             }
         }
         double value = System.Math.Round(charRb.transform.position.y * 3f);

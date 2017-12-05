@@ -17,12 +17,13 @@ public class Landing : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        //Debug.Log("On Coll Enter");
         if (collision.collider.GetType() == typeof(BoxCollider2D)) {
-            Debug.Log("캐릭터 지면 접촉");
             _eventManger.TriggerEvent(new SkiJump_UnstableLandingEvent());
         }
         else if (collision.collider.GetType() == typeof(CapsuleCollider2D)) {
-            //Debug.Log("플레이트 지면 접촉");
+            //불안정 착지
+            
         }
 
         if (isFirst) {
