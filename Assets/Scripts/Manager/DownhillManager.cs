@@ -16,6 +16,9 @@ public class DownhillManager : MonoBehaviour {
         remainTimeTxt,
         effectTxt;
     public int passNum = 0;
+    public int comboNum = 0;
+
+    private int maxCombo = 0;
     private int score = 0;
 
     public Ski_PlayerController playerController;
@@ -35,6 +38,8 @@ public class DownhillManager : MonoBehaviour {
         InvokeRepeating("timeDec", 1.0f, 1.0f);
 
         score = 0;
+        comboNum = 0;
+        maxCombo = 0;
 
         initEventHandler();
     }
@@ -74,6 +79,22 @@ public class DownhillManager : MonoBehaviour {
         //scoreInc(5);
     }
 
+    //콤보 처리(성공, 실패)
+    public void setCombo(int isPass) {
+        if (isPass == 0) {
+            comboNum = 0;
+        }
+        else if(isPass == 1) {
+            comboNum++;
+        }
+
+        if(comboNum > maxCombo) {
+            maxCombo = comboNum;
+        }
+
+        Debug.Log("콤보횟수 : " + comboNum);
+    }
+
     public void scoreInc(int amount) {
         score += amount;
     }
@@ -82,7 +103,8 @@ public class DownhillManager : MonoBehaviour {
         Time.timeScale = 0;
 
         modal.SetActive(true);
-        Text dist = modal.transform.Find("InnerModal/Dist").GetComponent<Text>();
+
+        Transform innerModal = modal.transform.Find("InnerModal");
 
         Vector3 playerEndPos = playerController.playerPos;
         var distOfMeter = System.Math.Truncate(playerEndPos.y);
@@ -90,13 +112,19 @@ public class DownhillManager : MonoBehaviour {
         score += (int)(-1 * distOfMeter / gm.points[0]);
         umgm.SubmitScore("DownHill", (long)score);
 
-        string str = -1 * distOfMeter
-            + " M 이동\n"
-            + score + " 포인트 획득";
-        dist.text = str;
+        Transform values = innerModal.Find("DataPanel/Values");
+        values.Find("Dist").GetComponent<Text>().text = -1 * distOfMeter + " M";
+        values.Find("Combo").GetComponent<Text>().text = maxCombo.ToString();
+
+        float additionalScore = score * (maxCombo * 0.02f);
+        values.Find("Point").GetComponent<Text>().text = score + " + " + additionalScore;
+
+        innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = (score + additionalScore).ToString();
 
         pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
         pm.addPoint(score);
+
+        Debug.Log("최대 콤보 : " + maxCombo);
     }
 
     private void HandleActionScoreSubmitted(UM_LeaderboardResult res) {
