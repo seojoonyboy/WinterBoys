@@ -124,7 +124,22 @@ public class DownhillManager : MonoBehaviour {
         pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
         pm.addPoint(score);
 
-        Debug.Log("최대 콤보 : " + maxCombo);
+        GameObject resumeBtn = innerModal.Find("Buttons/ResumeButton").gameObject;
+        int randNum = Random.Range(0, 100);
+        if(randNum < 15) {
+            resumeBtn.SetActive(true);
+        }
+        else {
+            resumeBtn.SetActive(false);
+        }
+    }
+
+    //이어하기 버튼 클릭
+    public void resume() {
+        Time.timeScale = 1;
+        remainTime = 30;
+
+        modal.SetActive(false);
     }
 
     private void HandleActionScoreSubmitted(UM_LeaderboardResult res) {
