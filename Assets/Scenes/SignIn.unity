@@ -884,6 +884,16 @@ Prefab:
       propertyPath: pararell_intervals.Array.data[4]
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: bonus_times.Array.data[0]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: bonus_times.Array.data[1]
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
   m_IsPrefabParent: 0
