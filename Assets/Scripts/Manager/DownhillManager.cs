@@ -17,12 +17,16 @@ public class DownhillManager : MonoBehaviour {
 
     public Text 
         remainTimeTxt,
-        effectTxt;
+        effectTxt,
+        distanceTxt;
+
     public int passNum = 0;
     public int comboNum = 0;
 
     private int maxCombo = 0;
     private int score = 0;
+
+    private double distOfMeter = 0;
 
     public Ski_PlayerController playerController;
     public delegate void gameOverHandler();
@@ -45,12 +49,16 @@ public class DownhillManager : MonoBehaviour {
         maxCombo = 0;
 
         playTime = 0;
+        distOfMeter = 0;
+
         initEventHandler();
     }
 
     private void Update() {
         effectTxt.text = "아이템 효과 : " + playerController.playerState.ToString();
         playTime += Time.deltaTime;
+        distOfMeter = -1 * System.Math.Truncate(playerController.playerPos.y * 2);
+        distanceTxt.text = distOfMeter + " M";
     }
 
     private void initEventHandler() {
@@ -112,13 +120,12 @@ public class DownhillManager : MonoBehaviour {
         Transform innerModal = modal.transform.Find("InnerModal");
 
         Vector3 playerEndPos = playerController.playerPos;
-        var distOfMeter = System.Math.Truncate(playerEndPos.y);
 
-        score += (int)(-1 * distOfMeter / gm.points[0]);
+        score += (int)(distOfMeter / gm.points[0]);
         umgm.SubmitScore("DownHill", (long)score);
 
         Transform values = innerModal.Find("DataPanel/Values");
-        values.Find("Dist").GetComponent<Text>().text = -1 * distOfMeter + " M";
+        values.Find("Dist").GetComponent<Text>().text = distOfMeter + " M";
         values.Find("Combo").GetComponent<Text>().text = maxCombo.ToString();
 
         float additionalScore = score * (maxCombo * 0.02f);
