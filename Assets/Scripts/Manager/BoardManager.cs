@@ -23,8 +23,6 @@ public class BoardManager : MonoBehaviour {
         firstTilePos;
 
     public bool isMade = false;
-    public bool isFlagMade = false;
-    private int fstFlagAppearTile = 3;
     private int floorIndex = 0;
     
     private int nextFlagDir = 1;    //다음 폴 생성 방향 (-1 : 왼쪽 / 1 : 오른쪽)
@@ -41,7 +39,7 @@ public class BoardManager : MonoBehaviour {
     List<GameObject> tiles = new List<GameObject>();
     List<GameObject> leftSides = new List<GameObject>();
     List<GameObject> rightSides = new List<GameObject>();
-    public List<GameObject> flags = new List<GameObject>();
+    public List<GameObject> centers = new List<GameObject>();
 
     private TreeOffset 
         treeLeftOffset,
@@ -154,7 +152,6 @@ public class BoardManager : MonoBehaviour {
         for(int i=0; i<1; i++) {
             GameObject leftFlag = Instantiate(flagPref);
             leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
-            flags.Add(leftFlag);
             //좌측 폴의 다음 위치 계산
             Vector2 nextPos = calcNextFlagPos();
             leftFlag.transform.position = nextPos;
@@ -165,13 +162,19 @@ public class BoardManager : MonoBehaviour {
             GameObject rightFlag = Instantiate(flagPref);
 
             leftFlag.GetComponent<FlagController>().distance = deltaX;
-            this.deltaX = rightX / 2.0f;
             rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
 
             rightFlag.transform.position = new Vector2(rightX, nextPos.y);
 
             curFlagPos = nextPos;
             flagNum++;
+
+            this.deltaX = (leftFlag.transform.position.x + rightFlag.transform.position.x) / 2.0f;
+            GameObject obj = new GameObject();
+            obj.name = "CenterPos";
+            obj.transform.position = new Vector2(this.deltaX, leftFlag.transform.position.y);
+
+            centers.Add(obj);
         }
 
         //폴 사이 간격 감소

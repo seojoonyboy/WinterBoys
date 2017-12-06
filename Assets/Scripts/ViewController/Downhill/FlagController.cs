@@ -44,8 +44,8 @@ public class FlagController : MonoBehaviour {
                 if (!isSend) {
                     dm.remainTime -= (int)GameManager.Instance.panelty_time;
                     dm.setCombo(0);
-                    if (bm.flags.Count != 0) {
-                        bm.flags.RemoveAt(0);
+                    if (bm.centers.Count != 0) {
+                        bm.centers.RemoveAt(0);
                     }
                 }
                 isSend = true;
@@ -62,8 +62,8 @@ public class FlagController : MonoBehaviour {
                     if (!isPassSend) {
                         dm.passNumInc();
                         dm.setCombo(1);
-                        if (bm.flags.Count != 0) {
-                            bm.flags.RemoveAt(0);
+                        if (bm.centers.Count != 0) {
+                            bm.centers.RemoveAt(0);
                         }
                     }
                     isPassSend = true;
