@@ -42,19 +42,19 @@ public class GameManager : Singleton<GameManager> {
         init();
     }
     public void init() {
-        startTime = RemoteSettings.GetInt("startTime");
+        //startTime = RemoteSettings.GetInt("startTime");
 
-        getRemoteData("Downhill_bonus_times", ref bonus_times);
-        getRemoteData("Downhill_vertical_interval", ref vertical_intervals);
-        getRemoteData("Downhill_pararell_intervals", ref pararell_intervals);
-        getRemoteData("Downhill_poll_interval", ref poll_intervals);
-        getRemoteData("Downhill_miss", ref panelty_time);
-        getRemoteData("Downhill_Point", ref points);
+        //getRemoteData("Downhill_bonus_times", ref bonus_times);
+        //getRemoteData("Downhill_vertical_interval", ref vertical_intervals);
+        //getRemoteData("Downhill_pararell_intervals", ref pararell_intervals);
+        //getRemoteData("Downhill_poll_interval", ref poll_intervals);
+        //getRemoteData("Downhill_miss", ref panelty_time);
+        //getRemoteData("Downhill_Point", ref points);
 
-        getRemoteData("Skeleton_bonus_times", ref skeleton_bonus_times);
-        getRemoteData("Skeleton_dangers", ref skeleton_dangers);
-        getRemoteData("Skeleton_point", ref skeleton_point);
-        getRemoteData("Skeleton_stats", ref skeleton_stats);
+        //getRemoteData("Skeleton_bonus_times", ref skeleton_bonus_times);
+        //getRemoteData("Skeleton_dangers", ref skeleton_dangers);
+        //getRemoteData("Skeleton_point", ref skeleton_point);
+        //getRemoteData("Skeleton_stats", ref skeleton_stats);
     }
 
     private void getRemoteData(string remote_key,ref float[] data) {

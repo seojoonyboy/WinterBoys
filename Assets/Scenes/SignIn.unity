@@ -684,6 +684,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
         type: 2}
+      propertyPath: pararell_intervals.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
       propertyPath: skeleton_bonus_times.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -777,7 +782,7 @@ Prefab:
     - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
         type: 2}
       propertyPath: pararell_intervals.Array.data[1]
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
         type: 2}
@@ -843,6 +848,41 @@ Prefab:
         type: 2}
       propertyPath: sj_percentages.values.Array.data[5]
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: vertical_intervals.Array.data[0]
+      value: 1400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: vertical_intervals.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: vertical_intervals.Array.data[2]
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: pararell_intervals.Array.data[2]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: pararell_intervals.Array.data[3]
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: pararell_intervals.Array.data[5]
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: pararell_intervals.Array.data[4]
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}

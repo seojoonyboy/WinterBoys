@@ -151,7 +151,7 @@ public class BoardManager : MonoBehaviour {
 
     //동적 폴 추가
     public void addFlag() {
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<1; i++) {
             GameObject leftFlag = Instantiate(flagPref);
             leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
             flags.Add(leftFlag);
@@ -243,8 +243,8 @@ public class BoardManager : MonoBehaviour {
         Vector2 prePos = curFlagPos;
 
         float deltaX = UnityEngine.Random.Range(
-            gm.pararell_intervals[0] + (gm.pararell_intervals[2]) * (row_parallel_move_lv - 1),
-            gm.pararell_intervals[1] + (gm.pararell_intervals[3]) * (row_parallel_move_lv - 1)
+            gm.pararell_intervals[0] + (gm.pararell_intervals[2] * row_parallel_move_lv - 1),
+            gm.pararell_intervals[1] + (1 + gm.pararell_intervals[3] * (row_parallel_move_lv - 1) / 100)
         );
 
         float deltaY = gm.vertical_intervals[0] * (1 + gm.vertical_intervals[1] * row_interval_lv / 100);
