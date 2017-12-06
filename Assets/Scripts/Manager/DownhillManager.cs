@@ -12,6 +12,9 @@ public class DownhillManager : MonoBehaviour {
     private PointManager pm;
     private UM_GameServiceManager umgm;
     public int remainTime;
+
+    [HideInInspector] public float playTime;
+
     public Text 
         remainTimeTxt,
         effectTxt;
@@ -41,11 +44,13 @@ public class DownhillManager : MonoBehaviour {
         comboNum = 0;
         maxCombo = 0;
 
+        playTime = 0;
         initEventHandler();
     }
 
     private void Update() {
         effectTxt.text = "아이템 효과 : " + playerController.playerState.ToString();
+        playTime += Time.deltaTime;
     }
 
     private void initEventHandler() {
@@ -120,6 +125,15 @@ public class DownhillManager : MonoBehaviour {
         values.Find("Point").GetComponent<Text>().text = score + " + " + additionalScore;
 
         innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = (score + additionalScore).ToString();
+
+        int playTime = (int)this.playTime;
+        int minute = 0;
+        if (playTime != 0) {
+            minute = playTime / 60;
+        }
+        int second = playTime - (60 * minute);
+
+        values.Find("Time").GetComponent<Text>().text = minute + " : " + second;
 
         pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
         pm.addPoint(score);
