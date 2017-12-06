@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SkeletonManager : MonoBehaviour {
     private GameManager gm;
+    private PointManager pm;
     [SerializeField] private Transform background;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject warningImg;
@@ -15,6 +16,7 @@ public class SkeletonManager : MonoBehaviour {
     [SerializeField] private Text leftTimeUI;
     [SerializeField] private GameObject showAddTimeUI;
     [SerializeField] private Skeleton_TrackController track;
+    [SerializeField] private Button replayBtn;
     private float dangerTime;
     private float currentSpeed = 0f;
     private float maxSpeed;
@@ -27,19 +29,26 @@ public class SkeletonManager : MonoBehaviour {
     private bool showTime = true;
     private int showCount = 0;
 
-    void Start() {
+    private void Awake() {
         gm = GameManager.Instance;
-        maxSpeed = gm.skeleton_stats[0] * PointManager.Instance.getSpeedPercent();
-        leftTime = gm.startTime;
-    }
-    public void mainLoad() {
-        SceneManager.LoadScene("Main");
+        pm = PointManager.Instance;
+        Screen.orientation = ScreenOrientation.Landscape;
     }
 
-    void FixedUpdate() {
+    private void OnDestroy() {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
+
+    private void Start() {
+        replayBtn.onClick.AddListener(replay);
+        maxSpeed = gm.skeleton_stats[0] * pm.getSpeedPercent();
+        leftTime = gm.startTime;
+    }
+
+    private void FixedUpdate() {
         if(checkRotated()) {
             dangerTime += Time.fixedDeltaTime;
-            addSpeed(-0.2f);
+            addSpeed(0.05f);
             warningImg.SetActive(true);
         }
         else {
@@ -57,7 +66,7 @@ public class SkeletonManager : MonoBehaviour {
     }
 
     private bool checkRotated() {
-        float rotated = (player.eulerAngles.z - background.eulerAngles.z);
+        float rotated = player.eulerAngles.z;
         if(rotated > 180f) rotated -= 360f;
         return (rotated > gm.skeleton_dangers[1] || rotated < -gm.skeleton_dangers[1]);
     }
@@ -107,7 +116,37 @@ public class SkeletonManager : MonoBehaviour {
 
     private void gameOver() {
         gameoverModal.SetActive(true);
+        track.setSpeed(0);
         this.enabled = false;
+        setGameOverUI();
+    }
+
+    private void setGameOverUI() {
+        Text distance = gameoverModal.transform.GetChild(0).GetChild(1).GetComponent<Text>();
+        Text point = gameoverModal.transform.GetChild(0).GetChild(2).GetComponent<Text>();
+
+        int _point = (int)(totalDistance / gm.skeleton_point[1]);
+
+        distance.text = string.Format("이동 거리 : {0}", totalDistance.ToString("##.0"));
+        point.text = string.Format("포인트 : {0}", _point);
+        if(replayBtn == null) return;
+        int randNum = Random.Range(0, 100);
+        if(randNum < 15) {
+            replayBtn.gameObject.SetActive(true);
+        }
+        else {
+            replayBtn.gameObject.SetActive(false);
+        }
+    }
+
+    public void mainLoad() {
+        int _point = (int)(totalDistance / gm.skeleton_point[1]);
+
+        if(pm.setRecord(totalDistance, SportType.SKELETON)) {
+            UM_GameServiceManager.Instance.SubmitScore("Skeleton", (long)totalDistance);
+        }
+        pm.addPoint(_point);
+        SceneManager.LoadScene("Main");
     }
 
     private void showAddTime() {
@@ -119,5 +158,17 @@ public class SkeletonManager : MonoBehaviour {
             showCount = 0;
             CancelInvoke("showAddTime");
         }
+    }
+
+    private void replay() {
+        distanceBonusTime = 0f;
+        leftTime = gm.startTime;
+        dangerTime = 0f;
+        currentSpeed = 0f;
+
+        gameoverModal.SetActive(false);
+        this.enabled = true;
+        Destroy(replayBtn);
+        replayBtn.gameObject.SetActive(false);
     }
 }
