@@ -34,7 +34,9 @@ public class PointManager : Singleton<PointManager> {
 	}
 
 	private void load() {
-		string saveString = PlayerPrefs.GetString("savefile");
+        //PlayerPrefs.SetString("savefile", null);
+        string saveString = PlayerPrefs.GetString("savefile");
+        
 		if(string.IsNullOrEmpty(saveString)) {
 			pointData = new PointData();
 			return;

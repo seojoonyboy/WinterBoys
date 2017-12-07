@@ -93,25 +93,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         if (isLanded) {
             charRb.velocity = new Vector2(charRb.velocity.x * 0.999995f, charRb.velocity.y * 0.995f);
             if(charRb.velocity.x <= 0) {
-                modal.SetActive(true);
-
-                //착지 위치 기반 점수 계산
-                score = System.Math.Round(character.transform.position.x / 6.0f);
-                if (isUnstableLand) {
-                    Debug.Log("불안정 착지로 인한 감점");
-                    score = System.Math.Round(score * 0.75f);
-                }
-                double totalScore = score + bonusScore;
-
-                score *= (1 + qte_magnification);
-
-                modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + totalScore + " 점 획득";
-                isLanded = false;
-
-                pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
-                pm.addPoint((int)totalScore);
-
-                Debug.Log("추가 배율 : " + qte_magnification);
+                gameOver();
             }
         }
         double value = System.Math.Round(charRb.transform.position.y * 3f);
@@ -170,5 +152,27 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         foreach (GameObject obj in upAndDownButtons) {
             obj.SetActive(true);
         }
+    }
+
+    private void gameOver() {
+        modal.SetActive(true);
+
+        //착지 위치 기반 점수 계산
+        score = System.Math.Round(character.transform.position.x / 6.0f);
+        if (isUnstableLand) {
+            Debug.Log("불안정 착지로 인한 감점");
+            score = System.Math.Round(score * 0.75f);
+        }
+        double totalScore = score + bonusScore;
+
+        score *= (1 + qte_magnification);
+
+        modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + totalScore + " 점 획득";
+        isLanded = false;
+
+        pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
+        pm.addPoint((int)totalScore);
+
+        Debug.Log("추가 배율 : " + qte_magnification);
     }
 }
