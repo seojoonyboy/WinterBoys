@@ -48,18 +48,14 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public GameObject qteButton;
 
     public bool isQTE_occured = false;
+
+    private GameObject resumeButton;
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = PointManager.Instance;
     }
 
     private void OnEnable() {
-        _eventManger.AddListener<SkiJump_JumpEvent>(_OnJumpArea);
-        _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
-        _eventManger.AddListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
-        _eventManger.AddListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
-        _eventManger.AddListener<SkiJump_Resume>(resume);
-
         Time.timeScale = 1;
         bonusScore = 0;
 
@@ -68,12 +64,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void OnDisable() {
         isLanded = false;
-
-        _eventManger.RemoveListener<SkiJump_JumpEvent>(_OnJumpArea);
-        _eventManger.RemoveListener<SkiJump_LandingEvent>(_OnLanding);
-        _eventManger.RemoveListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
-        _eventManger.RemoveListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
-        _eventManger.RemoveListener<SkiJump_Resume>(resume);
     }
 
     private void _OnJumpArea(SkiJump_JumpEvent e) {
@@ -90,7 +80,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         charRb = character.GetComponent<Rigidbody2D>();
 
         statBasedSpeedForce = forceAmount * pm.getSpeedPercent();
+        resumeButton = modal.transform.Find("InnerModal/ResumeButton").gameObject;
 
+        _eventManger.AddListener<SkiJump_JumpEvent>(_OnJumpArea);
+        _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.AddListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
+        _eventManger.AddListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
+        _eventManger.AddListener<SkiJump_Resume>(resume);
         //최저치
         //statBasedSpeedForce = forceAmount;
         //최대치
@@ -119,13 +115,20 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public void mainLoad() {
         //UM_GameServiceManager.ActionScoreSubmitted -= HandleActionScoreSubmitted;
         SceneManager.LoadScene("Main");
+
         Time.timeScale = 1;
 
         Screen.orientation = ScreenOrientation.Portrait;
+
+        removeListener();
     }
 
     public void restart() {
         SceneManager.LoadScene("SkiJump");
+
+        Time.timeScale = 1;
+
+        removeListener();
     }
 
     //가속 버튼
@@ -162,6 +165,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         foreach (GameObject obj in upAndDownButtons) {
             obj.SetActive(true);
         }
+
+        playerController.RotatingEnd();
     }
 
     private void gameOver() {
@@ -183,10 +188,22 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         pm.addPoint((int)totalScore);
 
         Debug.Log("추가 배율 : " + qte_magnification);
+
+        int randNum = UnityEngine.Random.Range(0, 100);
+        if(randNum < 15) {
+            resumeButton.SetActive(true);
+        }
+        else {
+            resumeButton.SetActive(false);
+        }
+
+        Time.timeScale = 0.0f;
     }
 
     public void resumneButtonPressed() {
         _eventManger.TriggerEvent(new SkiJump_Resume());
+
+        Time.timeScale = 1;
     }
 
     private void resume(SkiJump_Resume e) {
@@ -195,5 +212,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         isLanded = false;
         isQTE_occured = false;
+    }
+
+    private void removeListener() {
+        _eventManger.RemoveListener<SkiJump_JumpEvent>(_OnJumpArea);
+        _eventManger.RemoveListener<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.RemoveListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
+        _eventManger.RemoveListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
+        _eventManger.RemoveListener<SkiJump_Resume>(resume);
     }
 }

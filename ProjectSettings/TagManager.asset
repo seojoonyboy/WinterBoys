@@ -10,6 +10,7 @@ TagManager:
   - StartSlope
   - Item
   - MainSlope
+  - EndSlope
   layers:
   - Default
   - TransparentFX

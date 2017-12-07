@@ -1186,7 +1186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &168813977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2762,7 +2762,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 13.7608
+    OrthographicSize: 14.53983
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -6306,7 +6306,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 13.7608
+  orthographic size: 14.53983
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7730,7 +7730,7 @@ GameObject:
   - component: {fileID: 1171103656}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: EndSlope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

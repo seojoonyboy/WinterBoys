@@ -12,19 +12,15 @@ public class SlowMotion : MonoBehaviour {
 
     private void Awake() {
         _eventManger = EventManager.Instance;
-        _eventManger.AddListener<SkiJump_JumpEvent>(OnJump);
-    }
-
-    private void OnJump(SkiJump_JumpEvent e) {
-        Time.timeScale = sm.slowdownFactor;
-        Time.fixedDeltaTime = Time.timeScale * .02f;
-
-        isFirst = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (isFirst) {
+        if(isFirst && collision.tag == "Player") {
             _eventManger.TriggerEvent(new SkiJump_JumpEvent());
+            isFirst = false;
+
+            Time.timeScale = sm.slowdownFactor;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
         }
     }
 }

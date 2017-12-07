@@ -68,6 +68,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
         preGravityScale = rb.gravityScale;
 
         rb.centerOfMass = new Vector2(0, -0.6f);
+
+        removeListener();
+
+        _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.AddListener<SkiJump_Resume>(resume);
     }
 
     private void OnEnable() {
@@ -76,10 +81,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
         initChar(characterIndex);                   //Spine Character 설정
         anim = characters[characterIndex].GetComponent<SkeletonAnimation>();
         SkelAnimChange("starting", false);
-
-        _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
-        _eventManger.AddListener<SkiJump_ArrowRotEndEvent>(RotatingEnd);
-        _eventManger.AddListener<SkiJump_Resume>(resume);
 
         isDescending = false;
         isAscending = false;
@@ -254,7 +255,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
     }
 
-    private void RotatingEnd(SkiJump_ArrowRotEndEvent e) {
+    public void RotatingEnd() {
         Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 5f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 10f * pm.getSpeedPercent());
         rb.AddForce(forceDir);
         tmp = true;
@@ -366,6 +367,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
         REVERSE_ROTATE,
         GRAVITY_CHANGE,
         BALLOON
+    }
+
+    private void removeListener() {
+        _eventManger.RemoveListener<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.RemoveListener<SkiJump_Resume>(resume);
     }
 }
 
