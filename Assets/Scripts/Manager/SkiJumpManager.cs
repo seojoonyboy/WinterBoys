@@ -46,16 +46,19 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public Slider heightSlider;
     public GameObject qteButton;
+
+    public bool isQTE_occured = false;
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = PointManager.Instance;
     }
 
     private void OnEnable() {
-        _eventManger.AddListenerOnce<SkiJump_JumpEvent>(_OnJumpArea);
-        _eventManger.AddListenerOnce<SkiJump_LandingEvent>(_OnLanding);
-        _eventManger.AddListenerOnce<SkiJump_UnstableLandingEvent>(_UnstableLanding);
-        _eventManger.AddListenerOnce<SkiJump_ArrowRotEndEvent>(_OffZooming);
+        _eventManger.AddListener<SkiJump_JumpEvent>(_OnJumpArea);
+        _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.AddListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
+        _eventManger.AddListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
+        _eventManger.AddListener<SkiJump_Resume>(resume);
 
         Time.timeScale = 1;
         bonusScore = 0;
@@ -65,6 +68,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void OnDisable() {
         isLanded = false;
+
+        _eventManger.RemoveListener<SkiJump_JumpEvent>(_OnJumpArea);
+        _eventManger.RemoveListener<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.RemoveListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
+        _eventManger.RemoveListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
+        _eventManger.RemoveListener<SkiJump_Resume>(resume);
     }
 
     private void _OnJumpArea(SkiJump_JumpEvent e) {
@@ -141,6 +150,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void _OnLanding(SkiJump_LandingEvent e) {
         isLanded = true;
+        Debug.Log("착지");
     }
 
     private void _OffZooming(SkiJump_ArrowRotEndEvent e) {
@@ -168,11 +178,22 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         score *= (1 + qte_magnification);
 
         modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + totalScore + " 점 획득";
-        isLanded = false;
 
         pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
         pm.addPoint((int)totalScore);
 
         Debug.Log("추가 배율 : " + qte_magnification);
+    }
+
+    public void resumneButtonPressed() {
+        _eventManger.TriggerEvent(new SkiJump_Resume());
+    }
+
+    private void resume(SkiJump_Resume e) {
+        Vector2 dir = new Vector2(1, 1);
+        charRb.AddForce(dir * 40f, ForceMode2D.Impulse);
+
+        isLanded = false;
+        isQTE_occured = false;
     }
 }

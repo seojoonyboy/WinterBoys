@@ -77,8 +77,9 @@ public class SkiJumpPlayerController : MonoBehaviour {
         anim = characters[characterIndex].GetComponent<SkeletonAnimation>();
         SkelAnimChange("starting", false);
 
-        _eventManger.AddListenerOnce<SkiJump_LandingEvent>(_OnLanding);
-        _eventManger.AddListenerOnce<SkiJump_ArrowRotEndEvent>(RotatingEnd);
+        _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
+        _eventManger.AddListener<SkiJump_ArrowRotEndEvent>(RotatingEnd);
+        _eventManger.AddListener<SkiJump_Resume>(resume);
 
         isDescending = false;
         isAscending = false;
@@ -311,6 +312,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void _OnLanding(SkiJump_LandingEvent e) {
         isLanding = true;
+    }
+
+    private void resume(SkiJump_Resume e) {
+        isLanding = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

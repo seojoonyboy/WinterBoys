@@ -10,6 +10,7 @@ public class Landing : MonoBehaviour {
 
     private void Awake() {
         _eventManger = EventManager.Instance;
+        _eventManger.AddListener<SkiJump_Resume>(resume);
     }
 
     private void OnEnable() {
@@ -30,5 +31,9 @@ public class Landing : MonoBehaviour {
             _eventManger.TriggerEvent(new SkiJump_LandingEvent());
             isFirst = false;
         }
+    }
+
+    private void resume(SkiJump_Resume e) {
+        isFirst = true;
     }
 }

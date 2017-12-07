@@ -138,10 +138,14 @@ public class SkiJumpBoardHolder : MonoBehaviour {
                     GameObject starObj = Instantiate(starPrefs[starImgIndx]);
                     starObj.transform.position = randPoses(otherLayerPos, 2);
                     otherLayerPos = starObj.transform.position;
+
+                    starObj.transform.SetParent(holder, false);
                 }
                 for(int i=0; i<num; i++) {
                     GameObject starObj = Instantiate(starPrefs[starImgIndx]);
                     starObj.transform.position = randPoses(nextStarPos, 2);
+
+                    starObj.transform.SetParent(holder, false);
 
                     nextStarPos = new Vector2(starObj.transform.position.x, 27);
                 }

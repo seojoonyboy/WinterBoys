@@ -13,12 +13,16 @@ public class QTE_handler : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        if (sm.isQTE_occured) { return; }
+
         tmp = true;
         Time.timeScale = 0.2f;
 
         startTime = Time.realtimeSinceStartup;
 
         sm.qteButton.SetActive(true);
+
+        sm.isQTE_occured = true;
     }
 
     private void Update() {

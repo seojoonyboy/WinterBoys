@@ -146,4 +146,5 @@ namespace GameEvents {
     public class SkiJump_LandingEvent : GameEvent { }
     public class SkiJump_UnstableLandingEvent : GameEvent { }
     public class SkiJump_ArrowRotEndEvent : GameEvent { }
+    public class SkiJump_Resume : GameEvent { }
 }
