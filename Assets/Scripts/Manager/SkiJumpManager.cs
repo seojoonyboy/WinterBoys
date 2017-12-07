@@ -49,6 +49,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public bool isQTE_occured = false;
 
+    private float playTime;
     private GameObject resumeButton;
     private void Awake() {
         _eventManger = EventManager.Instance;
@@ -58,6 +59,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private void OnEnable() {
         Time.timeScale = 1;
         bonusScore = 0;
+
+        playTime = 0;
 
         qte_magnification = 0;
     }
@@ -95,6 +98,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void FixedUpdate() {
         itemEffect.text = playerController.playerState + " 효과 적용중";
+        playTime += Time.deltaTime;
         if (isLanded) {
             charRb.velocity = new Vector2(charRb.velocity.x * 0.999995f, charRb.velocity.y * 0.995f);
             if(charRb.velocity.x <= 0) {
@@ -178,11 +182,14 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             Debug.Log("불안정 착지로 인한 감점");
             score = System.Math.Round(score * 0.75f);
         }
+        score *= (1 + qte_magnification);
         double totalScore = score + bonusScore;
 
-        score *= (1 + qte_magnification);
-
-        modal.transform.Find("InnerModal/Score").GetComponent<Text>().text = "최종 점수 : " + totalScore + " 점 획득";
+        Transform innerModal = modal.transform.Find("InnerModal");
+        innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = System.Math.Truncate(totalScore).ToString();
+        innerModal.Find("DataPanel/Values/Point").GetComponent<Text>().text = System.Math.Truncate(score) + " + " + System.Math.Truncate(bonusScore) + "(배율 : x" + qte_magnification + ")";
+        innerModal.Find("DataPanel/Values/Distance").GetComponent<Text>().text = System.Math.Truncate(character.transform.position.x) + " M";
+        innerModal.Find("DataPanel/Values/Time").GetComponent<Text>().text = System.Math.Truncate(playTime) + "초";
 
         pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
         pm.addPoint((int)totalScore);
