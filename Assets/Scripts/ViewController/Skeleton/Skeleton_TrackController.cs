@@ -7,7 +7,7 @@ public class Skeleton_TrackController : MonoBehaviour {
 	[SerializeField] private Animator track;
 	[SerializeField] private SkeletonManager skeletonManager;
 	[SerializeField] private AreaEffector2D effector2D;
-	private bool trigger = false;
+	[HideInInspector] public bool trigger = false;
 
 	public void setSpeed(float speed) {
 		cloud.speed = speed * 0.5f;
