@@ -76,7 +76,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void Start() {
-        Screen.orientation = ScreenOrientation.LandscapeRight;
+        Screen.orientation = ScreenOrientation.Landscape;
 
         initGroundEnv();
 

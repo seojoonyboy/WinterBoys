@@ -12,33 +12,45 @@ MonoBehaviour:
   m_Name: RemoteSettingsDataStore
   m_EditorClassIdentifier: 
   rsKeyList:
+  - key: Downhill_time
+    value: 10,10
+    type: string
   - key: Downhill_poll_interval
     value: 500,25,8,10
     type: string
   - key: Downhill_miss
     value: 5
-    type: int
+    type: string
   - key: Downhill_combo
     value: 5
-    type: string
-  - key: Downhill_vertical_interval
-    value: 300,20,25,10
     type: string
   - key: Downhill_bonus_times
     value: 20,15
     type: string
+  - key: Downhill_vertical_interval
+    value: 300,20,25,10
+    type: string
   - key: startTime
     value: 30
     type: int
-  - key: Downhill_time
-    value: 10,10
-    type: string
   - key: Downhill_pararell_intervals
-    value: 0,100,15,60,100,15
+    value: 110,200,15,60,100,14
     type: string
   - key: Characters_name
     value: "\uD33B,\uCE90\uC2AC,\uCC60\uB974"
     type: string
   - key: Downhill_Point
     value: 25,0.02
+    type: string
+  - key: Skeleton_bonus_times
+    value: 2500,20
+    type: string
+  - key: Skeleton_dangers
+    value: 0,35,3
+    type: string
+  - key: Skeleton_point
+    value: 0,15
+    type: string
+  - key: Skeleton_stats
+    value: 35,0
     type: string

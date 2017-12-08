@@ -28,6 +28,8 @@ public class SkeletonManager : MonoBehaviour {
     private float turnCount = 10f;
     private bool showTime = true;
     private int showCount = 0;
+    public enum arrow {FRONT, LEFT, RIGHT};
+    public arrow direction = arrow.FRONT;
 
     private void Awake() {
         gm = GameManager.Instance;
@@ -61,6 +63,10 @@ public class SkeletonManager : MonoBehaviour {
         checkTime(Time.fixedDeltaTime);
 
         if(checkFalldown()) {
+            //gameOver();
+        }
+
+        if(checkFallOut()) {
             gameOver();
         }
     }
@@ -68,12 +74,24 @@ public class SkeletonManager : MonoBehaviour {
     private bool checkRotated() {
         float rotated = player.eulerAngles.z;
         if(rotated > 180f) rotated -= 360f;
-        return (rotated > gm.skeleton_dangers[1] || rotated < -gm.skeleton_dangers[1]);
+        return (rotated > (currectDirection() + gm.skeleton_dangers[1]) || rotated < (currectDirection() - gm.skeleton_dangers[1]));
+    }
+
+    private float currectDirection() {
+        if(direction == arrow.LEFT) return -45f;
+        if(direction == arrow.RIGHT) return 45f;
+        return 0f;
     }
 
     private bool checkFalldown() {
         if(dangerTime >= gm.skeleton_dangers[2]) return true;
         return false;
+    }
+
+    private bool checkFallOut() {
+        float rotated = player.eulerAngles.z;
+        if(rotated > 180f) rotated -= 360f;
+        return (rotated > 100f || rotated < -100f);
     }
 
     private void addSpeed(float force) {
@@ -82,7 +100,6 @@ public class SkeletonManager : MonoBehaviour {
         if(currentSpeed > maxSpeed) currentSpeed = maxSpeed;
         speedUI.text = currentSpeed.ToString("##.0");
         track.setSpeed(currentSpeed * 0.03f);
-        //background.GetComponent<Animator>().speed = currentSpeed * 0.03f;
     }
 
     private void addDistance(float time) {
