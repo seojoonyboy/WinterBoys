@@ -20,13 +20,20 @@ public class ItemGenerator : MonoBehaviour {
     public SkiJumpPlayerController sj_playerController;
     public Ski_PlayerController dh_playerController;
 
-    public int dh_coolTime;
-    public int dh_minTime;
-    public int dh_maxTime;
+    //다운힐
+    public int[] dh_standardChangeMeter;  //아이템 등장 기준 변경 시점 (미터)
+    public int[] dh_intervalMeter;        //등장 간격 (미터)
+    public int[] dh_itemArea;             //등장 공간
+    public int[] dh_numPerGenerate;       //등장 갯수
+    private int dh_index;
+    private int dh_interval;
 
-    public int sj_coolTime;
-    public int sj_minTime;
-    public int sj_maxTime;
+    //스키점프
+    public int[] sj_standardChangeMeter;  //아이템 등장 기준 변경 시점 (미터)
+    public int[] sj_intervalMeter;        //등장 간격 (미터)
+    public int[] sj_numPerGenerate;       //등장 갯수
+    private int sj_index;
+    private int sj_interval;
 
     private GameManager gm;
 
@@ -43,31 +50,41 @@ public class ItemGenerator : MonoBehaviour {
         init();
 
         if (gameType == SportType.SKIJUMP) {
-            interval = 300;
             cam = Camera.main;
-
             time = minTime;
         }
         else if(gameType == SportType.DOWNHILL) {
-            interval = -5;
             cam = Camera.main;
         }
     }
 
     private void Update() {
         if(gameType == SportType.SKIJUMP) {
-            Vector2 camPos = cam.transform.position;
-            if (camPos.x > interval) {
-                Generate(SportType.SKIJUMP);
-                interval *= 2;
+            float charPosOfX = sj_playerController.rb.transform.position.x;
+            if (charPosOfX >= sj_standardChangeMeter[sj_index]) {
+                if(sj_index == sj_standardChangeMeter[sj_index]) { return; }
+
+                sj_interval = sj_intervalMeter[sj_index];
+                sj_index++;
+            }
+
+            if(charPosOfX > sj_interval) {
+                Generate(SportType.SKIJUMP, sj_numPerGenerate[sj_index]);
+                sj_interval += sj_interval;
             }
         }
         else if(gameType == SportType.DOWNHILL) {
-            //Debug.Log(camPos.y);
-            if (dh_playerController.playerPos.y < interval + 2) {
-                //Debug.Log("아이템 생성");
-                Generate(SportType.DOWNHILL);
-                interval *= 2;
+            float charPosOfY = -1 * dh_playerController.playerPos.y;
+            if(charPosOfY >= dh_standardChangeMeter[dh_index]) {
+                if(dh_index == dh_standardChangeMeter.Length - 1) { return; }
+
+                dh_interval = dh_intervalMeter[dh_index];
+                dh_index++;
+            }
+
+            if (charPosOfY > dh_interval) {
+                Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
+                dh_interval += dh_interval;
             }
         }
     }
@@ -82,7 +99,7 @@ public class ItemGenerator : MonoBehaviour {
         }
     }
 
-    public void Generate(SportType type) {
+    public void Generate(SportType type, int numPerGen = 1) {
         int randNum = UnityEngine.Random.Range(0, 100);
         int itemIndex = getPercentageBasedIndex(type, randNum);
         GameObject item = Instantiate(items[itemIndex]);
@@ -99,10 +116,14 @@ public class ItemGenerator : MonoBehaviour {
                 break;
         }
 
-        Vector3 itemPos = randPos(type);
-        item.GetComponent<Item>().gameType = type;
-        item.transform.position = itemPos;
-        item.transform.SetParent(parent);
+        for(int i=0; i<numPerGen; i++) {
+            Vector3 itemPos = randPos(type);
+            item.GetComponent<Item>().gameType = type;
+            item.transform.position = itemPos;
+            item.transform.SetParent(parent);
+
+            Debug.Log("아이템 생성");
+        }
     }
 
     private Vector3 randPos(SportType type) {
@@ -118,8 +139,8 @@ public class ItemGenerator : MonoBehaviour {
                 pos.z = 0;
                 break;
             case SportType.DOWNHILL:
-                randX = UnityEngine.Random.Range(60f, Screen.width - 60f);
-                randY = UnityEngine.Random.Range(0, Screen.height);
+                randX = UnityEngine.Random.Range(80f, Screen.width - 80f);
+                randY = UnityEngine.Random.Range(0f, 50f);
 
                 pos = cam.ScreenToWorldPoint(new Vector3(randX + Screen.width, dh_playerController.playerPos.y - Screen.height, 3.5f));
                 pos.z = 0;
@@ -197,6 +218,15 @@ public class ItemGenerator : MonoBehaviour {
         for (int i = 0; i < st_percentages.values.Length; i++) {
             sum += st_percentages.values[i];
             st_percentagesToArr[i] = sum;
+        }
+
+        if(gameType == SportType.DOWNHILL) {
+            dh_index = 0;
+            dh_interval = dh_intervalMeter[0];
+        }
+        else if(gameType == SportType.SKIJUMP) {
+            sj_index = 0;
+            sj_interval = sj_intervalMeter[0];
         }
     }
 }

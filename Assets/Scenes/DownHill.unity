@@ -4419,12 +4419,13 @@ MonoBehaviour:
   minTime: 5
   sj_playerController: {fileID: 0}
   dh_playerController: {fileID: 952238717}
-  dh_coolTime: 0
-  dh_minTime: 10
-  dh_maxTime: 5
-  sj_coolTime: 0
-  sj_minTime: 0
-  sj_maxTime: 0
+  dh_standardChangeMeter: fa000000b0040000c4090000
+  dh_intervalMeter: 2c010000c800000032000000
+  dh_itemArea: 320000003200000032000000
+  dh_numPerGenerate: 010000000200000003000000
+  sj_standardChangeMeter: 0
+  sj_intervalMeter: 0
+  sj_numPerGenerate: 0
 --- !u!1001 &1270887708
 Prefab:
   m_ObjectHideFlags: 0

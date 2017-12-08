@@ -10,9 +10,13 @@ public class ItemGeneratorEditor : Editor {
         state_Prop,
         dh_playerController,
         sj_playerController,
-        dh_coolTime,
-        dh_minTime,
-        dh_maxTime,
+        dh_standardChangeMeters,
+        dh_intervalMeters,
+        dh_itemAreas,
+        dh_numPerGenerates,
+        sj_standardChangeMeter,
+        sj_intervalMeter,
+        sj_numPerGenerate,
         items,
         parent;
 
@@ -22,9 +26,14 @@ public class ItemGeneratorEditor : Editor {
         dh_playerController = serializedObject.FindProperty("dh_playerController");
         sj_playerController = serializedObject.FindProperty("sj_playerController");
 
-        dh_coolTime = serializedObject.FindProperty("dh_coolTime");
-        dh_minTime = serializedObject.FindProperty("dh_minTime");
-        dh_maxTime = serializedObject.FindProperty("dh_maxTime");
+        dh_standardChangeMeters = serializedObject.FindProperty("dh_standardChangeMeter");
+        dh_intervalMeters = serializedObject.FindProperty("dh_intervalMeter");
+        dh_itemAreas = serializedObject.FindProperty("dh_itemArea");
+        dh_numPerGenerates = serializedObject.FindProperty("dh_numPerGenerate");
+
+        sj_standardChangeMeter = serializedObject.FindProperty("sj_standardChangeMeter");
+        sj_intervalMeter = serializedObject.FindProperty("sj_intervalMeter");
+        sj_numPerGenerate = serializedObject.FindProperty("sj_numPerGenerate");
 
         items = serializedObject.FindProperty("items");
         parent = serializedObject.FindProperty("parent");
@@ -41,19 +50,19 @@ public class ItemGeneratorEditor : Editor {
         switch (st) {
             case SportType.DOWNHILL:
                 EditorGUILayout.PropertyField(dh_playerController, true, new GUILayoutOption[0]);
-                myTarget.dh_minTime = EditorGUILayout.IntField("dh_minTime", myTarget.dh_minTime);
-                myTarget.dh_maxTime = EditorGUILayout.IntField("dh_maxTime", myTarget.dh_maxTime);
-                myTarget.dh_coolTime = EditorGUILayout.IntField("dh_coolTime", myTarget.dh_coolTime);
+                EditorGUILayout.PropertyField(dh_standardChangeMeters, new GUIContent("dh_standardChangeMeters"), true);
+                EditorGUILayout.PropertyField(dh_intervalMeters, new GUIContent("dh_intervalMeters"), true);
+                EditorGUILayout.PropertyField(dh_itemAreas, new GUIContent("dh_itemAreas"), true);
+                EditorGUILayout.PropertyField(dh_numPerGenerates, new GUIContent("dh_numPerGenerates"), true);
                 break;
             case SportType.SKELETON:
 
                 break;
             case SportType.SKIJUMP:
                 EditorGUILayout.PropertyField(sj_playerController, true, new GUILayoutOption[0]);
-                
-                myTarget.sj_minTime = EditorGUILayout.IntField("sj_minTime", myTarget.sj_minTime);
-                myTarget.sj_maxTime = EditorGUILayout.IntField("sj_maxTime", myTarget.sj_maxTime);
-                myTarget.sj_coolTime = EditorGUILayout.IntField("sj_coolTime", myTarget.sj_coolTime);
+                EditorGUILayout.PropertyField(sj_standardChangeMeter, new GUIContent("sj_standardChangeMeter"), true);
+                EditorGUILayout.PropertyField(sj_intervalMeter, new GUIContent("sj_intervalMeter"), true);
+                EditorGUILayout.PropertyField(sj_numPerGenerate, new GUIContent("sj_numPerGenerate"), true);
                 break;
         }
 

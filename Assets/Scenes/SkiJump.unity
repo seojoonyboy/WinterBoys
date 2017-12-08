@@ -419,12 +419,13 @@ MonoBehaviour:
   minTime: 5
   sj_playerController: {fileID: 319997721}
   dh_playerController: {fileID: 0}
-  dh_coolTime: 0
-  dh_minTime: 0
-  dh_maxTime: 0
-  sj_coolTime: 0
-  sj_minTime: 0
-  sj_maxTime: 0
+  dh_standardChangeMeter: 
+  dh_intervalMeter: 
+  dh_itemArea: 
+  dh_numPerGenerate: 
+  sj_standardChangeMeter: c8000000200300004c040000
+  sj_intervalMeter: 2c010000c800000096000000
+  sj_numPerGenerate: 010000000200000003000000
 --- !u!1001 &53071913
 Prefab:
   m_ObjectHideFlags: 0
@@ -2050,6 +2051,7 @@ MonoBehaviour:
   arrow: {fileID: 289324445}
   startPos: {fileID: 592322201}
   forceAmount: 800
+  rb: {fileID: 0}
   MaxHeight: 100
   characters:
   - {fileID: 1430398801}
@@ -2912,7 +2914,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 14.53983
+    OrthographicSize: 12.38363
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -6772,7 +6774,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 14.53983
+  orthographic size: 12.38363
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

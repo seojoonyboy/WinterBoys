@@ -17,7 +17,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public float forceAmount;
 
-    private Rigidbody2D rb;
+    [HideInInspector]public Rigidbody2D rb;
     private int type = 0;
     private float jumpAmount = 15;
     private float rotateAmount = 35;        //회전력
