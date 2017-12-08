@@ -4423,9 +4423,9 @@ MonoBehaviour:
   dh_intervalMeter: 2c010000c800000032000000
   dh_itemArea: 320000003200000032000000
   dh_numPerGenerate: 010000000200000003000000
-  sj_standardChangeMeter: 0
-  sj_intervalMeter: 0
-  sj_numPerGenerate: 0
+  sj_standardChangeMeter: 
+  sj_intervalMeter: 
+  sj_numPerGenerate: 
 --- !u!1001 &1270887708
 Prefab:
   m_ObjectHideFlags: 0

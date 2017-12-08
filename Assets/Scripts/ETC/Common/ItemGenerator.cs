@@ -74,7 +74,8 @@ public class ItemGenerator : MonoBehaviour {
             }
         }
         else if(gameType == SportType.DOWNHILL) {
-            float charPosOfY = -1 * dh_playerController.playerPos.y;
+            float charPosOfY = -1 * dh_playerController.playerPos.y * 2;
+
             if(charPosOfY >= dh_standardChangeMeter[dh_index]) {
                 if(dh_index == dh_standardChangeMeter.Length - 1) { return; }
 
