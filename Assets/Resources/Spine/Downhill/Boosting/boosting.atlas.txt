@@ -1,0 +1,20 @@
+﻿
+boosting.png
+size: 512,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back
+  rotate: false
+  xy: 2, 2
+  size: 180, 79
+  orig: 180, 79
+  offset: 0, 0
+  index: -1
+front
+  rotate: false
+  xy: 184, 2
+  size: 179, 79
+  orig: 179, 79
+  offset: 0, 0
+  index: -1

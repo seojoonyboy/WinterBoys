@@ -1,0 +1,55 @@
+﻿
+clock.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+clock
+  rotate: false
+  xy: 2, 2
+  size: 36, 85
+  orig: 36, 85
+  offset: 0, 0
+  index: -1
+in_back
+  rotate: false
+  xy: 314, 127
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+in_center_back
+  rotate: false
+  xy: 40, 61
+  size: 22, 26
+  orig: 22, 26
+  offset: 0, 0
+  index: -1
+in_center_front
+  rotate: false
+  xy: 435, 228
+  size: 23, 26
+  orig: 23, 26
+  offset: 0, 0
+  index: -1
+in_front
+  rotate: true
+  xy: 314, 14
+  size: 111, 127
+  orig: 111, 127
+  offset: 0, 0
+  index: -1
+out_back
+  rotate: false
+  xy: 2, 89
+  size: 154, 165
+  orig: 154, 165
+  offset: 0, 0
+  index: -1
+out_front
+  rotate: false
+  xy: 158, 89
+  size: 154, 165
+  orig: 154, 165
+  offset: 0, 0
+  index: -1
