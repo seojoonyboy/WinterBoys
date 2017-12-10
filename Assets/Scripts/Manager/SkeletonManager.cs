@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GameEvents;
 
 public class SkeletonManager : MonoBehaviour {
     private GameManager gm;
     private PointManager pm;
+    private EventManager em;
     [SerializeField] private Transform background;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject warningImg;
@@ -31,23 +33,57 @@ public class SkeletonManager : MonoBehaviour {
     public enum arrow {FRONT, LEFT, RIGHT};
     public arrow direction = arrow.FRONT;
 
+    private delegate void skeletonUpdate(float time);
+    private skeletonUpdate stateUpdate;
+
     private void Awake() {
         gm = GameManager.Instance;
         pm = PointManager.Instance;
+        em = EventManager.Instance;
         Screen.orientation = ScreenOrientation.Landscape;
     }
 
     private void OnDestroy() {
         Screen.orientation = ScreenOrientation.Portrait;
+        removeEvent();
     }
 
     private void Start() {
         replayBtn.onClick.AddListener(replay);
         maxSpeed = gm.skeleton_stats[0] * pm.getSpeedPercent();
         leftTime = gm.startTime;
+        addEvent();
+        stateUpdate = riseUpdate;
+        stateUpdate += track.riseUpdate;
+    }
+
+    private void addEvent() {
+        em.AddListener<Skeleton_Fall>(playerFall);
+        em.AddListener<Skeleton_Rise>(playerRise);
+    }
+
+    private void removeEvent() {
+        em.RemoveListener<Skeleton_Fall>(playerFall);
+        em.RemoveListener<Skeleton_Rise>(playerRise);
+    }
+
+    private void playerFall(Skeleton_Fall e) {
+        stateUpdate = fallUpdate;
+        stateUpdate += track.fallUpdate;
+        dangerTime = 0f;
+    }
+
+    private void playerRise(Skeleton_Rise e) {
+        stateUpdate = riseUpdate;
+        stateUpdate += track.riseUpdate;
+        dangerTime = 0f;
     }
 
     private void FixedUpdate() {
+        stateUpdate(Time.fixedDeltaTime);
+    }
+
+    private void riseUpdate(float time) {
         if(checkRotated()) {
             dangerTime += Time.fixedDeltaTime;
             addSpeed(0.05f);
@@ -63,12 +99,19 @@ public class SkeletonManager : MonoBehaviour {
         checkTime(Time.fixedDeltaTime);
 
         if(checkFalldown()) {
-            //gameOver();
+            em.TriggerEvent(new Skeleton_Fall());
         }
 
         if(checkFallOut()) {
             gameOver();
         }
+    }
+
+    private void fallUpdate(float time) {
+        addSpeed(-1.0f);
+        addDistance(Time.fixedDeltaTime);
+        checkTime(Time.fixedDeltaTime);
+        checkFallTime(Time.fixedDeltaTime);
     }
 
     private bool checkRotated() {
@@ -98,7 +141,7 @@ public class SkeletonManager : MonoBehaviour {
         currentSpeed += force;
         if(currentSpeed < 0f) currentSpeed = 0f;
         if(currentSpeed > maxSpeed) currentSpeed = maxSpeed;
-        speedUI.text = currentSpeed.ToString("##.0");
+        speedUI.text = currentSpeed.ToString("#0.0");
         track.setSpeed(currentSpeed * 0.03f);
     }
 
@@ -120,6 +163,12 @@ public class SkeletonManager : MonoBehaviour {
             InvokeRepeating("showAddTime",0f, 0.5f);
         }
         if(leftTime <= 0f) gameOver();
+    }
+
+    private void checkFallTime(float time) {
+        dangerTime += time;
+        if(dangerTime > gm.skeleton_dangers[0])
+            em.TriggerEvent(new Skeleton_Rise());
     }
 
     private void checkTurn() {

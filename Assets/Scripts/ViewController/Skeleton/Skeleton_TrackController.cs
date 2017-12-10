@@ -35,14 +35,27 @@ public class Skeleton_TrackController : MonoBehaviour {
 		}
 	}
 
-	private void FixedUpdate() {
+	public void riseUpdate(float time) {
 		if(skeletonManager.direction == SkeletonManager.arrow.FRONT) return;
 		float rand = Random.Range(45f, 90f);
-		if(skeletonManager.direction == SkeletonManager.arrow.LEFT) {
+		if(skeletonManager.direction == SkeletonManager.arrow.RIGHT) {
 			effector2D.forceAngle = direction + rand;
 			return;
 		}
+		if(skeletonManager.direction == SkeletonManager.arrow.LEFT) {
+			effector2D.forceAngle = direction - rand;
+			return;
+		}
+	}
+
+	public void fallUpdate(float time) {
+		if(skeletonManager.direction == SkeletonManager.arrow.FRONT) return;
+		float rand = 45f;
 		if(skeletonManager.direction == SkeletonManager.arrow.RIGHT) {
+			effector2D.forceAngle = direction + rand;
+			return;
+		}
+		if(skeletonManager.direction == SkeletonManager.arrow.LEFT) {
 			effector2D.forceAngle = direction - rand;
 			return;
 		}
