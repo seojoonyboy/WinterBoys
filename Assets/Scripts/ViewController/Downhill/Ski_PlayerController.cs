@@ -55,8 +55,8 @@ public class Ski_PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
     }
     private void Start() {
+        offSpines(-1);
         characterIndex = gm.character;
-
         if(characterIndex == 0) {
             selectedCharacters = blue_chars;
         }
@@ -272,12 +272,25 @@ public class Ski_PlayerController : MonoBehaviour {
         buttonDown = false;
     }
 
-    private void offSpines(int index) {
-        if (preObj != selectedCharacters[index]) {
-            preObj.SetActive(false);
+    private void offSpines(int index = -1) {
+        if(index == -1) {
+            foreach(GameObject obj in blue_chars) {
+                obj.SetActive(false);
+            }
+            foreach(GameObject obj in yellow_chars) {
+                obj.SetActive(false);
+            }
+            foreach (GameObject obj in red_chars) {
+                obj.SetActive(false);
+            }
         }
-        selectedCharacters[index].SetActive(true);
-        preObj = selectedCharacters[index];
+        else {
+            if (preObj != selectedCharacters[index]) {
+                preObj.SetActive(false);
+            }
+            selectedCharacters[index].SetActive(true);
+            preObj = selectedCharacters[index];
+        }
     }
 
     public void itemCheck(GameObject obj) {

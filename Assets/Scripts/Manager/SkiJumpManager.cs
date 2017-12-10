@@ -49,7 +49,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public bool isQTE_occured = false;
 
-    private float playTime;
+    private float 
+        playTime,
+        preFixedDeltaTime;
     private GameObject resumeButton;
     private void Awake() {
         _eventManger = EventManager.Instance;
@@ -94,6 +96,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         //statBasedSpeedForce = forceAmount;
         //최대치
         //statBasedSpeedForce = forceAmount * 1.8f;
+
+        preFixedDeltaTime = Time.fixedDeltaTime;
     }
 
     private void FixedUpdate() {
@@ -205,6 +209,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         }
 
         Time.timeScale = 0.0f;
+        Time.fixedDeltaTime = preFixedDeltaTime;
     }
 
     public void resumneButtonPressed() {
