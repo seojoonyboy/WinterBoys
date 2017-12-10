@@ -171,21 +171,14 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
 
         if (tmp) {
-            //반시계방향 회전중
-            if (rb.angularVelocity > 0) {
-                //Debug.Log("반시계 방향 회전중");
-                if(angle > 45 && angle <= 180) {
-                    transform.eulerAngles = new Vector3(0, 0, angle - 0.1f);
-                    rb.angularVelocity = 0;
-                }
+            if (angle > 45 && angle <= 180) {
+                transform.eulerAngles = new Vector3(0, 0, angle - 0.1f);
+                rb.angularVelocity = 0;
             }
-            //시계방향 회전중
-            else {
-                //Debug.Log("시계 방향 회전중");
-                if(angle < 305 && angle >= 180) {
-                    transform.eulerAngles = new Vector3(0, 0, angle + 0.1f);
-                    rb.angularVelocity = 0;
-                }
+
+            if (angle < 305 && angle >= 180) {
+                transform.eulerAngles = new Vector3(0, 0, angle + 0.1f);
+                rb.angularVelocity = 0;
             }
         }
 
