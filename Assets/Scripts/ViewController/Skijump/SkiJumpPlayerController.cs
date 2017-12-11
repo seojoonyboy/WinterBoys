@@ -31,7 +31,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isDescending = false,
         isFirstAsc = false,
         tmp = false,
-        tmp2 = true;
+        tmp2 = true,
+        canButtonPress = true;
 
     private int ascendingCnt = 0;
     private int characterIndex = 0;
@@ -44,7 +45,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         whiteBirdCoolTime,
         balloonCoolTime,
         reverseCoolTime,
-        thunderCoolTime;
+        thunderCoolTime,
+        buttonCoolTime;
 
     public PlayerState playerState;
     private float preGravityScale;
@@ -63,6 +65,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         balloonCoolTime = 2.0f;
         reverseCoolTime = 7.0f;
         thunderCoolTime = 7.0f;
+        buttonCoolTime = 0.5f;
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
@@ -85,6 +88,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isDescending = false;
         isAscending = false;
         isLanding = false;
+        canButtonPress = true;
+
         tmp = false;
 
         ascendingCnt = 0;
@@ -94,6 +99,14 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void Update() {
         sm.speedText.GetComponent<Text>().text = System.Math.Round(rb.velocity.magnitude * 3, 2) + " km/h";
+
+        if (!canButtonPress) {
+            buttonCoolTime -= Time.deltaTime;
+            if(buttonCoolTime < 0) {
+                canButtonPress = true;
+                buttonCoolTime = 0.5f;
+            }
+        }
     }
 
     private void FixedUpdate() {
@@ -131,6 +144,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
 
         if (isAscending) {
+            buttonCoolTime -= Time.deltaTime;
+            if(buttonCoolTime < 0) {
+                buttonCoolTime = 0.8f;
+                canButtonPress = true;
+            }
             int mark = 1;
             if(playerState == PlayerState.REVERSE_ROTATE) {
                 mark *= -1;
@@ -219,13 +237,14 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     public void Ascending() {
-        isAscending = true;
-
-        ascendingCnt++;
+        if (canButtonPress) {
+            isAscending = true;
+        }
     }
 
     public void EndAscending() {
         isAscending = false;
+        canButtonPress = false;
     }
 
     public void Descending() {
