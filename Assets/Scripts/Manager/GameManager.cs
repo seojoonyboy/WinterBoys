@@ -42,6 +42,7 @@ public class GameManager : Singleton<GameManager> {
         init();
     }
     public void init() {
+        Application.targetFrameRate = 60;
         startTime = RemoteSettings.GetInt("startTime");
 
         //getRemoteData("Downhill_bonus_times", ref bonus_times);

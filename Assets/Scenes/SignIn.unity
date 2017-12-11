@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -657,58 +657,13 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: points.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: highestScores.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_point.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_stats.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_dangers.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_bonus_times.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: sj_percentages.values.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.11704296
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.21744825
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -733,166 +688,6 @@ Prefab:
     - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: points.Array.data[0]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: points.Array.data[1]
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_bonus_times.Array.data[0]
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_bonus_times.Array.data[1]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_dangers.Array.data[1]
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_dangers.Array.data[2]
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_point.Array.data[1]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: skeleton_stats.Array.data[0]
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[1]
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[0]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[1]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[2]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[3]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[4]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[5]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[6]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: sj_percentages.values.Array.data[0]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: sj_percentages.values.Array.data[1]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: sj_percentages.values.Array.data[2]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: sj_percentages.values.Array.data[3]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: sj_percentages.values.Array.data[4]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: sj_percentages.values.Array.data[5]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: vertical_intervals.Array.data[0]
-      value: 1400
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: vertical_intervals.Array.data[1]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: vertical_intervals.Array.data[2]
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[2]
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[3]
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[5]
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[4]
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: bonus_times.Array.data[0]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: bonus_times.Array.data[1]
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}

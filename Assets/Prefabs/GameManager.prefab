@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361582929206780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11704296, y: -0.21744825, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,6 +55,33 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  dh_percentages:
+    values:
+    - 30
+    - 5
+    - 20
+    - 10
+    - 15
+    - 10
+    - 10
+  sj_percentages:
+    values:
+    - 30
+    - 10
+    - 20
+    - 15
+    - 5
+    - 15
+  st_percentages:
+    values:
+    - 25
+    - 10
+    - 20
+    - 10
+    - 5
+    - 10
+    - 5
+    - 10
   pixelPerUnit: 512
   nickname: 
   character: 0
@@ -64,20 +91,38 @@ MonoBehaviour:
   - 8
   - 10
   vertical_intervals:
-  - 300
-  - 20
-  - 25
+  - 1400
+  - 15
+  - 35
   - 10
   pararell_intervals:
   - 0
-  - 100
-  - 15
-  - 60
-  - 100
+  - 150
+  - 50
+  - 35
   - 14
   bonus_times:
-  - 20
   - 15
+  - 20
+  points:
+  - 25
+  - 0.02
+  skeleton_bonus_times:
+  - 500
+  - 20
+  skeleton_dangers:
+  - 0
+  - 75
+  - 2.5
+  skeleton_point:
+  - 0
+  - 25
+  skeleton_stats:
+  - 90
+  - 0
   panelty_time: 5
   startTime: 30
-  highestScores: 
+  highestScores:
+  - 0
+  - 0
+  - 0
