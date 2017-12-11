@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class FlagController : MonoBehaviour {
     public enum type { LEFT, RIGHT };
@@ -12,6 +13,9 @@ public class FlagController : MonoBehaviour {
 
     private DownhillManager dm;
     private BoardManager bm;
+
+    private SkeletonAnimation anim;
+
     void Start() {
         gameObject.tag = "Flag";
     }
@@ -19,6 +23,9 @@ public class FlagController : MonoBehaviour {
     private void Awake() {
         dm = GameObject.Find("Manager").GetComponent<DownhillManager>();
         bm = GameObject.Find("BoardHolder").GetComponent<BoardManager>();
+
+        anim = GetComponent<SkeletonAnimation>();
+        anim.loop = false;
     }
 
     private void FixedUpdate() {
@@ -42,6 +49,7 @@ public class FlagController : MonoBehaviour {
                 }
 
                 if (!isSend) {
+                    Debug.Log("실패");
                     dm.remainTime -= (int)GameManager.Instance.panelty_time;
                     dm.setCombo(0);
                     if (bm.centers.Count != 0) {
@@ -60,6 +68,7 @@ public class FlagController : MonoBehaviour {
             if (Physics.Raycast(transform.position, dir, out hit, distance)) {
                 if (hit.collider.tag == "Player") {
                     if (!isPassSend) {
+                        Debug.Log("성공");
                         dm.passNumInc();
                         dm.setCombo(1);
                         if (bm.centers.Count != 0) {
@@ -70,6 +79,20 @@ public class FlagController : MonoBehaviour {
                 }
             }
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.tag == "Player") {
+            if (rayDir == type.LEFT) {
+                anim.AnimationName = "broken_left";
+            }
+            else if (rayDir == type.RIGHT) {
+                anim.AnimationName = "broken_right";
+            }
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
+
+            bm.centers.RemoveAt(0);
+        }
     }
 }

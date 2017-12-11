@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4434188747868470}
   - component: {fileID: 212965447071784590}
-  - component: {fileID: 50884756724880486}
   - component: {fileID: 60853949674079208}
+  - component: {fileID: 50318316566585754}
   m_Layer: 0
   m_Name: downhill_bg_right_5
   m_TagString: TileEnd
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50884756724880486
+--- !u!50 &50318316566585754
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -61,7 +61,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!60 &60853949674079208
 PolygonCollider2D:
   m_ObjectHideFlags: 1

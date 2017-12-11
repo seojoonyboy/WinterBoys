@@ -108,59 +108,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
             MaxHeight = 25f;
         }
 
-        //하얀 새 효과
-        if (playerState == PlayerState.IMMORTAL) {
-            whiteBirdCoolTime -= Time.deltaTime;
-            if(whiteBirdCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                rb.gravityScale = preGravityScale;
-                whiteBirdCoolTime = 3.0f;
-            }
-            else {
-                rb.angularVelocity = 0;
-                rb.AddForce(-transform.right * 0.01f);
-                rb.gravityScale = 0;
-            }
-            return;
-        }
-
-        //풍선 효과
-        if(playerState == PlayerState.BALLOON) {
-            balloonCoolTime -= Time.deltaTime;
-            if(balloonCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                balloonCoolTime = 2.0f;
-                MaxHeight = 30f;
-                Debug.Log(MaxHeight);
-            }
-            else {
-                rb.velocity = new Vector2(rb.velocity.x, 10f);
-                rb.AddForce(Vector3.up * 12f);
-            }
-            return;
-        }
-
-        //먹구름 효과
-        if(playerState == PlayerState.REVERSE_ROTATE) {
-            reverseCoolTime -= Time.deltaTime;
-            if(reverseCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                reverseCoolTime = 7.0f;
-            }
-        }
-
-        //번개 먹구름 효과
-        if (playerState == PlayerState.GRAVITY_CHANGE) {
-            thunderCoolTime -= Time.deltaTime;
-            if(thunderCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                thunderCoolTime = 7.0f;
-                rb.gravityScale = 0.8f;
-            }
-            else {
-                rb.gravityScale = 1.0f;
-            }
-        }
+        effectCheck();
 
         float angle = transform.eulerAngles.z;
 
@@ -322,6 +270,62 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         GameObject obj = collision.gameObject;
         itemCheck(obj);
+    }
+
+    private void effectCheck() {
+        //하얀 새 효과
+        if (playerState == PlayerState.IMMORTAL) {
+            whiteBirdCoolTime -= Time.deltaTime;
+            if (whiteBirdCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                rb.gravityScale = preGravityScale;
+                whiteBirdCoolTime = 3.0f;
+            }
+            else {
+                rb.angularVelocity = 0;
+                rb.AddForce(-transform.right * 0.01f);
+                rb.gravityScale = 0;
+            }
+            return;
+        }
+
+        //풍선 효과
+        if (playerState == PlayerState.BALLOON) {
+            balloonCoolTime -= Time.deltaTime;
+            if (balloonCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                balloonCoolTime = 2.0f;
+                MaxHeight = 30f;
+                Debug.Log(MaxHeight);
+            }
+            else {
+                rb.velocity = new Vector2(rb.velocity.x, 10f);
+                rb.AddForce(Vector3.up * 12f);
+            }
+            return;
+        }
+
+        //먹구름 효과
+        if (playerState == PlayerState.REVERSE_ROTATE) {
+            reverseCoolTime -= Time.deltaTime;
+            if (reverseCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                reverseCoolTime = 7.0f;
+            }
+        }
+
+        //번개 먹구름 효과
+        if (playerState == PlayerState.GRAVITY_CHANGE) {
+            thunderCoolTime -= Time.deltaTime;
+            if (thunderCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                thunderCoolTime = 7.0f;
+                rb.gravityScale = 0.8f;
+            }
+            else {
+                rb.gravityScale = 1.0f;
+            }
+        }
     }
 
     public void itemCheck(GameObject obj) {
