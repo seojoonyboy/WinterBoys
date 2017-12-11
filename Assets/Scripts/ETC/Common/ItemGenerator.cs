@@ -35,6 +35,11 @@ public class ItemGenerator : MonoBehaviour {
     private int sj_index;
     private int sj_interval;
 
+    //스켈레톤
+    public int[] st_standardChangeMeter;    //아이템 등장 기준 변경 시점 (미터)
+    public int[] st_intervalMeter;          //등장 간격 (미터)
+    
+
     private GameManager gm;
 
     private GameManager.percentages dh_percentages;

@@ -19,6 +19,7 @@ public class SkeletonManager : MonoBehaviour {
     [SerializeField] private GameObject showAddTimeUI;
     [SerializeField] private Skeleton_TrackController track;
     [SerializeField] private Button replayBtn;
+    [SerializeField] private ItemGenerator itemGenerator;
     private float dangerTime;
     private float currentSpeed = 0f;
     private float maxSpeed;
@@ -177,6 +178,7 @@ public class SkeletonManager : MonoBehaviour {
             if(turnWhen > 30f) 
                 turnWhen -= turnCount;
             track.triggerTurn();
+            itemGenerator.Generate(SportType.SKELETON);
         }
     }
 

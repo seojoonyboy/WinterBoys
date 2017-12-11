@@ -22,6 +22,13 @@
 
     //skelton
     public enum ST {
-
+        POINT,
+        BOOST,
+        ICE,
+        BUGS,
+        BOND,
+        OIL,
+        MONEY,
+        WATCH
     }
 }
