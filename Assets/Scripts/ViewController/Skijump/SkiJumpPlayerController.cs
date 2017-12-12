@@ -76,6 +76,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
         _eventManger.AddListener<SkiJump_Resume>(resume);
+
+
     }
 
     private void OnEnable() {
@@ -98,6 +100,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void Update() {
+        Vector2 nextBgStandardPos = sm.boardHolder.nextSetPos;
+        if(transform.position.x >= nextBgStandardPos.x) {
+            _eventManger.TriggerEvent(new SkjJump_NextBgGenerate());
+        }
+
         sm.speedText.GetComponent<Text>().text = System.Math.Round(rb.velocity.magnitude * 3, 2) + " km/h";
 
         if (!canButtonPress) {

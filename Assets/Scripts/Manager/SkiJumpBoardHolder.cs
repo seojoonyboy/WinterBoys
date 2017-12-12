@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameEvents;
+using System;
 
 public class SkiJumpBoardHolder : MonoBehaviour {
+    private EventManager _eventManger;
+
     public GameObject[] 
         mountainPrefs,
         cloudPrefs,
@@ -28,14 +32,14 @@ public class SkiJumpBoardHolder : MonoBehaviour {
     private int cloudIndex = 0;
 
     public Transform holder;
-    private Vector2 
+    public Vector2 
         lastMountainPos,
         nextSetPos,
         nextStarPos,
         cloudStartPos;
 
     private void Awake() {
-        
+        _eventManger = EventManager.Instance;
     }
 
     private void Start() {
@@ -46,9 +50,15 @@ public class SkiJumpBoardHolder : MonoBehaviour {
         float camXPos = Camera.main.transform.position.x;
     }
 
+    private void OnDisable() {
+        _eventManger.RemoveListener<SkjJump_NextBgGenerate>(GenerateBgEventListener);
+    }
+
     private void init() {
+        _eventManger.AddListener<SkjJump_NextBgGenerate>(GenerateBgEventListener);
+
         lastMountainPos = new Vector2(-20, 0);
-        nextSetPos = new Vector2(120, 0);
+        nextSetPos = new Vector2(66.5f, 0);
         nextStarPos = new Vector2(-16, 28);
         cloudStartPos = new Vector2(-11, 15);
 
@@ -62,6 +72,10 @@ public class SkiJumpBoardHolder : MonoBehaviour {
         for (int i=0; i<=30; i++) {
             Generate(bundleOfClouds, 1);
         }
+    }
+
+    private void GenerateBgEventListener(SkjJump_NextBgGenerate e) {
+        GenerateNextSet();
     }
 
     private Vector2 randPoses(Vector2 origin, int type) {
@@ -88,7 +102,7 @@ public class SkiJumpBoardHolder : MonoBehaviour {
     }
 
     private float randNum(int min, int max, bool needMark = false) {
-        float rand = Random.Range(min, max);
+        float rand = UnityEngine.Random.Range(min, max);
         float val = 0;
         if (needMark) {
             int[] marks = { -1, 1 };
@@ -107,7 +121,7 @@ public class SkiJumpBoardHolder : MonoBehaviour {
             case 0:
                 for(int i=0; i<num; i++) {
                     Vector2 lastPos = new Vector2(lastMountainPos.x, 0);
-                    int imageIndex = Random.Range(0, mountainPrefs.Length);
+                    int imageIndex = UnityEngine.Random.Range(0, mountainPrefs.Length);
                     GameObject mountainObj = Instantiate(mountainPrefs[imageIndex]);
                     mountainObj.transform.position = randPoses(lastPos, 0);
                     mountainObj.transform.SetParent(holder, false);
@@ -117,12 +131,12 @@ public class SkiJumpBoardHolder : MonoBehaviour {
                 break;
             //구름
             case 1:
-                int cloudRndIndex = Random.Range(0, cloudPrefs.Length - 1);
+                int cloudRndIndex = UnityEngine.Random.Range(0, cloudPrefs.Length - 1);
                 Vector2 cloudOriginPos = new Vector2(cloudStartPos.x + intervalOfClouds * cloudIndex, cloudStartPos.y);
-                float totalCloudNum = Random.Range(15, num);
+                float totalCloudNum = UnityEngine.Random.Range(15, num);
                 if(totalCloudNum > 1) {
                     for (int i = 0; i < num - 1; i++) {
-                        cloudRndIndex = Random.Range(0, cloudPrefs.Length);
+                        cloudRndIndex = UnityEngine.Random.Range(0, cloudPrefs.Length);
                         GameObject _obj = Instantiate(cloudPrefs[cloudRndIndex]);
                         _obj.transform.position = randPoses(cloudOriginPos, 1);
                         _obj.transform.SetParent(holder, false);
@@ -132,7 +146,7 @@ public class SkiJumpBoardHolder : MonoBehaviour {
                 break;
             //별
             case 2:
-                int starImgIndx = Random.Range(0, starPrefs.Length);
+                int starImgIndx = UnityEngine.Random.Range(0, starPrefs.Length);
                 Vector2 otherLayerPos = new Vector2(nextSetPos.x, 25);
                 for (int i = 0; i < num; i++) {
                     GameObject starObj = Instantiate(starPrefs[starImgIndx]);
@@ -157,14 +171,14 @@ public class SkiJumpBoardHolder : MonoBehaviour {
     //다음 지형(산, 구름, 별)
     public void GenerateNextSet() {
         GameObject obj = Instantiate(skyPref);
+        nextSetPos = new Vector2(nextSetPos.x + 66.5f, nextSetPos.y);
+
         obj.transform.position = nextSetPos;
         obj.transform.SetParent(holder, false);
 
         obj = Instantiate(groundPref);
         obj.transform.position = new Vector2(nextSetPos.x, 0.5f);
         obj.transform.SetParent(holder, false);
-
-        nextSetPos = new Vector2(nextSetPos.x + 66.5f, nextSetPos.y);
 
         Generate(10, 0);
         Generate(20, 1);

@@ -15,6 +15,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public SkiJumpPlayerController playerController;
     public ArrowRotate arrowController;
     public SkiJumpCM_controller CM_controller;
+    public SkiJumpBoardHolder boardHolder;
 
     public GameObject
         modal,
