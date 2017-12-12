@@ -6,7 +6,8 @@ public class SoundManager : Singleton<SoundManager> {
     protected SoundManager() { }
 
     public SoundType soundType;
-    public AudioSource efxSource;
+    private AudioSource efxSource;
+    private AudioSource bgmSource;
 
     public enum SoundType {
         ITEM_GET,
@@ -15,14 +16,20 @@ public class SoundManager : Singleton<SoundManager> {
     }
 
     public AudioClip[] 
-        dh_effects,
-        sj_effects,
-        st_effects;
+        scene_dh_effects,
+        scene_sj_effects,
+        scene_st_effects,
+        scene_main_effects,
+        scene_charchange_effects,
+        bgms;
+
+    private void Start() {
+        bgmSource.loop = true;
+        efxSource.loop = false;
+    }
 
     public void Play(SportType type, SoundType subtype) {
         AudioClip[] myLists = selectedLists(type);
-        //efxSource.clip = myLists[0];
-
         switch (subtype) {
             case SoundType.BUTTON_CLICK:
 
@@ -41,13 +48,13 @@ public class SoundManager : Singleton<SoundManager> {
         AudioClip[] arr = null;
         switch (type) {
             case SportType.DOWNHILL:
-                arr = dh_effects;
+                arr = scene_dh_effects;
                 break;
             case SportType.SKIJUMP:
-                arr = sj_effects;
+                arr = scene_sj_effects;
                 break;
             case SportType.SKELETON:
-                arr = st_effects;
+                arr = scene_st_effects;
                 break;
         }
         return arr;
