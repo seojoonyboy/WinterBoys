@@ -5,15 +5,8 @@ using UnityEngine;
 public class SoundManager : Singleton<SoundManager> {
     protected SoundManager() { }
 
-    public SoundType soundType;
     public AudioSource efxSource;
     public AudioSource bgmSource;
-
-    public enum SoundType {
-        ITEM_GET,
-        BUTTON_CLICK,
-        LEVEL_UP
-    }
 
     public AudioClip[] 
         scene_dh_effects,
@@ -23,44 +16,46 @@ public class SoundManager : Singleton<SoundManager> {
         scene_charchange_effects,
         bgms;
 
+    public SoundType soundType;
+
+    public void Play(SoundType type, int index = -1) {
+        if (index == -1) return;
+
+        switch (type) {
+            case SoundType.BGM:
+                bgmSource.clip = bgms[index];
+                break;
+            case SoundType.DOWNHILL:
+                efxSource.clip = scene_dh_effects[index];
+                break;
+            case SoundType.SKELETON:
+                efxSource.clip = scene_st_effects[index];
+                break;
+            case SoundType.SKIJUMP:
+                efxSource.clip = scene_sj_effects[index];
+                break;
+            case SoundType.MAIN_SCENE:
+                efxSource.clip = scene_main_effects[index];
+                break;
+            case SoundType.CHARCHANGE_SCENE:
+                efxSource.clip = scene_charchange_effects[index];
+                break;
+        }
+
+        efxSource.Play();
+        bgmSource.Play();
+    }
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start() {
-        bgmSource.loop = true;
-        efxSource.loop = false;
-    }
-
-    public void Play(SportType type, SoundType subtype) {
-        AudioClip[] myLists = selectedLists(type);
-        switch (subtype) {
-            case SoundType.BUTTON_CLICK:
-
-                break;
-            case SoundType.ITEM_GET:
-
-                break;
-            case SoundType.LEVEL_UP:
-
-                break;
-        }
-        efxSource.Play();
-    }
-
-    private AudioClip[] selectedLists(SportType type) {
-        AudioClip[] arr = null;
-        switch (type) {
-            case SportType.DOWNHILL:
-                arr = scene_dh_effects;
-                break;
-            case SportType.SKIJUMP:
-                arr = scene_sj_effects;
-                break;
-            case SportType.SKELETON:
-                arr = scene_st_effects;
-                break;
-        }
-        return arr;
+    public enum SoundType {
+        DOWNHILL,
+        SKIJUMP,
+        SKELETON,
+        MAIN_SCENE,
+        CHARCHANGE_SCENE,
+        BGM
     }
 }
