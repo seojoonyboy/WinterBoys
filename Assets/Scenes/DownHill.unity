@@ -2195,6 +2195,62 @@ MonoBehaviour:
   controller: {fileID: 952238717}
   dM: {fileID: 1268347495}
   bM: {fileID: 1793202012}
+--- !u!1001 &553581275
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.6186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 33348506093340466, guid: 395806d11a799b04097cebc29ad0e40a,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 210194916956542402, guid: 395806d11a799b04097cebc29ad0e40a,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031508603598614, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &571072457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4302,6 +4358,8 @@ MonoBehaviour:
   sj_standardChangeMeter: 
   sj_intervalMeter: 
   sj_numPerGenerate: 
+  st_standardChangeMeter: 
+  st_intervalMeter: 
 --- !u!1001 &1270887708
 Prefab:
   m_ObjectHideFlags: 0
