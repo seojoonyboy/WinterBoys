@@ -65,7 +65,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         balloonCoolTime = 2.0f;
         reverseCoolTime = 7.0f;
         thunderCoolTime = 7.0f;
-        buttonCoolTime = 0.5f;
+        buttonCoolTime = 0.3f;
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
@@ -111,7 +111,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
             buttonCoolTime -= Time.deltaTime;
             if(buttonCoolTime < 0) {
                 canButtonPress = true;
-                buttonCoolTime = 0.5f;
+                buttonCoolTime = 0.3f;
             }
         }
     }
