@@ -6,8 +6,8 @@ public class SoundManager : Singleton<SoundManager> {
     protected SoundManager() { }
 
     public SoundType soundType;
-    private AudioSource efxSource;
-    private AudioSource bgmSource;
+    public AudioSource efxSource;
+    public AudioSource bgmSource;
 
     public enum SoundType {
         ITEM_GET,
@@ -22,6 +22,10 @@ public class SoundManager : Singleton<SoundManager> {
         scene_main_effects,
         scene_charchange_effects,
         bgms;
+
+    private void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start() {
         bgmSource.loop = true;
