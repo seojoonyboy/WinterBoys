@@ -71,12 +71,14 @@ public class SkeletonManager : MonoBehaviour {
     private void playerFall(Skeleton_Fall e) {
         stateUpdate = fallUpdate;
         stateUpdate += track.fallUpdate;
+        player.GetComponent<Skeleton_PlayerController>().enabled = false;
         dangerTime = 0f;
     }
 
     private void playerRise(Skeleton_Rise e) {
         stateUpdate = riseUpdate;
         stateUpdate += track.riseUpdate;
+        player.GetComponent<Skeleton_PlayerController>().enabled = true;
         dangerTime = 0f;
     }
 

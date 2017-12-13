@@ -160,24 +160,27 @@ public class ItemGenerator : MonoBehaviour {
         int itemIndex = 0;
         switch (type) {
             case SportType.DOWNHILL:
-                for (int i = 0; i < dh_percentagesToArr.Length - 1; i++) {
+                for (int i = 0; i < dh_percentagesToArr.Length; i++) {
                     if (randNum < dh_percentagesToArr[i]) {
                         itemIndex = i;
+                        break;
                     }
                 }
                 break;
 
             case SportType.SKIJUMP:
-                for (int i = 0; i < sj_percentagesToArr.Length - 1; i++) {
+                for (int i = 0; i < sj_percentagesToArr.Length; i++) {
                     if (randNum < sj_percentagesToArr[i]) {
                         itemIndex = i;
+                        break;
                     }
                 }
                 break;
             case SportType.SKELETON:
-                for (int i = 0; i < st_percentagesToArr.Length - 1; i++) {
+                for (int i = 0; i < st_percentagesToArr.Length; i++) {
                     if (randNum < st_percentagesToArr[i]) {
                         itemIndex = i;
+                        break;
                     }
                 }
                 break;
