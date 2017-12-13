@@ -1,0 +1,20 @@
+﻿
+obstacle_hill.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back
+  rotate: false
+  xy: 152, 2
+  size: 51, 50
+  orig: 51, 50
+  offset: 0, 0
+  index: -1
+front
+  rotate: false
+  xy: 2, 2
+  size: 148, 50
+  orig: 148, 50
+  offset: 0, 0
+  index: -1
