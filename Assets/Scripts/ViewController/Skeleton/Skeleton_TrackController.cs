@@ -9,6 +9,8 @@ public class Skeleton_TrackController : MonoBehaviour {
 	[SerializeField] private AreaEffector2D effector2D;
 	[HideInInspector] public bool trigger = false;
 	private readonly float direction = -90f;
+	private float gravityTime = 0f;
+	private float rand = 45f;
 
 	public void setSpeed(float speed) {
 		cloud.speed = speed * 0.5f;
@@ -16,36 +18,27 @@ public class Skeleton_TrackController : MonoBehaviour {
 	}
 
 	public void triggerTurn() {
-		trigger = !trigger;
-		track.SetBool("turn", trigger);
-		if(trigger) {
-			int rand = Random.Range(0,2);
-			if(rand == 1) {
-				GetComponent<SpriteRenderer>().flipX = true;
-				skeletonManager.direction = SkeletonManager.arrow.RIGHT;
-			}
-			else {
-				GetComponent<SpriteRenderer>().flipX = false;
-				skeletonManager.direction = SkeletonManager.arrow.LEFT;
-			}
-		}
-		else {
-			effector2D.forceAngle = direction;
-			skeletonManager.direction = SkeletonManager.arrow.FRONT;
-		}
+		int rand = Random.Range(0,3);
+		skeletonManager.direction = (SkeletonManager.arrow)rand;
+		track.SetInteger("direction", rand);
 	}
 
 	public void riseUpdate(float time) {
-		if(skeletonManager.direction == SkeletonManager.arrow.FRONT) return;
-		float rand = Random.Range(45f, 90f);
+		if(skeletonManager.direction == SkeletonManager.arrow.FRONT) {
+			effector2D.forceAngle = direction;
+			return;
+		}
+
 		if(skeletonManager.direction == SkeletonManager.arrow.RIGHT) {
 			effector2D.forceAngle = direction + rand;
-			return;
 		}
-		if(skeletonManager.direction == SkeletonManager.arrow.LEFT) {
+		else if(skeletonManager.direction == SkeletonManager.arrow.LEFT) {
 			effector2D.forceAngle = direction - rand;
-			return;
 		}
+		gravityTime += time;
+		if(gravityTime < 1.0f) return;
+		gravityTime -= 1.0f;
+		rand = Random.Range(45f, 90f);
 	}
 
 	public void fallUpdate(float time) {
