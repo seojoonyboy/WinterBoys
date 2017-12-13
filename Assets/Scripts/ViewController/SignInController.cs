@@ -104,8 +104,13 @@ public class SignInController : MonoBehaviour {
 
         TrackEntry track = chara.AnimationState.SetAnimation(0, "approval", false);
         Invoke("changeScene", track.AnimationEnd + 0.5f);
+        Invoke("submitSound", track.AnimationEnd - 0.8f);
 
         SoundManager.Instance.Play(SoundManager.SoundType.CHARCHANGE_SCENE, 1);
+    }
+
+    private void submitSound() {
+        SoundManager.Instance.Play(SoundManager.SoundType.CHARCHANGE_SCENE, 2);
     }
 
     private void changeScene() {

@@ -27,8 +27,7 @@ public class SkeletonManager : MonoBehaviour {
     private float leftTime;
     private float distanceBonusTime = 0f;
     private float turnTime = 0f;
-    private float turnWhen = 200f;
-    private float turnCount = 10f;
+    private float turnWhen = 300f;
     private bool showTime = true;
     private int showCount = 0;
     public enum arrow {FRONT, LEFT, RIGHT};
@@ -177,10 +176,16 @@ public class SkeletonManager : MonoBehaviour {
     private void checkTurn() {
         if(turnTime >= turnWhen) {
             turnTime -= turnWhen;
-            if(turnWhen > 30f) 
-                turnWhen -= turnCount;
+                
             track.triggerTurn();
             itemGenerator.Generate(SportType.SKELETON);
+            
+            if(totalDistance >= 2500f) {
+                turnWhen = 150f;
+            }
+            else if(totalDistance >= 1500f) {
+                turnWhen = 200f;
+            }
         }
     }
 
@@ -240,5 +245,26 @@ public class SkeletonManager : MonoBehaviour {
         this.enabled = true;
         Destroy(replayBtn);
         replayBtn.gameObject.SetActive(false);
+    }
+
+    private void getItem(ItemType.ST st) {
+        switch(st) {
+            case ItemType.ST.POINT :
+            break;
+            case ItemType.ST.BOOST :
+            break;
+            case ItemType.ST.ICE :
+            break;
+            case ItemType.ST.BUGS :
+            break;
+            case ItemType.ST.BOND :
+            break;
+            case ItemType.ST.OIL :
+            break;
+            case ItemType.ST.MONEY :
+            break;
+            case ItemType.ST.WATCH :
+            break;
+        }
     }
 }

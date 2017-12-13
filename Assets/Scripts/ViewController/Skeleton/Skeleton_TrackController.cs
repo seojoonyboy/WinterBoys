@@ -11,10 +11,14 @@ public class Skeleton_TrackController : MonoBehaviour {
 	private readonly float direction = -90f;
 	private float gravityTime = 0f;
 	private float rand = 45f;
+	public delegate void speed(float speed);
+	public speed itemSpeed;
 
 	public void setSpeed(float speed) {
 		cloud.speed = speed * 0.5f;
 		track.speed = speed;
+		if(itemSpeed == null) return;
+		itemSpeed(speed);
 	}
 
 	public void triggerTurn() {
