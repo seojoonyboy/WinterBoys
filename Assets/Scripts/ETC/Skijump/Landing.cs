@@ -30,6 +30,8 @@ public class Landing : MonoBehaviour {
         if (isFirst) {
             _eventManger.TriggerEvent(new SkiJump_LandingEvent());
             isFirst = false;
+
+            SoundManager.Instance.Play(SoundManager.SoundType.SKIJUMP, 5);
         }
     }
 

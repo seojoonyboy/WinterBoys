@@ -9,6 +9,7 @@ public class SlowMotion : MonoBehaviour {
     public SkiJumpManager sm;
     
     private bool isFirst = true;
+    public AudioSource extraAudioSource;
 
     private void Awake() {
         _eventManger = EventManager.Instance;
@@ -21,6 +22,9 @@ public class SlowMotion : MonoBehaviour {
 
             Time.timeScale = sm.slowdownFactor;
             Time.fixedDeltaTime = Time.timeScale * .02f;
+
+            extraAudioSource.clip = SoundManager.Instance.scene_sj_effects[3];
+            extraAudioSource.Play();
         }
     }
 }

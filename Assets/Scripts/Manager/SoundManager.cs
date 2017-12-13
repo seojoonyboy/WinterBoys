@@ -24,26 +24,38 @@ public class SoundManager : Singleton<SoundManager> {
         switch (type) {
             case SoundType.BGM:
                 bgmSource.clip = bgms[index];
+                bgmSource.Play();
                 break;
             case SoundType.DOWNHILL:
                 efxSource.clip = scene_dh_effects[index];
+                efxSource.Play();
                 break;
             case SoundType.SKELETON:
                 efxSource.clip = scene_st_effects[index];
+                efxSource.Play();
                 break;
             case SoundType.SKIJUMP:
                 efxSource.clip = scene_sj_effects[index];
+                efxSource.Play();
                 break;
             case SoundType.MAIN_SCENE:
                 efxSource.clip = scene_main_effects[index];
+                efxSource.Play();
                 break;
             case SoundType.CHARCHANGE_SCENE:
                 efxSource.clip = scene_charchange_effects[index];
+                efxSource.Play();
                 break;
         }
+    }
 
-        efxSource.Play();
-        bgmSource.Play();
+    public void VolumeChange(float value, SoundType type) {
+        if(type == SoundType.BGM) {
+            bgmSource.volume = value;
+        }
+        else {
+            efxSource.volume = value;
+        }
     }
 
     private void Awake() {

@@ -8,13 +8,13 @@ public class QTE_button_handler : MonoBehaviour {
     private Animator animator;
     private EventManager _eventManager;
 
+    private void Awake() {
+        animator = GetComponent<Animator>();
+    }
+
     private void Start() {
         _eventManager = EventManager.Instance;
         _eventManager.AddListener<SkiJump_Resume>(resume);
-    }
-
-    private void OnEnable() {
-        animator = GetComponent<Animator>();
     }
 
     public void OnClick() {

@@ -707,6 +707,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &321861499 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82649779070366444, guid: d12d7db95fcea5744b47a56526a73e9d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2142673676}
 --- !u!1 &331622063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1067,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 579851448}
+--- !u!82 &606596425 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82043629772694738, guid: d12d7db95fcea5744b47a56526a73e9d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2142673676}
 --- !u!1 &675273115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,6 +3079,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: bgms.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: scene_main_effects.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 254.10118
@@ -3114,8 +3134,68 @@ Prefab:
     - target: {fileID: 82649779070366444, guid: d12d7db95fcea5744b47a56526a73e9d,
         type: 2}
       propertyPath: m_Volume
-      value: 0.3
+      value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 82649779070366444, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82649779070366444, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ec978859f6cf0d408bc49dd9a5f24fe, type: 3}
+    - target: {fileID: 82043629772694738, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d220c77410398e4e8b9267db92a80bb, type: 3}
+    - target: {fileID: 82043629772694738, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82043629772694738, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: efxSource
+      value: 
+      objectReference: {fileID: 606596425}
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: bgmSource
+      value: 
+      objectReference: {fileID: 321861499}
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: scene_main_effects.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 568b41ea9af245148b1fbfc68685ea6f, type: 3}
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: scene_main_effects.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: cbb5058294775684cad44103ae15c879, type: 3}
+    - target: {fileID: 82043629772694738, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82649779070366444, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: bgms.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 05da863c1d37a4440ae2fda71bfbf8ac, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
   m_IsPrefabParent: 0

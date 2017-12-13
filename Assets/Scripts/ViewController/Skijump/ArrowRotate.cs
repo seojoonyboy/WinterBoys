@@ -11,6 +11,7 @@ public class ArrowRotate : MonoBehaviour {
     private Vector3 rotDir = Vector3.forward;
     private int rotCnt = 0;
 
+    public AudioSource extraAudioSource;
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -35,5 +36,7 @@ public class ArrowRotate : MonoBehaviour {
     public void stopRotating() {
         EventManager.Instance.TriggerEvent(new SkiJump_ArrowRotEndEvent());
         canRotate = false;
+
+        extraAudioSource.Stop();
     }
 }

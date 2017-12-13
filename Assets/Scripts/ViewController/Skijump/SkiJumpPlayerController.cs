@@ -8,6 +8,8 @@ using System;
 
 public class SkiJumpPlayerController : MonoBehaviour {
     private EventManager _eventManger;
+    private SoundManager soundManager;
+
     private GameManager gm;
     private PointManager pm;
 
@@ -50,8 +52,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public PlayerState playerState;
     private float preGravityScale;
+
+    public AudioSource extraAudioSource;
     private void Awake() {
         _eventManger = EventManager.Instance;
+        soundManager = SoundManager.Instance;
 
         gm = GameManager.Instance;
         pm = PointManager.Instance;
@@ -76,8 +81,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
         _eventManger.AddListener<SkiJump_Resume>(resume);
-
-
     }
 
     private void OnEnable() {
@@ -97,6 +100,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         ascendingCnt = 0;
 
         Time.fixedDeltaTime = 0.02f;                //슬로우모션 제거
+
+        soundManager.Play(SoundManager.SoundType.BGM, 6);
     }
 
     private void Update() {
@@ -228,6 +233,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isFirstAsc = true;
 
         sm.CM_controller.off(1);
+
+        extraAudioSource.gameObject.SetActive(false);
+
+        soundManager.Play(SoundManager.SoundType.SKIJUMP, 3);
+        soundManager.Play(SoundManager.SoundType.BGM, 7);
     }
 
     //가속 버튼
@@ -238,9 +248,15 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         else if(Slopetag == "MainSlope") {
             rb.AddForce(transform.right * sm.statBasedSpeedForce * 2.5f);
+
+            extraAudioSource.clip = soundManager.scene_sj_effects[1];
+            if (!extraAudioSource.isPlaying) {
+                extraAudioSource.Play();
+            }
         }
 
         sm.CM_controller.Play(1);
+        SoundManager.Instance.Play(SoundManager.SoundType.SKIJUMP, 0);
     }
 
     public void Ascending() {

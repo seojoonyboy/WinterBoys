@@ -93,6 +93,8 @@ public class FlagController : MonoBehaviour {
             rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
 
             bm.centers.RemoveAt(0);
+
+            SoundManager.Instance.Play(SoundManager.SoundType.DOWNHILL, 2);
         }
     }
 }

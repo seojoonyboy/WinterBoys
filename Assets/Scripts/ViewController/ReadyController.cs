@@ -50,9 +50,21 @@ public class ReadyController : MonoBehaviour {
 	private void OnEnable() {
 		init();
 		setScene();
+
+        SoundManager.Instance.Play(SoundManager.SoundType.BGM, 3);
 	}
 
-	private void init() {
+    public void OffPanel() {
+        gameObject.SetActive(false);
+
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 5);
+    }
+
+    public void informationIconClicked() {
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 3);
+    }
+
+    private void init() {
 		maxScore.text = pointManager.getRecord(sport).ToString("#0.00");
 		speed.percent.text = (100f * pointManager.getSpeedPercent() - 100f).ToString("00.0");
 		speed.needPoint.text = pointManager.getSpeedPointNeed().ToString();
@@ -79,7 +91,8 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpSpeed() {
-		if(pointManager.levelUpSpeed()) {
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 2);
+        if (pointManager.levelUpSpeed()) {
 			Debug.Log(sport+" level up!!");
 			init();
 			checkButton();
@@ -89,14 +102,15 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpControl() {
-		if (pointManager.levelUpControl()) {
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 2);
+        if (pointManager.levelUpControl()) {
 			Debug.Log(sport+"level up!!");
 			init();
 			checkButton();
 			return;
 		}
 		Debug.Log(sport+" level up Fail");
-	}
+    }
 
 	private void setScene() {
 		startButton.onClick.RemoveAllListeners();
@@ -115,5 +129,9 @@ public class ReadyController : MonoBehaviour {
 			buttonText.text = "다운힐 시작!";
 			break;
 		}
-	}
+    }
+
+    public void StartButtonClicked() {
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 4);
+    }
 }

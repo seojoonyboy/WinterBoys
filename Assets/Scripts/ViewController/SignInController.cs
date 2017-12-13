@@ -78,6 +78,8 @@ public class SignInController : MonoBehaviour {
 
             SceneManager.LoadScene("Main");
         }
+
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 0);
     }
 
     private void OnPlayerConnected() {
@@ -90,6 +92,8 @@ public class SignInController : MonoBehaviour {
 
     private void signUp() {
         signupPanel.SetActive(true);
+
+        SoundManager.Instance.Play(SoundManager.SoundType.BGM, 1);
     }
 
     //최종 회원가입 버튼 처리
@@ -100,6 +104,8 @@ public class SignInController : MonoBehaviour {
 
         TrackEntry track = chara.AnimationState.SetAnimation(0, "approval", false);
         Invoke("changeScene", track.AnimationEnd + 0.5f);
+
+        SoundManager.Instance.Play(SoundManager.SoundType.CHARCHANGE_SCENE, 1);
     }
 
     private void changeScene() {

@@ -49,6 +49,8 @@ public class Ski_PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private float additionalForceByEffect = 1f;
     private float additionalAngularForceByEffect = 1.0f;
+
+    public AudioSource audioSource;
     private void Awake() {
         gm = GameManager.Instance;
         pm = PointManager.Instance;
@@ -164,7 +166,14 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         if (buttonDown) {
-            if(playerState == PlayerState.REVERSE_ROTATE) {
+            audioSource.clip = dM.soundManager.scene_dh_effects[1];
+
+            if (!audioSource.isPlaying) {
+                audioSource.clip = dM.soundManager.scene_dh_effects[1];
+                audioSource.Play();
+            }
+
+            if (playerState == PlayerState.REVERSE_ROTATE) {
                 rb.angularVelocity += statBasedRotSenstive * -rotateDir * additionalAngularForceByEffect;
             }
             else {
@@ -173,6 +182,14 @@ public class Ski_PlayerController : MonoBehaviour {
         }
         else {
             rb.angularVelocity = 0;
+
+            audioSource.clip = dM.soundManager.scene_dh_effects[0];
+
+            if (!audioSource.isPlaying) {
+                audioSource.clip = dM.soundManager.scene_dh_effects[0];
+                audioSource.Play();
+                Debug.Log("?!");
+            }
         }
 
         float angle = transform.eulerAngles.z;

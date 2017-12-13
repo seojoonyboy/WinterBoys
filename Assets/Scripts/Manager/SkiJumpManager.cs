@@ -54,9 +54,14 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         playTime,
         preFixedDeltaTime;
     private GameObject resumeButton;
+
+    private SoundManager soundManager;
+
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = PointManager.Instance;
+
+        soundManager = SoundManager.Instance;
     }
 
     private void OnEnable() {
@@ -80,9 +85,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void Start() {
         Screen.orientation = ScreenOrientation.Landscape;
-
-        initGroundEnv();
-
+        
         charRb = character.GetComponent<Rigidbody2D>();
 
         statBasedSpeedForce = forceAmount * pm.getSpeedPercent();
@@ -115,12 +118,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         heightSlider.value = (float)value;
     }
 
-    //마찰 계수 설정
-    //...
-    private void initGroundEnv() {
-
-    }
-
     public void mainLoad() {
         //UM_GameServiceManager.ActionScoreSubmitted -= HandleActionScoreSubmitted;
         SceneManager.LoadScene("Main");
@@ -130,6 +127,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         Screen.orientation = ScreenOrientation.Portrait;
 
         removeListener();
+
+        soundManager.Play(SoundManager.SoundType.SKIJUMP, 8);
     }
 
     public void restart() {
@@ -163,6 +162,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private void _OnLanding(SkiJump_LandingEvent e) {
         isLanded = true;
         Debug.Log("착지");
+
+        playerController.extraAudioSource.gameObject.SetActive(true);
+
+        playerController.extraAudioSource.clip = soundManager.scene_sj_effects[1];
+        playerController.extraAudioSource.Play();
+
+        soundManager.Play(SoundManager.SoundType.SKIJUMP, 5);
     }
 
     private void _OffZooming(SkiJump_ArrowRotEndEvent e) {
@@ -179,6 +185,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void gameOver() {
+        playerController.extraAudioSource.gameObject.SetActive(false);
+        soundManager.Play(SoundManager.SoundType.SKIJUMP, 6);
+
         modal.SetActive(true);
 
         //착지 위치 기반 점수 계산
@@ -217,6 +226,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.TriggerEvent(new SkiJump_Resume());
 
         Time.timeScale = 1;
+
+        soundManager.Play(SoundManager.SoundType.SKIJUMP, 7);
     }
 
     private void resume(SkiJump_Resume e) {

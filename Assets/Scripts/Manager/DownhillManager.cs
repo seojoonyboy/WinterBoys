@@ -31,10 +31,13 @@ public class DownhillManager : MonoBehaviour {
     public Ski_PlayerController playerController;
     public delegate void gameOverHandler();
     public static event gameOverHandler OngameOver;
+
+    public SoundManager soundManager;
     private void Awake() {
         gm = GameManager.Instance;
         umgm = UM_GameServiceManager.Instance;
         pm = PointManager.Instance;
+        soundManager = SoundManager.Instance;
         UM_GameServiceManager.ActionScoreSubmitted += HandleActionScoreSubmitted;
     }
 
@@ -52,6 +55,8 @@ public class DownhillManager : MonoBehaviour {
         distOfMeter = 0;
 
         initEventHandler();
+
+        soundManager.Play(SoundManager.SoundType.BGM, 4);
     }
 
     private void Update() {
@@ -69,6 +74,8 @@ public class DownhillManager : MonoBehaviour {
         UM_GameServiceManager.ActionScoreSubmitted -= HandleActionScoreSubmitted;
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
+
+        soundManager.Play(SoundManager.SoundType.DOWNHILL, 6);
     }
 
     void timeDec() {
@@ -87,6 +94,7 @@ public class DownhillManager : MonoBehaviour {
             remainTime += (int)gm.bonus_times[1];
             passNum = 0;
             Debug.Log("시간 증가");
+            soundManager.Play(SoundManager.SoundType.DOWNHILL, 3);
         }
         //Debug.Log("통과 갯수 : " + passNum);
         //scoreInc(5);
@@ -153,6 +161,8 @@ public class DownhillManager : MonoBehaviour {
         else {
             resumeBtn.SetActive(false);
         }
+
+        soundManager.Play(SoundManager.SoundType.DOWNHILL, 4);
     }
 
     //이어하기 버튼 클릭
