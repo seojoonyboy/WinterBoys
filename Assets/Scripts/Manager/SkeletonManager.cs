@@ -28,6 +28,7 @@ public class SkeletonManager : MonoBehaviour {
     private float maxSpeed;
     private float totalDistance = 0f;
     private float leftTime;
+    private float totalTime;
     private float distanceBonusTime = 0f;
     private float turnDistance = 0f;
     private float turnWhen = 300f;
@@ -64,6 +65,7 @@ public class SkeletonManager : MonoBehaviour {
         maxSpeed = gm.skeleton_stats[0] * pm.getSpeedPercent();
         dangerAngle = gm.skeleton_dangers[1];
         leftTime = 40f;
+        totalTime = 0f;
         addEvent();
         stateUpdate = riseUpdate;
         stateUpdate += track.riseUpdate;
@@ -105,8 +107,7 @@ public class SkeletonManager : MonoBehaviour {
             addSpeed(maxSpeed * 0.012f);
             warningImg.SetActive(true);
 
-            if(smSource.isPlaying) return;
-            sm.Play(SoundManager.SoundType.SKELETON, 3);
+            if(!smSource.isPlaying) sm.Play(SoundManager.SoundType.SKELETON, 3);
         }
         else {
             dangerTime = 0f;
@@ -153,7 +154,7 @@ public class SkeletonManager : MonoBehaviour {
     private bool checkFallOut() {
         float rotated = player.eulerAngles.z;
         if(rotated > 180f) rotated -= 360f;
-        return (rotated > 100f || rotated < -100f);
+        return (rotated > 90f || rotated < -90f);
     }
 
     private void addSpeed(float force) {
@@ -177,6 +178,7 @@ public class SkeletonManager : MonoBehaviour {
 
     private void checkTime(float time) {
         leftTime -= time;
+        totalTime += time;
         leftTimeUI.text = leftTime.ToString("0");
         if(distanceBonusTime >= gm.skeleton_bonus_times[0]) {
             distanceBonusTime = 0f;
@@ -237,16 +239,18 @@ public class SkeletonManager : MonoBehaviour {
     }
 
     private void setGameOverUI() {
-        Text distance = gameoverModal.transform.GetChild(0).GetChild(1).GetComponent<Text>();
-        Text point = gameoverModal.transform.GetChild(0).GetChild(2).GetComponent<Text>();
+        Text time = gameoverModal.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(1).GetComponent<Text>();
+        Text distance = gameoverModal.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(1).GetComponent<Text>();
+        Text point = gameoverModal.transform.GetChild(0).GetChild(1).GetChild(2).GetChild(1).GetComponent<Text>();
 
         int _point = (int)(totalDistance / gm.skeleton_point[1]);
 
-        distance.text = string.Format("이동 거리 : {0}", totalDistance.ToString("##.0"));
-        point.text = string.Format("포인트 : {0}", _point);
+        time.text = string.Format("{0} : {1}", ((int)totalTime / 60).ToString("00"), ((int)totalTime % 60).ToString("00"));
+        distance.text = string.Format("{0} m", totalDistance.ToString("##,0.0"));
+        point.text = string.Format("{0} + {1}", _point, extraPoint);
         if(replayBtn == null) return;
         int randNum = Random.Range(0, 100);
-        if(randNum < 15) {
+        if(randNum < 100) {
             replayBtn.gameObject.SetActive(true);
         }
         else {
@@ -260,9 +264,13 @@ public class SkeletonManager : MonoBehaviour {
         if(pm.setRecord(totalDistance, SportType.SKELETON)) {
             UM_GameServiceManager.Instance.SubmitScore("Skeleton", (long)totalDistance);
         }
-        pm.addPoint(_point);
+        pm.addPoint(_point+extraPoint);
         sm.Play(SoundManager.SoundType.SKELETON, 5);
         SceneManager.LoadScene("Main");
+    }
+
+    public void showRank() {
+        UM_GameServiceManager.Instance.ShowLeaderBoardsUI();
     }
 
     private void showAddTime() {
