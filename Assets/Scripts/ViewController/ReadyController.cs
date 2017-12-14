@@ -26,8 +26,6 @@ public class ReadyController : MonoBehaviour {
 	[SerializeField] private Button startButton;
     [SerializeField] private Image character;
 
-    public GameObject[] spines;
-
 	private void Awake() {
 		pointManager = PointManager.Instance;
 		setButton();
@@ -142,19 +140,5 @@ public class ReadyController : MonoBehaviour {
 
     public void StartButtonClicked() {
         SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 4);
-    }
-
-    public void OnSpines() {
-        if (gameObject.activeSelf) {
-            foreach(GameObject obj in spines) {
-                obj.SetActive(true);
-            }
-        }
-    }
-
-    public void OffSpines() {
-        foreach(GameObject obj in spines) {
-            obj.SetActive(false);
-        }
     }
 }
