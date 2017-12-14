@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1641770915947676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 254.10118, y: 154.58533, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4747756022204136}
@@ -109,15 +109,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2ec978859f6cf0d408bc49dd9a5f24fe, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 5d220c77410398e4e8b9267db92a80bb, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -167,7 +167,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -191,13 +191,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2ec978859f6cf0d408bc49dd9a5f24fe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -247,7 +247,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -271,9 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d169d04aeb332147a25ae89c679c176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 0
-  efxSource: {fileID: 82649779070366444}
-  bgmSource: {fileID: 82043629772694738}
+  efxSource: {fileID: 82043629772694738}
+  bgmSource: {fileID: 82649779070366444}
   scene_dh_effects:
   - {fileID: 8300000, guid: 619247724f6a871468a7728f5de9bf48, type: 3}
   - {fileID: 8300000, guid: 7c82737c1e1227642ad01b6a88f10f78, type: 3}
@@ -306,6 +305,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: de5ca710c7e8e8347ab6c8afc9f32f33, type: 3}
   - {fileID: 8300000, guid: 785dc33f2c2835245a9fb39e97793add, type: 3}
   - {fileID: 8300000, guid: 4afb9697b44570940b7ba550b1e32b09, type: 3}
+  - {fileID: 8300000, guid: 568b41ea9af245148b1fbfc68685ea6f, type: 3}
+  - {fileID: 8300000, guid: cbb5058294775684cad44103ae15c879, type: 3}
   scene_charchange_effects:
   - {fileID: 8300000, guid: 8d32435aaac3b9a4b9bc54a39a4cba2a, type: 3}
   - {fileID: 8300000, guid: 5d220c77410398e4e8b9267db92a80bb, type: 3}
@@ -318,3 +319,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7770c2677b0c474439b53a1d240c4823, type: 3}
   - {fileID: 8300000, guid: 24d86a102e271f94d9f04a6117db4ead, type: 3}
   - {fileID: 8300000, guid: 4a19e0c365e17de40adb397113a96d7d, type: 3}
+  - {fileID: 8300000, guid: 05da863c1d37a4440ae2fda71bfbf8ac, type: 3}
+  soundType: 0
