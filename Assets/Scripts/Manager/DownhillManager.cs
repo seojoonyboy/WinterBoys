@@ -136,7 +136,7 @@ public class DownhillManager : MonoBehaviour {
         values.Find("Dist").GetComponent<Text>().text = distOfMeter + " M";
         values.Find("Combo").GetComponent<Text>().text = maxCombo.ToString();
 
-        float additionalScore = score * (maxCombo * 0.02f);
+        double additionalScore = System.Math.Truncate(score * (maxCombo * 0.02f));
         values.Find("Point").GetComponent<Text>().text = score + " + " + additionalScore;
 
         innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = (score + additionalScore).ToString();
