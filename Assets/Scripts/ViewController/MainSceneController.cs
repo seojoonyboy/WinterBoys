@@ -51,7 +51,6 @@ public class MainSceneController : MonoBehaviour {
                 ready.open(SportType.SKIJUMP);
                 break;
         }
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 6);
     }
 
     public void selchange(bool isLeft) {
@@ -81,7 +80,7 @@ public class MainSceneController : MonoBehaviour {
     public void rankingShow() {
         UM_GameServiceManager.Instance.ShowLeaderBoardsUI();
 
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 7);
+        //SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 7);
     }
 
     private void changeTexts(int index) {
@@ -97,5 +96,9 @@ public class MainSceneController : MonoBehaviour {
         else {
             btn_message.text = "Hire\n 500 D / 6,000 P";
         }
+    }
+
+    public void efxPlay(int index) {
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, index);
     }
 }
