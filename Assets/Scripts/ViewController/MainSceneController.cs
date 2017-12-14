@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class MainSceneController : MonoBehaviour {
     private GameManager gm;
-    private Transform 
-        charSel_infoPanel,
-        charSel_Button;
 
     public GameObject charSelPanel;
 
@@ -17,6 +14,7 @@ public class MainSceneController : MonoBehaviour {
         characterName;
     public string[] charNames;
     private int charIndex = 0;
+    public Sprite[] characters;
     private void Awake() {
         gm = GameManager.Instance;
 
@@ -30,8 +28,6 @@ public class MainSceneController : MonoBehaviour {
     private void Start() {
         nickname.text = gm.nickname;
         characterName.text = charNames[gm.character];
-        charSel_infoPanel = charSelPanel.transform.Find("InfoPanel");
-        charSel_Button = charSelPanel.transform.Find("ButtonPanel/Button");
 
         charIndex = gm.character;
         changeTexts(charIndex);
@@ -84,10 +80,15 @@ public class MainSceneController : MonoBehaviour {
     }
 
     private void changeTexts(int index) {
-        Text charName = charSel_infoPanel.Find("CharName").GetComponent<Text>();
-        Text bonusStat = charSel_infoPanel.Find("BonusStat").GetComponent<Text>();
-        Text changeToCompete = charSel_infoPanel.Find("ChanceToCompete").GetComponent<Text>();
-        Text btn_message = charSel_Button.Find("Message").GetComponent<Text>();
+        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 7);
+
+        Text charName = charSelPanel.transform.Find("CharName").GetComponent<Text>();
+        Text bonusStat = charSelPanel.transform.Find("BonusStat").GetComponent<Text>();
+        Text changeToCompete = charSelPanel.transform.Find("ChanceToCompete").GetComponent<Text>();
+        Text btn_message = charSelPanel.transform.Find("Button/Message").GetComponent<Text>();
+
+        Image image = charSelPanel.transform.Find("SelectPanel/Character").GetComponent<Image>();
+        image.sprite = characters[index];
 
         charName.text = charNames[index];
         if(index == gm.character) {
