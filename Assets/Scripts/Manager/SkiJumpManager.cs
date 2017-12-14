@@ -200,10 +200,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         double totalScore = score + bonusScore;
 
         Transform innerModal = modal.transform.Find("InnerModal");
-        innerModal.Find("Point/Data").GetComponent<Text>().text = System.Math.Truncate(totalScore).ToString();
-        innerModal.Find("TotalScore/Data").GetComponent<Text>().text = System.Math.Truncate(score) + " + " + System.Math.Truncate(bonusScore) + "(배율 : x" + qte_magnification + ")";
-        innerModal.Find("Distance/Data").GetComponent<Text>().text = System.Math.Truncate(character.transform.position.x) + " M";
-        innerModal.Find("Time/Data").GetComponent<Text>().text = System.Math.Truncate(playTime) + "초";
+        innerModal.Find("Labels/Point/Data").GetComponent<Text>().text = System.Math.Truncate(totalScore).ToString();
+        innerModal.Find("Labels/TotalScore/Data").GetComponent<Text>().text = System.Math.Truncate(score) + " + " + System.Math.Truncate(bonusScore) + "(배율 : x" + qte_magnification + ")";
+        innerModal.Find("Labels/Distance/Data").GetComponent<Text>().text = System.Math.Truncate(character.transform.position.x) + " M";
+        innerModal.Find("Labels/Time/Data").GetComponent<Text>().text = System.Math.Truncate(playTime) + "초";
 
         pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
         pm.addPoint((int)totalScore);
