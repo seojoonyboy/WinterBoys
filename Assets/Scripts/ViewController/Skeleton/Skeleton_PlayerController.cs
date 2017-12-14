@@ -9,6 +9,7 @@ public class Skeleton_PlayerController : MonoBehaviour {
 	[SerializeField] private Rigidbody2D rigid;
 	[SerializeField] private SkeletonAnimation character;
 	private readonly string[] characterList = {"blue_stand","red_stand","yellow_stand"};
+	private int isReverse = 1;
 	
 	private void Start() {
 		setCharacter();
@@ -22,9 +23,13 @@ public class Skeleton_PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	private void Update () {
-		rigid.AddForce(transform.right * Input.acceleration.x * 100f);
+		rigid.AddForce(transform.right * Input.acceleration.x * 100f * isReverse);
 		var dir = background.transform.position - transform.position;
 		var angle = Mathf.Atan2(-dir.x, dir.y) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+	}
+
+	private void reverseItem(bool got) {
+		isReverse = got ? -1 : 1;
 	}
 }
