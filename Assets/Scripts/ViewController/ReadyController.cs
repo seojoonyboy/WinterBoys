@@ -13,14 +13,20 @@ public struct Stat {
 };
 
 public class ReadyController : MonoBehaviour {
+    public MainSceneController mainController;
 	private PointManager pointManager;
+
 	private SportType sport = SportType.SKIJUMP;
 	[SerializeField] private Sprite[] gradeSprite;
+    [SerializeField] private Sprite[] characterSprite;
 	[SerializeField] private Text maxScore;
 	[SerializeField] public Stat speed;
 	[SerializeField] public Stat control;
 	[SerializeField] private Text pointLeft;
 	[SerializeField] private Button startButton;
+    [SerializeField] private Image character;
+
+    public GameObject[] spines;
 
 	private void Awake() {
 		pointManager = PointManager.Instance;
@@ -75,7 +81,10 @@ public class ReadyController : MonoBehaviour {
 		setGrade(control.grade, pointManager.getControlPercent());
 
 		pointLeft.text = pointManager.getPointLeft().ToString("00000");
-	}
+
+        character.sprite = characterSprite[GameManager.Instance.character];
+        character.transform.Find("Outline/Name").GetComponent<Text>().text = mainController.charNames[GameManager.Instance.character];
+    }
 
 	private void setGrade(Image grade, float num) {
 		if(num < 1.13f) grade.sprite = gradeSprite[0];
@@ -133,5 +142,19 @@ public class ReadyController : MonoBehaviour {
 
     public void StartButtonClicked() {
         SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 4);
+    }
+
+    public void OnSpines() {
+        if (gameObject.activeSelf) {
+            foreach(GameObject obj in spines) {
+                obj.SetActive(true);
+            }
+        }
+    }
+
+    public void OffSpines() {
+        foreach(GameObject obj in spines) {
+            obj.SetActive(false);
+        }
     }
 }
