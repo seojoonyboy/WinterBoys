@@ -89,7 +89,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         charRb = character.GetComponent<Rigidbody2D>();
 
         statBasedSpeedForce = forceAmount * pm.getSpeedPercent();
-        resumeButton = modal.transform.Find("InnerModal/ResumeButton").gameObject;
+        resumeButton = modal.transform.Find("InnerModal/Buttons/Resume").gameObject;
 
         _eventManger.AddListener<SkiJump_JumpEvent>(_OnJumpArea);
         _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
@@ -200,10 +200,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         double totalScore = score + bonusScore;
 
         Transform innerModal = modal.transform.Find("InnerModal");
-        innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = System.Math.Truncate(totalScore).ToString();
-        innerModal.Find("DataPanel/Values/Point").GetComponent<Text>().text = System.Math.Truncate(score) + " + " + System.Math.Truncate(bonusScore) + "(배율 : x" + qte_magnification + ")";
-        innerModal.Find("DataPanel/Values/Distance").GetComponent<Text>().text = System.Math.Truncate(character.transform.position.x) + " M";
-        innerModal.Find("DataPanel/Values/Time").GetComponent<Text>().text = System.Math.Truncate(playTime) + "초";
+        innerModal.Find("Point/Data").GetComponent<Text>().text = System.Math.Truncate(totalScore).ToString();
+        innerModal.Find("TotalScore/Data").GetComponent<Text>().text = System.Math.Truncate(score) + " + " + System.Math.Truncate(bonusScore) + "(배율 : x" + qte_magnification + ")";
+        innerModal.Find("Distance/Data").GetComponent<Text>().text = System.Math.Truncate(character.transform.position.x) + " M";
+        innerModal.Find("Time/Data").GetComponent<Text>().text = System.Math.Truncate(playTime) + "초";
 
         pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
         pm.addPoint((int)totalScore);
