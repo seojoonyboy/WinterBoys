@@ -26,7 +26,10 @@ public class ItemGenerator : MonoBehaviour {
     public int[] dh_itemArea;             //등장 공간
     public int[] dh_numPerGenerate;       //등장 갯수
     private int dh_index;
-    private int dh_interval;
+    private int 
+        dh_interval,
+        dh_interval2,
+        intervalNum = 1;
 
     //스키점프
     public int[] sj_standardChangeMeter;  //아이템 등장 기준 변경 시점 (미터)
@@ -79,18 +82,29 @@ public class ItemGenerator : MonoBehaviour {
             }
         }
         else if(gameType == SportType.DOWNHILL) {
-            float charPosOfY = -1 * dh_playerController.playerPos.y * 2;
+            float charPosOfY = dh_playerController.virtualPlayerPosOfY;
 
-            if(charPosOfY >= dh_standardChangeMeter[dh_index]) {
-                if(dh_index == dh_standardChangeMeter.Length - 1) { return; }
+            if (charPosOfY >= dh_standardChangeMeter[dh_index]) {
+                if (dh_index == dh_standardChangeMeter.Length) { return; }
+                
+                Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
 
                 dh_interval = dh_intervalMeter[dh_index];
                 dh_index++;
+
+                Debug.Log("dh_interval2 : " + dh_interval2);
+                Debug.Log("dh_index : " + dh_index);
             }
 
-            if (charPosOfY > dh_interval) {
-                Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
-                dh_interval += dh_interval;
+            //다음 아이템 젠 변경까지
+            if(dh_index != 0) {
+                if(charPosOfY > dh_standardChangeMeter[dh_index - 1] + dh_interval) {
+                    Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index - 1]);
+                    dh_interval = dh_interval * intervalNum;
+                    intervalNum++;
+                    Debug.Log(dh_standardChangeMeter[dh_index - 1] + dh_interval);
+                    Debug.Log("Index : " +(dh_index - 1));
+                }
             }
         }
     }
@@ -145,10 +159,8 @@ public class ItemGenerator : MonoBehaviour {
                 pos.z = 0;
                 break;
             case SportType.DOWNHILL:
-                randX = UnityEngine.Random.Range(80f, Screen.width - 80f);
-                randY = UnityEngine.Random.Range(0f, 50f);
-
-                pos = cam.ScreenToWorldPoint(new Vector3(randX + Screen.width, dh_playerController.playerPos.y - Screen.height, 3.5f));
+                randX = UnityEngine.Random.Range(0, Screen.width);
+                pos = cam.ScreenToWorldPoint(new Vector3(randX, dh_playerController.playerPos.y - Screen.height, 3.5f));
                 pos.z = 0;
                 break;
         }

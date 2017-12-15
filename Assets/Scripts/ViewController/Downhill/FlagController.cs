@@ -49,7 +49,7 @@ public class FlagController : MonoBehaviour {
                 }
 
                 if (!isSend) {
-                    Debug.Log("실패");
+                    //Debug.Log("실패");
                     dm.remainTime -= (int)GameManager.Instance.panelty_time;
                     dm.setCombo(0);
                     //if (bm.centers.Count != 0) {
@@ -68,7 +68,7 @@ public class FlagController : MonoBehaviour {
             if (Physics.Raycast(transform.position, dir, out hit, distance)) {
                 if (hit.collider.tag == "Player") {
                     if (!isPassSend) {
-                        Debug.Log("성공");
+                        //Debug.Log("성공");
                         dm.passNumInc();
                         dm.setCombo(1);
                         //if (bm.centers.Count != 0) {

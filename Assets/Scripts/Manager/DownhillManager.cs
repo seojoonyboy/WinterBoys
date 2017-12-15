@@ -62,7 +62,7 @@ public class DownhillManager : MonoBehaviour {
     private void Update() {
         effectTxt.text = "아이템 효과 : " + playerController.playerState.ToString();
         playTime += Time.deltaTime;
-        distOfMeter = -1 * System.Math.Truncate(playerController.playerPos.y * 2);
+        distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
         distanceTxt.text = distOfMeter + " M";
     }
 
@@ -113,7 +113,7 @@ public class DownhillManager : MonoBehaviour {
             maxCombo = comboNum;
         }
 
-        Debug.Log("콤보횟수 : " + comboNum);
+        //Debug.Log("콤보횟수 : " + comboNum);
     }
 
     public void scoreInc(int amount) {

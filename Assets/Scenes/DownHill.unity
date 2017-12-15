@@ -1969,7 +1969,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3927,6 +3927,7 @@ MonoBehaviour:
   angleV: 70
   input_sensitive: 5
   rotateDir: 1
+  virtualPlayerPosOfY: 0
   playerState: 0
   playerImage: {fileID: 155959521}
   blue_chars:
@@ -4514,6 +4515,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 33515418052369850, guid: 33245ee7dec01834da223012a701017b,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33245ee7dec01834da223012a701017b, type: 2}
   m_IsPrefabParent: 0
@@ -4987,9 +4993,9 @@ MonoBehaviour:
   minTime: 5
   sj_playerController: {fileID: 0}
   dh_playerController: {fileID: 952238717}
-  dh_standardChangeMeter: fa000000b0040000c4090000
-  dh_intervalMeter: 2c010000c800000032000000
-  dh_itemArea: 320000003200000032000000
+  dh_standardChangeMeter: 3c000000580200004c040000
+  dh_intervalMeter: 3c0000002d0000001e000000
+  dh_itemArea: 140000001400000014000000
   dh_numPerGenerate: 010000000200000003000000
   sj_standardChangeMeter: 
   sj_intervalMeter: 

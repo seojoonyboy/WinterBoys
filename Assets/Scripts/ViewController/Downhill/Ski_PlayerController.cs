@@ -13,6 +13,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public float input_sensitive = 5.0f;        //캐릭터 회전력
     private float statBasedRotSenstive;         //Stat을 적용한 캐릭터 회전력
     public int rotateDir = 1;
+    public float virtualPlayerPosOfY;
 
     private float
         boostCoolTime,
@@ -91,6 +92,8 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        virtualPlayerPosOfY = -1 * selectedCharacters[0].transform.position.y * 3.0f;
+
         rb.AddForce(ForwardForce() * additionalForceByEffect);
 
         if(rb.velocity.y >= 0) {
@@ -188,7 +191,6 @@ public class Ski_PlayerController : MonoBehaviour {
             if (!audioSource.isPlaying) {
                 audioSource.clip = dM.soundManager.scene_dh_effects[0];
                 audioSource.Play();
-                Debug.Log("?!");
             }
         }
 
