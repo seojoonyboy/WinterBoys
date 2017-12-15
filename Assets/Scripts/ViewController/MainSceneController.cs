@@ -85,17 +85,23 @@ public class MainSceneController : MonoBehaviour {
         Text charName = charSelPanel.transform.Find("CharName").GetComponent<Text>();
         Text bonusStat = charSelPanel.transform.Find("BonusStat").GetComponent<Text>();
         Text changeToCompete = charSelPanel.transform.Find("ChanceToCompete").GetComponent<Text>();
-        Text btn_message = charSelPanel.transform.Find("Button/Message").GetComponent<Text>();
+        GameObject btn1 = charSelPanel.transform.Find("Buttons/Button").gameObject;
+        GameObject btn2 = charSelPanel.transform.Find("Buttons/Button (1)").gameObject;
+        GameObject btn3 = charSelPanel.transform.Find("Buttons/Button (2)").gameObject;
 
         Image image = charSelPanel.transform.Find("SelectPanel/Character").GetComponent<Image>();
         image.sprite = characters[index];
 
         charName.text = charNames[index];
         if(index == gm.character) {
-            btn_message.text = "출전중...";
+            btn1.SetActive(true);
+            btn2.SetActive(false);
+            btn3.SetActive(false);
         }
         else {
-            btn_message.text = "Hire\n 500 D / 6,000 P";
+            btn1.SetActive(false);
+            btn2.SetActive(true);
+            btn3.SetActive(true);
         }
     }
 
