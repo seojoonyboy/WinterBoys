@@ -6,50 +6,57 @@ filter: Linear,Linear
 repeat: none
 1
   rotate: false
-  xy: 39, 44
+  xy: 664, 471
   size: 23, 23
   orig: 23, 23
   offset: 0, 0
   index: -1
 2
   rotate: false
-  xy: 625, 443
+  xy: 471, 48
   size: 33, 34
   orig: 33, 34
   offset: 0, 0
   index: -1
 3
   rotate: false
-  xy: 2, 32
+  xy: 627, 459
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 6
   rotate: false
-  xy: 2, 32
+  xy: 627, 459
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 4
   rotate: false
-  xy: 2, 2
+  xy: 627, 429
   size: 28, 28
   orig: 28, 28
   offset: 0, 0
   index: -1
 5
   rotate: false
-  xy: 625, 420
+  xy: 471, 25
   size: 21, 21
   orig: 21, 21
   offset: 0, 0
   index: -1
 logo
   rotate: false
-  xy: 2, 69
-  size: 621, 408
-  orig: 621, 408
+  xy: 2, 84
+  size: 623, 410
+  orig: 623, 410
+  offset: 0, 0
+  index: -1
+snow
+  rotate: false
+  xy: 2, 2
+  size: 467, 80
+  orig: 467, 80
   offset: 0, 0
   index: -1
