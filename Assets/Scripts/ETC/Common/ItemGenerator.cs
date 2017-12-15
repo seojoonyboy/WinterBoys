@@ -117,7 +117,7 @@ public class ItemGenerator : MonoBehaviour {
         int randNum = UnityEngine.Random.Range(0, 100);
         int itemIndex = getPercentageBasedIndex(type, randNum);
         GameObject item = Instantiate(items[itemIndex]);
-
+        
         switch (type) {
             case SportType.SKIJUMP:
                 item.GetComponent<Item>().item_sj = (ItemType.SJ)itemIndex;

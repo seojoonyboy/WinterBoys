@@ -175,6 +175,10 @@ public class BoardManager : MonoBehaviour {
             obj.transform.position = new Vector2(this.deltaX, leftFlag.transform.position.y);
 
             centers.Add(obj);
+
+            leftFlag.transform.SetParent(floorHolder);
+            rightFlag.transform.SetParent(floorHolder);
+            obj.transform.SetParent(floorHolder);
         }
 
         //폴 사이 간격 감소
@@ -213,6 +217,9 @@ public class BoardManager : MonoBehaviour {
                 nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
                 rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
                 rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+
+                tree.transform.SetParent(floorHolder);
+                rightTree.transform.SetParent(floorHolder);
             }
         }
         else {
@@ -233,6 +240,9 @@ public class BoardManager : MonoBehaviour {
                 nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
                 rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
                 rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
+
+                tree.transform.SetParent(floorHolder);
+                rightTree.transform.SetParent(floorHolder);
             }
         }
     }
