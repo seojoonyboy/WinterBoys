@@ -11817,7 +11817,7 @@ Prefab:
     - target: {fileID: 224156996289894668, guid: ca39e0b98bd83401e969e6156689df66,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224156996289894668, guid: ca39e0b98bd83401e969e6156689df66,
         type: 2}
@@ -11872,7 +11872,7 @@ Prefab:
     - target: {fileID: 224256068058592224, guid: ca39e0b98bd83401e969e6156689df66,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -26
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 1703872480182166, guid: ca39e0b98bd83401e969e6156689df66, type: 2}
       propertyPath: m_Name
@@ -11896,6 +11896,100 @@ Prefab:
       value: Confirm
       objectReference: {fileID: 0}
     - target: {fileID: 1285517925177524, guid: ca39e0b98bd83401e969e6156689df66, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224096517086805118, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.49997997
+      objectReference: {fileID: 0}
+    - target: {fileID: 224096517086805118, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224141792854313186, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224141792854313186, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224141792854313186, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 354
+      objectReference: {fileID: 0}
+    - target: {fileID: 224141792854313186, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -49.950012
+      objectReference: {fileID: 0}
+    - target: {fileID: 224276224703688268, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224276224703688268, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224276224703688268, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 354
+      objectReference: {fileID: 0}
+    - target: {fileID: 224276224703688268, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -183.65001
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414438378325206, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414438378325206, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414438378325206, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 354
+      objectReference: {fileID: 0}
+    - target: {fileID: 224414438378325206, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -317.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 224486527461480422, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224486527461480422, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224486527461480422, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 354
+      objectReference: {fileID: 0}
+    - target: {fileID: 224486527461480422, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -451.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188142655179434, guid: ca39e0b98bd83401e969e6156689df66, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -11955,7 +12049,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2081850015}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -12028,7 +12122,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2081850016}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -12080,7 +12174,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2081850017}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -12097,6 +12191,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2081850015 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114580308564128494, guid: ca39e0b98bd83401e969e6156689df66,
+    type: 2}
+  m_PrefabInternal: {fileID: 2081850006}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &2081850016 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114021828665259022, guid: ca39e0b98bd83401e969e6156689df66,
+    type: 2}
+  m_PrefabInternal: {fileID: 2081850006}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &2081850017 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114234576212317124, guid: ca39e0b98bd83401e969e6156689df66,
+    type: 2}
+  m_PrefabInternal: {fileID: 2081850006}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2093684911
 Prefab:
   m_ObjectHideFlags: 0
