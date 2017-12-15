@@ -52,9 +52,9 @@ public class FlagController : MonoBehaviour {
                     Debug.Log("실패");
                     dm.remainTime -= (int)GameManager.Instance.panelty_time;
                     dm.setCombo(0);
-                    if (bm.centers.Count != 0) {
-                        bm.centers.RemoveAt(0);
-                    }
+                    //if (bm.centers.Count != 0) {
+                    //    bm.centers.RemoveAt(0);
+                    //}
                 }
                 isSend = true;
             }
@@ -71,9 +71,9 @@ public class FlagController : MonoBehaviour {
                         Debug.Log("성공");
                         dm.passNumInc();
                         dm.setCombo(1);
-                        if (bm.centers.Count != 0) {
-                            bm.centers.RemoveAt(0);
-                        }
+                        //if (bm.centers.Count != 0) {
+                        //    bm.centers.RemoveAt(0);
+                        //}
                     }
                     isPassSend = true;
                 }
