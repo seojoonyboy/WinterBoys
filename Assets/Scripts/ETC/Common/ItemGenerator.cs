@@ -84,26 +84,20 @@ public class ItemGenerator : MonoBehaviour {
         else if(gameType == SportType.DOWNHILL) {
             float charPosOfY = dh_playerController.virtualPlayerPosOfY;
 
-            if (charPosOfY >= dh_standardChangeMeter[dh_index]) {
+            if (charPosOfY > dh_standardChangeMeter[dh_index]) {
                 if (dh_index == dh_standardChangeMeter.Length) { return; }
                 
                 Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
 
-                dh_interval = dh_intervalMeter[dh_index];
+                dh_interval = dh_intervalMeter[dh_index] + dh_standardChangeMeter[dh_index];
                 dh_index++;
-
-                Debug.Log("dh_interval2 : " + dh_interval2);
-                Debug.Log("dh_index : " + dh_index);
             }
 
             //다음 아이템 젠 변경까지
             if(dh_index != 0) {
-                if(charPosOfY > dh_standardChangeMeter[dh_index - 1] + dh_interval) {
+                if(charPosOfY > dh_interval) {
                     Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index - 1]);
-                    dh_interval = dh_interval * intervalNum;
-                    intervalNum++;
-                    Debug.Log(dh_standardChangeMeter[dh_index - 1] + dh_interval);
-                    Debug.Log("Index : " +(dh_index - 1));
+                    dh_interval = dh_interval + dh_intervalMeter[dh_index];
                 }
             }
         }
