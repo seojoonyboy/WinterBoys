@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/FblLogo/Scene/Opening.unity
+    guid: 95285cf317930f94bae50bf3925987f8
+  - enabled: 1
     path: Assets/Scenes/SignIn.unity
     guid: ecfec6dda07c0fc45999b0e72a839a07
   - enabled: 1
