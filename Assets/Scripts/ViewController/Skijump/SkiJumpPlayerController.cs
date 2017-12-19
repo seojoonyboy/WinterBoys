@@ -110,8 +110,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
             _eventManger.TriggerEvent(new SkjJump_NextBgGenerate());
         }
 
-        sm.speedText.GetComponent<Text>().text = System.Math.Round(rb.velocity.magnitude * 3, 2) + " km/h";
-
         if (!canButtonPress) {
             buttonCoolTime -= Time.deltaTime;
             if(buttonCoolTime < 0) {
