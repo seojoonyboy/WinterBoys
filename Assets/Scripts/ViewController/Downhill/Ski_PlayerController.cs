@@ -39,7 +39,7 @@ public class Ski_PlayerController : MonoBehaviour {
     public IndicatorController ic;
 
     private GameManager gm;
-    private PointManager pm;
+    private SaveManager pm;
 
     private int characterIndex = 0;
     private GameObject[] selectedCharacters;
@@ -56,7 +56,7 @@ public class Ski_PlayerController : MonoBehaviour {
     private Vector2 beginEular; 
     private void Awake() {
         gm = GameManager.Instance;
-        pm = PointManager.Instance;
+        pm = SaveManager.Instance;
         rb = GetComponent<Rigidbody2D>();
     }
     private void Start() {

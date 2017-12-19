@@ -11,7 +11,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private SoundManager soundManager;
 
     private GameManager gm;
-    private PointManager pm;
+    private SaveManager pm;
 
     public SkiJumpManager sm;
     public Transform arrow;
@@ -59,7 +59,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         soundManager = SoundManager.Instance;
 
         gm = GameManager.Instance;
-        pm = PointManager.Instance;
+        pm = SaveManager.Instance;
 
         rb = GetComponent<Rigidbody2D>();
     }

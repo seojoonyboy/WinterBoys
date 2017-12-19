@@ -9,7 +9,7 @@ public class DownhillManager : MonoBehaviour {
     public GameObject modal;
 
     private GameManager gm;
-    private PointManager pm;
+    private SaveManager pm;
     private UM_GameServiceManager umgm;
     public int remainTime;
 
@@ -38,7 +38,7 @@ public class DownhillManager : MonoBehaviour {
     private void Awake() {
         gm = GameManager.Instance;
         umgm = UM_GameServiceManager.Instance;
-        pm = PointManager.Instance;
+        pm = SaveManager.Instance;
         soundManager = SoundManager.Instance;
         UM_GameServiceManager.ActionScoreSubmitted += HandleActionScoreSubmitted;
     }

@@ -10,7 +10,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
 
     private EventManager _eventManger;
-    private PointManager pm;
+    private SaveManager pm;
 
     public SkiJumpPlayerController playerController;
     public ArrowRotate arrowController;
@@ -63,7 +63,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void Awake() {
         _eventManger = EventManager.Instance;
-        pm = PointManager.Instance;
+        pm = SaveManager.Instance;
 
         soundManager = SoundManager.Instance;
     }
