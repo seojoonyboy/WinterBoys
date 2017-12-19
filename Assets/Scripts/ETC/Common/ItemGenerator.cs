@@ -26,10 +26,7 @@ public class ItemGenerator : MonoBehaviour {
     public int[] dh_itemArea;             //등장 공간
     public int[] dh_numPerGenerate;       //등장 갯수
     private int dh_index;
-    private int 
-        dh_interval,
-        dh_interval2,
-        intervalNum = 1;
+    private int dh_interval;
 
     //스키점프
     public int[] sj_standardChangeMeter;  //아이템 등장 기준 변경 시점 (미터)
@@ -84,12 +81,13 @@ public class ItemGenerator : MonoBehaviour {
         else if(gameType == SportType.DOWNHILL) {
             float charPosOfY = dh_playerController.virtualPlayerPosOfY;
 
+            //아이템 젠 변경점
             if (charPosOfY > dh_standardChangeMeter[dh_index]) {
                 if (dh_index == dh_standardChangeMeter.Length) { return; }
                 
                 Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
 
-                dh_interval = dh_intervalMeter[dh_index] + dh_standardChangeMeter[dh_index];
+                dh_interval = dh_standardChangeMeter[dh_index] + dh_intervalMeter[dh_index];
                 dh_index++;
             }
 
@@ -97,7 +95,7 @@ public class ItemGenerator : MonoBehaviour {
             if(dh_index != 0) {
                 if(charPosOfY > dh_interval) {
                     Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index - 1]);
-                    dh_interval = dh_interval + dh_intervalMeter[dh_index];
+                    dh_interval += dh_intervalMeter[dh_index];
                 }
             }
         }
