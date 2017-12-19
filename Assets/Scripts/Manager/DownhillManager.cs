@@ -18,7 +18,8 @@ public class DownhillManager : MonoBehaviour {
     public Text 
         remainTimeTxt,
         effectTxt,
-        distanceTxt;
+        distanceTxt,
+        speedTxt;
 
     public int passNum = 0;
     public int comboNum = 0;
@@ -45,7 +46,6 @@ public class DownhillManager : MonoBehaviour {
     private void Start() {
         Time.timeScale = 1;
         remainTime = gm.startTime;
-        remainTimeTxt.text = "남은 시간 : " + gm.startTime + " 초";
         InvokeRepeating("timeDec", 1.0f, 1.0f);
 
         score = 0;
@@ -65,6 +65,8 @@ public class DownhillManager : MonoBehaviour {
         playTime += Time.deltaTime;
         distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
         distanceTxt.text = distOfMeter + " M";
+        float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude;
+        speedTxt.text = System.Math.Truncate(speed) + "KM/S";
     }
 
     private void initEventHandler() {
@@ -81,7 +83,7 @@ public class DownhillManager : MonoBehaviour {
 
     void timeDec() {
         remainTime -= 1;
-        remainTimeTxt.text = "남은 시간 : " + remainTime + " 초";
+        remainTimeTxt.text = remainTime + " 초";
 
         if(remainTime <= 0) {
             remainTime = 0;
