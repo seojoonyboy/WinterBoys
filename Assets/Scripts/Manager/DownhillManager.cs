@@ -29,10 +29,11 @@ public class DownhillManager : MonoBehaviour {
     private double distOfMeter = 0;
 
     public Ski_PlayerController playerController;
-    public delegate void gameOverHandler();
+    public delegate void gameOverHandler(GameoverReason reason);
     public static event gameOverHandler OngameOver;
 
     public SoundManager soundManager;
+    private GameoverReason gameoverReason;
     private void Awake() {
         gm = GameManager.Instance;
         umgm = UM_GameServiceManager.Instance;
@@ -84,7 +85,7 @@ public class DownhillManager : MonoBehaviour {
 
         if(remainTime <= 0) {
             remainTime = 0;
-            OnGameOver();
+            OnGameOver(GameoverReason.TIMEEND);
         }
     }
 
@@ -120,26 +121,26 @@ public class DownhillManager : MonoBehaviour {
         score += amount;
     }
 
-    public void OnGameOver() {
+    public void OnGameOver(GameoverReason reason) {
         Time.timeScale = 0;
 
         modal.SetActive(true);
 
-        Transform innerModal = modal.transform.Find("InnerModal");
+        Transform innerModal = modal.transform.Find("Panel");
 
         Vector3 playerEndPos = playerController.playerPos;
 
         score += (int)(distOfMeter / gm.points[0]);
         umgm.SubmitScore("DownHill", (long)score);
 
-        Transform values = innerModal.Find("DataPanel/Values");
-        values.Find("Dist").GetComponent<Text>().text = distOfMeter + " M";
-        values.Find("Combo").GetComponent<Text>().text = maxCombo.ToString();
+        Transform labels = innerModal.Find("Labels");
+        labels.Find("Distance/Data").GetComponent<Text>().text = distOfMeter + " M";
+        labels.Find("Combo/Data").GetComponent<Text>().text = maxCombo.ToString();
 
         double additionalScore = System.Math.Truncate(score * (maxCombo * 0.02f));
-        values.Find("Point").GetComponent<Text>().text = score + " + " + additionalScore;
+        labels.Find("Point/Data").GetComponent<Text>().text = score + " + " + additionalScore;
 
-        innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = (score + additionalScore).ToString();
+        //innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = (score + additionalScore).ToString();
 
         int playTime = (int)this.playTime;
         int minute = 0;
@@ -148,12 +149,12 @@ public class DownhillManager : MonoBehaviour {
         }
         int second = playTime - (60 * minute);
 
-        values.Find("Time").GetComponent<Text>().text = minute + " : " + second;
+        labels.Find("Time/Data").GetComponent<Text>().text = minute + " : " + second;
 
         pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
         pm.addPoint(score);
 
-        GameObject resumeBtn = innerModal.Find("Buttons/ResumeButton").gameObject;
+        GameObject resumeBtn = innerModal.Find("Buttons/Replay").gameObject;
         int randNum = Random.Range(0, 100);
         if(randNum < 15) {
             resumeBtn.SetActive(true);
@@ -161,6 +162,7 @@ public class DownhillManager : MonoBehaviour {
         else {
             resumeBtn.SetActive(false);
         }
+        gameoverReason = reason;
 
         soundManager.Play(SoundManager.SoundType.DOWNHILL, 4);
     }
@@ -171,6 +173,16 @@ public class DownhillManager : MonoBehaviour {
         remainTime = 30;
 
         modal.SetActive(false);
+
+        //캐릭터를 중앙으로 강제이동시킴(Side Tile 충돌하여 게임 종료되었을 시 재개해도 바로 다시 충돌함)
+        //회전전부 초기화
+        if(gameoverReason == GameoverReason.SIDETILE) {
+            playerController.resetQuarternion();
+            playerController.transform.position = new Vector3(
+                0,
+                playerController.transform.position.y,
+                playerController.transform.position.z);
+        }
     }
 
     private void HandleActionScoreSubmitted(UM_LeaderboardResult res) {
@@ -181,5 +193,10 @@ public class DownhillManager : MonoBehaviour {
         else {
             Debug.Log("Score submission failed: " + res.Error.Code + " / " + res.Error.Description);
         }
+    }
+
+    public enum GameoverReason {
+        SIDETILE,
+        TIMEEND
     }
 }

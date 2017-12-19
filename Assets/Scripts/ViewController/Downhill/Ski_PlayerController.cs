@@ -52,6 +52,8 @@ public class Ski_PlayerController : MonoBehaviour {
     private float additionalAngularForceByEffect = 1.0f;
 
     public AudioSource audioSource;
+    private Quaternion beginQuarternion;
+    private Vector2 beginEular; 
     private void Awake() {
         gm = GameManager.Instance;
         pm = PointManager.Instance;
@@ -85,6 +87,8 @@ public class Ski_PlayerController : MonoBehaviour {
         rotateDecCoolTime = 7.0f;
 
         playerState = PlayerState.NORMAL;
+
+        beginQuarternion = transform.rotation;
     }
 
     private void Update() {
@@ -310,6 +314,11 @@ public class Ski_PlayerController : MonoBehaviour {
             selectedCharacters[index].SetActive(true);
             preObj = selectedCharacters[index];
         }
+    }
+
+    public void resetQuarternion() {
+        transform.rotation = beginQuarternion;
+        rb.angularVelocity = 0;
     }
 
     public void itemCheck(GameObject obj) {
