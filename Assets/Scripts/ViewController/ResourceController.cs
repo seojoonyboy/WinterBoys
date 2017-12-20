@@ -9,6 +9,7 @@ public class ResourceController : MonoBehaviour {
 
 	private void Awake() {
 		saveManager = SaveManager.Instance;
+		setData();
 	}
 
 	public void setData() {
