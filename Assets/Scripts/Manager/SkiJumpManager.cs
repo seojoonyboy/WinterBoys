@@ -46,7 +46,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         tmp = true;
     public double 
         score = 0,
-        bonusScore = 0;
+        bonusScore = 0,
+        totalScore = 0;
 
     public Text 
         height,
@@ -113,6 +114,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         if (!resumeBtn.activeSelf) {
             resumeBtn.SetActive(true);
         }
+
+        connectUnityAdsButton();
     }
 
     private void Update() {
@@ -153,6 +156,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         soundManager.Play(SoundManager.SoundType.SKIJUMP, 8);
 
         resumeButton.SetActive(true);
+
+        pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
+        pm.addPoint((int)totalScore);
     }
 
     public void restart() {
@@ -221,16 +227,17 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             score = System.Math.Round(score * 0.75f);
         }
         score *= (1 + qte_magnification);
-        double totalScore = score + bonusScore;
+        //totalScore = score + bonusScore;
 
         Transform innerModal = modal.transform.Find("InnerModal");
-        innerModal.Find("Labels/Point/Data").GetComponent<Text>().text = System.Math.Truncate(totalScore).ToString();
-        innerModal.Find("Labels/TotalScore/Data").GetComponent<Text>().text = System.Math.Truncate(score) + " + " + System.Math.Truncate(bonusScore) + "(배율 : x" + qte_magnification + ")";
+
+        innerModal.Find("Labels/Point/Data").GetComponent<Text>().text = 
+            System.Math.Truncate(score)
+            + " + " + System.Math.Truncate(bonusScore)
+            + "(배율 : x" + qte_magnification + ")";
+
         innerModal.Find("Labels/Distance/Data").GetComponent<Text>().text = System.Math.Truncate(character.transform.position.x) + " M";
         innerModal.Find("Labels/Time/Data").GetComponent<Text>().text = System.Math.Truncate(playTime) + "초";
-
-        pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
-        pm.addPoint((int)totalScore);
 
         Debug.Log("추가 배율 : " + qte_magnification);
 
@@ -268,9 +275,20 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         switch (result) {
             case ShowResult.Finished: {
                     Debug.Log("The ad was successfully shown.");
+                    //획득 포인트를 2배 증가시킨다.
+                    //이어하기 버튼 비활성화
                     resumeBtn.SetActive(false);
-                    // to do ...
-                    // 광고 시청이 완료되었을 때 처리
+                    adsBtn.SetActive(false);
+
+                    score *= 2;
+                    bonusScore *= 2;
+
+                    Transform innerModal = modal.transform.Find("InnerModal");
+
+                    innerModal.Find("Labels/Point/Data").GetComponent<Text>().text = 
+                        System.Math.Truncate(score)
+                        + " + " + System.Math.Truncate(bonusScore)
+                        + "(배율 : x" + qte_magnification + ")";
                     break;
                 }
             case ShowResult.Skipped: {
@@ -293,7 +311,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void connectUnityAdsButton() {
-        Button button = modal.transform.Find("Panel/Labels/Point/Advertise").GetComponent<Button>();
+        Button button = adsBtn.GetComponent<Button>();
         button.onClick.AddListener(AdButtonClicked);
 
         UnityAdsHelper.Instance.onResultCallback += onResultCallback;
