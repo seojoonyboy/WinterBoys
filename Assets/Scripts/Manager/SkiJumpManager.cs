@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using GameEvents;
+using UnityEngine.Advertisements;
 
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
@@ -22,7 +23,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         character,
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
-        jumpButton;                 //점프하기 버튼
+        jumpButton,                 //점프하기 버튼
+        resumeBtn,                  //이어하기 버튼
+        adsBtn;                     //광고보기 버튼
 
     public Text 
         speedText,
@@ -106,6 +109,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         //statBasedSpeedForce = forceAmount * 1.8f;
 
         preFixedDeltaTime = Time.fixedDeltaTime;
+
+        if (!resumeBtn.activeSelf) {
+            resumeBtn.SetActive(true);
+        }
     }
 
     private void Update() {
@@ -144,6 +151,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         removeListener();
 
         soundManager.Play(SoundManager.SoundType.SKIJUMP, 8);
+
+        resumeButton.SetActive(true);
     }
 
     public void restart() {
@@ -226,11 +235,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         Debug.Log("추가 배율 : " + qte_magnification);
 
         int randNum = UnityEngine.Random.Range(0, 100);
-        if(randNum < 15) {
-            resumeButton.SetActive(true);
+        if(randNum < 30) {
+            adsBtn.SetActive(true);
         }
         else {
-            resumeButton.SetActive(false);
+            adsBtn.SetActive(false);
         }
 
         Time.timeScale = 0.0f;
@@ -251,6 +260,47 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         isLanded = false;
         isQTE_occured = false;
+
+        resumeBtn.SetActive(false);
+    }
+
+    private void onResultCallback(ShowResult result) {
+        switch (result) {
+            case ShowResult.Finished: {
+                    Debug.Log("The ad was successfully shown.");
+                    resumeBtn.SetActive(false);
+                    // to do ...
+                    // 광고 시청이 완료되었을 때 처리
+                    break;
+                }
+            case ShowResult.Skipped: {
+                    Debug.Log("The ad was skipped before reaching the end.");
+
+                    // to do ...
+                    // 광고가 스킵되었을 때 처리
+
+                    break;
+                }
+            case ShowResult.Failed: {
+                    Debug.LogError("The ad failed to be shown.");
+
+                    // to do ...
+                    // 광고 시청에 실패했을 때 처리
+
+                    break;
+                }
+        }
+    }
+
+    private void connectUnityAdsButton() {
+        Button button = modal.transform.Find("Panel/Labels/Point/Advertise").GetComponent<Button>();
+        button.onClick.AddListener(AdButtonClicked);
+
+        UnityAdsHelper.Instance.onResultCallback += onResultCallback;
+    }
+
+    private void AdButtonClicked() {
+        UnityAdsHelper.Instance.ShowRewardedAd();
     }
 
     private void removeListener() {
