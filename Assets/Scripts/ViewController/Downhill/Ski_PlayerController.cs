@@ -352,7 +352,7 @@ public class Ski_PlayerController : MonoBehaviour {
                     additionalAngularForceByEffect = 0.5f;
                     break;
                 case ItemType.DH.MONEY:
-
+                    dM.addCrystal(5);
                     break;
                 case ItemType.DH.TIME:
                     dM.remainTime += 15;

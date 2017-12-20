@@ -206,6 +206,10 @@ public class DownhillManager : MonoBehaviour {
         resumeBtn.SetActive(false);
     }
 
+    public void addCrystal(int amount) {
+        pm.addCrystal(amount);
+    }
+
     private void connectUnityAdsButton() {
         Button button = modal.transform.Find("Panel/Labels/Point/Advertise").GetComponent<Button>();
         button.onClick.AddListener(AdButtonClicked);
