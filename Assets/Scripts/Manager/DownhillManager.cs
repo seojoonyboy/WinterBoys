@@ -31,7 +31,10 @@ public class DownhillManager : MonoBehaviour {
     private int maxCombo = 0;
     private int score = 0;
 
-    private double distOfMeter = 0;
+    private double 
+        distOfMeter = 0,
+        preDistOfMeter = 0,
+        additionalScore = 0;
 
     public Ski_PlayerController playerController;
     public delegate void gameOverHandler(GameoverReason reason);
@@ -58,6 +61,8 @@ public class DownhillManager : MonoBehaviour {
 
         playTime = 0;
         distOfMeter = 0;
+        preDistOfMeter = 0;
+        additionalScore = 0;
 
         initEventHandler();
 
@@ -84,6 +89,9 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void mainLoad() {
+        pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
+        pm.addPoint(score);
+
         UM_GameServiceManager.ActionScoreSubmitted -= HandleActionScoreSubmitted;
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
@@ -144,14 +152,16 @@ public class DownhillManager : MonoBehaviour {
 
         Vector3 playerEndPos = playerController.playerPos;
 
-        score += (int)(distOfMeter / gm.points[0]);
+        score += (int)((distOfMeter - preDistOfMeter) / gm.points[0]);
+        preDistOfMeter = distOfMeter;
+
         umgm.SubmitScore("DownHill", (long)score);
 
         Transform labels = innerModal.Find("Labels");
         labels.Find("Distance/Data").GetComponent<Text>().text = distOfMeter + " M";
         labels.Find("Combo/Data").GetComponent<Text>().text = maxCombo.ToString();
 
-        double additionalScore = System.Math.Truncate(score * (maxCombo * 0.02f));
+        additionalScore = System.Math.Truncate(score * (maxCombo * 0.02f));
         labels.Find("Point/Data").GetComponent<Text>().text = score + " + " + additionalScore;
 
         //innerModal.Find("TotalScorePanel/Value").GetComponent<Text>().text = (score + additionalScore).ToString();
@@ -164,9 +174,6 @@ public class DownhillManager : MonoBehaviour {
         int second = playTime - (60 * minute);
 
         labels.Find("Time/Data").GetComponent<Text>().text = minute + " : " + second;
-
-        pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
-        pm.addPoint(score);
         gameoverReason = reason;
 
         int randNum = Random.Range(0, 100);
@@ -214,9 +221,15 @@ public class DownhillManager : MonoBehaviour {
         switch (result) {
             case ShowResult.Finished: {
                     Debug.Log("The ad was successfully shown.");
+
+                    //획득 포인트를 2배 증가시킨다.
+                    //이어하기 버튼 비활성화
                     resumeBtn.SetActive(false);
-                    // to do ...
-                    // 광고 시청이 완료되었을 때 처리
+                    score *= 2;
+
+                    Transform labels = modal.transform.Find("Panel/Labels");
+                    labels.Find("Point/Data").GetComponent<Text>().text = score + " + " + additionalScore;
+                    
                     break;
                 }
             case ShowResult.Skipped: {
