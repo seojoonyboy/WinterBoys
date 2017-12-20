@@ -3599,6 +3599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modal: {fileID: 1289974599}
+  resumeBtn: {fileID: 1289974600}
+  adShowBtn: {fileID: 1289974601}
   remainTime: 0
   playTime: 0
   remainTimeTxt: {fileID: 1820518643}
@@ -3903,7 +3905,7 @@ Prefab:
     - target: {fileID: 224486527461480422, guid: ca39e0b98bd83401e969e6156689df66,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -451.05
+      value: -451.04996
       objectReference: {fileID: 0}
     - target: {fileID: 1285517925177524, guid: ca39e0b98bd83401e969e6156689df66, type: 2}
       propertyPath: m_IsActive
@@ -3945,6 +3947,16 @@ RectTransform:
 --- !u!1 &1289974599 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1285517925177524, guid: ca39e0b98bd83401e969e6156689df66,
+    type: 2}
+  m_PrefabInternal: {fileID: 1289974597}
+--- !u!1 &1289974600 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1188142655179434, guid: ca39e0b98bd83401e969e6156689df66,
+    type: 2}
+  m_PrefabInternal: {fileID: 1289974597}
+--- !u!1 &1289974601 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1003970090135942, guid: ca39e0b98bd83401e969e6156689df66,
     type: 2}
   m_PrefabInternal: {fileID: 1289974597}
 --- !u!1 &1338355597

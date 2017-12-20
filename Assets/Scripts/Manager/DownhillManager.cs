@@ -7,7 +7,10 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
 public class DownhillManager : MonoBehaviour {
-    public GameObject modal;
+    public GameObject 
+        modal,
+        resumeBtn,
+        adShowBtn;
 
     private GameManager gm;
     private SaveManager pm;
@@ -61,6 +64,10 @@ public class DownhillManager : MonoBehaviour {
         soundManager.Play(SoundManager.SoundType.BGM, 4);
 
         connectUnityAdsButton();
+
+        if (!resumeBtn.activeSelf) {
+            resumeBtn.SetActive(true);
+        }
     }
 
     private void Update() {
@@ -80,6 +87,8 @@ public class DownhillManager : MonoBehaviour {
         UM_GameServiceManager.ActionScoreSubmitted -= HandleActionScoreSubmitted;
         SceneManager.LoadScene("Main");
         Time.timeScale = 1;
+
+        resumeBtn.SetActive(true);
 
         soundManager.Play(SoundManager.SoundType.DOWNHILL, 6);
     }
@@ -158,16 +167,15 @@ public class DownhillManager : MonoBehaviour {
 
         pm.setRecord((float)distOfMeter * -1f, SportType.DOWNHILL);
         pm.addPoint(score);
+        gameoverReason = reason;
 
-        GameObject resumeBtn = innerModal.Find("Buttons/Replay").gameObject;
         int randNum = Random.Range(0, 100);
-        if(randNum < 15) {
-            resumeBtn.SetActive(true);
+        if(randNum < 30) {
+            adShowBtn.SetActive(true);
         }
         else {
-            resumeBtn.SetActive(false);
+            adShowBtn.SetActive(false);
         }
-        gameoverReason = reason;
 
         soundManager.Play(SoundManager.SoundType.DOWNHILL, 4);
     }
@@ -188,28 +196,27 @@ public class DownhillManager : MonoBehaviour {
                 playerController.transform.position.y,
                 playerController.transform.position.z);
         }
+        resumeBtn.SetActive(false);
     }
 
     private void connectUnityAdsButton() {
         Button button = modal.transform.Find("Panel/Labels/Point/Advertise").GetComponent<Button>();
-        button.onClick.AddListener(Test);
+        button.onClick.AddListener(AdButtonClicked);
 
         UnityAdsHelper.Instance.onResultCallback += onResultCallback;
     }
 
-    private void Test() {
+    private void AdButtonClicked() {
         UnityAdsHelper.Instance.ShowRewardedAd();
-        
     }
 
     private void onResultCallback(ShowResult result) {
         switch (result) {
             case ShowResult.Finished: {
                     Debug.Log("The ad was successfully shown.");
-
+                    resumeBtn.SetActive(false);
                     // to do ...
                     // 광고 시청이 완료되었을 때 처리
-
                     break;
                 }
             case ShowResult.Skipped: {
