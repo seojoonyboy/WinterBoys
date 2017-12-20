@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class UnityAdsHelper : MonoBehaviour {
+public class UnityAdsHelper : Singleton<UnityAdsHelper> {
+    protected UnityAdsHelper() { }
+
     private const string android_game_id = "1644111";
     private const string ios_game_id = "1644112";
 
     private const string rewarded_video_id = "rewardedVideo";
 
+    public delegate void OnResultCallback(ShowResult result);
+    public event OnResultCallback onResultCallback;
+
     void Start() {
+        DontDestroyOnLoad(gameObject);
         Initialize();
     }
 
@@ -23,7 +29,7 @@ public class UnityAdsHelper : MonoBehaviour {
 
     public void ShowRewardedAd() {
         if (Advertisement.IsReady(rewarded_video_id)) {
-            var options = new ShowOptions { resultCallback = HandleShowResult };
+            ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
 
             Advertisement.Show(rewarded_video_id, options);
         }
@@ -32,7 +38,7 @@ public class UnityAdsHelper : MonoBehaviour {
     private void HandleShowResult(ShowResult result) {
         switch (result) {
             case ShowResult.Finished: {
-                    Debug.Log("The ad was successfully shown.");
+                    //Debug.Log("The ad was successfully shown.");
 
                     // to do ...
                     // 광고 시청이 완료되었을 때 처리
@@ -40,7 +46,7 @@ public class UnityAdsHelper : MonoBehaviour {
                     break;
                 }
             case ShowResult.Skipped: {
-                    Debug.Log("The ad was skipped before reaching the end.");
+                    //Debug.Log("The ad was skipped before reaching the end.");
 
                     // to do ...
                     // 광고가 스킵되었을 때 처리
@@ -48,13 +54,14 @@ public class UnityAdsHelper : MonoBehaviour {
                     break;
                 }
             case ShowResult.Failed: {
-                    Debug.LogError("The ad failed to be shown.");
+                    //Debug.LogError("The ad failed to be shown.");
 
                     // to do ...
                     // 광고 시청에 실패했을 때 처리
 
                     break;
-                }
+            }
         }
+        onResultCallback(result);
     }
 }

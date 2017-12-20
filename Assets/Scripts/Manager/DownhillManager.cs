@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Spine.Unity;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public class DownhillManager : MonoBehaviour {
     public GameObject modal;
@@ -58,6 +59,8 @@ public class DownhillManager : MonoBehaviour {
         initEventHandler();
 
         soundManager.Play(SoundManager.SoundType.BGM, 4);
+
+        connectUnityAdsButton();
     }
 
     private void Update() {
@@ -184,6 +187,47 @@ public class DownhillManager : MonoBehaviour {
                 0,
                 playerController.transform.position.y,
                 playerController.transform.position.z);
+        }
+    }
+
+    private void connectUnityAdsButton() {
+        Button button = modal.transform.Find("Panel/Labels/Point/Advertise").GetComponent<Button>();
+        button.onClick.AddListener(Test);
+
+        UnityAdsHelper.Instance.onResultCallback += onResultCallback;
+    }
+
+    private void Test() {
+        UnityAdsHelper.Instance.ShowRewardedAd();
+        
+    }
+
+    private void onResultCallback(ShowResult result) {
+        switch (result) {
+            case ShowResult.Finished: {
+                    Debug.Log("The ad was successfully shown.");
+
+                    // to do ...
+                    // 광고 시청이 완료되었을 때 처리
+
+                    break;
+                }
+            case ShowResult.Skipped: {
+                    Debug.Log("The ad was skipped before reaching the end.");
+
+                    // to do ...
+                    // 광고가 스킵되었을 때 처리
+
+                    break;
+                }
+            case ShowResult.Failed: {
+                    Debug.LogError("The ad failed to be shown.");
+
+                    // to do ...
+                    // 광고 시청에 실패했을 때 처리
+
+                    break;
+                }
         }
     }
 
