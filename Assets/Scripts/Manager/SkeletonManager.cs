@@ -342,7 +342,7 @@ public class SkeletonManager : MonoBehaviour {
             itemUpdate += oilTime;
             break;
             case ItemType.ST.MONEY :
-            //재화 추가시 그때 추가하는 걸로
+            pm.addCrystal(5);
             break;
             case ItemType.ST.WATCH :
             leftTime += 15f;

@@ -61,6 +61,11 @@ public class SaveManager : Singleton<SaveManager> {
 		save();
 	}
 
+	public void addCrystal(int crystal) {
+		saveData.crystal += crystal;
+		save();
+	}
+
 	public bool levelUpSpeed() {
 		if(saveData.point < saveData.speedNeed)
 			return false;

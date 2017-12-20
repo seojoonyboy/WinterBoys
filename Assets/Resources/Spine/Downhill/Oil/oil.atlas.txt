@@ -1,0 +1,20 @@
+
+oil.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+big
+  rotate: false
+  xy: 2, 31
+  size: 152, 90
+  orig: 152, 90
+  offset: 0, 0
+  index: -1
+small
+  rotate: false
+  xy: 2, 2
+  size: 44, 27
+  orig: 44, 27
+  offset: 0, 0
+  index: -1
