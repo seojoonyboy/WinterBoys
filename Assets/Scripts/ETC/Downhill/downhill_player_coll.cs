@@ -18,7 +18,7 @@ public class downhill_player_coll : MonoBehaviour {
         }
 
         if (collision.tag == "TileEnd") {
-            dM.OnGameOver();
+            dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
         }
 
         if (collision.tag == "Item") {

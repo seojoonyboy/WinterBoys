@@ -11,7 +11,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private SoundManager soundManager;
 
     private GameManager gm;
-    private PointManager pm;
+    private SaveManager pm;
 
     public SkiJumpManager sm;
     public Transform arrow;
@@ -59,7 +59,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         soundManager = SoundManager.Instance;
 
         gm = GameManager.Instance;
-        pm = PointManager.Instance;
+        pm = SaveManager.Instance;
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -109,8 +109,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
         if(transform.position.x >= nextBgStandardPos.x) {
             _eventManger.TriggerEvent(new SkjJump_NextBgGenerate());
         }
-
-        sm.speedText.GetComponent<Text>().text = System.Math.Round(rb.velocity.magnitude * 3, 2) + " km/h";
 
         if (!canButtonPress) {
             buttonCoolTime -= Time.deltaTime;

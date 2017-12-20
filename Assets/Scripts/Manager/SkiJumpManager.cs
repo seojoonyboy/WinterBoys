@@ -10,7 +10,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
 
     private EventManager _eventManger;
-    private PointManager pm;
+    private SaveManager pm;
 
     public SkiJumpPlayerController playerController;
     public ArrowRotate arrowController;
@@ -22,8 +22,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         character,
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
-        jumpButton,                 //점프하기 버튼
-        speedText;
+        jumpButton;                 //점프하기 버튼
+
+    public Text 
+        speedText,
+        distanceText;
+
     public GameObject[] upAndDownButtons;
 
     public float forceAmount;           //가속 정도
@@ -59,7 +63,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void Awake() {
         _eventManger = EventManager.Instance;
-        pm = PointManager.Instance;
+        pm = SaveManager.Instance;
 
         soundManager = SoundManager.Instance;
     }
@@ -104,8 +108,19 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         preFixedDeltaTime = Time.fixedDeltaTime;
     }
 
-    private void FixedUpdate() {
+    private void Update() {
+        float speed = playerController.rb.velocity.magnitude;
+        float dist = playerController.transform.position.x;
+
+        speedText.text = System.Math.Round(speed * 3, 2) + "KM/h";
+        if(dist <= 0) {
+            dist = 0;
+        }
+        distanceText.text = System.Math.Truncate(dist) + "M";
         itemEffect.text = playerController.playerState + " 효과 적용중";
+    }
+
+    private void FixedUpdate() {
         playTime += Time.deltaTime;
         if (isLanded) {
             charRb.velocity = new Vector2(charRb.velocity.x * 0.999995f, charRb.velocity.y * 0.995f);

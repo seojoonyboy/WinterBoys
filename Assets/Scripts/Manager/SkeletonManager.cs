@@ -7,7 +7,7 @@ using GameEvents;
 
 public class SkeletonManager : MonoBehaviour {
     private GameManager gm;
-    private PointManager pm;
+    private SaveManager pm;
     private EventManager em;
     private SoundManager sm;
     private AudioSource smSource;
@@ -47,7 +47,7 @@ public class SkeletonManager : MonoBehaviour {
 
     private void Awake() {
         gm = GameManager.Instance;
-        pm = PointManager.Instance;
+        pm = SaveManager.Instance;
         em = EventManager.Instance;
         sm = SoundManager.Instance;
         Screen.orientation = ScreenOrientation.Landscape;

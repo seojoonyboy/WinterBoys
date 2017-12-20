@@ -14,20 +14,21 @@ public struct Stat {
 
 public class ReadyController : MonoBehaviour {
     public MainSceneController mainController;
-	private PointManager pointManager;
+	private SaveManager saveManager;
 
 	private SportType sport = SportType.SKIJUMP;
+	[SerializeField] private ResourceController topLabel;
 	[SerializeField] private Sprite[] gradeSprite;
     [SerializeField] private Sprite[] characterSprite;
 	[SerializeField] private Text maxScore;
 	[SerializeField] public Stat speed;
 	[SerializeField] public Stat control;
-	[SerializeField] private Text pointLeft;
+	//[SerializeField] private Text pointLeft;
 	[SerializeField] private Button startButton;
     [SerializeField] private Image character;
 
 	private void Awake() {
-		pointManager = PointManager.Instance;
+		saveManager = SaveManager.Instance;
 		setButton();
 		init();
 	}
@@ -39,10 +40,10 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void checkButton() {
-		if(pointManager.getSpeedPercent() >= 1.8f)
+		if(saveManager.getSpeedPercent() >= 1.8f)
 			speed.levelUp.onClick.RemoveAllListeners();
 
-		if(pointManager.getControlPercent() >= 1.8f)
+		if(saveManager.getControlPercent() >= 1.8f)
 			control.levelUp.onClick.RemoveAllListeners();
 	}
 
@@ -69,16 +70,17 @@ public class ReadyController : MonoBehaviour {
     }
 
     private void init() {
-		maxScore.text = pointManager.getRecord(sport).ToString("#0.00");
-		speed.percent.text = (100f * pointManager.getSpeedPercent() - 100f).ToString("00.0");
-		speed.needPoint.text = pointManager.getSpeedPointNeed().ToString();
-		setGrade(speed.grade, pointManager.getSpeedPercent());
+		maxScore.text = saveManager.getRecord(sport).ToString("#0.00");
+		speed.percent.text = (100f * saveManager.getSpeedPercent() - 100f).ToString("00.0");
+		speed.needPoint.text = saveManager.getSpeedPointNeed().ToString();
+		setGrade(speed.grade, saveManager.getSpeedPercent());
 
-		control.percent.text = (100f * pointManager.getControlPercent()- 100f).ToString("00.0");
-		control.needPoint.text = pointManager.getControlPointNeed().ToString();
-		setGrade(control.grade, pointManager.getControlPercent());
+		control.percent.text = (100f * saveManager.getControlPercent()- 100f).ToString("00.0");
+		control.needPoint.text = saveManager.getControlPointNeed().ToString();
+		setGrade(control.grade, saveManager.getControlPercent());
 
-		pointLeft.text = pointManager.getPointLeft().ToString("00000");
+		//pointLeft.text = saveManager.getPointLeft().ToString("00000");
+		topLabel.setData();
 
         character.sprite = characterSprite[GameManager.Instance.character];
         character.transform.Find("Outline/Name").GetComponent<Text>().text = mainController.charNames[GameManager.Instance.character];
@@ -99,7 +101,7 @@ public class ReadyController : MonoBehaviour {
 
 	private void levelUpSpeed() {
         SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 2);
-        if (pointManager.levelUpSpeed()) {
+        if (saveManager.levelUpSpeed()) {
 			Debug.Log(sport+" level up!!");
 			init();
 			checkButton();
@@ -110,7 +112,7 @@ public class ReadyController : MonoBehaviour {
 
 	private void levelUpControl() {
         SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 2);
-        if (pointManager.levelUpControl()) {
+        if (saveManager.levelUpControl()) {
 			Debug.Log(sport+"level up!!");
 			init();
 			checkButton();
