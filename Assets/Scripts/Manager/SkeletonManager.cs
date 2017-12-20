@@ -21,6 +21,7 @@ public class SkeletonManager : MonoBehaviour {
     [SerializeField] private GameObject showAddTimeUI;
     [SerializeField] private Skeleton_TrackController track;
     [SerializeField] private Button replayBtn;
+    [SerializeField] private Button adsBtn;
     [SerializeField] private ItemGenerator itemGenerator;
     private float dangerTime;
     private float dangerAngle;
@@ -45,6 +46,8 @@ public class SkeletonManager : MonoBehaviour {
     private int extraPoint = 0;
     private float[] coolTimes = {0f,0f,0f,0f,0f};
 
+    private bool isWatchAds = false;
+
     private void Awake() {
         gm = GameManager.Instance;
         pm = SaveManager.Instance;
@@ -62,6 +65,7 @@ public class SkeletonManager : MonoBehaviour {
         smSource = sm.transform.GetChild(1).GetComponent<AudioSource>();
         sm.Play(SoundManager.SoundType.BGM, 5);
         replayBtn.onClick.AddListener(replay);
+        adsBtn.onClick.AddListener(advertise);
         maxSpeed = gm.skeleton_stats[0] * pm.getSpeedPercent();
         dangerAngle = gm.skeleton_dangers[1];
         leftTime = 40f;
@@ -244,22 +248,38 @@ public class SkeletonManager : MonoBehaviour {
         Text point = gameoverModal.transform.GetChild(0).GetChild(1).GetChild(2).GetChild(1).GetComponent<Text>();
 
         int _point = (int)(totalDistance / gm.skeleton_point[1]);
+        _point *= isWatchAds ? 2 : 1;
 
         time.text = string.Format("{0} : {1}", ((int)totalTime / 60).ToString("00"), ((int)totalTime % 60).ToString("00"));
         distance.text = string.Format("{0} m", totalDistance.ToString("##,0.0"));
         point.text = string.Format("{0} + {1}", _point, extraPoint);
-        if(replayBtn == null) return;
+        if(adsBtn == null) return;
         int randNum = Random.Range(0, 100);
-        if(randNum < 100) {
-            replayBtn.gameObject.SetActive(true);
-        }
-        else {
+        adsBtn.gameObject.SetActive(randNum < 100 ? true : false);
+    }
+
+    private void advertise() {
+        UnityAdsHelper ads = UnityAdsHelper.Instance;
+        ads.onResultCallback += adsCallBack;
+        ads.ShowRewardedAd();
+    }
+
+    private void adsCallBack(UnityEngine.Advertisements.ShowResult result) {
+        UnityAdsHelper.Instance.onResultCallback -= adsCallBack;
+        if(result != UnityEngine.Advertisements.ShowResult.Finished) return;
+        isWatchAds = true;
+        extraPoint *= 2;
+        Destroy(adsBtn);
+        Destroy(replayBtn);
+        adsBtn.gameObject.SetActive(false);
+        if(replayBtn != null)
             replayBtn.gameObject.SetActive(false);
-        }
+        setGameOverUI();
     }
 
     public void mainLoad() {
         int _point = (int)(totalDistance / gm.skeleton_point[1]);
+        _point *= isWatchAds ? 2 : 1;
 
         if(pm.setRecord(totalDistance, SportType.SKELETON)) {
             UM_GameServiceManager.Instance.SubmitScore("Skeleton", (long)totalDistance);
@@ -274,7 +294,6 @@ public class SkeletonManager : MonoBehaviour {
     }
 
     private void showAddTime() {
-        //showAddTimeUI.transform.GetComponentInChildren<Text>().text = gm.skeleton_bonus_times[1].ToString();
         showAddTimeUI.SetActive(showTime);
         showTime = !showTime;
         showCount++;
@@ -323,7 +342,7 @@ public class SkeletonManager : MonoBehaviour {
             itemUpdate += oilTime;
             break;
             case ItemType.ST.MONEY :
-            //재화 추가시 그때 추가하는 걸로
+            pm.addCrystal(5);
             break;
             case ItemType.ST.WATCH :
             leftTime += 15f;
