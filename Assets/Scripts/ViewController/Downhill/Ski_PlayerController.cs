@@ -351,6 +351,12 @@ public class Ski_PlayerController : MonoBehaviour {
                     playerState = PlayerState.ROTATING_DEC;
                     additionalAngularForceByEffect = 0.5f;
                     break;
+                case ItemType.DH.MONEY:
+
+                    break;
+                case ItemType.DH.TIME:
+                    dM.remainTime += 15;
+                    break;
             }
             Destroy(obj);
         }

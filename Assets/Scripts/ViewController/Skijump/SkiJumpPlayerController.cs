@@ -393,6 +393,9 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 case ItemType.SJ.THUNDER_CLOUD:
                     playerState = PlayerState.GRAVITY_CHANGE;
                     break;
+                case ItemType.SJ.MONEY:
+
+                    break;
             }
             Destroy(obj);
         }

@@ -1,0 +1,27 @@
+﻿
+ObstaclePoll.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pole
+  rotate: true
+  xy: 225, 140
+  size: 83, 234
+  orig: 83, 234
+  offset: 0, 0
+  index: -1
+snow_back
+  rotate: false
+  xy: 2, 74
+  size: 221, 149
+  orig: 221, 149
+  offset: 0, 0
+  index: -1
+snow_front
+  rotate: false
+  xy: 2, 2
+  size: 180, 70
+  orig: 180, 70
+  offset: 0, 0
+  index: -1

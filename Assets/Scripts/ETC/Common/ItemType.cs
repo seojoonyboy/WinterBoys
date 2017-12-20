@@ -7,7 +7,9 @@
         ENEMY_BEAR,
         ENEMY_BUGS,
         OBSTACLE_POLL,
-        OBSTACLE_OIL
+        OBSTACLE_OIL,
+        MONEY,
+        TIME
     }
 
     //skijump
@@ -17,7 +19,9 @@
         BL_BIRD,
         DK_CLOUD,
         BALLOON,
-        THUNDER_CLOUD
+        THUNDER_CLOUD,
+        MONEY,
+        TIME
     }
 
     //skelton
