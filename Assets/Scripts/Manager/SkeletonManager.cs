@@ -63,7 +63,7 @@ public class SkeletonManager : MonoBehaviour {
 
     private void Start() {
         smSource = sm.transform.GetChild(1).GetComponent<AudioSource>();
-        sm.Play(SoundManager.SoundType.BGM, 5);
+        sm.Play(SoundManager.SoundType.BGM, "st");
         replayBtn.onClick.AddListener(replay);
         adsBtn.onClick.AddListener(advertise);
         maxSpeed = gm.skeleton_stats[0] * pm.getSpeedPercent();
@@ -111,7 +111,7 @@ public class SkeletonManager : MonoBehaviour {
             addSpeed(maxSpeed * 0.012f);
             warningImg.SetActive(true);
 
-            if(!smSource.isPlaying) sm.Play(SoundManager.SoundType.SKELETON, 3);
+            if(!smSource.isPlaying) sm.Play(SoundManager.SoundType.EFX, "st_warning");
         }
         else {
             dangerTime = 0f;
@@ -189,7 +189,7 @@ public class SkeletonManager : MonoBehaviour {
             leftTime += gm.skeleton_bonus_times[1];
             showAddTimeUI.transform.GetComponentInChildren<Text>().text = gm.skeleton_bonus_times[1].ToString();
             InvokeRepeating("showAddTime",0f, 0.5f);
-            sm.Play(SoundManager.SoundType.SKELETON, 2);
+            sm.Play(SoundManager.SoundType.EFX, "timeAdd");
         }
         if(leftTime <= 0f) gameOver();
     }
@@ -205,7 +205,7 @@ public class SkeletonManager : MonoBehaviour {
             turnDistance -= turnWhen;
 
             track.triggerTurn();
-            sm.Play(SoundManager.SoundType.SKELETON, 1);
+            sm.Play(SoundManager.SoundType.EFX, "st_conering");
             if(totalDistance >= 2500f) {
                 turnWhen = 150f;
             }
@@ -214,7 +214,7 @@ public class SkeletonManager : MonoBehaviour {
             }
         }
         if(smSource.isPlaying) return;
-        sm.Play(SoundManager.SoundType.SKELETON, 0);
+        sm.Play(SoundManager.SoundType.EFX, "st_move");
     }
 
     private void checkItem() {
@@ -235,7 +235,7 @@ public class SkeletonManager : MonoBehaviour {
     }
 
     private void gameOver() {
-        sm.Play(SoundManager.SoundType.SKELETON, 4);
+        sm.Play(SoundManager.SoundType.EFX, "gameOver");
         gameoverModal.SetActive(true);
         track.setSpeed(0);
         this.enabled = false;
@@ -285,7 +285,7 @@ public class SkeletonManager : MonoBehaviour {
             UM_GameServiceManager.Instance.SubmitScore("Skeleton", (long)totalDistance);
         }
         pm.addPoint(_point+extraPoint);
-        sm.Play(SoundManager.SoundType.SKELETON, 5);
+        sm.Play(SoundManager.SoundType.EFX, "returnMain");
         SceneManager.LoadScene("Main");
     }
 
@@ -348,7 +348,7 @@ public class SkeletonManager : MonoBehaviour {
             leftTime += 15f;
             showAddTimeUI.transform.GetComponentInChildren<Text>().text = 15.ToString();
             InvokeRepeating("showAddTime",0f, 0.5f);
-            sm.Play(SoundManager.SoundType.SKELETON, 2);
+            sm.Play(SoundManager.SoundType.EFX, "timeAdd");
             break;
         }
     }

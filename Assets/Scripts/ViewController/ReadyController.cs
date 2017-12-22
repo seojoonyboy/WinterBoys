@@ -56,17 +56,17 @@ public class ReadyController : MonoBehaviour {
 		init();
 		setScene();
 
-        SoundManager.Instance.Play(SoundManager.SoundType.BGM, 3);
+        SoundManager.Instance.Play(SoundManager.SoundType.BGM, "statChange");
 	}
 
     public void OffPanel() {
         gameObject.SetActive(false);
 
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 5);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "closeBtn");
     }
 
     public void informationIconClicked() {
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 3);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "showInfo");
     }
 
     private void init() {
@@ -100,7 +100,7 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpSpeed() {
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 2);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "statChange");
         if (saveManager.levelUpSpeed()) {
 			Debug.Log(sport+" level up!!");
 			init();
@@ -111,7 +111,7 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpControl() {
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 2);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "statChange");
         if (saveManager.levelUpControl()) {
 			Debug.Log(sport+"level up!!");
 			init();
@@ -141,6 +141,6 @@ public class ReadyController : MonoBehaviour {
     }
 
     public void StartButtonClicked() {
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 4);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "gameStartBtn");
     }
 }

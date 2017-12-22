@@ -28,10 +28,10 @@ public class Landing : MonoBehaviour {
         }
 
         if (isFirst) {
+            SoundManager.Instance.Play(SoundManager.SoundType.EFX, "sj_landing");
+
             _eventManger.TriggerEvent(new SkiJump_LandingEvent());
             isFirst = false;
-
-            SoundManager.Instance.Play(SoundManager.SoundType.SKIJUMP, 5);
         }
     }
 

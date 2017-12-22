@@ -32,7 +32,7 @@ public class MainSceneController : MonoBehaviour {
         charIndex = gm.character;
         changeTexts(charIndex);
 
-        SoundManager.Instance.Play(SoundManager.SoundType.BGM, 2);
+        SoundManager.Instance.Play(SoundManager.SoundType.BGM, "selGame");
     }
 
     public void LoadGame(int type) {
@@ -80,7 +80,7 @@ public class MainSceneController : MonoBehaviour {
     }
 
     private void changeTexts(int index) {
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 7);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "charChangeBtn");
 
         Text charName = charSelPanel.transform.Find("CharName").GetComponent<Text>();
         Text bonusStat = charSelPanel.transform.Find("BonusStat").GetComponent<Text>();
@@ -105,7 +105,7 @@ public class MainSceneController : MonoBehaviour {
         }
     }
 
-    public void efxPlay(int index) {
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, index);
+    public void efxPlay(string name) {
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, name);
     }
 }

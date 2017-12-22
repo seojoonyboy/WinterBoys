@@ -173,10 +173,10 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         if (buttonDown) {
-            audioSource.clip = dM.soundManager.scene_dh_effects[1];
+            audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
 
             if (!audioSource.isPlaying) {
-                audioSource.clip = dM.soundManager.scene_dh_effects[1];
+                audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
                 audioSource.Play();
             }
 
@@ -190,10 +190,10 @@ public class Ski_PlayerController : MonoBehaviour {
         else {
             rb.angularVelocity = 0;
 
-            audioSource.clip = dM.soundManager.scene_dh_effects[0];
+            audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
 
             if (!audioSource.isPlaying) {
-                audioSource.clip = dM.soundManager.scene_dh_effects[0];
+                audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
                 audioSource.Play();
             }
         }

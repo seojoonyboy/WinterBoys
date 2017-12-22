@@ -66,7 +66,7 @@ public class DownhillManager : MonoBehaviour {
 
         initEventHandler();
 
-        soundManager.Play(SoundManager.SoundType.BGM, 4);
+        soundManager.Play(SoundManager.SoundType.BGM, "dh");
 
         connectUnityAdsButton();
 
@@ -98,7 +98,7 @@ public class DownhillManager : MonoBehaviour {
 
         resumeBtn.SetActive(true);
 
-        soundManager.Play(SoundManager.SoundType.DOWNHILL, 6);
+        soundManager.Play(SoundManager.SoundType.EFX, "returnMain");
     }
 
     void timeDec() {
@@ -117,7 +117,7 @@ public class DownhillManager : MonoBehaviour {
             remainTime += (int)gm.bonus_times[1];
             passNum = 0;
             Debug.Log("시간 증가");
-            soundManager.Play(SoundManager.SoundType.DOWNHILL, 3);
+            soundManager.Play(SoundManager.SoundType.EFX, "timeAdd");
         }
         //Debug.Log("통과 갯수 : " + passNum);
         //scoreInc(5);
@@ -184,7 +184,7 @@ public class DownhillManager : MonoBehaviour {
             adShowBtn.SetActive(false);
         }
 
-        soundManager.Play(SoundManager.SoundType.DOWNHILL, 4);
+        soundManager.Play(SoundManager.SoundType.EFX, "gameOver");
     }
 
     //이어하기 버튼 클릭

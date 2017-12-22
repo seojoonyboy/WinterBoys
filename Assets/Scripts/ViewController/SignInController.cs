@@ -79,7 +79,7 @@ public class SignInController : MonoBehaviour {
             SceneManager.LoadScene("Main");
         }
 
-        SoundManager.Instance.Play(SoundManager.SoundType.MAIN_SCENE, 0);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "main_startBtn");
     }
 
     private void OnPlayerConnected() {
@@ -93,7 +93,7 @@ public class SignInController : MonoBehaviour {
     private void signUp() {
         signupPanel.SetActive(true);
 
-        SoundManager.Instance.Play(SoundManager.SoundType.BGM, 1);
+        SoundManager.Instance.Play(SoundManager.SoundType.BGM, "regist");
     }
 
     //최종 회원가입 버튼 처리
@@ -106,11 +106,11 @@ public class SignInController : MonoBehaviour {
         Invoke("changeScene", track.AnimationEnd + 0.5f);
         Invoke("submitSound", track.AnimationEnd - 0.8f);
 
-        SoundManager.Instance.Play(SoundManager.SoundType.CHARCHANGE_SCENE, 1);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "registBtn");
     }
 
     private void submitSound() {
-        SoundManager.Instance.Play(SoundManager.SoundType.CHARCHANGE_SCENE, 2);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "stamp");
     }
 
     private void changeScene() {

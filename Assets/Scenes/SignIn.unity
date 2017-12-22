@@ -3068,8 +3068,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 82649779070366444, guid: d12d7db95fcea5744b47a56526a73e9d,
         type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ecb8447bedabf4a50a50cf3a2e13048c, type: 3}
+    - target: {fileID: 114731435632408344, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
+      propertyPath: efx_sounds.Array.data[1].name
+      value: charChangeBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 82649779070366444, guid: d12d7db95fcea5744b47a56526a73e9d,
+        type: 2}
       propertyPath: m_Volume
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}

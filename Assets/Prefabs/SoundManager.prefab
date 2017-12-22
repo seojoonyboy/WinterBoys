@@ -191,7 +191,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2ec978859f6cf0d408bc49dd9a5f24fe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -273,51 +273,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   efxSource: {fileID: 82043629772694738}
   bgmSource: {fileID: 82649779070366444}
-  scene_dh_effects:
-  - {fileID: 8300000, guid: 619247724f6a871468a7728f5de9bf48, type: 3}
-  - {fileID: 8300000, guid: 7c82737c1e1227642ad01b6a88f10f78, type: 3}
-  - {fileID: 8300000, guid: 0bb5c809e36a3274caba52515e6f131a, type: 3}
-  - {fileID: 8300000, guid: 65b6b36560fd2294087ec64246afe65a, type: 3}
-  - {fileID: 8300000, guid: ff2da632343eda041a9c1bf9c0bcf82e, type: 3}
-  - {fileID: 8300000, guid: 0bb5c809e36a3274caba52515e6f131a, type: 3}
-  - {fileID: 8300000, guid: 03d59c134e02fc444bc52e8ad3d0008b, type: 3}
-  scene_sj_effects:
-  - {fileID: 8300000, guid: 047a18146a0579143bb2138db5f63f53, type: 3}
-  - {fileID: 8300000, guid: 66c49982fdc6ab144802f5c736a9c2d9, type: 3}
-  - {fileID: 8300000, guid: 1686cfd6ccaf3db40959f7cb3cc12e4c, type: 3}
-  - {fileID: 8300000, guid: b4d058ae4fb30e049a961e310e222d19, type: 3}
-  - {fileID: 8300000, guid: 05da863c1d37a4440ae2fda71bfbf8ac, type: 3}
-  - {fileID: 8300000, guid: 78980738e53fad146bda443382157ce1, type: 3}
-  - {fileID: 8300000, guid: 79dafda8590141246aacdb7a577eb51b, type: 3}
-  - {fileID: 8300000, guid: 7356dd9623c73f749b8cfdd1f180c759, type: 3}
-  - {fileID: 8300000, guid: 03d59c134e02fc444bc52e8ad3d0008b, type: 3}
-  scene_st_effects:
-  - {fileID: 8300000, guid: 66c49982fdc6ab144802f5c736a9c2d9, type: 3}
-  - {fileID: 8300000, guid: 40f76f5d31ebe504badf8db9e9417fe5, type: 3}
-  - {fileID: 8300000, guid: 65b6b36560fd2294087ec64246afe65a, type: 3}
-  - {fileID: 8300000, guid: f511f56dad2224b4d8a5d8bc34e53987, type: 3}
-  - {fileID: 8300000, guid: ff2da632343eda041a9c1bf9c0bcf82e, type: 3}
-  - {fileID: 8300000, guid: 03d59c134e02fc444bc52e8ad3d0008b, type: 3}
-  scene_main_effects:
-  - {fileID: 8300000, guid: e16e9aad9c226b14ba19b6a3898e9d24, type: 3}
-  - {fileID: 8300000, guid: c3992d2842cbbbe49944a80f42af591f, type: 3}
-  - {fileID: 8300000, guid: 7460508f2c3cecb4c9d28b41fb90e0fe, type: 3}
-  - {fileID: 8300000, guid: de5ca710c7e8e8347ab6c8afc9f32f33, type: 3}
-  - {fileID: 8300000, guid: 785dc33f2c2835245a9fb39e97793add, type: 3}
-  - {fileID: 8300000, guid: 4afb9697b44570940b7ba550b1e32b09, type: 3}
-  - {fileID: 8300000, guid: 568b41ea9af245148b1fbfc68685ea6f, type: 3}
-  - {fileID: 8300000, guid: cbb5058294775684cad44103ae15c879, type: 3}
-  scene_charchange_effects:
-  - {fileID: 8300000, guid: 8d32435aaac3b9a4b9bc54a39a4cba2a, type: 3}
-  - {fileID: 8300000, guid: 5d220c77410398e4e8b9267db92a80bb, type: 3}
-  - {fileID: 8300000, guid: 46a477a0a6503ab45969c8f3872d285b, type: 3}
-  bgms:
-  - {fileID: 8300000, guid: ecb8447bedabf4a50a50cf3a2e13048c, type: 3}
-  - {fileID: 8300000, guid: 850a38f88a1ac4622bfef9a0902c6d9f, type: 3}
-  - {fileID: 8300000, guid: df455ec3f9a4741f6bf3fdeddf6878de, type: 3}
-  - {fileID: 8300000, guid: aa38fed3d24e3499fa1c6bcc69226334, type: 3}
-  - {fileID: 8300000, guid: 7770c2677b0c474439b53a1d240c4823, type: 3}
-  - {fileID: 8300000, guid: 20b3387defebf4d7fb3983dc47ccd142, type: 3}
-  - {fileID: 8300000, guid: 4a19e0c365e17de40adb397113a96d7d, type: 3}
-  - {fileID: 8300000, guid: 05da863c1d37a4440ae2fda71bfbf8ac, type: 3}
+  efx_sounds:
+  - name: main_startBtn
+    clip: {fileID: 8300000, guid: e16e9aad9c226b14ba19b6a3898e9d24, type: 3}
+  - name: charChageBtn
+    clip: {fileID: 8300000, guid: 8d32435aaac3b9a4b9bc54a39a4cba2a, type: 3}
+  - name: registBtn
+    clip: {fileID: 8300000, guid: 5d220c77410398e4e8b9267db92a80bb, type: 3}
+  - name: stamp
+    clip: {fileID: 8300000, guid: 46a477a0a6503ab45969c8f3872d285b, type: 3}
+  - name: gameSelBtn
+    clip: {fileID: 8300000, guid: 568b41ea9af245148b1fbfc68685ea6f, type: 3}
+  - name: rankingShow
+    clip: {fileID: 8300000, guid: cbb5058294775684cad44103ae15c879, type: 3}
+  - name: statChange
+    clip: {fileID: 8300000, guid: 7460508f2c3cecb4c9d28b41fb90e0fe, type: 3}
+  - name: showInfo
+    clip: {fileID: 8300000, guid: de5ca710c7e8e8347ab6c8afc9f32f33, type: 3}
+  - name: gameStartBtn
+    clip: {fileID: 8300000, guid: 785dc33f2c2835245a9fb39e97793add, type: 3}
+  - name: closeBtn
+    clip: {fileID: 8300000, guid: 4afb9697b44570940b7ba550b1e32b09, type: 3}
+  - name: dh_move
+    clip: {fileID: 8300000, guid: 619247724f6a871468a7728f5de9bf48, type: 3}
+  - name: dh_dirChange
+    clip: {fileID: 8300000, guid: 7c82737c1e1227642ad01b6a88f10f78, type: 3}
+  - name: dh_flagCrash
+    clip: {fileID: 8300000, guid: 0bb5c809e36a3274caba52515e6f131a, type: 3}
+  - name: timeAdd
+    clip: {fileID: 8300000, guid: 65b6b36560fd2294087ec64246afe65a, type: 3}
+  - name: gameOver
+    clip: {fileID: 8300000, guid: ff2da632343eda041a9c1bf9c0bcf82e, type: 3}
+  - name: st_move
+    clip: {fileID: 8300000, guid: 66c49982fdc6ab144802f5c736a9c2d9, type: 3}
+  - name: st_conering
+    clip: {fileID: 8300000, guid: 40f76f5d31ebe504badf8db9e9417fe5, type: 3}
+  - name: st_warning
+    clip: {fileID: 8300000, guid: f511f56dad2224b4d8a5d8bc34e53987, type: 3}
+  - name: returnMain
+    clip: {fileID: 8300000, guid: 03d59c134e02fc444bc52e8ad3d0008b, type: 3}
+  - name: sj_addForceBtn
+    clip: {fileID: 8300000, guid: 047a18146a0579143bb2138db5f63f53, type: 3}
+  - name: sj_slideMove
+    clip: {fileID: 8300000, guid: 66c49982fdc6ab144802f5c736a9c2d9, type: 3}
+  - name: sj_arrowRot
+    clip: {fileID: 8300000, guid: 1686cfd6ccaf3db40959f7cb3cc12e4c, type: 3}
+  - name: sj_jump
+    clip: {fileID: 8300000, guid: b4d058ae4fb30e049a961e310e222d19, type: 3}
+  - name: sj_move
+    clip: {fileID: 8300000, guid: 66c49982fdc6ab144802f5c736a9c2d9, type: 3}
+  - name: sj_landing
+    clip: {fileID: 8300000, guid: 78980738e53fad146bda443382157ce1, type: 3}
+  - name: sj_landingAndSlide
+    clip: {fileID: 8300000, guid: 66c49982fdc6ab144802f5c736a9c2d9, type: 3}
+  - name: resumeBtn
+    clip: {fileID: 8300000, guid: 7356dd9623c73f749b8cfdd1f180c759, type: 3}
+  bgm_sounds:
+  - name: main
+    clip: {fileID: 8300000, guid: ecb8447bedabf4a50a50cf3a2e13048c, type: 3}
+  - name: regist
+    clip: {fileID: 8300000, guid: 850a38f88a1ac4622bfef9a0902c6d9f, type: 3}
+  - name: selGame
+    clip: {fileID: 8300000, guid: df455ec3f9a4741f6bf3fdeddf6878de, type: 3}
+  - name: statChange
+    clip: {fileID: 8300000, guid: aa38fed3d24e3499fa1c6bcc69226334, type: 3}
+  - name: dh
+    clip: {fileID: 8300000, guid: 7770c2677b0c474439b53a1d240c4823, type: 3}
+  - name: st
+    clip: {fileID: 8300000, guid: 20b3387defebf4d7fb3983dc47ccd142, type: 3}
+  - name: sj
+    clip: {fileID: 8300000, guid: 4a19e0c365e17de40adb397113a96d7d, type: 3}
+  - name: sj_fly
+    clip: {fileID: 8300000, guid: 05da863c1d37a4440ae2fda71bfbf8ac, type: 3}
   soundType: 3

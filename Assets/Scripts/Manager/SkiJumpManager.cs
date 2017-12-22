@@ -153,7 +153,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         removeListener();
 
-        soundManager.Play(SoundManager.SoundType.SKIJUMP, 8);
+        soundManager.Play(SoundManager.SoundType.EFX, "returnMain");
 
         resumeButton.SetActive(true);
 
@@ -195,10 +195,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         playerController.extraAudioSource.gameObject.SetActive(true);
 
-        playerController.extraAudioSource.clip = soundManager.scene_sj_effects[1];
+        playerController.extraAudioSource.clip = soundManager.searchResource(SoundManager.SoundType.EFX, "sj_landingAndSlide").clip;
         playerController.extraAudioSource.Play();
 
-        soundManager.Play(SoundManager.SoundType.SKIJUMP, 5);
+        soundManager.Play(SoundManager.SoundType.EFX, "sj_landing");
     }
 
     private void _OffZooming(SkiJump_ArrowRotEndEvent e) {
@@ -216,7 +216,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void gameOver() {
         playerController.extraAudioSource.gameObject.SetActive(false);
-        soundManager.Play(SoundManager.SoundType.SKIJUMP, 6);
+        soundManager.Play(SoundManager.SoundType.EFX, "gameOver");
 
         modal.SetActive(true);
 
@@ -258,7 +258,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         Time.timeScale = 1;
 
-        soundManager.Play(SoundManager.SoundType.SKIJUMP, 7);
+        soundManager.Play(SoundManager.SoundType.EFX, "resumeBtn");
     }
 
     private void resume(SkiJump_Resume e) {

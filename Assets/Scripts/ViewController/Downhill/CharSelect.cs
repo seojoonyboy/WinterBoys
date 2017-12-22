@@ -55,6 +55,6 @@ public class CharSelect : MonoBehaviour {
         charName.text = charNames[charIndex];
         gm.character = charIndex;
 
-        SoundManager.Instance.Play(SoundManager.SoundType.CHARCHANGE_SCENE, 0);
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "charChangeBtn");
     }
 }

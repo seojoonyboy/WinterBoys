@@ -94,7 +94,7 @@ public class FlagController : MonoBehaviour {
 
             bm.centers.RemoveAt(0);
 
-            SoundManager.Instance.Play(SoundManager.SoundType.DOWNHILL, 2);
+            SoundManager.Instance.Play(SoundManager.SoundType.EFX, "dh_flagCrash");
         }
     }
 }
