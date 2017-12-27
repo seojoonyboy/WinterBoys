@@ -22,7 +22,6 @@ public class GameManager : Singleton<GameManager> {
     public float[]
         poll_intervals,                     //폴 사이 정보
         vertical_intervals,                 //행간 정보
-        pararell_intervals,                 //평행이동 관련 정보
         bonus_times,                        //보너스 타임 관련 정보
         points;                             //포인드 획득 관련 정보
 
@@ -47,7 +46,6 @@ public class GameManager : Singleton<GameManager> {
 
         //getRemoteData("Downhill_bonus_times", ref bonus_times);
         //getRemoteData("Downhill_vertical_interval", ref vertical_intervals);
-        //getRemoteData("Downhill_pararell_intervals", ref pararell_intervals);
         //getRemoteData("Downhill_poll_interval", ref poll_intervals);
         //getRemoteData("Downhill_miss", ref panelty_time);
         //getRemoteData("Downhill_Point", ref points);

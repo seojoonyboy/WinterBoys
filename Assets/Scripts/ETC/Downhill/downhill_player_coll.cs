@@ -10,10 +10,8 @@ public class downhill_player_coll : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Tile") {
             Vector2 pos = collision.transform.position;
-            if (pos.y <= bM.firstTilePos.y - 2) {
-                if (!bM.isMade) {
-                    bM.addToBoard();
-                }
+            if (pos.y <= bM.lastTilePos.y + 2) {
+                bM.addToBoard();
             }
         }
 

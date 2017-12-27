@@ -82,7 +82,7 @@ MonoBehaviour:
     - 10
     - 5
     - 10
-  pixelPerUnit: 512
+  pixelPerUnit: 270
   nickname: 
   character: 0
   poll_intervals:
@@ -91,16 +91,10 @@ MonoBehaviour:
   - 8
   - 10
   vertical_intervals:
-  - 1400
+  - 1000
   - 15
   - 35
   - 10
-  pararell_intervals:
-  - 0
-  - 150
-  - 50
-  - 35
-  - 14
   bonus_times:
   - 15
   - 20

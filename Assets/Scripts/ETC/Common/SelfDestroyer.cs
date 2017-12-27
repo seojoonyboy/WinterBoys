@@ -5,7 +5,9 @@ using UnityEngine;
 public class SelfDestroyer : MonoBehaviour {
     public type _type;
     public enum type { NULL, SKIJUMP, DOWNHILL }
+    private string tag;
     private void Start() {
+        tag = gameObject.tag;
         InvokeRepeating("IsInArea", 1.0f, 1.0f);
     }
 
@@ -18,9 +20,17 @@ public class SelfDestroyer : MonoBehaviour {
             }
         }
         else if(_type == type.DOWNHILL) {
-            if (pos.y >= 1.0f) {
-                Destroy(gameObject);
+            if(tag == "Tile") {
+                if (pos.y >= 2.0f) {
+                    Destroy(gameObject);
+                }
             }
+            else {
+                if (pos.y >= 1.0f) {
+                    Destroy(gameObject);
+                }
+            }
+            
         }
     }
 }

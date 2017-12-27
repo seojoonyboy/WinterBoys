@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212965447071784590}
   - component: {fileID: 60675029452388890}
   - component: {fileID: 50313486031959050}
+  - component: {fileID: 114749175458303130}
   m_Layer: 0
   m_Name: downhill_bg_left_5
   m_TagString: TileEnd
@@ -115,6 +116,18 @@ PolygonCollider2D:
       - {x: 0, y: -0.5}
       - {x: 0.8105469, y: -0.5}
       - {x: 0.8105469, y: -0.453125}
+--- !u!114 &114749175458303130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058845662176276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5fda7a2624801b44bf616bc4c8a1fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 2
 --- !u!212 &212965447071784590
 SpriteRenderer:
   m_ObjectHideFlags: 1

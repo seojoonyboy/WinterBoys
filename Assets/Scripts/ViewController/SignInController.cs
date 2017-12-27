@@ -54,9 +54,6 @@ public class SignInController : MonoBehaviour {
         }
         sb.Append("\n");
         sb.Append("평행이동 관련 정보 : ");
-        for (int i = 0; i <= gm.pararell_intervals.Length - 1; i++) {
-            sb.Append(" " + gm.pararell_intervals[i]);
-        }
         msg.text = sb.ToString();
     }
 

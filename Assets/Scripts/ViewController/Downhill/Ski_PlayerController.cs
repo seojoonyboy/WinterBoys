@@ -96,6 +96,9 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (playerPos.y < bM.lastFlagPos.y + 10) {
+            bM.addFlag();
+        }
         virtualPlayerPosOfY = -1 * selectedCharacters[0].transform.position.y * 3.0f;
 
         rb.AddForce(ForwardForce() * additionalForceByEffect);

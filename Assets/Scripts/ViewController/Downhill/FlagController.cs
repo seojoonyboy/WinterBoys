@@ -92,8 +92,6 @@ public class FlagController : MonoBehaviour {
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
 
-            bm.centers.RemoveAt(0);
-
             SoundManager.Instance.Play(SoundManager.SoundType.EFX, "dh_flagCrash");
         }
     }

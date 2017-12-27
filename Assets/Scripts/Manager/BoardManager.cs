@@ -20,7 +20,9 @@ public class BoardManager : MonoBehaviour {
 
     public Vector2 
         lastTilePos,
-        firstTilePos;
+        lastFlagPos;
+
+    [SerializeField] private float flagInterval;
 
     public bool isMade = false;
     private int floorIndex = 0;
@@ -58,52 +60,19 @@ public class BoardManager : MonoBehaviour {
     }
 
     public void setUp() {
-        for(int i=0; i<=columns - 1; i++) {
-            GameObject floor = Instantiate(floorsPref[0]);
-            GameObject leftSide = Instantiate(leftPref[i]);
-            GameObject rightSide = Instantiate(rightPref[i]);
-
-            floor.transform.SetParent(floorHolder, false);
-            floor.transform.position = new Vector2(0, -i);
-            leftSide.transform.SetParent(floorHolder, false);
-            leftSide.transform.position = new Vector2(-2.5f, -i);
-            rightSide.transform.SetParent(floorHolder, false);
-            rightSide.transform.position = new Vector2(2.5f, -i);
-
-            if (i == columns - 1) {
-                lastTilePos = floor.transform.position;
-            }
-            if (i == 0) {
-                firstTilePos = floor.transform.position;
-
-                treeLeftOffset = new TreeOffset();
-                float val = leftSide.transform.position.x;
-                treeLeftOffset.leftLimit = val;
-                treeLeftOffset.rightLimit = (float)(val + leftSide.transform.localScale.x / 2.0f);
-
-                treeRightOffset = new TreeOffset();
-                val = rightSide.transform.position.x;
-
-                treeRightOffset.leftLimit = (float)(val - rightSide.transform.localScale.x / 2.0f);
-                treeRightOffset.rightLimit = treeRightOffset.leftLimit + rightSide.transform.localScale.x / 2.0f;
-            }
-            tiles.Add(floor);
-            leftSides.Add(leftSide);
-            rightSides.Add(rightSide);
-
-            addTree(true);
+        flagInterval = gm.vertical_intervals[0] / gm.pixelPerUnit;
+        for (int i=0; i<columns; i++) {
+            addMiddleTile(-i * 7.1f);
+            addSideTile();
+            addFlag();
         }
-        curFlagPos = new Vector2(0, -4);
-        addFlag();
     }
 
-    public void addToBoard() {
-        isMade = true;
+    private void addMiddleTile(float posOfY) {
+        GameObject floor = Instantiate(floorsPref[0]);
 
-        //다음 타일 생성
-        GameObject newFloor = Instantiate(floorsPref[0]);
-        GameObject leftSide = Instantiate(leftPref[floorIndex]);
-        GameObject rightSide = Instantiate(rightPref[floorIndex]);
+        floor.transform.position = new Vector2(0, posOfY);
+        floor.transform.SetParent(floorHolder, false);
 
         if (floorIndex >= columns - 1) {
             floorIndex = 0;
@@ -111,140 +80,52 @@ public class BoardManager : MonoBehaviour {
         else {
             floorIndex++;
         }
-        newFloor.transform.SetParent(floorHolder, false);
-        newFloor.transform.position = new Vector2(0, lastTilePos.y - 1);
-
-        leftSide.transform.SetParent(floorHolder, false);
-        leftSide.transform.position = new Vector2(-2.5f, lastTilePos.y - 1);
-        rightSide.transform.SetParent(floorHolder, false);
-        rightSide.transform.position = new Vector2(2.5f, lastTilePos.y - 1);
-
-        //첫번째 타일 제거
-        resetArr(newFloor, leftSide, rightSide);
-
-        //다음 폴 생성
-        addFlag();
-
-        addTree();
+        lastTilePos = floor.transform.position;
     }
 
-    private void resetArr(GameObject newFloor, GameObject leftSide, GameObject rightSide) {
-        Destroy(tiles[0].gameObject);
-        Destroy(leftSides[0].gameObject);
-        Destroy(rightSides[0].gameObject);
+    private void addSideTile() {
+        GameObject leftSide = Instantiate(leftPref[floorIndex]);
+        GameObject rightSide = Instantiate(rightPref[floorIndex]);
 
-        tiles.RemoveAt(0);
-        rightSides.RemoveAt(0);
-        leftSides.RemoveAt(0);
+        leftSide.transform.SetParent(floorHolder, false);
+        leftSide.transform.position = new Vector2(-2.0f, lastTilePos.y - 1);
+        rightSide.transform.SetParent(floorHolder, false);
+        rightSide.transform.position = new Vector2(2.0f, lastTilePos.y - 1);
+    }
 
-        tiles.Add(newFloor);
-        leftSides.Add(leftSide);
-        rightSides.Add(rightSide);
+    public void addToBoard() {
+        addMiddleTile(lastTilePos.y - 1 * 7.1f);
+        addSideTile();
+        ////다음 타일 생성
 
-        lastTilePos = newFloor.transform.position;
-        firstTilePos = tiles[0].transform.position;
-
-        isMade = false;
+        ////다음 폴 생성
+        //addFlag();
+        //addTree();
     }
 
     //동적 폴 추가
     public void addFlag() {
-        for(int i=0; i<1; i++) {
-            GameObject leftFlag = Instantiate(flagPref);
-            leftFlag.GetComponent<FlagController>().rayDir = FlagController.type.LEFT;
-            //좌측 폴의 다음 위치 계산
-            Vector2 nextPos = calcNextFlagPos();
-            leftFlag.transform.position = nextPos;
+        GameObject flag = Instantiate(flagPref);
 
-            //우측 폴의 다음 위치 계산
-            float deltaX = gm.poll_intervals[0] * (1 - ((gm.poll_intervals[2] * (poll_interval_lv - 1)) / 100));
-            float rightX = (float)Math.Round(leftFlag.transform.position.x + (float)(deltaX / gm.pixelPerUnit), 2);
-            GameObject rightFlag = Instantiate(flagPref);
+        flag.transform.position = new Vector2(0, lastFlagPos.y);
+        flag.transform.SetParent(floorHolder, false);
 
-            leftFlag.GetComponent<FlagController>().distance = deltaX;
-            rightFlag.GetComponent<FlagController>().rayDir = FlagController.type.RIGHT;
-
-            rightFlag.transform.position = new Vector2(rightX, nextPos.y);
-
-            curFlagPos = nextPos;
-            flagNum++;
-
-            this.deltaX = (leftFlag.transform.position.x + rightFlag.transform.position.x) / 2.0f;
-            GameObject obj = new GameObject();
-            obj.name = "CenterPos";
-            obj.transform.position = new Vector2(this.deltaX, leftFlag.transform.position.y);
-
-            centers.Add(obj);
-
-            leftFlag.transform.SetParent(floorHolder);
-            rightFlag.transform.SetParent(floorHolder);
-            obj.transform.SetParent(floorHolder);
-        }
+        lastFlagPos = new Vector2(0, lastFlagPos.y - flagInterval);
+        flagNum++;
 
         //폴 사이 간격 감소
         if (flagNum != 0 && flagNum % gm.poll_intervals[1] == 0) {
             lvup(0);
         }
 
-        //행간 간격 증가
+        //평행이동 간격 증가
         if(flagNum != 0 && flagNum % gm.vertical_intervals[1] == 0) {
             lvup(1);
         }
-
-        //행 평행이동
-        if (flagNum != 0 && flagNum % gm.pararell_intervals[2] == 0) {
-            lvup(2);
-        }
     }
 
-    private void addTree(bool isFirst = false) {
-        float val = 0;
-        if (isFirst) {
-            for(int i = 0; i< columns - 1; i++) {
-                val = -(i + 1);
-                nextTreePosY = UnityEngine.Random.Range(val, val - 1);
-                int nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
+    private void addTree() {
 
-                GameObject tree = Instantiate(treePref);
-                tree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
-
-                float nextPosX = UnityEngine.Random.Range(treeLeftOffset.leftLimit, treeLeftOffset.rightLimit);
-                tree.transform.position = new Vector2(nextPosX, nextTreePosY);
-
-                nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
-
-                GameObject rightTree = Instantiate(treePref);
-                nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
-                rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
-                rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
-
-                tree.transform.SetParent(floorHolder);
-                rightTree.transform.SetParent(floorHolder);
-            }
-        }
-        else {
-            val = lastTilePos.y - 1;
-            for (int i = 0; i < 3; i++) {
-                nextTreePosY = UnityEngine.Random.Range(val, val - 1);
-                int nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
-
-                GameObject tree = Instantiate(treePref);
-                tree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
-
-                float nextPosX = UnityEngine.Random.Range(treeLeftOffset.leftLimit, treeLeftOffset.rightLimit);
-                tree.transform.position = new Vector2(nextPosX, nextTreePosY);
-
-                nextImageIndex = UnityEngine.Random.Range(0, treeImages.Length);
-
-                GameObject rightTree = Instantiate(treePref);
-                nextPosX = UnityEngine.Random.Range(treeRightOffset.leftLimit, treeRightOffset.rightLimit);
-                rightTree.transform.position = new Vector2(nextPosX, nextTreePosY);
-                rightTree.GetComponent<SpriteRenderer>().sprite = treeImages[nextImageIndex];
-
-                tree.transform.SetParent(floorHolder);
-                rightTree.transform.SetParent(floorHolder);
-            }
-        }
     }
 
     private int rndX() {
@@ -254,11 +135,6 @@ public class BoardManager : MonoBehaviour {
 
     private Vector2 calcNextFlagPos() {
         Vector2 prePos = curFlagPos;
-
-        float deltaX = UnityEngine.Random.Range(
-            gm.pararell_intervals[0] + (gm.pararell_intervals[2] * row_parallel_move_lv - 1),
-            gm.pararell_intervals[1] + (1 + gm.pararell_intervals[3] * (row_parallel_move_lv - 1) / 100)
-        );
 
         float deltaY = gm.vertical_intervals[0] * (1 + gm.vertical_intervals[1] * row_interval_lv / 100);
         float unit = gm.pixelPerUnit;
