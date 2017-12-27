@@ -41,8 +41,8 @@ public class ResultModalController : MonoBehaviour {
 	}
 
 	private void showAdsBtn() {
-		int randNum = Random.Range(0, 30);
-        adsBtn.gameObject.SetActive(randNum < 100 ? true : false);
+		int randNum = Random.Range(0, 100);
+        adsBtn.gameObject.SetActive(randNum < 30 ? true : false);
 	}
 /// <summary>
 /// 현재 하는 게임을 기록하는 함수
@@ -86,7 +86,7 @@ public class ResultModalController : MonoBehaviour {
     }
 
 	private void setDistance(float distance) {
-		distanceText.text = string.Format("{0} m", distance.ToString("##,0"));
+		distanceText.text = string.Format("{0} M", distance.ToString("##,0"));
         if(saveManager.setRecord(distance, sport)) {
             UM_GameServiceManager.Instance.SubmitScore(getSportString(), (long)distance);
         }
@@ -95,7 +95,10 @@ public class ResultModalController : MonoBehaviour {
     private void setPoint(int point, int extraPoint, float? magnification) {
 		this.point = point;
 		this.extraPoint = extraPoint;
-		if(magnification.HasValue) this.magnification = magnification.Value;
+		if(magnification.HasValue) {
+			this.magnification = magnification.Value;
+			pointText.resizeTextForBestFit = true;
+		}
 		string magniText = magnification.HasValue ? string.Format("(배율:x{0})", magnification.Value): "";
         pointText.text = string.Format("{0} + {1}{2}", point, extraPoint, magniText);
     }
@@ -118,7 +121,7 @@ public class ResultModalController : MonoBehaviour {
 
 	private void revive() {
 		soundManager.Play(SoundManager.SoundType.EFX, "resumeBtn");
-		currentGame.SendMessage("revive", SendMessageOptions.DontRequireReceiver);
+		currentGame.SendMessage(getSportRevive(), SendMessageOptions.DontRequireReceiver);
 		Destroy(continueBtn);
         continueBtn.gameObject.SetActive(false);
 		gameObject.SetActive(false);
@@ -142,5 +145,14 @@ public class ResultModalController : MonoBehaviour {
 			case SportType.SKIJUMP : return "SkiJump";
 		}
 		return "Downhill";
+	}
+
+	private string getSportRevive() {
+		switch(sport) {
+			case SportType.DOWNHILL : return "DownHill";
+			case SportType.SKELETON : return "revive";
+			case SportType.SKIJUMP : return "resumneButtonPressed";
+		}
+		return "revive";
 	}
 }

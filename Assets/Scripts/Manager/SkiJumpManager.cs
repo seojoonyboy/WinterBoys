@@ -17,15 +17,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public ArrowRotate arrowController;
     public SkiJumpCM_controller CM_controller;
     public SkiJumpBoardHolder boardHolder;
+    public ResultModalController modal;
 
     public GameObject
-        modal,
         character,
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
-        jumpButton,                 //점프하기 버튼
-        resumeBtn,                  //이어하기 버튼
-        adsBtn;                     //광고보기 버튼
+        jumpButton;                //점프하기 버튼
 
     public Text 
         speedText,
@@ -61,7 +59,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private float 
         playTime,
         preFixedDeltaTime;
-    private GameObject resumeButton;
 
     private SoundManager soundManager;
 
@@ -97,7 +94,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         charRb = character.GetComponent<Rigidbody2D>();
 
         statBasedSpeedForce = forceAmount * pm.getSpeedPercent();
-        resumeButton = modal.transform.Find("InnerModal/Buttons/Resume").gameObject;
 
         _eventManger.AddListener<SkiJump_JumpEvent>(_OnJumpArea);
         _eventManger.AddListener<SkiJump_LandingEvent>(_OnLanding);
@@ -110,12 +106,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         //statBasedSpeedForce = forceAmount * 1.8f;
 
         preFixedDeltaTime = Time.fixedDeltaTime;
-
-        if (!resumeBtn.activeSelf) {
-            resumeBtn.SetActive(true);
-        }
-
-        connectUnityAdsButton();
     }
 
     private void Update() {
@@ -154,8 +144,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         removeListener();
 
         soundManager.Play(SoundManager.SoundType.EFX, "returnMain");
-
-        resumeButton.SetActive(true);
 
         pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
         pm.addPoint((int)totalScore);
@@ -216,9 +204,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void gameOver() {
         playerController.extraAudioSource.gameObject.SetActive(false);
-        soundManager.Play(SoundManager.SoundType.EFX, "gameOver");
-
-        modal.SetActive(true);
 
         //착지 위치 기반 점수 계산
         score = System.Math.Round(character.transform.position.x / 6.0f);
@@ -227,27 +212,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             score = System.Math.Round(score * 0.75f);
         }
         score *= (1 + qte_magnification);
-        //totalScore = score + bonusScore;
-
-        Transform innerModal = modal.transform.Find("InnerModal");
-
-        innerModal.Find("Labels/Point/Data").GetComponent<Text>().text = 
-            System.Math.Truncate(score)
-            + " + " + System.Math.Truncate(bonusScore)
-            + "(배율 : x" + qte_magnification + ")";
-
-        innerModal.Find("Labels/Distance/Data").GetComponent<Text>().text = System.Math.Truncate(character.transform.position.x) + " M";
-        innerModal.Find("Labels/Time/Data").GetComponent<Text>().text = System.Math.Truncate(playTime) + "초";
+        modal.setGame(gameObject, SportType.SKIJUMP);
+        modal.setData(playTime, character.transform.position.x, (int)score, (int)bonusScore, null, qte_magnification);
 
         Debug.Log("추가 배율 : " + qte_magnification);
-
-        int randNum = UnityEngine.Random.Range(0, 100);
-        if(randNum < 30) {
-            adsBtn.SetActive(true);
-        }
-        else {
-            adsBtn.SetActive(false);
-        }
 
         Time.timeScale = 0.0f;
         Time.fixedDeltaTime = preFixedDeltaTime;
@@ -257,8 +225,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.TriggerEvent(new SkiJump_Resume());
 
         Time.timeScale = 1;
-
-        soundManager.Play(SoundManager.SoundType.EFX, "resumeBtn");
     }
 
     private void resume(SkiJump_Resume e) {
@@ -268,57 +234,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         isLanded = false;
         isQTE_occured = false;
 
-        resumeBtn.SetActive(false);
-    }
-
-    private void onResultCallback(ShowResult result) {
-        switch (result) {
-            case ShowResult.Finished: {
-                    Debug.Log("The ad was successfully shown.");
-                    //획득 포인트를 2배 증가시킨다.
-                    //이어하기 버튼 비활성화
-                    resumeBtn.SetActive(false);
-                    adsBtn.SetActive(false);
-
-                    score *= 2;
-                    bonusScore *= 2;
-
-                    Transform innerModal = modal.transform.Find("InnerModal");
-
-                    innerModal.Find("Labels/Point/Data").GetComponent<Text>().text = 
-                        System.Math.Truncate(score)
-                        + " + " + System.Math.Truncate(bonusScore)
-                        + "(배율 : x" + qte_magnification + ")";
-                    break;
-                }
-            case ShowResult.Skipped: {
-                    Debug.Log("The ad was skipped before reaching the end.");
-
-                    // to do ...
-                    // 광고가 스킵되었을 때 처리
-
-                    break;
-                }
-            case ShowResult.Failed: {
-                    Debug.LogError("The ad failed to be shown.");
-
-                    // to do ...
-                    // 광고 시청에 실패했을 때 처리
-
-                    break;
-                }
-        }
-    }
-
-    private void connectUnityAdsButton() {
-        Button button = adsBtn.GetComponent<Button>();
-        button.onClick.AddListener(AdButtonClicked);
-
-        UnityAdsHelper.Instance.onResultCallback += onResultCallback;
-    }
-
-    private void AdButtonClicked() {
-        UnityAdsHelper.Instance.ShowRewardedAd();
     }
 
     private void removeListener() {
