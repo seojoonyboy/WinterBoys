@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
+    private int preFlagType = 1;
     private GameManager gm;
     public GameObject[] 
         floorsPref,
@@ -46,7 +47,7 @@ public class BoardManager : MonoBehaviour {
     }
 
     public void setUp() {
-        flagInterval = gm.vertical_intervals[0] / gm.pixelPerUnit;
+        flagInterval = (gm.vertical_intervals[0] / gm.pixelPerUnit) * (1 + gm.vertical_intervals[1] * row_interval_lv / 100f);
         for (int i=0; i<columns; i++) {
             addMiddleTile(-i * 7.1f);
             addSideTile();
@@ -87,7 +88,14 @@ public class BoardManager : MonoBehaviour {
     //동적 폴 추가
     public void addFlag() {
         GameObject flag = Instantiate(flagPref);
-        flag.transform.position = new Vector2(lastFlagPos.x, lastFlagPos.y - (float)(gm.vertical_intervals[0]/gm.pixelPerUnit));
+        if(preFlagType == 1) {
+            flag.GetComponent<FlagController>().flagType = FlagController.type.RIGHT;
+        }
+        else if(preFlagType == -1) {
+            flag.GetComponent<FlagController>().flagType = FlagController.type.LEFT;
+        }
+
+        flag.transform.position = new Vector2(lastFlagPos.x, lastFlagPos.y - flagInterval);
         lastFlagPos = flag.transform.position;
         flag.name = "flag" + flagNum;
 

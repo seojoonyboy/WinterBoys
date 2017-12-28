@@ -175,5 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e5969832d72f99499f5717ec21337ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayDir: 0
-  distance: 0
+  flagType: 0

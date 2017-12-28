@@ -29,7 +29,7 @@ public class FlagFilter : MonoBehaviour {
 
         if(minXFinded && maxXFinded) {
             isSolved = true;
-            Debug.Log("발견된 X 최솟값 : " + xPoses.min + " 발견된 X 최댓값 : " + xPoses.max);
+            //Debug.Log("발견된 X 최솟값 : " + xPoses.min + " 발견된 X 최댓값 : " + xPoses.max);
             return;
         }
 

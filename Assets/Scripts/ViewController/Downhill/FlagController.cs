@@ -5,11 +5,9 @@ using Spine.Unity;
 
 public class FlagController : MonoBehaviour {
     public enum type { LEFT, RIGHT };
-    public type rayDir;
-    public float distance;
+    public type flagType;
 
     private bool isSend = false;
-    private bool isPassSend = false;
 
     private DownhillManager dm;
     private BoardManager bm;
@@ -29,64 +27,48 @@ public class FlagController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        IsFail();
-        IsPass();
+        Vector3 dir = Vector3.left;
+        ray(dir);
+
+        dir = Vector3.right;
+        ray(dir);
     }
 
-    void IsFail() {
-        Vector3 dir = Vector3.zero;
-        if (rayDir == type.LEFT) {
-            dir = Vector3.left;
-        }
-        else if (rayDir == type.RIGHT) {
-            dir = Vector3.right;
-        }
+    private void ray(Vector3 dir) {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit)) {
             if (hit.collider.tag == "Player") {
-                if(dm.playerController.playerState == Ski_PlayerController.PlayerState.BOOSTING) {
-                    return;
-                }
-
-                if (!isSend) {
-                    //Debug.Log("실패");
-                    dm.remainTime -= (int)GameManager.Instance.panelty_time;
-                    dm.setCombo(0);
-                    //if (bm.centers.Count != 0) {
-                    //    bm.centers.RemoveAt(0);
-                    //}
-                }
+                checkSuccessOrFail(dir);
                 isSend = true;
             }
         }
     }
-    void IsPass() {
-        RaycastHit hit;
-        Vector3 dir = Vector3.zero;
-        if (rayDir == type.LEFT) {
-            dir = Vector3.right;
-            if (Physics.Raycast(transform.position, dir, out hit, distance)) {
-                if (hit.collider.tag == "Player") {
-                    if (!isPassSend) {
-                        //Debug.Log("성공");
-                        dm.passNumInc();
-                        dm.setCombo(1);
-                        //if (bm.centers.Count != 0) {
-                        //    bm.centers.RemoveAt(0);
-                        //}
-                    }
-                    isPassSend = true;
-                }
-            }
+
+    private void checkSuccessOrFail(Vector3 dir) {
+        if(flagType == type.LEFT && dir == Vector3.left) {
+            //성공
+        }
+        else if(flagType == type.LEFT && dir == Vector3.right) {
+            //실패
+        }
+
+        if(flagType == type.RIGHT && dir == Vector3.right) {
+            //성공
+        }
+        else if (flagType == type.RIGHT && dir == Vector3.left) {
+            //실패
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
-            if (rayDir == type.LEFT) {
+            //성공
+            int[] arr = { 1, 2 };
+            int num = arr.Random();
+            if(num == 1) {
                 anim.AnimationName = "broken_left";
             }
-            else if (rayDir == type.RIGHT) {
+            else {
                 anim.AnimationName = "broken_right";
             }
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
