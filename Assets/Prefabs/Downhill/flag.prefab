@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114228709068448274}
   - component: {fileID: 61280908573858950}
   - component: {fileID: 114958953208814502}
-  m_Layer: 0
+  - component: {fileID: 114403324807451292}
+  m_Layer: 2
   m_Name: flag
   m_TagString: Flag
   m_Icon: {fileID: 0}
@@ -151,6 +152,18 @@ MonoBehaviour:
   _animationName: 
   loop: 0
   timeScale: 1
+--- !u!114 &114403324807451292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031508603598614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328068429259c5645a7ef38524f92536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumSpacing: 350
 --- !u!114 &114958953208814502
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,7 +20,7 @@ public class SelfDestroyer : MonoBehaviour {
             }
         }
         else if(_type == type.DOWNHILL) {
-            if(tag == "Tile") {
+            if(tag == "Tile" || tag == "DH_leftTile" || tag == "DH_rightTile") {
                 if (pos.y >= 2.0f) {
                     Destroy(gameObject);
                 }

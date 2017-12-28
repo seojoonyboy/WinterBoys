@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114788107466956178}
   - component: {fileID: 50601712210181460}
   - component: {fileID: 61239178119332172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: downhill_bg_middle
   m_TagString: Tile
   m_Icon: {fileID: 0}

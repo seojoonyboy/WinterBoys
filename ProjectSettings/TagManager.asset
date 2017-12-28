@@ -11,6 +11,8 @@ TagManager:
   - Item
   - MainSlope
   - EndSlope
+  - DH_leftTile
+  - DH_rightTile
   layers:
   - Default
   - TransparentFX
@@ -22,8 +24,8 @@ TagManager:
   - 
   - Line
   - Player
-  - 
-  - 
+  - dh_leftSideTile
+  - dh_rightSideTile
   - 
   - 
   - 

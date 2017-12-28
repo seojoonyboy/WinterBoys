@@ -29,9 +29,6 @@ public class BoardManager : MonoBehaviour {
     
     private int nextFlagDir = 1;    //다음 폴 생성 방향 (-1 : 왼쪽 / 1 : 오른쪽)
     private int sameDirCount = 0;   //같은 방향으로 폴이 생성된 횟수
-
-    private Vector2 curFlagPos;     //좌측 기준 현재 폴의 위치
-    public float deltaX;
     public int 
         flagNum = 0,
         poll_interval_lv = 1,       //폴과 폴 사이의 간격
@@ -42,17 +39,6 @@ public class BoardManager : MonoBehaviour {
     List<GameObject> leftSides = new List<GameObject>();
     List<GameObject> rightSides = new List<GameObject>();
     public List<GameObject> centers = new List<GameObject>();
-
-    private TreeOffset 
-        treeLeftOffset,
-        treeRightOffset;
-
-    private float nextTreePosY = -2;
-
-    private class TreeOffset {
-        public float leftLimit;
-        public float rightLimit;
-    }
 
     private void OnEnable() {
         gm = GameManager.Instance;
@@ -96,21 +82,16 @@ public class BoardManager : MonoBehaviour {
     public void addToBoard() {
         addMiddleTile(lastTilePos.y - 1 * 7.1f);
         addSideTile();
-        ////다음 타일 생성
-
-        ////다음 폴 생성
-        //addFlag();
-        //addTree();
     }
 
     //동적 폴 추가
     public void addFlag() {
         GameObject flag = Instantiate(flagPref);
+        flag.transform.position = new Vector2(lastFlagPos.x, lastFlagPos.y - (float)(gm.vertical_intervals[0]/gm.pixelPerUnit));
+        lastFlagPos = flag.transform.position;
+        flag.name = "flag" + flagNum;
 
-        flag.transform.position = new Vector2(0, lastFlagPos.y);
         flag.transform.SetParent(floorHolder, false);
-
-        lastFlagPos = new Vector2(0, lastFlagPos.y - flagInterval);
         flagNum++;
 
         //폴 사이 간격 감소
@@ -122,53 +103,6 @@ public class BoardManager : MonoBehaviour {
         if(flagNum != 0 && flagNum % gm.vertical_intervals[1] == 0) {
             lvup(1);
         }
-    }
-
-    private void addTree() {
-
-    }
-
-    private int rndX() {
-        int rnd = UnityEngine.Random.Range((int)-gm.poll_intervals[0], (int)(gm.pixelPerUnit - gm.poll_intervals[0]));
-        return rnd;
-    }
-
-    private Vector2 calcNextFlagPos() {
-        Vector2 prePos = curFlagPos;
-
-        float deltaY = gm.vertical_intervals[0] * (1 + gm.vertical_intervals[1] * row_interval_lv / 100);
-        float unit = gm.pixelPerUnit;
-
-        int nextDir = setNextDir();
-        float nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * nextDir;
-        float rightX = (float)Math.Round(nextXPos + ((float)gm.poll_intervals[0] / (float)gm.pixelPerUnit), 2);
-
-        if (nextXPos <= -0.9f || rightX >= 0.9f) {
-            nextXPos = prePos.x + (float)Math.Round(deltaX / unit, 2) * nextDir * -1f;
-            sameDirCount = 0;
-            nextDir *= -1;
-        }
-
-        Vector2 nextPos = new Vector2(nextXPos, prePos.y - (float)Math.Round(deltaY / unit, 2));
-
-        //Debug.Log(nextXPos);
-        return nextPos;
-    }
-
-    private int setNextDir() {
-        int[] arr = { 1, -1 };
-        int nextDir = arr.Random();
-        //Debug.Log("다음 방향 : " + nextDir);
-        //Debug.Log("같은 방향 수 : " + sameDirCount);
-        if (sameDirCount >= 2) {
-            nextDir *= -1;
-            sameDirCount = 0;
-        }
-
-        if (nextFlagDir == nextDir) {
-            sameDirCount++;
-        }
-        return nextDir;
     }
 
     private void setFlagParent(GameObject leftFlag, GameObject rightFlag) {
