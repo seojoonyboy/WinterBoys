@@ -84,8 +84,10 @@ public class ItemGenerator : MonoBehaviour {
             //아이템 젠 변경점
             if (charPosOfY > dh_standardChangeMeter[dh_index]) {
                 if (dh_index == dh_standardChangeMeter.Length) { return; }
-                
-                Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
+
+                for (int i=0; i<dh_numPerGenerate[dh_index]; i++){
+                    Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
+                }
 
                 dh_interval = dh_standardChangeMeter[dh_index] + dh_intervalMeter[dh_index];
                 dh_index++;
@@ -94,7 +96,9 @@ public class ItemGenerator : MonoBehaviour {
             //다음 아이템 젠 변경까지
             if(dh_index != 0) {
                 if(charPosOfY > dh_interval) {
-                    Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index - 1]);
+                    for (int i = 0; i < dh_numPerGenerate[dh_index]; i++) {
+                        Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index - 1]);
+                    }
                     dh_interval += dh_intervalMeter[dh_index];
                 }
             }
@@ -127,15 +131,11 @@ public class ItemGenerator : MonoBehaviour {
                 item.GetComponent<Item>().item_st = (ItemType.ST)itemIndex;
                 break;
         }
-
-        for(int i=0; i<numPerGen; i++) {
-            Vector3 itemPos = randPos(type);
-            item.GetComponent<Item>().gameType = type;
-            item.transform.position = itemPos;
-            item.transform.SetParent(parent);
-
-            Debug.Log("아이템 생성");
-        }
+        Vector3 itemPos = randPos(type);
+        item.GetComponent<Item>().gameType = type;
+        item.transform.position = itemPos;
+        item.transform.SetParent(parent);
+        //Debug.Log("아이템 생성");
     }
 
     private Vector3 randPos(SportType type) {
@@ -152,8 +152,12 @@ public class ItemGenerator : MonoBehaviour {
                 break;
             case SportType.DOWNHILL:
                 randX = UnityEngine.Random.Range(0, Screen.width);
-                pos = cam.ScreenToWorldPoint(new Vector3(randX, dh_playerController.playerPos.y - Screen.height, 3.5f));
-                pos.z = 0;
+                float randInterval = UnityEngine.Random.Range(0, (float)(dh_itemArea[dh_index]/gm.pixelPerUnit));
+                Debug.Log((float)(dh_itemArea[dh_index] / gm.pixelPerUnit));
+                pos = new Vector2(
+                    dh_playerController.playerPos.x,
+                    dh_playerController.playerPos.y - (float)(Screen.height / gm.pixelPerUnit) * 2f - randInterval
+                );
                 break;
         }
         return pos;

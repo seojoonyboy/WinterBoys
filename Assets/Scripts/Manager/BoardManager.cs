@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
     private int preFlagType = 1;
+    private int preSideTileIndex = 0;
+
     private GameManager gm;
     public GameObject[] 
         floorsPref,
         leftPref,
-        rightPref;
+        rightPref,
+        flagPrefs;
     public Sprite[] treeImages;
     public GameObject 
         flagPref,
@@ -27,9 +30,7 @@ public class BoardManager : MonoBehaviour {
 
     public bool isMade = false;
     private int floorIndex = 0;
-    
-    private int nextFlagDir = 1;    //다음 폴 생성 방향 (-1 : 왼쪽 / 1 : 오른쪽)
-    private int sameDirCount = 0;   //같은 방향으로 폴이 생성된 횟수
+
     public int 
         flagNum = 0,
         poll_interval_lv = 1,       //폴과 폴 사이의 간격
@@ -47,11 +48,18 @@ public class BoardManager : MonoBehaviour {
     }
 
     public void setUp() {
+        preSideTileIndex = getStartTileIndex();
         for (int i=0; i<columns; i++) {
             addMiddleTile(-i * 7.1f);
             addSideTile();
             addFlag();
         }
+    }
+
+    private int getStartTileIndex() {
+        int[] arr = { 0, 1, 3, 5 };
+        int randNum = arr.Random();
+        return randNum;
     }
 
     private void addMiddleTile(float posOfY) {
@@ -70,13 +78,23 @@ public class BoardManager : MonoBehaviour {
     }
 
     private void addSideTile() {
-        GameObject leftSide = Instantiate(leftPref[floorIndex]);
-        GameObject rightSide = Instantiate(rightPref[floorIndex]);
+        GameObject leftSide = Instantiate(leftPref[preSideTileIndex]);
+        GameObject rightSide = Instantiate(rightPref[preSideTileIndex]);
 
         leftSide.transform.SetParent(floorHolder, false);
         leftSide.transform.position = new Vector2(-2.0f, lastTilePos.y - 1);
         rightSide.transform.SetParent(floorHolder, false);
         rightSide.transform.position = new Vector2(2.0f, lastTilePos.y - 1);
+
+        if(preSideTileIndex == 1) {
+            preSideTileIndex = 2;
+        }
+        else if(preSideTileIndex == 3) {
+            preSideTileIndex = 4;
+        }
+        else {
+            preSideTileIndex = getStartTileIndex();
+        }
     }
 
     public void addToBoard() {

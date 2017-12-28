@@ -704,6 +704,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &203827132
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.235
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246518401757292, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 33348506093340466, guid: 395806d11a799b04097cebc29ad0e40a,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &211509568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,7 +2266,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 999791833}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 8
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -3210,7 +3257,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 999791829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.8, z: -9.85}
+  m_LocalPosition: {x: 0, y: -1.8, z: -9.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1224647091}
@@ -3658,10 +3705,10 @@ MonoBehaviour:
   minTime: 5
   sj_playerController: {fileID: 0}
   dh_playerController: {fileID: 952238717}
-  dh_standardChangeMeter: 3c000000580200004c040000
-  dh_intervalMeter: 3c0000002d0000001e000000
-  dh_itemArea: 140000001400000014000000
-  dh_numPerGenerate: 010000000200000003000000
+  dh_standardChangeMeter: 1e000000fa00000058020000
+  dh_intervalMeter: 280000002d0000001e000000
+  dh_itemArea: 80070000000f0000002d0000
+  dh_numPerGenerate: 030000000500000007000000
   sj_standardChangeMeter: 
   sj_intervalMeter: 
   sj_numPerGenerate: 
@@ -5106,10 +5153,19 @@ MonoBehaviour:
   - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
   - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
   - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
+  - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
+  - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
+  - {fileID: 1058845662176276, guid: 9414eff517b1f464f8f38c05391ad5a3, type: 2}
   rightPref:
   - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
   - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
   - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
+  - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
+  - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
+  - {fileID: 1058845662176276, guid: a20a141920e482341b191d143ef27559, type: 2}
+  flagPrefs:
+  - {fileID: 1031508603598614, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
+  - {fileID: 1031508603598614, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
   treeImages:
   - {fileID: 21300000, guid: ceb7df6fa5b18464ebd8aa8ce739a165, type: 3}
   - {fileID: 21300000, guid: 901074a86d9cbf449bd71642634b3809, type: 3}

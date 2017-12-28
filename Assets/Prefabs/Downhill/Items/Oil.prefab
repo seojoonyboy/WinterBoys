@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114031387317600246}
   - component: {fileID: 114089302463264608}
   - component: {fileID: 61595048286640986}
+  - component: {fileID: 114079604174448114}
   m_Layer: 0
   m_Name: Oil
   m_TagString: Untagged
@@ -124,6 +125,18 @@ MonoBehaviour:
   item_dh: 6
   item_sj: 0
   item_st: 0
+--- !u!114 &114079604174448114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1805285940151624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328068429259c5645a7ef38524f92536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumSpacing: 350
 --- !u!114 &114089302463264608
 MonoBehaviour:
   m_ObjectHideFlags: 1

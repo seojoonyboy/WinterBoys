@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 61489191323612274}
   - component: {fileID: 114069159043266420}
   - component: {fileID: 114545354455000174}
+  - component: {fileID: 114448706025692162}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Item
@@ -138,6 +139,18 @@ MonoBehaviour:
   item_dh: 3
   item_sj: 0
   item_st: 0
+--- !u!114 &114448706025692162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1936804292000474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328068429259c5645a7ef38524f92536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumSpacing: 350
 --- !u!114 &114545354455000174
 MonoBehaviour:
   m_ObjectHideFlags: 1

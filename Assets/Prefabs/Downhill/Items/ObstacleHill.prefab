@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114933405045295726}
   - component: {fileID: 114041988656600006}
   - component: {fileID: 61091804438913934}
+  - component: {fileID: 114353162540373876}
   m_Layer: 0
   m_Name: ObstacleHill
   m_TagString: Item
@@ -154,6 +155,18 @@ MonoBehaviour:
   _animationName: animation
   loop: 1
   timeScale: 1
+--- !u!114 &114353162540373876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1141668060899820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328068429259c5645a7ef38524f92536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumSpacing: 350
 --- !u!114 &114933405045295726
 MonoBehaviour:
   m_ObjectHideFlags: 1
