@@ -35,6 +35,8 @@ public class FlagController : MonoBehaviour {
     }
 
     private void ray(Vector3 dir) {
+        if (isSend) return;
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit)) {
             if (hit.collider.tag == "Player") {
@@ -47,16 +49,20 @@ public class FlagController : MonoBehaviour {
     private void checkSuccessOrFail(Vector3 dir) {
         if(flagType == type.LEFT && dir == Vector3.left) {
             //성공
+            Debug.Log("성공");
         }
         else if(flagType == type.LEFT && dir == Vector3.right) {
             //실패
+            Debug.Log("실패");
         }
 
         if(flagType == type.RIGHT && dir == Vector3.right) {
             //성공
+            Debug.Log("성공");
         }
         else if (flagType == type.RIGHT && dir == Vector3.left) {
             //실패
+            Debug.Log("실패");
         }
     }
 

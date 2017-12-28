@@ -47,7 +47,6 @@ public class BoardManager : MonoBehaviour {
     }
 
     public void setUp() {
-        flagInterval = (gm.vertical_intervals[0] / gm.pixelPerUnit) * (1 + gm.vertical_intervals[1] * row_interval_lv / 100f);
         for (int i=0; i<columns; i++) {
             addMiddleTile(-i * 7.1f);
             addSideTile();
@@ -87,6 +86,8 @@ public class BoardManager : MonoBehaviour {
 
     //동적 폴 추가
     public void addFlag() {
+        flagInterval = (gm.vertical_intervals[0] / gm.pixelPerUnit) * (1 + gm.vertical_intervals[1] * row_interval_lv / 100f);
+
         GameObject flag = Instantiate(flagPref);
         if(preFlagType == 1) {
             flag.GetComponent<FlagController>().flagType = FlagController.type.RIGHT;
@@ -94,6 +95,7 @@ public class BoardManager : MonoBehaviour {
         else if(preFlagType == -1) {
             flag.GetComponent<FlagController>().flagType = FlagController.type.LEFT;
         }
+        preFlagType *= -1;
 
         flag.transform.position = new Vector2(lastFlagPos.x, lastFlagPos.y - flagInterval);
         lastFlagPos = flag.transform.position;
