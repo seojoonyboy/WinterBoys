@@ -80,6 +80,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void OnDisable() {
         isLanded = false;
+        Time.timeScale = 1;
+        Screen.orientation = ScreenOrientation.Portrait;
+        removeListener();
     }
 
     private void _OnJumpArea(SkiJump_JumpEvent e) {
@@ -131,22 +134,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         double value = System.Math.Round(charRb.transform.position.y * 3f);
         height.text = value + " M";
         heightSlider.value = (float)value;
-    }
-
-    public void mainLoad() {
-        //UM_GameServiceManager.ActionScoreSubmitted -= HandleActionScoreSubmitted;
-        SceneManager.LoadScene("Main");
-
-        Time.timeScale = 1;
-
-        Screen.orientation = ScreenOrientation.Portrait;
-
-        removeListener();
-
-        soundManager.Play(SoundManager.SoundType.EFX, "returnMain");
-
-        pm.setRecord(character.transform.position.x, SportType.SKIJUMP);
-        pm.addPoint((int)totalScore);
     }
 
     public void restart() {

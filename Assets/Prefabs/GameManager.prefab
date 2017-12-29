@@ -51,10 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a7e4e09d3ad1f4a9101790e863908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   dh_percentages:
     values:
     - 25
@@ -84,7 +80,7 @@ MonoBehaviour:
     - 10
     - 5
     - 10
-  pixelPerUnit: 270
+  pixelPerUnit: 512
   nickname: 
   character: 0
   poll_intervals:
@@ -97,12 +93,6 @@ MonoBehaviour:
   - 30
   - 35
   - 10
-  pararell_intervals:
-  - 150
-  - 300
-  - 50
-  - 35
-  - 14
   bonus_times:
   - 8
   - 20
@@ -110,15 +100,15 @@ MonoBehaviour:
   - 25
   - 0.02
   skeleton_bonus_times:
-  - 1000
-  - 20
+  - 650
+  - 15
   skeleton_dangers:
   - 2
   - 35
   - 3
   skeleton_point:
-  - 0
-  - 15
+  - 10
+  - 5
   skeleton_stats:
   - 35
   - 0
