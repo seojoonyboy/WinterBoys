@@ -13,7 +13,7 @@ public class FlagFilter : MonoBehaviour {
 
     private void Start() {
         xPoses = new Poses();
-        refinedMinSpacing = (float)(GameManager.Instance.pixelPerUnit / minimumSpacing);
+        refinedMinSpacing = (float)(minimumSpacing/GameManager.Instance.pixelPerUnit);
         InvokeRepeating("check", 0, 0.5f);
     }
 

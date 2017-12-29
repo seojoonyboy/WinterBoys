@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328068429259c5645a7ef38524f92536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumSpacing: 350
+  minimumSpacing: 450
 --- !u!114 &114448137100070386
 MonoBehaviour:
   m_ObjectHideFlags: 1
