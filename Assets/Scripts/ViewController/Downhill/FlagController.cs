@@ -49,26 +49,39 @@ public class FlagController : MonoBehaviour {
     private void checkSuccessOrFail(Vector3 dir) {
         if(flagType == type.LEFT && dir == Vector3.left) {
             //성공
-            Debug.Log("성공");
+            dm.passNumInc();
+            dm.setCombo(1);
+            //Debug.Log("Ray로 성공");
         }
         else if(flagType == type.LEFT && dir == Vector3.right) {
             //실패
-            Debug.Log("실패");
+            dm.setCombo(0);
+            dm.remainTime -= 5;
+            //Debug.Log("Ray로 실패");
         }
 
         if(flagType == type.RIGHT && dir == Vector3.right) {
             //성공
-            Debug.Log("성공");
+            dm.passNumInc();
+            dm.setCombo(1);
+            //Debug.Log("Ray로 성공");
         }
         else if (flagType == type.RIGHT && dir == Vector3.left) {
             //실패
-            Debug.Log("실패");
+            dm.setCombo(0);
+            dm.remainTime -= 5;
+            //Debug.Log("Ray로 실패");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
             //성공
+            isSend = true;
+            dm.passNumInc();
+            dm.setCombo(1);
+            Debug.Log("충돌로 성공");
+
             int[] arr = { 1, 2 };
             int num = arr.Random();
             if(num == 1) {

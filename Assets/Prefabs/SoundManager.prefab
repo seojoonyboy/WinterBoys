@@ -276,7 +276,7 @@ MonoBehaviour:
   efx_sounds:
   - name: main_startBtn
     clip: {fileID: 8300000, guid: e16e9aad9c226b14ba19b6a3898e9d24, type: 3}
-  - name: charChageBtn
+  - name: charChangeBtn
     clip: {fileID: 8300000, guid: 8d32435aaac3b9a4b9bc54a39a4cba2a, type: 3}
   - name: registBtn
     clip: {fileID: 8300000, guid: 5d220c77410398e4e8b9267db92a80bb, type: 3}
@@ -345,4 +345,3 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4a19e0c365e17de40adb397113a96d7d, type: 3}
   - name: sj_fly
     clip: {fileID: 8300000, guid: 05da863c1d37a4440ae2fda71bfbf8ac, type: 3}
-  soundType: 3

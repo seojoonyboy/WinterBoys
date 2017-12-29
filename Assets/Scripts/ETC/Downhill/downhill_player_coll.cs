@@ -10,12 +10,12 @@ public class downhill_player_coll : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Tile") {
             Vector2 pos = collision.transform.position;
-            if (pos.y <= bM.lastTilePos.y + 2) {
+            if (pos.y <= bM.lastTilePos.y + 14.2f) {
                 bM.addToBoard();
             }
         }
 
-        if (collision.tag == "TileEnd") {
+        if (collision.tag == "DH_rightTile" || collision.tag == "DH_leftTile") {
             dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
         }
 

@@ -119,8 +119,8 @@ public class DownhillManager : MonoBehaviour {
             Debug.Log("시간 증가");
             soundManager.Play(SoundManager.SoundType.EFX, "timeAdd");
         }
-        //Debug.Log("통과 갯수 : " + passNum);
-        //scoreInc(5);
+        Debug.Log("통과 갯수 : " + passNum);
+        scoreInc(5);
     }
 
     //콤보 처리(성공, 실패)
@@ -136,7 +136,7 @@ public class DownhillManager : MonoBehaviour {
             maxCombo = comboNum;
         }
 
-        //Debug.Log("콤보횟수 : " + comboNum);
+        Debug.Log("콤보횟수 : " + comboNum);
     }
 
     public void scoreInc(int amount) {

@@ -10,9 +10,7 @@ public class BoardManager : MonoBehaviour {
 
     private GameManager gm;
     public GameObject[] 
-        floorsPref,
-        leftPref,
-        rightPref,
+        Tiles,
         flagPrefs;
     public Sprite[] treeImages;
     public GameObject 
@@ -50,8 +48,7 @@ public class BoardManager : MonoBehaviour {
     public void setUp() {
         preSideTileIndex = getStartTileIndex();
         for (int i=0; i<columns; i++) {
-            addMiddleTile(-i * 7.1f);
-            addSideTile();
+            addToBoard();
             addFlag();
         }
     }
@@ -62,44 +59,22 @@ public class BoardManager : MonoBehaviour {
         return randNum;
     }
 
-    private void addMiddleTile(float posOfY) {
-        GameObject floor = Instantiate(floorsPref[0]);
-
-        floor.transform.position = new Vector2(0, posOfY);
+    public void addToBoard() {
+        GameObject floor = Instantiate(Tiles[preSideTileIndex]);
         floor.transform.SetParent(floorHolder, false);
+        floor.transform.position = lastTilePos;
 
-        if (floorIndex >= columns - 1) {
-            floorIndex = 0;
-        }
-        else {
-            floorIndex++;
-        }
-        lastTilePos = floor.transform.position;
-    }
+        lastTilePos = new Vector2(lastTilePos.x, lastTilePos.y - 7.1f);
 
-    private void addSideTile() {
-        GameObject leftSide = Instantiate(leftPref[preSideTileIndex]);
-        GameObject rightSide = Instantiate(rightPref[preSideTileIndex]);
-
-        leftSide.transform.SetParent(floorHolder, false);
-        leftSide.transform.position = new Vector2(-2.0f, lastTilePos.y - 1);
-        rightSide.transform.SetParent(floorHolder, false);
-        rightSide.transform.position = new Vector2(2.0f, lastTilePos.y - 1);
-
-        if(preSideTileIndex == 1) {
+        if (preSideTileIndex == 1) {
             preSideTileIndex = 2;
         }
-        else if(preSideTileIndex == 3) {
+        else if (preSideTileIndex == 3) {
             preSideTileIndex = 4;
         }
         else {
             preSideTileIndex = getStartTileIndex();
         }
-    }
-
-    public void addToBoard() {
-        addMiddleTile(lastTilePos.y - 1 * 7.1f);
-        addSideTile();
     }
 
     //동적 폴 추가

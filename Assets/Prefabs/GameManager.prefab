@@ -86,17 +86,17 @@ MonoBehaviour:
   nickname: 
   character: 0
   poll_intervals:
-  - 500
+  - 350
   - 25
   - 8
   - 10
   vertical_intervals:
   - 1000
-  - 15
+  - 30
   - 35
   - 10
   bonus_times:
-  - 15
+  - 8
   - 20
   points:
   - 25
@@ -115,7 +115,7 @@ MonoBehaviour:
   - 90
   - 0
   panelty_time: 5
-  startTime: 30
+  startTime: 40
   highestScores:
   - 0
   - 0
