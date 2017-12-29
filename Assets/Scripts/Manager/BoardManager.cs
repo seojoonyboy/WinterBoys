@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Spine.Unity;
 
 public class BoardManager : MonoBehaviour {
     private int preFlagType = 1;
     private int preSideTileIndex = 0;
 
     private GameManager gm;
-    public GameObject[] 
-        Tiles,
-        flagPrefs;
+    public GameObject[] Tiles;
     public Sprite[] treeImages;
     public GameObject 
         flagPref,
@@ -82,11 +81,14 @@ public class BoardManager : MonoBehaviour {
         flagInterval = (gm.vertical_intervals[0] / gm.pixelPerUnit) * (1 + gm.vertical_intervals[1] * row_interval_lv / 100f);
 
         GameObject flag = Instantiate(flagPref);
+        SkeletonAnimation anim = flag.GetComponent<SkeletonAnimation>();
         if(preFlagType == 1) {
             flag.GetComponent<FlagController>().flagType = FlagController.type.RIGHT;
+            anim.AnimationName = "right";
         }
         else if(preFlagType == -1) {
             flag.GetComponent<FlagController>().flagType = FlagController.type.LEFT;
+            anim.AnimationName = "left";
         }
         preFlagType *= -1;
 

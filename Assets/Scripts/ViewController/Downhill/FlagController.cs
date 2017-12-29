@@ -82,13 +82,13 @@ public class FlagController : MonoBehaviour {
             dm.setCombo(1);
             Debug.Log("충돌로 성공");
 
-            int[] arr = { 1, 2 };
-            int num = arr.Random();
-            if(num == 1) {
-                anim.AnimationName = "broken_left";
+            if(flagType == type.LEFT) {
+                anim.loop = false;
+                anim.AnimationName = "left_crash";
             }
-            else {
-                anim.AnimationName = "broken_right";
+            else if(flagType == type.RIGHT) {
+                anim.loop = false;
+                anim.AnimationName = "right_crash";
             }
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
