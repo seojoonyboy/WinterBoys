@@ -141,7 +141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.71002, y: 0.000038147}
+  m_AnchoredPosition: {x: 108.71001, y: 0.000038147}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94455407
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 222434871}
   m_Layer: 9
   m_Name: chars_blue
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1043,48 +1043,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1001 &301740423
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229590651849820, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d12d7db95fcea5744b47a56526a73e9d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &330596346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1653,7 @@ GameObject:
   - component: {fileID: 399751646}
   m_Layer: 9
   m_Name: Plate
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2427,7 +2385,7 @@ GameObject:
   - component: {fileID: 800684828}
   m_Layer: 9
   m_Name: chars_yellow
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2501,7 +2459,7 @@ GameObject:
   - component: {fileID: 842351149}
   m_Layer: 9
   m_Name: chars_red
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2744,7 +2702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 107.30002, y: -0.0000076294}
+  m_AnchoredPosition: {x: 107.3, y: -0.0000076294}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884866362
@@ -2884,7 +2842,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.20001, y: -1.2049999}
+  m_AnchoredPosition: {x: 108.2, y: -1.2049999}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948073469
@@ -2935,7 +2893,7 @@ GameObject:
   - component: {fileID: 952238716}
   m_Layer: 9
   m_Name: Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3404,6 +3362,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1732664408751340, guid: 8e609526e43942b469807e383c50ea21, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 8e609526e43942b469807e383c50ea21, type: 2}
@@ -3449,48 +3411,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &1174531247
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1224647089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5727,7 +5647,7 @@ GameObject:
   - component: {fileID: 2033101837}
   m_Layer: 0
   m_Name: snowFrictionEffect
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

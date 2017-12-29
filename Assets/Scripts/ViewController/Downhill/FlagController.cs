@@ -39,7 +39,7 @@ public class FlagController : MonoBehaviour {
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit)) {
-            if (hit.collider.tag == "Player") {
+            if (hit.collider.gameObject.CompareTag("Player")) {
                 checkSuccessOrFail(dir);
                 isSend = true;
             }
@@ -75,7 +75,7 @@ public class FlagController : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "Player") {
+        if (collision.gameObject.CompareTag("Player")) {
             //성공
             isSend = true;
             dm.passNumInc();

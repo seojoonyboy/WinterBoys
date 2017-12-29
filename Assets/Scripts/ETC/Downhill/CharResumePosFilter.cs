@@ -45,12 +45,12 @@ public class CharResumePosFilter : MonoBehaviour {
         RaycastHit2D rightHit = Physics2D.Raycast(rightStartPos, Vector2.right);
 
         if (rightHit.collider != null) {
-            if (rightHit.collider.tag == "DH_rightTile") {
+            if (rightHit.collider.gameObject.CompareTag("DH_rightTile")) {
                 xPoses.max = rightHit.point.x - refinedMinSpacing;
 
                 RaycastHit2D leftHit = Physics2D.Raycast(transform.position, -Vector2.right);
                 if (leftHit.collider != null) {
-                    if (leftHit.collider.tag == "DH_leftTile") {
+                    if (leftHit.collider.gameObject.CompareTag("DH_leftTile")) {
                         xPoses.min = leftHit.point.x + refinedMinSpacing;
                     }
                 }
@@ -61,7 +61,7 @@ public class CharResumePosFilter : MonoBehaviour {
                 minXFinded = true;
                 maxXFinded = true;
             }
-            else if (rightHit.collider.tag == "DH_leftTile") {
+            else if (rightHit.collider.gameObject.CompareTag("DH_leftTile")) {
                 transform.position = rightHit.point;
                 check();
             }
@@ -70,11 +70,11 @@ public class CharResumePosFilter : MonoBehaviour {
             Vector2 leftStartPos = new Vector2(transform.position.x - 0.1f, transform.position.y);
             RaycastHit2D leftHit = Physics2D.Raycast(leftStartPos, -Vector2.right);
             if (leftHit.collider != null) {
-                if (leftHit.collider.tag == "DH_rightTile") {
+                if (leftHit.collider.gameObject.CompareTag("DH_rightTile")) {
                     transform.position = leftHit.point;
                     check();
                 }
-                else if (leftHit.collider.tag == "DH_leftTile") {
+                else if (leftHit.collider.gameObject.CompareTag("DH_leftTile")) {
                     xPoses.min = leftHit.point.x + refinedMinSpacing;
                     xPoses.max = transform.position.x - refinedMinSpacing;
 
