@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -657,11 +657,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.size
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -693,46 +688,6 @@ Prefab:
     - target: {fileID: 4815722244438722, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[0]
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pararell_intervals.Array.data[1]
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: pixelPerUnit
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[7]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[0]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[4]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[5]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
-        type: 2}
-      propertyPath: dh_percentages.values.Array.data[8]
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
@@ -1170,6 +1125,78 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 587010010}
+--- !u!1 &668432481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 668432483}
+  - component: {fileID: 668432482}
+  m_Layer: 0
+  m_Name: CharacterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &668432482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 668432481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce28df5b72677404aa8a709462a50c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players:
+  - name: "\uD53C\uC26C"
+    grade: 1
+    speed: 1
+    control: 1
+    priceCrystal: 100
+    pricePoint: 5500
+    maxEntry: 15
+    entry: 15
+    chargeTime: 900
+    currentTime: 0
+  - name: "\uBCA0\uB9AC"
+    grade: 1
+    speed: 2
+    control: 0
+    priceCrystal: 100
+    pricePoint: 5500
+    maxEntry: 15
+    entry: 15
+    chargeTime: 900
+    currentTime: 0
+  - name: "\uB098\uB098"
+    grade: 1
+    speed: 0
+    control: 2
+    priceCrystal: 100
+    pricePoint: 5500
+    maxEntry: 15
+    entry: 15
+    chargeTime: 900
+    currentTime: 0
+  currentCharacter: 0
+--- !u!4 &668432483
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 668432481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &675273115
 GameObject:
   m_ObjectHideFlags: 0

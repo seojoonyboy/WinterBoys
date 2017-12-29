@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager> {
     protected GameManager() { }
 
-    public Sprite[] players;
-
     public percentages dh_percentages;
     public percentages sj_percentages;
     public percentages st_percentages;

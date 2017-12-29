@@ -32,9 +32,9 @@ public class SkeletonManager : MonoBehaviour {
     private float totalTime;
     private float distanceBonusTime = 0f;
     private float turnDistance = 0f;
-    private float turnWhen = 300f;
+    private float turnWhen = 200f;
     private float itemDistance = 0f;
-    private float itemWhen = 250f;
+    private float itemWhen = 50f;
     private bool showTime = true;
     private int showCount = 0;
     public enum arrow {FRONT, LEFT, RIGHT};
@@ -202,11 +202,11 @@ public class SkeletonManager : MonoBehaviour {
 
             track.triggerTurn();
             sm.Play(SoundManager.SoundType.EFX, "st_conering");
-            if(totalDistance >= 2500f) {
+            if(totalDistance >= 600f) {
                 turnWhen = 150f;
             }
             else if(totalDistance >= 1500f) {
-                turnWhen = 200f;
+                turnWhen = 100f;
             }
         }
         if(smSource.isPlaying) return;
@@ -216,14 +216,15 @@ public class SkeletonManager : MonoBehaviour {
     private void checkItem() {
         if(itemDistance >= itemWhen) {
             itemDistance -= itemWhen;
-            itemWhen = 300f;
+            itemWhen = 80f;
+            itemGenerator.Generate(SportType.SKELETON);
             itemGenerator.Generate(SportType.SKELETON);
 
-            if(totalDistance >= 1100f) {
-                itemWhen = 200f;
+            if(totalDistance >= 350f) {
+                itemWhen = 60f;
                 itemGenerator.Generate(SportType.SKELETON);
             } else if (totalDistance >= 2000f) {
-                itemWhen = 150f;
+                itemWhen = 40f;
                 itemGenerator.Generate(SportType.SKELETON);
                 itemGenerator.Generate(SportType.SKELETON);
             }
@@ -321,7 +322,7 @@ public class SkeletonManager : MonoBehaviour {
         track.setSpeed(0);
         this.enabled = false;
         resultModal.setGame(gameObject, SportType.SKELETON);
-        resultModal.setData(totalTime, totalDistance, (int)(totalDistance / gm.skeleton_point[1]), extraPoint, null, null);
+        resultModal.setData(totalTime, totalDistance, (int)(totalDistance / gm.skeleton_point[1] + gm.skeleton_point[0]), extraPoint, null, null);
     }
 
     private void revive() {
