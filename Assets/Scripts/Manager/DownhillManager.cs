@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using Spine.Unity;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using GameEvents;
+using System;
 
 public class DownhillManager : MonoBehaviour {
     public GameObject 
@@ -16,6 +18,7 @@ public class DownhillManager : MonoBehaviour {
     private SaveManager pm;
     private UM_GameServiceManager umgm;
     public int remainTime;
+    public bool isGamePlayable;
 
     [HideInInspector] public float playTime;
 
@@ -37,6 +40,8 @@ public class DownhillManager : MonoBehaviour {
         additionalScore = 0;
 
     public Ski_PlayerController playerController;
+    public EventManager _eventManager;
+
     public delegate void gameOverHandler(GameoverReason reason);
     public static event gameOverHandler OngameOver;
 
@@ -48,12 +53,17 @@ public class DownhillManager : MonoBehaviour {
         pm = SaveManager.Instance;
         soundManager = SoundManager.Instance;
         UM_GameServiceManager.ActionScoreSubmitted += HandleActionScoreSubmitted;
+
+        _eventManager = EventManager.Instance;
     }
 
     private void Start() {
-        Time.timeScale = 1;
+        _eventManager.AddListener<Downhill_RepositionCharToResume>(resetCharPosReq);
+        _eventManager.AddListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
+
+        _eventManager.TriggerEvent(new Downhill_RepositionCharToResume());
+        //Time.timeScale = 1;
         remainTime = gm.startTime;
-        InvokeRepeating("timeDec", 1.0f, 1.0f);
 
         score = 0;
         comboNum = 0;
@@ -73,6 +83,10 @@ public class DownhillManager : MonoBehaviour {
         if (!resumeBtn.activeSelf) {
             resumeBtn.SetActive(true);
         }
+    }
+
+    private void OnDisable() {
+        removeListener();
     }
 
     private void Update() {
@@ -176,7 +190,7 @@ public class DownhillManager : MonoBehaviour {
         labels.Find("Time/Data").GetComponent<Text>().text = minute + " : " + second;
         gameoverReason = reason;
 
-        int randNum = Random.Range(0, 100);
+        int randNum = UnityEngine.Random.Range(0, 100);
         if(randNum < 30) {
             adShowBtn.SetActive(true);
         }
@@ -194,14 +208,11 @@ public class DownhillManager : MonoBehaviour {
 
         modal.SetActive(false);
 
-        //캐릭터를 중앙으로 강제이동시킴(Side Tile 충돌하여 게임 종료되었을 시 재개해도 바로 다시 충돌함)
+        //캐릭터를 이동 가는한 영역의 중앙으로 강제이동시킴(Side Tile 충돌하여 게임 종료되었을 시 재개해도 바로 다시 충돌함)
         //회전전부 초기화
         if(gameoverReason == GameoverReason.SIDETILE) {
             playerController.resetQuarternion();
-            playerController.transform.position = new Vector3(
-                0,
-                playerController.transform.position.y,
-                playerController.transform.position.z);
+            _eventManager.TriggerEvent(new Downhill_RepositionCharToResume());
         }
         resumeBtn.SetActive(false);
     }
@@ -263,6 +274,23 @@ public class DownhillManager : MonoBehaviour {
         else {
             Debug.Log("Score submission failed: " + res.Error.Code + " / " + res.Error.Description);
         }
+    }
+
+    private void resetCharPosReq(Downhill_RepositionCharToResume e) {
+        isGamePlayable = false;
+        if (playerController != null) {
+            playerController.GetComponent<CharResumePosFilter>().enabled = true;
+        }
+    }
+
+    private void finishResetCharPosReq(Downhill_RepositionCharToResumeFinished e) {
+        isGamePlayable = true;
+        InvokeRepeating("timeDec", 1.0f, 1.0f);
+    }
+
+    private void removeListener() {
+        _eventManager.RemoveListener<Downhill_RepositionCharToResume>(resetCharPosReq);
+        _eventManager.RemoveListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
     }
 
     public enum GameoverReason {
