@@ -141,7 +141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.71001, y: 0.000038147}
+  m_AnchoredPosition: {x: 108.71002, y: 0.000038147}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94455407
@@ -2699,7 +2699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 107.3, y: -0.0000076294}
+  m_AnchoredPosition: {x: 107.30002, y: -0.0000076294}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884866362
@@ -2881,7 +2881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.2, y: -1.2049999}
+  m_AnchoredPosition: {x: 108.20001, y: -1.2049999}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948073469
@@ -3594,8 +3594,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modal: {fileID: 1289974599}
-  resumeBtn: {fileID: 1289974600}
-  adShowBtn: {fileID: 1289974601}
   remainTime: 0
   isGamePlayable: 0
   playTime: 0
@@ -3943,21 +3941,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224156996289894668, guid: ca39e0b98bd83401e969e6156689df66,
     type: 2}
   m_PrefabInternal: {fileID: 1289974597}
---- !u!1 &1289974599 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1285517925177524, guid: ca39e0b98bd83401e969e6156689df66,
+--- !u!114 &1289974599 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114210748909468120, guid: ca39e0b98bd83401e969e6156689df66,
     type: 2}
   m_PrefabInternal: {fileID: 1289974597}
---- !u!1 &1289974600 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1188142655179434, guid: ca39e0b98bd83401e969e6156689df66,
-    type: 2}
-  m_PrefabInternal: {fileID: 1289974597}
---- !u!1 &1289974601 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1003970090135942, guid: ca39e0b98bd83401e969e6156689df66,
-    type: 2}
-  m_PrefabInternal: {fileID: 1289974597}
+  m_Script: {fileID: 11500000, guid: f4b30e49745d543d9a9626057e8b3693, type: 3}
 --- !u!1 &1338355597
 GameObject:
   m_ObjectHideFlags: 0
@@ -5042,8 +5031,6 @@ MonoBehaviour:
   - {fileID: 1497651115441468, guid: 1d80ebe6bbb995d4ab68d5a5239198bd, type: 2}
   - {fileID: 1210946744051388, guid: 5a755c0092b07914fb2bbe09fd934881, type: 2}
   - {fileID: 1082317517517998, guid: f4dc1495d4685f0418aa4cf15e4e9b07, type: 2}
-  flagPrefs:
-  - {fileID: 1264801993761940, guid: 395806d11a799b04097cebc29ad0e40a, type: 2}
   treeImages:
   - {fileID: 21300000, guid: ceb7df6fa5b18464ebd8aa8ce739a165, type: 3}
   - {fileID: 21300000, guid: 901074a86d9cbf449bd71642634b3809, type: 3}
