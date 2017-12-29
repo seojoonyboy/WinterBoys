@@ -82,6 +82,7 @@ public class BoardManager : MonoBehaviour {
 
         GameObject flag = Instantiate(flagPref);
         SkeletonAnimation anim = flag.GetComponent<SkeletonAnimation>();
+        anim.loop = true;
         if(preFlagType == 1) {
             flag.GetComponent<FlagController>().flagType = FlagController.type.RIGHT;
             anim.AnimationName = "right";
