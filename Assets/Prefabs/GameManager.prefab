@@ -57,12 +57,14 @@ MonoBehaviour:
   - {fileID: 0}
   dh_percentages:
     values:
-    - 30
+    - 25
     - 5
     - 20
     - 10
-    - 15
     - 10
+    - 5
+    - 10
+    - 5
     - 10
   sj_percentages:
     values:
@@ -95,6 +97,12 @@ MonoBehaviour:
   - 30
   - 35
   - 10
+  pararell_intervals:
+  - 150
+  - 300
+  - 50
+  - 35
+  - 14
   bonus_times:
   - 8
   - 20
@@ -102,17 +110,17 @@ MonoBehaviour:
   - 25
   - 0.02
   skeleton_bonus_times:
-  - 500
+  - 1000
   - 20
   skeleton_dangers:
-  - 0
-  - 75
-  - 2.5
+  - 2
+  - 35
+  - 3
   skeleton_point:
   - 0
-  - 25
+  - 15
   skeleton_stats:
-  - 90
+  - 35
   - 0
   panelty_time: 5
   startTime: 40

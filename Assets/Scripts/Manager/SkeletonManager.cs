@@ -11,17 +11,17 @@ public class SkeletonManager : MonoBehaviour {
     private EventManager em;
     private SoundManager sm;
     private AudioSource smSource;
+    [SerializeField] private ResultModalController resultModal;
     [SerializeField] private Transform background;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject warningImg;
-    [SerializeField] private GameObject gameoverModal;
     [SerializeField] private Text speedUI;
     [SerializeField] private Text distanceUI;
     [SerializeField] private Text leftTimeUI;
     [SerializeField] private GameObject showAddTimeUI;
     [SerializeField] private Skeleton_TrackController track;
-    [SerializeField] private Button replayBtn;
-    [SerializeField] private Button adsBtn;
+    //[SerializeField] private Button replayBtn;
+    //[SerializeField] private Button adsBtn;
     [SerializeField] private ItemGenerator itemGenerator;
     private float dangerTime;
     private float dangerAngle;
@@ -46,8 +46,6 @@ public class SkeletonManager : MonoBehaviour {
     private int extraPoint = 0;
     private float[] coolTimes = {0f,0f,0f,0f,0f};
 
-    private bool isWatchAds = false;
-
     private void Awake() {
         gm = GameManager.Instance;
         pm = SaveManager.Instance;
@@ -64,8 +62,6 @@ public class SkeletonManager : MonoBehaviour {
     private void Start() {
         smSource = sm.transform.GetChild(1).GetComponent<AudioSource>();
         sm.Play(SoundManager.SoundType.BGM, "st");
-        replayBtn.onClick.AddListener(replay);
-        adsBtn.onClick.AddListener(advertise);
         maxSpeed = gm.skeleton_stats[0] * pm.getSpeedPercent();
         dangerAngle = gm.skeleton_dangers[1];
         leftTime = 40f;
@@ -74,7 +70,7 @@ public class SkeletonManager : MonoBehaviour {
         stateUpdate = riseUpdate;
         stateUpdate += track.riseUpdate;
     }
-
+////////////////////////////////// 이벤트 구간 /////////////////////////////////////////////////
     private void addEvent() {
         em.AddListener<Skeleton_Fall>(playerFall);
         em.AddListener<Skeleton_Rise>(playerRise);
@@ -98,7 +94,7 @@ public class SkeletonManager : MonoBehaviour {
         player.GetComponent<Skeleton_PlayerController>().enabled = true;
         dangerTime = 0f;
     }
-
+////////////////////////////////// 규칙 구간 /////////////////////////////////////////////////
     private void FixedUpdate() {
         stateUpdate(Time.fixedDeltaTime);
         if(itemUpdate == null) return;
@@ -234,65 +230,6 @@ public class SkeletonManager : MonoBehaviour {
         }
     }
 
-    private void gameOver() {
-        sm.Play(SoundManager.SoundType.EFX, "gameOver");
-        gameoverModal.SetActive(true);
-        track.setSpeed(0);
-        this.enabled = false;
-        setGameOverUI();
-    }
-
-    private void setGameOverUI() {
-        Text time = gameoverModal.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(1).GetComponent<Text>();
-        Text distance = gameoverModal.transform.GetChild(0).GetChild(1).GetChild(1).GetChild(1).GetComponent<Text>();
-        Text point = gameoverModal.transform.GetChild(0).GetChild(1).GetChild(2).GetChild(1).GetComponent<Text>();
-
-        int _point = (int)(totalDistance / gm.skeleton_point[1]);
-        _point *= isWatchAds ? 2 : 1;
-
-        time.text = string.Format("{0} : {1}", ((int)totalTime / 60).ToString("00"), ((int)totalTime % 60).ToString("00"));
-        distance.text = string.Format("{0} m", totalDistance.ToString("##,0.0"));
-        point.text = string.Format("{0} + {1}", _point, extraPoint);
-        if(adsBtn == null) return;
-        int randNum = Random.Range(0, 100);
-        adsBtn.gameObject.SetActive(randNum < 100 ? true : false);
-    }
-
-    private void advertise() {
-        UnityAdsHelper ads = UnityAdsHelper.Instance;
-        ads.onResultCallback += adsCallBack;
-        ads.ShowRewardedAd();
-    }
-
-    private void adsCallBack(UnityEngine.Advertisements.ShowResult result) {
-        UnityAdsHelper.Instance.onResultCallback -= adsCallBack;
-        if(result != UnityEngine.Advertisements.ShowResult.Finished) return;
-        isWatchAds = true;
-        extraPoint *= 2;
-        Destroy(adsBtn);
-        Destroy(replayBtn);
-        adsBtn.gameObject.SetActive(false);
-        if(replayBtn != null)
-            replayBtn.gameObject.SetActive(false);
-        setGameOverUI();
-    }
-
-    public void mainLoad() {
-        int _point = (int)(totalDistance / gm.skeleton_point[1]);
-        _point *= isWatchAds ? 2 : 1;
-
-        if(pm.setRecord(totalDistance, SportType.SKELETON)) {
-            UM_GameServiceManager.Instance.SubmitScore("Skeleton", (long)totalDistance);
-        }
-        pm.addPoint(_point+extraPoint);
-        sm.Play(SoundManager.SoundType.EFX, "returnMain");
-        SceneManager.LoadScene("Main");
-    }
-
-    public void showRank() {
-        UM_GameServiceManager.Instance.ShowLeaderBoardsUI();
-    }
-
     private void showAddTime() {
         showAddTimeUI.SetActive(showTime);
         showTime = !showTime;
@@ -302,19 +239,7 @@ public class SkeletonManager : MonoBehaviour {
             CancelInvoke("showAddTime");
         }
     }
-
-    private void replay() {
-        distanceBonusTime = 0f;
-        leftTime = 40f;
-        dangerTime = 0f;
-        currentSpeed = 0f;
-
-        gameoverModal.SetActive(false);
-        this.enabled = true;
-        Destroy(replayBtn);
-        replayBtn.gameObject.SetActive(false);
-    }
-
+////////////////////////////////// 아이템 구간 /////////////////////////////////////////////////
     private void getItem(ItemType.ST st) {
         switch(st) {
             case ItemType.ST.POINT :
@@ -390,5 +315,20 @@ public class SkeletonManager : MonoBehaviour {
         coolTimes[4] = 0f;
         itemUpdate -= oilTime;
         dangerAngle = gm.skeleton_dangers[1];
+    }
+////////////////////////////////// 게임오버 구간 /////////////////////////////////////////////////
+    private void gameOver() {
+        track.setSpeed(0);
+        this.enabled = false;
+        resultModal.setGame(gameObject, SportType.SKELETON);
+        resultModal.setData(totalTime, totalDistance, (int)(totalDistance / gm.skeleton_point[1]), extraPoint, null, null);
+    }
+
+    private void revive() {
+        distanceBonusTime = 0f;
+        leftTime = 40f;
+        dangerTime = 0f;
+        currentSpeed = 0f;
+        this.enabled = true;
     }
 }
