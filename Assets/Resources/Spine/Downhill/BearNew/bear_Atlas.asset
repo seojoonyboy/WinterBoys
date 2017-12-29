@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: flag_Atlas
+  m_Name: bear_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: dfb87dac32d90fb47b62178260c38d4e, type: 3}
+  atlasFile: {fileID: 4900000, guid: 48dfdeadd28ee6546a635a0179f54d4f, type: 3}
   materials:
-  - {fileID: 2100000, guid: 40a89e42a438a914b895911144a93633, type: 2}
+  - {fileID: 2100000, guid: c226d9c5a565fee4fbaffb6ef7166f7b, type: 2}

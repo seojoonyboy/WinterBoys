@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: Flag
+  m_Name: bear SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: a33b4677f169d574996dd391fb14fab4, type: 2}
-  scale: 0.002
-  skeletonJSON: {fileID: 4900000, guid: a65e2e8d036b33343b663554a8a44714, type: 3}
+  - {fileID: 11400000, guid: 9ef95ccbd8aae2f41b22ea2acc1d4a6f, type: 2}
+  scale: 0.0025
+  skeletonJSON: {fileID: 4900000, guid: 57c07bd4c3cd7ab43b79c8c619ad4163, type: 3}
   fromAnimation: []
   toAnimation: []
   duration: []

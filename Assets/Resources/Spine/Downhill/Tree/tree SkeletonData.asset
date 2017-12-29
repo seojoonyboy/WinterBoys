@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: boosting SkeletonData
+  m_Name: tree SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: a076b49af37c0094390dbb965dfb0714, type: 2}
-  scale: 0.002
-  skeletonJSON: {fileID: 4900000, guid: 1c489606224b23446bf22ea3b4a2a88e, type: 3}
+  - {fileID: 11400000, guid: 6163b5c0d39b5dd4c88cf9be28d92c85, type: 2}
+  scale: 0.001
+  skeletonJSON: {fileID: 4900000, guid: a7bb4ca98df388c44a85cb91c723f3f6, type: 3}
   fromAnimation: []
   toAnimation: []
   duration: []
