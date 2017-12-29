@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.71002, y: 0.000038147}
+  m_AnchoredPosition: {x: 108.71001, y: 0.000038147}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94455407
@@ -2657,7 +2657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 107.30002, y: -0.0000076294}
+  m_AnchoredPosition: {x: 107.3, y: -0.0000076294}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884866362
@@ -2797,7 +2797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.20001, y: -1.2049999}
+  m_AnchoredPosition: {x: 108.2, y: -1.2049999}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948073469
@@ -3510,8 +3510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modal: {fileID: 1289974599}
-  resumeBtn: {fileID: 1289974600}
-  adShowBtn: {fileID: 1289974601}
   remainTime: 0
   isGamePlayable: 0
   playTime: 0
@@ -3820,7 +3818,7 @@ Prefab:
     - target: {fileID: 224486527461480422, guid: ca39e0b98bd83401e969e6156689df66,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -451.04996
+      value: -451.05
       objectReference: {fileID: 0}
     - target: {fileID: 1285517925177524, guid: ca39e0b98bd83401e969e6156689df66, type: 2}
       propertyPath: m_IsActive
@@ -3859,21 +3857,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224156996289894668, guid: ca39e0b98bd83401e969e6156689df66,
     type: 2}
   m_PrefabInternal: {fileID: 1289974597}
---- !u!1 &1289974599 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1285517925177524, guid: ca39e0b98bd83401e969e6156689df66,
+--- !u!114 &1289974599 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114210748909468120, guid: ca39e0b98bd83401e969e6156689df66,
     type: 2}
   m_PrefabInternal: {fileID: 1289974597}
---- !u!1 &1289974600 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1188142655179434, guid: ca39e0b98bd83401e969e6156689df66,
-    type: 2}
-  m_PrefabInternal: {fileID: 1289974597}
---- !u!1 &1289974601 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1003970090135942, guid: ca39e0b98bd83401e969e6156689df66,
-    type: 2}
-  m_PrefabInternal: {fileID: 1289974597}
+  m_Script: {fileID: 11500000, guid: f4b30e49745d543d9a9626057e8b3693, type: 3}
 --- !u!1 &1338355597
 GameObject:
   m_ObjectHideFlags: 0

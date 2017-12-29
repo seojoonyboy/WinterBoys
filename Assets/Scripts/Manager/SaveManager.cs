@@ -67,7 +67,7 @@ public class SaveManager : Singleton<SaveManager> {
 	}
 
 	public bool levelUpSpeed() {
-		if(saveData.point < saveData.speedNeed)
+		if(saveData.point <= saveData.speedNeed)
 			return false;
 		saveData.point -= saveData.speedNeed;
 		saveData.speedLv++;
@@ -76,7 +76,7 @@ public class SaveManager : Singleton<SaveManager> {
 	}
 
 	public bool levelUpControl() {
-		if(saveData.point < saveData.controlNeed)
+		if(saveData.point <= saveData.controlNeed)
 			return false;
 		saveData.point -= saveData.controlNeed;
 		saveData.controlLv++;
@@ -118,5 +118,11 @@ public class SaveManager : Singleton<SaveManager> {
 
 	public float getRecord(SportType sport) {
 		return saveData.maxRecord[(int)sport];
+	}
+
+	public bool useCrystal(int crystal) {
+		if(saveData.crystal <= crystal)	return false;
+		saveData.crystal -= crystal;
+		return true;
 	}
 }

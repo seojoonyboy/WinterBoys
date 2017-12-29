@@ -32,7 +32,7 @@ public class ResultModalController : MonoBehaviour {
 		uM_Game = UM_GameServiceManager.Instance;
 	}
 	
-	private void setButtons() {
+	private void Start() {
 		adsBtn.onClick.AddListener(advertise);
 		continueBtn.onClick.AddListener(revive);
 		mainBtn.onClick.AddListener(mainLoad);
@@ -51,7 +51,6 @@ public class ResultModalController : MonoBehaviour {
 /// <param name="sport">해당 스포츠의 ENUM</param>
 	public void setGame(GameObject game, SportType sport) {
 		setManager();
-		setButtons();//추후 정리 되면 Start함수로 변경
 		
 		currentGame = game;
 		this.sport = sport;
@@ -149,7 +148,7 @@ public class ResultModalController : MonoBehaviour {
 
 	private string getSportRevive() {
 		switch(sport) {
-			case SportType.DOWNHILL : return "DownHill";
+			case SportType.DOWNHILL : return "resume";
 			case SportType.SKELETON : return "revive";
 			case SportType.SKIJUMP : return "resumneButtonPressed";
 		}
