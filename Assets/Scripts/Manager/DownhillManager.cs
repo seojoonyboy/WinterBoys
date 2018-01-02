@@ -106,8 +106,6 @@ public class DownhillManager : MonoBehaviour {
         _eventManager.AddListener<Downhill_RepositionCharToResume>(resetCharPosReq);
         _eventManager.AddListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
 
-        _eventManager.TriggerEvent(new Downhill_RepositionCharToResume());
-
         OngameOver += OnGameOver;
     }
 

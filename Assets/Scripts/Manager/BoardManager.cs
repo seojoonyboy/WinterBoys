@@ -8,6 +8,7 @@ using Spine.Unity;
 public class BoardManager : MonoBehaviour {
     private int preFlagType = 1;
     private int preSideTileIndex = 0;
+    private int tileNum = 0;
 
     private GameManager gm;
     public GameObject[] Tiles;
@@ -59,21 +60,28 @@ public class BoardManager : MonoBehaviour {
     }
 
     public void addToBoard() {
+        tileNum++;
+        if (tileNum <= 2) {
+            preSideTileIndex = 0;
+            Debug.Log(tileNum);
+        }
+        else {
+            if (preSideTileIndex == 1) {
+                preSideTileIndex = 2;
+            }
+            else if (preSideTileIndex == 3) {
+                preSideTileIndex = 4;
+            }
+            else {
+                preSideTileIndex = getStartTileIndex();
+            }
+        }
+
         GameObject floor = Instantiate(Tiles[preSideTileIndex]);
         floor.transform.SetParent(floorHolder, false);
         floor.transform.position = lastTilePos;
 
         lastTilePos = new Vector2(lastTilePos.x, lastTilePos.y - 7.1f);
-
-        if (preSideTileIndex == 1) {
-            preSideTileIndex = 2;
-        }
-        else if (preSideTileIndex == 3) {
-            preSideTileIndex = 4;
-        }
-        else {
-            preSideTileIndex = getStartTileIndex();
-        }
     }
 
     //동적 폴 추가
