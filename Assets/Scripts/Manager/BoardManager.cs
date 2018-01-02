@@ -54,7 +54,7 @@ public class BoardManager : MonoBehaviour {
     }
 
     private int getStartTileIndex() {
-        int[] arr = { 0, 1, 3, 5 };
+        int[] arr = { 0, 1, 3, 5, 6, 8 };
         int randNum = arr.Random();
         return randNum;
     }
@@ -71,6 +71,12 @@ public class BoardManager : MonoBehaviour {
             }
             else if (preSideTileIndex == 3) {
                 preSideTileIndex = 4;
+            }
+            else if(preSideTileIndex == 6) {
+                preSideTileIndex = 7;
+            }
+            else if(preSideTileIndex == 8) {
+                preSideTileIndex = 9;
             }
             else {
                 preSideTileIndex = getStartTileIndex();

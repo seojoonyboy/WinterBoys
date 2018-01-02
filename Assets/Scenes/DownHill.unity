@@ -3561,7 +3561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modal: {fileID: 1289974612}
   remainTime: 0
-  isGamePlayable: 0
   playTime: 0
   _timeScale: 1
   remainTimeTxt: {fileID: 1820518643}
@@ -4998,6 +4997,10 @@ MonoBehaviour:
   - {fileID: 1497651115441468, guid: 1d80ebe6bbb995d4ab68d5a5239198bd, type: 2}
   - {fileID: 1210946744051388, guid: 5a755c0092b07914fb2bbe09fd934881, type: 2}
   - {fileID: 1082317517517998, guid: f4dc1495d4685f0418aa4cf15e4e9b07, type: 2}
+  - {fileID: 1945892554424466, guid: 3cea1f67f32b3194d90589b40482e87a, type: 2}
+  - {fileID: 1060601154795046, guid: ad5f3a98dae608c4086cde9631fe368b, type: 2}
+  - {fileID: 1497651115441468, guid: 797ff06e51c5aa64abf5cc2e26f911d2, type: 2}
+  - {fileID: 1210946744051388, guid: f6632f5b9c447cb44b03dfe91f68c9a1, type: 2}
   treeImages:
   - {fileID: 21300000, guid: ceb7df6fa5b18464ebd8aa8ce739a165, type: 3}
   - {fileID: 21300000, guid: 901074a86d9cbf449bd71642634b3809, type: 3}
