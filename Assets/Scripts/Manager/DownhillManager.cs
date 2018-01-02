@@ -150,6 +150,10 @@ public class DownhillManager : MonoBehaviour {
         gameoverReason = reason;
     }
 
+    public void MainLoad() {
+        Time.timeScale = 1;
+    }
+
     //이어하기 버튼 클릭
     public void resume() {
         Time.timeScale = 1;
