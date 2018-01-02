@@ -96,7 +96,10 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (!dM.isGamePlayable) { return; }
+        if (dM.getTimeScale == 0) {
+            rb.velocity = Vector3.zero;
+            return;
+        }
 
         if (playerPos.y < bM.lastFlagPos.y + 10) {
             bM.addFlag();

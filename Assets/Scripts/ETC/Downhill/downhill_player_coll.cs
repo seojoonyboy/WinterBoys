@@ -16,8 +16,6 @@ public class downhill_player_coll : MonoBehaviour {
         }
 
         if (collision.tag == "DH_rightTile" || collision.tag == "DH_leftTile") {
-            if (!dM.isGamePlayable) { return; }
-
             dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
         }
 

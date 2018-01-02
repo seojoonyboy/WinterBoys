@@ -13,9 +13,10 @@ public class DownhillManager : MonoBehaviour {
     private GameManager gm;
     private SaveManager pm;
     public int remainTime;
-    public bool isGamePlayable;
 
     [HideInInspector] public float playTime;
+
+    [SerializeField] private float _timeScale = 1;
 
     public Text 
         remainTimeTxt,
@@ -51,11 +52,42 @@ public class DownhillManager : MonoBehaviour {
     }
 
     private void Start() {
-        _eventManager.AddListener<Downhill_RepositionCharToResume>(resetCharPosReq);
-        _eventManager.AddListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
+        init();
+        InvokeRepeating("timeDec", 1.0f, 1.0f);
+    }
 
-        _eventManager.TriggerEvent(new Downhill_RepositionCharToResume());
-        Time.timeScale = 1;
+    private void OnDisable() {
+        removeListener();
+    }
+
+    private void Update() {
+        setUIText();
+    }
+
+    public float getTimeScale {
+        get {
+            return _timeScale;
+        }
+    }
+
+    public float setTimeScale {
+        set {
+            _timeScale = value;
+        }
+    }
+
+    private void setUIText() {
+        effectTxt.text = "아이템 효과 : " + playerController.playerState.ToString();
+        playTime += Time.deltaTime;
+        distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
+        distanceTxt.text = distOfMeter + " M";
+        float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude;
+        speedTxt.text = System.Math.Truncate(speed) + "KM/S";
+    }
+
+    private void init() {
+        initEventHandler();
+
         remainTime = gm.startTime;
 
         score = 0;
@@ -67,29 +99,21 @@ public class DownhillManager : MonoBehaviour {
         preDistOfMeter = 0;
         additionalScore = 0;
 
-        initEventHandler();
-
         soundManager.Play(SoundManager.SoundType.BGM, "dh");
     }
 
-    private void OnDisable() {
-        removeListener();
-    }
-
-    private void Update() {
-        effectTxt.text = "아이템 효과 : " + playerController.playerState.ToString();
-        playTime += Time.deltaTime;
-        distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
-        distanceTxt.text = distOfMeter + " M";
-        float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude;
-        speedTxt.text = System.Math.Truncate(speed) + "KM/S";
-    }
-
     private void initEventHandler() {
+        _eventManager.AddListener<Downhill_RepositionCharToResume>(resetCharPosReq);
+        _eventManager.AddListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
+
+        _eventManager.TriggerEvent(new Downhill_RepositionCharToResume());
+
         OngameOver += OnGameOver;
     }
 
     void timeDec() {
+        if(_timeScale == 0) { return; }
+
         remainTime -= 1;
         remainTimeTxt.text = remainTime + " 초";
 
@@ -132,7 +156,7 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void OnGameOver(GameoverReason reason) {
-        Time.timeScale = 0;
+        setTimeScale = 0;
 
         modal.gameObject.SetActive(true);
 
@@ -150,13 +174,10 @@ public class DownhillManager : MonoBehaviour {
         gameoverReason = reason;
     }
 
-    public void MainLoad() {
-        Time.timeScale = 1;
-    }
-
     //이어하기 버튼 클릭
     public void resume() {
-        Time.timeScale = 1;
+        setTimeScale = 1;
+
         remainTime = 30;
 
         //캐릭터를 이동 가는한 영역의 중앙으로 강제이동시킴(Side Tile 충돌하여 게임 종료되었을 시 재개해도 바로 다시 충돌함)
@@ -172,15 +193,14 @@ public class DownhillManager : MonoBehaviour {
     }
 
     private void resetCharPosReq(Downhill_RepositionCharToResume e) {
-        isGamePlayable = false;
+        setTimeScale = 0;
         if (playerController != null) {
             playerController.GetComponent<CharResumePosFilter>().enabled = true;
         }
     }
 
     private void finishResetCharPosReq(Downhill_RepositionCharToResumeFinished e) {
-        isGamePlayable = true;
-        InvokeRepeating("timeDec", 1.0f, 1.0f);
+        setTimeScale = 1;
     }
 
     private void removeListener() {
