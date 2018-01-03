@@ -15,8 +15,15 @@ public class downhill_player_coll : MonoBehaviour {
             }
         }
 
-        if (collision.tag == "DH_rightTile" || collision.tag == "DH_leftTile") {
-            dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
+        if (collision.tag == "DH_leftTile") {
+            //dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
+            Vector3 contactPoint = transform.up + Vector3.right;
+            controller.bounce(contactPoint);
+        }
+
+        if(collision.tag == "DH_rightTile") {
+            Vector3 contactPoint = transform.up - Vector3.right;
+            controller.bounce(contactPoint);
         }
 
         if (collision.tag == "Item") {

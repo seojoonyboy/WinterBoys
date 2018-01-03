@@ -21,9 +21,12 @@ public class Ski_PlayerController : MonoBehaviour {
         speedZeroCoolTime,
         reverseCoolTime,
         rotateIncCoolTime,
-        rotateDecCoolTime;
+        rotateDecCoolTime,
+        bounceCoolTime;
 
-    bool buttonDown = false;
+    bool 
+        buttonDown = false,
+        isBoucing = false;
 
     public PlayerState playerState;
 
@@ -45,7 +48,9 @@ public class Ski_PlayerController : MonoBehaviour {
     private GameObject[] selectedCharacters;
     private GameObject preObj;
 
-    public Vector3 playerPos;
+    public Vector3 
+        playerPos,
+        bouceDir;
 
     private Rigidbody2D rb;
     private float additionalForceByEffect = 1f;
@@ -85,10 +90,21 @@ public class Ski_PlayerController : MonoBehaviour {
         reverseCoolTime = 7.0f;
         rotateIncCoolTime = 7.0f;
         rotateDecCoolTime = 7.0f;
+        bounceCoolTime = 0.2f;
 
         playerState = PlayerState.NORMAL;
 
         beginQuarternion = transform.rotation;
+    }
+
+    public void bounce(Vector3 dir) {
+        if (isBoucing) {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
+        bouceDir = dir;
+        isBoucing = true;
     }
 
     private void Update() {
@@ -98,6 +114,21 @@ public class Ski_PlayerController : MonoBehaviour {
     private void FixedUpdate() {
         if (dM.getTimeScale == 0) {
             rb.velocity = Vector3.zero;
+            return;
+        }
+
+        //sideTile에 부딪힌 경우 캐릭터의 정면벡터의 반대 방향으로 순간 힘을 가한다.
+        if (isBoucing) {
+            bounceCoolTime -= Time.deltaTime;
+            rb.velocity *= 0.8f;
+            if(rb.velocity.y < 0) {
+                rb.velocity = new Vector2(rb.velocity.x, 0.01f);
+            }
+            rb.AddForce(bouceDir * 10);
+            if (bounceCoolTime < 0) {
+                isBoucing = false;
+                bounceCoolTime = 0.2f;
+            }
             return;
         }
 
