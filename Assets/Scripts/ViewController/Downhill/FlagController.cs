@@ -80,7 +80,7 @@ public class FlagController : MonoBehaviour {
             isSend = true;
             dm.passNumInc();
             dm.setCombo(1);
-            Debug.Log("충돌로 성공");
+            //Debug.Log("충돌로 성공");
 
             if(flagType == type.LEFT) {
                 anim.loop = false;

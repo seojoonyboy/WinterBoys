@@ -153,7 +153,7 @@ public class ItemGenerator : MonoBehaviour {
             case SportType.DOWNHILL:
                 randX = UnityEngine.Random.Range(0, Screen.width);
                 float randInterval = UnityEngine.Random.Range(0, (float)(dh_itemArea[dh_index]/gm.pixelPerUnit));
-                Debug.Log(randInterval);
+                //Debug.Log(randInterval);
                 pos = new Vector2(
                     dh_playerController.playerPos.x,
                     dh_playerController.playerPos.y - (float)(Screen.height / gm.pixelPerUnit) * 2f - randInterval

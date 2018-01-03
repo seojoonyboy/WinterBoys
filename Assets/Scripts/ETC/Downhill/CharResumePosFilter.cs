@@ -9,7 +9,12 @@ public class CharResumePosFilter : MonoBehaviour {
     bool maxXFinded = false;
     private Poses xPoses;
 
+    RaycastHit2D rightHit;
+    RaycastHit2D leftHit;
+
     [SerializeField] private float minimumSpacing = 0;
+    public float limitedTime = 2.0f;
+
     private float refinedMinSpacing = 0;
 
     private void OnEnable() {
@@ -17,12 +22,35 @@ public class CharResumePosFilter : MonoBehaviour {
         minXFinded = false;
         maxXFinded = false;
 
-        InvokeRepeating("check", 0, 0.5f);
+        InvokeRepeating("check", 0, 0.1f);
     }
 
     private void Start() {
         xPoses = new Poses();
         refinedMinSpacing = (float)(GameManager.Instance.pixelPerUnit / minimumSpacing);
+    }
+
+    private void Update() {
+        limitedTime -= Time.deltaTime;
+
+        if (limitedTime < 0) {
+            Debug.Log("경로 재탐색");
+            if(rightHit.collider != null) {
+                xPoses.min = rightHit.point.x;
+                xPoses.max = rightHit.point.x;
+            }
+            else {
+                if (leftHit.collider != null) {
+                    xPoses.min = rightHit.point.x;
+                    xPoses.max = rightHit.point.x;
+                }
+            }
+            minXFinded = true;
+            maxXFinded = true;
+            isSolved = true;
+
+            limitedTime = 2.0f;
+        }
     }
 
     private void stopIvoke() {
@@ -42,14 +70,17 @@ public class CharResumePosFilter : MonoBehaviour {
         }
 
         Vector2 rightStartPos = new Vector2(transform.position.x + 0.2f, transform.position.y);
-        RaycastHit2D rightHit = Physics2D.Raycast(rightStartPos, Vector2.right);
+        rightHit = Physics2D.Raycast(rightStartPos, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("dh_SideTile"));
 
         if (rightHit.collider != null) {
+            //Debug.Log("오른쪽 충돌체 : " + rightHit.collider.name);
             if (rightHit.collider.gameObject.CompareTag("DH_rightTile")) {
                 xPoses.max = rightHit.point.x - refinedMinSpacing;
 
-                RaycastHit2D leftHit = Physics2D.Raycast(transform.position, -Vector2.right);
+                Vector2 leftStartPos = new Vector2(transform.position.x - 0.2f, transform.position.y);
+                leftHit = Physics2D.Raycast(leftStartPos, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("dh_SideTile"));
                 if (leftHit.collider != null) {
+                    //Debug.Log("왼쪽 충돌체 : " + leftHit.collider.name);
                     if (leftHit.collider.gameObject.CompareTag("DH_leftTile")) {
                         xPoses.min = leftHit.point.x + refinedMinSpacing;
                     }
@@ -67,9 +98,10 @@ public class CharResumePosFilter : MonoBehaviour {
             }
         }
         else {
-            Vector2 leftStartPos = new Vector2(transform.position.x - 0.1f, transform.position.y);
-            RaycastHit2D leftHit = Physics2D.Raycast(leftStartPos, -Vector2.right);
+            Vector2 leftStartPos = new Vector2(transform.position.x - 0.2f, transform.position.y);
+            leftHit = Physics2D.Raycast(leftStartPos, Vector2.left, Mathf.Infinity, 1 << LayerMask.NameToLayer("dh_SideTile"));
             if (leftHit.collider != null) {
+                //Debug.Log("왼쪽 충돌체 : " + leftHit.collider.name);
                 if (leftHit.collider.gameObject.CompareTag("DH_rightTile")) {
                     transform.position = leftHit.point;
                     check();
@@ -91,7 +123,6 @@ public class CharResumePosFilter : MonoBehaviour {
 
         EventManager.Instance.TriggerEvent(new Downhill_RepositionCharToResumeFinished());
         enabled = false;
-        Debug.Log("!!");
     }
 
     class Poses {

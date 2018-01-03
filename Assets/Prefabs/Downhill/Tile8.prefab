@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4515164626391598}
   - component: {fileID: 212958954909347388}
   - component: {fileID: 60553191064720994}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: downhill_bg_left_3_coll
   m_TagString: DH_rightTile
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4055239980105786}
   - component: {fileID: 212052286622842616}
   - component: {fileID: 60719512556526664}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: downhill_bg_right_3_coll
   m_TagString: DH_leftTile
   m_Icon: {fileID: 0}

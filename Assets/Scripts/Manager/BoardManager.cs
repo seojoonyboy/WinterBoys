@@ -63,7 +63,7 @@ public class BoardManager : MonoBehaviour {
         tileNum++;
         if (tileNum <= 2) {
             preSideTileIndex = 0;
-            Debug.Log(tileNum);
+            //Debug.Log(tileNum);
         }
         else {
             if (preSideTileIndex == 1) {
