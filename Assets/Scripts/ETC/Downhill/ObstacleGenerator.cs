@@ -31,12 +31,12 @@ public class ObstacleGenerator : MonoBehaviour {
             int[] arr2 = { 1, 2 };
             int randIndex = arr2.Random();
             if (randIndex == 1) {
-                treeObj.GetComponent<SkeletonAnimation>().AnimationName = "blue";
-                treeObj.GetComponent<TreeHandler>().type = TreeHandler.TreeType.BLUE;
+                treeObj.transform.Find("Image").GetComponent<SkeletonAnimation>().AnimationName = "blue";
+                treeObj.transform.Find("Image").GetComponent<TreeHandler>().type = TreeHandler.TreeType.BLUE;
             }
             else {
-                treeObj.GetComponent<SkeletonAnimation>().AnimationName = "green";
-                treeObj.GetComponent<TreeHandler>().type = TreeHandler.TreeType.GREEN;
+                treeObj.transform.Find("Image").GetComponent<SkeletonAnimation>().AnimationName = "green";
+                treeObj.transform.Find("Image").GetComponent<TreeHandler>().type = TreeHandler.TreeType.GREEN;
             }
 
             float randX = UnityEngine.Random.Range(-1.3f, 1.3f);
