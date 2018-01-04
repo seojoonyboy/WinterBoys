@@ -58,7 +58,8 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public AudioSource audioSource;
     private Quaternion beginQuarternion;
-    private Vector2 beginEular; 
+    private Vector2 beginEular;
+    [SerializeField] private Material[] materials;
     private void Awake() {
         gm = GameManager.Instance;
         pm = SaveManager.Instance;
@@ -67,14 +68,24 @@ public class Ski_PlayerController : MonoBehaviour {
     private void Start() {
         offSpines(-1);
         characterIndex = gm.character;
-        if(characterIndex == 0) {
+
+        TrailRenderer tr_left = transform.Find("Trail_left").GetComponent<TrailRenderer>();
+        TrailRenderer tr_right = transform.Find("Trail_right").GetComponent<TrailRenderer>();
+        //characterIndex = 2;
+        if (characterIndex == 0) {
             selectedCharacters = blue_chars;
+            tr_left.material = materials[0];
+            tr_right.material = materials[0];
         }
         else if(characterIndex == 1) {
             selectedCharacters = red_chars;
+            tr_left.material = materials[1];
+            tr_right.material = materials[1];
         }
         else {
             selectedCharacters = yellow_chars;
+            tr_left.material = materials[2];
+            tr_right.material = materials[2];
         }
         preObj = selectedCharacters[0];
 
