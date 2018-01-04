@@ -125,4 +125,10 @@ public class SaveManager : Singleton<SaveManager> {
 		saveData.crystal -= crystal;
 		return true;
 	}
+
+	public bool usePoint(int point) {
+		if(saveData.point <= point)	return false;
+		saveData.point -= point;
+		return true;
+	}
 }

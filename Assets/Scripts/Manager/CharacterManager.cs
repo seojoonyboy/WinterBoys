@@ -23,6 +23,7 @@ public class SportPlayer {
     [SerializeField] private int chargeTime;
     public virtual float ChargeTime {get{return chargeTime;}}
     public float currentTime;
+    [HideInInspector] public bool isBought;
 }
 
 public class CharacterManager : Singleton<CharacterManager> {
@@ -30,6 +31,52 @@ public class CharacterManager : Singleton<CharacterManager> {
     [HideInInspector] public int currentCharacter = 0;
     [HideInInspector] public float getSpeedPercent {get{return players[currentCharacter].Speed * 0.01f;}}
     [HideInInspector] public float getControlPercent {get{return players[currentCharacter].Control * 0.01f;}}
+
+    protected CharacterManager() { }
+	private void Awake() {
+		DontDestroyOnLoad(gameObject);
+	}
+    private void Start() {
+        loadData();
+    }
+
+    private void loadData() {
+        if(string.IsNullOrEmpty(PlayerPrefs.GetString("characters"))) return;
+        object lists = ANMiniJSON.Json.Deserialize(PlayerPrefs.GetString("characters"));
+        IList collection = (IList)lists;
+        for(int i = 0; i < players.Length; i++)
+            players[i].isBought = (bool)collection[i];
+    }
+
+    private void saveData() {
+        bool[] datas = new bool[players.Length];
+        for(int i = 0; i < players.Length; i++)
+            datas[i] = players[i].isBought;
+        //시간도 따로 추가할 필요는 있음...
+        PlayerPrefs.SetString("characters",ANMiniJSON.Json.Serialize(datas));
+    }
+
+    public string getName(int num) {
+        return players[num].Name;
+    }
+    
+    public int getSpeed(int num) {
+        return players[num].Speed;
+    }
+    
+    public int getControl(int num) {
+        return players[num].Control;
+    }
+
+    public bool buyIt(int num) {
+        return players[num].isBought;
+    }
+
+    public void sold(int num) {
+        players[num].isBought = true;
+        currentCharacter = num;
+        saveData();
+    }
 
     public int getPriceCrystal(int num) {
         return players[num].PriceCrystal;

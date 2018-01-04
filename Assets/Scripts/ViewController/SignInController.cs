@@ -98,7 +98,8 @@ public class SignInController : MonoBehaviour {
         PlayerPrefs.SetString("nickname", nickname.text);
         gm.nickname = nickname.text;
         PlayerPrefs.SetInt("character", gm.character);
-
+        //PlayerPrefs.DeleteKey("characters");
+        CharacterManager.Instance.sold(gm.character);
         TrackEntry track = chara.AnimationState.SetAnimation(0, "approval", false);
         Invoke("changeScene", track.AnimationEnd + 0.5f);
         Invoke("submitSound", track.AnimationEnd - 0.8f);
