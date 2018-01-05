@@ -153,10 +153,11 @@ public class ItemGenerator : MonoBehaviour {
         switch (type) {
             case SportType.SKIJUMP:
                 randX = UnityEngine.Random.Range(0, Screen.width);
-                randY = UnityEngine.Random.Range(0, Screen.height);
-
-                pos = cam.ScreenToWorldPoint(new Vector3(randX + Screen.width, randY, 0));
-                pos.z = 0;
+                randY = UnityEngine.Random.Range(4, 33);
+                pos = new Vector2(
+                    sj_playerController.transform.position.x + 120f,
+                    randY
+                );
                 break;
             case SportType.DOWNHILL:
                 randX = UnityEngine.Random.Range(0, Screen.width);

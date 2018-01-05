@@ -329,8 +329,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 balloonCoolTime = 2.0f;
             }
             else {
-                rb.velocity = new Vector2(rb.velocity.x, 10f);
-                rb.AddForce(Vector3.up * 12f);
+                //rb.velocity = new Vector2(rb.velocity.x, 10f);
+                if(transform.position.y < 32) {
+                    rb.AddForce(Vector3.up * 12f);
+                }
             }
             return;
         }
