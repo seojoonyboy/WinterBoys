@@ -34,7 +34,9 @@ public class Ski_PlayerController : MonoBehaviour {
     public GameObject[]
         blue_chars,
         red_chars,
-        yellow_chars;
+        yellow_chars,
+        icons;
+
     public Sprite[] plates;
 
     public BoardManager bM;
@@ -372,12 +374,15 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     public void itemCheck(GameObject obj) {
+        float cooltime = 0;
         if (obj.tag == "Item") {
             Item item = obj.GetComponent<Item>();
             switch (item.item_dh) {
                 case ItemType.DH.BOOSTING_HILL:
                     playerState = PlayerState.BOOSTING;
                     additionalForceByEffect = 1.0f;
+
+                    cooltime = boostCoolTime;
                     break;
                 case ItemType.DH.POINT:
                     dM.scoreInc(50);
@@ -385,21 +390,31 @@ public class Ski_PlayerController : MonoBehaviour {
                 case ItemType.DH.ANTI_SPEED_HILL:
                     playerState = PlayerState.SPEED_REDUCING;
                     additionalForceByEffect = 0.3f;
+
+                    cooltime = speedReduceCoolTime;
                     break;
                 case ItemType.DH.ENEMY_BEAR:
                     playerState = PlayerState.SPEED_ZERO;
                     additionalForceByEffect = 0;
+
+                    cooltime = speedZeroCoolTime;
                     break;
                 case ItemType.DH.ENEMY_BUGS:
                     playerState = PlayerState.REVERSE_ROTATE;
+
+                    cooltime = reverseCoolTime;
                     break;
                 case ItemType.DH.OBSTACLE_POLL:
                     playerState = PlayerState.ROTATING_INC;
                     additionalAngularForceByEffect = 1.5f;
+
+                    cooltime = rotateIncCoolTime;
                     break;
                 case ItemType.DH.OBSTACLE_OIL:
                     playerState = PlayerState.ROTATING_DEC;
                     additionalAngularForceByEffect = 0.5f;
+
+                    cooltime = rotateDecCoolTime;
                     break;
                 case ItemType.DH.MONEY:
                     dM.addCrystal(5);
@@ -408,6 +423,7 @@ public class Ski_PlayerController : MonoBehaviour {
                     dM.remainTime += 15;
                     break;
             }
+            dM.setItemEffectIcon(cooltime, item.item_dh);
             Destroy(obj);
         }
     }

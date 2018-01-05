@@ -13,6 +13,8 @@ public class DownhillManager : MonoBehaviour {
     private GameManager gm;
     private SaveManager pm;
     public int remainTime;
+    public GameObject[] icons;
+    public Transform iconPanel;
 
     [HideInInspector] public float playTime;
 
@@ -20,7 +22,6 @@ public class DownhillManager : MonoBehaviour {
 
     public Text 
         remainTimeTxt,
-        effectTxt,
         distanceTxt,
         speedTxt;
 
@@ -77,7 +78,6 @@ public class DownhillManager : MonoBehaviour {
     }
 
     private void setUIText() {
-        effectTxt.text = "아이템 효과 : " + playerController.playerState.ToString();
         playTime += Time.deltaTime;
         distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
         distanceTxt.text = distOfMeter + " M";
@@ -199,6 +199,41 @@ public class DownhillManager : MonoBehaviour {
 
     private void finishResetCharPosReq(Downhill_RepositionCharToResumeFinished e) {
         setTimeScale = 1;
+    }
+
+    //현재 받고 있는 아이템 효과 아이콘
+    public void setItemEffectIcon(float coolTime, ItemType.DH type) {
+        int index = -1;
+        switch (type) {
+            case ItemType.DH.BOOSTING_HILL:
+                index = 0;
+                break;
+            case ItemType.DH.ANTI_SPEED_HILL:
+                index = 1;
+                break;
+            case ItemType.DH.ENEMY_BUGS:
+                index = 2;
+                break;
+            case ItemType.DH.OBSTACLE_POLL:
+                index = 3;
+                break;
+            case ItemType.DH.OBSTACLE_OIL:
+                index = 4;
+                break;
+            case ItemType.DH.ENEMY_BEAR:
+                index = 5;
+                break;
+        }
+        
+        if(index == -1) { return; }
+
+        GameObject icon = Instantiate(icons[index]);
+        icon.transform.SetParent(iconPanel);
+        icon.transform.localScale = Vector3.one;
+        icon.transform.localPosition = Vector3.zero;
+
+        var iconComp = icon.transform.Find("BlackBg").gameObject.AddComponent<Icon>();
+        iconComp.cooltime = coolTime;
     }
 
     private void removeListener() {
