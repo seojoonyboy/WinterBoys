@@ -23,7 +23,7 @@ public struct CharStat {
 		this.name.text = name;
 		do {
 			if(speed != 0 && control != 0) {
-				stat.text = string.Format("속도 + {0}%, 조작 + {1}%", speed, control);
+				stat.text = string.Format("속도 + {0}% / 조작 + {1}%", speed, control);
 				break;
 			}
 			if(speed == 0) {

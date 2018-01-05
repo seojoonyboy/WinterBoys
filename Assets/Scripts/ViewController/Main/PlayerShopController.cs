@@ -102,7 +102,7 @@ public class PlayerShopController : MonoBehaviour {
 	private void sold() {
 		cm.sold(charNum);
 		modal.SetActive(false);
-		gameObject.SetActive(false);
+		setCharData();
 	}
 
 	private void charSelected() {

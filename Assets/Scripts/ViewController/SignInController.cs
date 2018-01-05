@@ -8,32 +8,14 @@ using Spine.Unity;
 
 public class SignInController : MonoBehaviour {
     public GameObject 
-        signupPanel,
-        topInputBg;
+        signupPanel;
     private GameManager gm;
-    public InputField nickname;
     public Text msg;
-    private bool isInputMove = false;
-
-    public Transform inputPos;
-    private Vector3 inputOriginPos;
     public SkeletonGraphic chara;
-    private void Awake() {
-        //PlayerPrefs.DeleteAll();
-        inputOriginPos = nickname.transform.position;
-    }
 
     private void Start() {
         gm = GameManager.Instance;
         getInfo();
-    }
-
-    private void Update() {
-        if (!nickname.isFocused) {
-            nickname.transform.position = inputOriginPos;
-            isInputMove = false;
-            topInputBg.SetActive(false);
-        }
     }
 
     public void getInfo() {
@@ -61,9 +43,8 @@ public class SignInController : MonoBehaviour {
         UM_GameServiceManager.OnPlayerConnected += OnPlayerConnected;
         UM_GameServiceManager.OnPlayerDisconnected += OnPlayerDisconnected;
         UM_GameServiceManager.Instance.Connect();
-
         string nickname = PlayerPrefs.GetString("nickname");
-        if (string.IsNullOrEmpty(nickname)) {
+        if (PlayerPrefs.GetInt("character", -1) == -1) {
             signUp();
         }
         else {
@@ -95,8 +76,6 @@ public class SignInController : MonoBehaviour {
 
     //최종 회원가입 버튼 처리
     public void submit() {
-        PlayerPrefs.SetString("nickname", nickname.text);
-        gm.nickname = nickname.text;
         PlayerPrefs.SetInt("character", gm.character);
         //PlayerPrefs.DeleteKey("characters");
         CharacterManager.Instance.sold(gm.character);
@@ -113,7 +92,6 @@ public class SignInController : MonoBehaviour {
 
     private void changeScene() {
         SceneManager.LoadScene("Main");
-        //signupPanel.SetActive(false);
     }
 
     private void ActionConnectionResultReceived(GooglePlayConnectionResult result) {
@@ -124,27 +102,4 @@ public class SignInController : MonoBehaviour {
             msg.text = result.code.ToString();
         }
     }
-    public void onClickInput() {
-        if (!isInputMove) {
-            nickname.transform.position = inputPos.transform.position;
-            topInputBg.SetActive(true);
-        }
-        else {
-            nickname.transform.position = inputOriginPos;
-            topInputBg.SetActive(false);
-        }
-        isInputMove = !isInputMove;
-        //Invoke("GetKeyboardSize", 3.0f);
-    }
-
-    //private void GetKeyboardSize() {
-    //    using(AndroidJavaClass unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
-    //        AndroidJavaObject View = unityClass.GetStatic<AndroidJavaObject>("currentActivity").Get<AndroidJavaObject>("mUnityPlayer").Call<AndroidJavaObject>("getView");
-
-    //        using (AndroidJavaObject Rct = new AndroidJavaObject("android.graphics.Rect")) {
-    //            View.Call("getWindowVisibleDisplayFrame", Rct);
-    //            height.text = (Screen.height - Rct.Call<int>("height")).ToString();
-    //        }
-    //    }
-    //}
 }
