@@ -35,7 +35,7 @@ public class StoreController : MonoBehaviour {
     }
 
     private void setModalButton(int crystal) {
-        modalButton.transform.parent.parent.gameObject.SetActive(true);
+        modalButton.transform.parent.parent.parent.gameObject.SetActive(true);
         soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
         modalButton.onClick.RemoveAllListeners();
         modalButton.onClick.AddListener(() => purchaseDone(crystal));

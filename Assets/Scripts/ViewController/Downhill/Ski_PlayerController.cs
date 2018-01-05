@@ -69,7 +69,7 @@ public class Ski_PlayerController : MonoBehaviour {
     }
     private void Start() {
         offSpines(-1);
-        characterIndex = gm.character;
+        characterIndex = CharacterManager.Instance.currentCharacter;
 
         TrailRenderer tr_left = transform.Find("Trail_left").GetComponent<TrailRenderer>();
         TrailRenderer tr_right = transform.Find("Trail_right").GetComponent<TrailRenderer>();

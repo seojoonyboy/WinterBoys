@@ -24,7 +24,7 @@ public class MainSceneController : MonoBehaviour {
 
     private void Start() {
         nickname.text = gm.nickname;
-        characterName.text = charNames[gm.character];
+        //characterName.text = charNames[gm.character];
 
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "selGame");
     }

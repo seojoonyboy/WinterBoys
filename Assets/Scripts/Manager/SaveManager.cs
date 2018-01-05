@@ -93,11 +93,11 @@ public class SaveManager : Singleton<SaveManager> {
 	}
 
 	public float getSpeedPercent() {
-		return saveData.speedPercent;
+		return saveData.speedPercent + CharacterManager.Instance.getSpeedPercent;
 	}
 
 	public float getControlPercent() {
-		return saveData.controlPercent;
+		return saveData.controlPercent + CharacterManager.Instance.getControlPercent;
 	}
 
 	public int getPointLeft() {
