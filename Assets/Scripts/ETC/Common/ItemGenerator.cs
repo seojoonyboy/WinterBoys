@@ -69,13 +69,21 @@ public class ItemGenerator : MonoBehaviour {
             if (charPosOfX >= sj_standardChangeMeter[sj_index]) {
                 if(sj_index == sj_standardChangeMeter[sj_index]) { return; }
 
-                sj_interval = sj_intervalMeter[sj_index];
+                for(int i=0; i<sj_numPerGenerate[sj_index]; i++) {
+                    Generate(SportType.SKIJUMP, sj_numPerGenerate[sj_index]);
+                }
+
+                sj_interval = sj_standardChangeMeter[sj_index] + sj_intervalMeter[sj_index];
                 sj_index++;
             }
 
-            if(charPosOfX > sj_interval) {
-                Generate(SportType.SKIJUMP, sj_numPerGenerate[sj_index]);
-                sj_interval += sj_interval;
+            if(sj_index != 0) {
+                if (charPosOfX > sj_interval) {
+                    for(int i=0; i<sj_numPerGenerate[sj_index]; i++) {
+                        Generate(SportType.SKIJUMP, sj_numPerGenerate[sj_index]);
+                    }
+                    sj_interval += sj_intervalMeter[sj_index];
+                }
             }
         }
         else if(gameType == SportType.DOWNHILL) {

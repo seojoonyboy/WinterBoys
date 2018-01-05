@@ -1,0 +1,27 @@
+﻿
+balloon.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blue
+  rotate: false
+  xy: 147, 22
+  size: 126, 144
+  orig: 126, 144
+  offset: 0, 0
+  index: -1
+purple
+  rotate: false
+  xy: 275, 23
+  size: 124, 143
+  orig: 124, 143
+  offset: 0, 0
+  index: -1
+red
+  rotate: false
+  xy: 2, 2
+  size: 143, 164
+  orig: 143, 164
+  offset: 0, 0
+  index: -1

@@ -167,7 +167,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
             }
 
             else {
-                float forceX = -5;
+                float forceX = -1;
                 if (rb.velocity.x < 1) {
                     forceX = 0;
                 }
