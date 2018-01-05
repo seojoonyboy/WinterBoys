@@ -1889,7 +1889,6 @@ MonoBehaviour:
   startPos: {fileID: 592322201}
   forceAmount: 800
   rb: {fileID: 0}
-  MaxHeight: 100
   characters:
   - {fileID: 1430398801}
   - {fileID: 1498580563}

@@ -24,8 +24,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private float jumpAmount = 15;
     private float rotateAmount = 35;        //회전력
     private float statBasedRotAmount;       //Stat을 적용한 회전력
-    //최대 상승 가능 높이
-    public float MaxHeight = 30;
 
     private bool
         isAscending = false,
@@ -123,12 +121,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         if (isLanding) return;
 
         if (isFirstAsc && rb.velocity.y < 0) {
-            MaxHeight = transform.position.y * 0.7f;
             isFirstAsc = false;
-        }
-
-        if(MaxHeight > 25) {
-            MaxHeight = 25f;
         }
 
         effectCheck();
@@ -174,18 +167,15 @@ public class SkiJumpPlayerController : MonoBehaviour {
             }
 
             else {
-                Vector2 force = new Vector2(rb.velocity.x * 0.01f, 20f);
+                float forceX = -5;
+                if (rb.velocity.x < 1) {
+                    forceX = 0;
+                }
+                Vector2 force = new Vector2(forceX, 20f);
                 rb.AddForce(force);
 
                 if (rb.velocity.y < 0) {
                     rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.99999f);
-                }
-                else {
-                    if (transform.position.y > MaxHeight * 0.8) {
-                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.85f);
-                        MaxHeight = transform.position.y * 0.7f;
-                        isAscending = false;
-                    }
                 }
             }
         }
@@ -199,25 +189,27 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 }
 
                 if(playerState == PlayerState.REVERSE_ROTATE) {
-                    Vector2 force = new Vector2(rb.velocity.x * 0.01f, 20f);
+                    float forceX = -1;
+                    if (rb.velocity.x < 1) {
+                        forceX = 0;
+                    }
+                    Vector2 force = new Vector2(forceX, 20f);
                     rb.AddForce(force);
 
                     if (rb.velocity.y < 0) {
                         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.999995f);
-                    }
-                    else {
-                        if (transform.position.y > MaxHeight * 0.9f) {
-                            MaxHeight = transform.position.y * 0.7f;
-                            isAscending = false;
-                        }
                     }
                 }
                 else {
                     if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
                         rb.angularVelocity = mark * statBasedRotAmount;
                     }
-
-                    Vector2 val = new Vector2(rb.velocity.x * 0.1f, -0.01f);
+                    Debug.Log(rb.velocity.x);
+                    float forceX = 10;
+                    if (rb.velocity.x > 40) {
+                        forceX = 0;
+                    }
+                    Vector2 val = new Vector2(forceX, -0.01f);
                     rb.AddForce(val);
                 }
             }
@@ -335,8 +327,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
             if (balloonCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
                 balloonCoolTime = 2.0f;
-                MaxHeight = 30f;
-                Debug.Log(MaxHeight);
             }
             else {
                 rb.velocity = new Vector2(rb.velocity.x, 10f);
