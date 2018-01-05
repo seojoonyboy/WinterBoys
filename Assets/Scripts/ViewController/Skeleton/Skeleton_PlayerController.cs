@@ -16,7 +16,7 @@ public class Skeleton_PlayerController : MonoBehaviour {
 	}
 
 	private void setCharacter() {
-		int num = GameManager.Instance.character;
+		int num = CharacterManager.Instance.currentCharacter;
 		character.AnimationState.SetAnimation(0, characterList[num], true);	
 	}
 

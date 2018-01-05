@@ -5,12 +5,38 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public struct Stat {
+public struct PointStat {
 	public Image grade;
 	public Text percent;
 	public Text needPoint;
 	public Button levelUp;
 };
+[System.Serializable]
+public struct CharStat {
+	public Image image;
+	public Text name;
+	public Text stat;
+	public Text playTime;
+	public Transform playCount;
+	public void setData(Sprite sprite, string name, int speed, int control) {
+		image.sprite = sprite;
+		this.name.text = name;
+		do {
+			if(speed != 0 && control != 0) {
+				stat.text = string.Format("속도 + {0}%, 조작 + {1}%", speed, control);
+				break;
+			}
+			if(speed == 0) {
+				stat.text = string.Format("조작 + {0}%", control);
+				break;
+			}
+			if(control == 0) {
+				stat.text = string.Format("속도 + {0}%", speed);
+				break;
+			}
+		} while(false);
+	}
+}
 
 public class ReadyController : MonoBehaviour {
     public MainSceneController mainController;
@@ -20,12 +46,13 @@ public class ReadyController : MonoBehaviour {
 	[SerializeField] private ResourceController topLabel;
 	[SerializeField] private Sprite[] gradeSprite;
     [SerializeField] private Sprite[] characterSprite;
+	[SerializeField] private CharStat charStat;
 	[SerializeField] private Text maxScore;
-	[SerializeField] public Stat speed;
-	[SerializeField] public Stat control;
+	[SerializeField] public PointStat speed;
+	[SerializeField] public PointStat control;
 	//[SerializeField] private Text pointLeft;
 	[SerializeField] private Button startButton;
-    [SerializeField] private Image character;
+    //[SerializeField] private Image character;
 
 	private void Awake() {
 		saveManager = SaveManager.Instance;
@@ -55,7 +82,7 @@ public class ReadyController : MonoBehaviour {
 	private void OnEnable() {
 		init();
 		setScene();
-
+		setCharData();
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "statChange");
 	}
 
@@ -75,15 +102,11 @@ public class ReadyController : MonoBehaviour {
 		speed.needPoint.text = saveManager.getSpeedPointNeed().ToString();
 		setGrade(speed.grade, saveManager.getSpeedPercent());
 
-		control.percent.text = (100f * saveManager.getControlPercent()- 100f).ToString("00.0");
+		control.percent.text = (100f * saveManager.getControlPercent() - 100f).ToString("00.0");
 		control.needPoint.text = saveManager.getControlPointNeed().ToString();
 		setGrade(control.grade, saveManager.getControlPercent());
 
-		//pointLeft.text = saveManager.getPointLeft().ToString("00000");
 		topLabel.setData();
-
-        character.sprite = characterSprite[GameManager.Instance.character];
-        character.transform.Find("Outline/Name").GetComponent<Text>().text = mainController.charNames[GameManager.Instance.character];
     }
 
 	private void setGrade(Image grade, float num) {
@@ -143,4 +166,10 @@ public class ReadyController : MonoBehaviour {
     public void StartButtonClicked() {
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "gameStartBtn");
     }
+
+	public void setCharData() {
+		CharacterManager cm = CharacterManager.Instance;
+		int num = cm.currentCharacter;
+		charStat.setData(characterSprite[num], cm.getName(num), cm.getSpeed(num), cm.getControl(num));
+	}
 }
