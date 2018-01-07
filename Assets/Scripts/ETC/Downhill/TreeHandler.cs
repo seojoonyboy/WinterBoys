@@ -29,6 +29,13 @@ public class TreeHandler : MonoBehaviour {
             else if (type == TreeType.GREEN) {
                 anim.AnimationName = "green_crash";
             }
+
+            float time = anim.Skeleton.Data.FindAnimation("blue_crash").duration;
+            Invoke("destroyItself", time);
         }
+    }
+
+    private void destroyItself() {
+        Destroy(transform.parent.gameObject);
     }
 }

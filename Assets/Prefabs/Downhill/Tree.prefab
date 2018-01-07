@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4777498599505960}
   - component: {fileID: 61769905554314844}
+  - component: {fileID: 114221841177111896}
   m_Layer: 10
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,6 +196,21 @@ MonoBehaviour:
   _animationName: green
   loop: 1
   timeScale: 1
+--- !u!114 &114221841177111896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1104093490267142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f71be1a421d254194476c2119239d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 2
+  item_dh: 5
+  item_sj: 0
+  item_st: 0
 --- !u!114 &114423351587907788
 MonoBehaviour:
   m_ObjectHideFlags: 1

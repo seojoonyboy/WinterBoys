@@ -6,6 +6,7 @@
         ANTI_SPEED_HILL,
         ENEMY_BEAR,
         ENEMY_BUGS,
+        TREE,
         OBSTACLE_POLL,
         OBSTACLE_OIL,
         MONEY,

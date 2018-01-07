@@ -3662,6 +3662,7 @@ MonoBehaviour:
   reverseRot_cooltime: 7
   decreaseRot_cooltime: 7
   increaseRot_cooltime: 7
+  treeSpeedZero_cooltime: 1
 --- !u!1001 &1289974597
 Prefab:
   m_ObjectHideFlags: 0

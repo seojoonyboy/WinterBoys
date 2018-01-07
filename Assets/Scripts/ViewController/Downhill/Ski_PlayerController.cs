@@ -19,6 +19,7 @@ public class Ski_PlayerController : MonoBehaviour {
         boostCoolTime,
         speedReduceCoolTime,
         speedZeroCoolTime,
+        treeSpeedZeroCoolTime,
         reverseCoolTime,
         rotateIncCoolTime,
         rotateDecCoolTime,
@@ -178,6 +179,18 @@ public class Ski_PlayerController : MonoBehaviour {
         if(playerState == PlayerState.SPEED_ZERO) {
             speedZeroCoolTime -= Time.deltaTime;
             if(speedZeroCoolTime < 0) {
+                playerState = PlayerState.NORMAL;
+                additionalForceByEffect = 1.0f;
+            }
+            else {
+                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
+            }
+        }
+
+        //나무 충돌 효과
+        if(playerState == PlayerState.TREECRASH) {
+            treeSpeedZeroCoolTime -= Time.deltaTime;
+            if(treeSpeedZeroCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
                 additionalForceByEffect = 1.0f;
             }
@@ -410,6 +423,11 @@ public class Ski_PlayerController : MonoBehaviour {
 
                     cooltime = rotateDecCoolTime;
                     break;
+                case ItemType.DH.TREE:
+                    playerState = PlayerState.TREECRASH;
+                    additionalForceByEffect = 0;
+                    treeSpeedZeroCoolTime = itemCoolTimes.treeSpeedZero_cooltime;
+                    break;
                 case ItemType.DH.MONEY:
                     dM.addCrystal(5);
                     break;
@@ -418,7 +436,9 @@ public class Ski_PlayerController : MonoBehaviour {
                     break;
             }
             dM.setItemEffectIcon(cooltime, item.item_dh);
-            Destroy(obj);
+            if(item.item_dh != ItemType.DH.TREE) {
+                Destroy(obj);
+            }
         }
     }
 
@@ -429,6 +449,7 @@ public class Ski_PlayerController : MonoBehaviour {
         SPEED_ZERO,
         REVERSE_ROTATE,
         ROTATING_INC,
-        ROTATING_DEC
+        ROTATING_DEC,
+        TREECRASH
     }
 }
