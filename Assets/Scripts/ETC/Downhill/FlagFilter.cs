@@ -80,6 +80,13 @@ public class FlagFilter : MonoBehaviour {
     private void setPoses() {
         float randX = Random.Range(xPoses.min, xPoses.max);
         transform.position = new Vector2(randX, transform.position.y);
+
+        if(GetComponent<Item>() == null) { return; }
+
+        var item = GetComponent<Item>();
+        if(item.item_dh == ItemType.DH.ENEMY_BEAR) {
+            GetComponent<BearMove>().enabled = true;
+        }
     }
 
     class Poses {
