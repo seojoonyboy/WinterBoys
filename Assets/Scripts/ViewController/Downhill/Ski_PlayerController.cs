@@ -41,7 +41,7 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public BoardManager bM;
     public DownhillManager dM;
-    public IndicatorController ic;
+    public ItemCoolTime itemCoolTimes;
 
     private GameManager gm;
     private SaveManager pm;
@@ -62,11 +62,13 @@ public class Ski_PlayerController : MonoBehaviour {
     private Quaternion beginQuarternion;
     private Vector2 beginEular;
     [SerializeField] private Material[] materials;
+
     private void Awake() {
         gm = GameManager.Instance;
         pm = SaveManager.Instance;
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void Start() {
         offSpines(-1);
         characterIndex = CharacterManager.Instance.currentCharacter;
@@ -96,14 +98,6 @@ public class Ski_PlayerController : MonoBehaviour {
 
         statBasedSpeedForce = speedForce * pm.getSpeedPercent();
         statBasedRotSenstive = input_sensitive * pm.getControlPercent();
-
-        boostCoolTime = 3.0f;
-        speedReduceCoolTime = 5.0f;
-        speedZeroCoolTime = 1.5f;
-        reverseCoolTime = 7.0f;
-        rotateIncCoolTime = 7.0f;
-        rotateDecCoolTime = 7.0f;
-        bounceCoolTime = 0.2f;
 
         playerState = PlayerState.NORMAL;
 
@@ -161,7 +155,6 @@ public class Ski_PlayerController : MonoBehaviour {
             boostCoolTime -= Time.deltaTime;
             if(boostCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                boostCoolTime = 3.0f;
                 additionalForceByEffect = 1.0f;
             }
             else {
@@ -174,7 +167,6 @@ public class Ski_PlayerController : MonoBehaviour {
             speedReduceCoolTime -= Time.deltaTime;
             if(speedReduceCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                speedReduceCoolTime = 5.0f;
                 additionalForceByEffect = 1.0f;
             }
             else {
@@ -187,7 +179,6 @@ public class Ski_PlayerController : MonoBehaviour {
             speedZeroCoolTime -= Time.deltaTime;
             if(speedZeroCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                speedZeroCoolTime = 1.5f;
                 additionalForceByEffect = 1.0f;
             }
             else {
@@ -200,7 +191,6 @@ public class Ski_PlayerController : MonoBehaviour {
             reverseCoolTime -= Time.deltaTime;
             if(reverseCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                reverseCoolTime = 7.0f;
             }
         }
 
@@ -209,7 +199,6 @@ public class Ski_PlayerController : MonoBehaviour {
             rotateIncCoolTime -= Time.deltaTime;
             if(rotateIncCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                rotateIncCoolTime = 7.0f;
                 additionalAngularForceByEffect = 1.0f;
             }
         }
@@ -219,7 +208,6 @@ public class Ski_PlayerController : MonoBehaviour {
             rotateDecCoolTime -= Time.deltaTime;
             if(rotateDecCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                rotateDecCoolTime = 7.0f;
                 additionalAngularForceByEffect = 1.0f;
             }
         }
@@ -381,6 +369,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 case ItemType.DH.BOOSTING_HILL:
                     playerState = PlayerState.BOOSTING;
                     additionalForceByEffect = 1.0f;
+                    boostCoolTime = itemCoolTimes.boosting_cooltime;
 
                     cooltime = boostCoolTime;
                     break;
@@ -390,29 +379,34 @@ public class Ski_PlayerController : MonoBehaviour {
                 case ItemType.DH.ANTI_SPEED_HILL:
                     playerState = PlayerState.SPEED_REDUCING;
                     additionalForceByEffect = 0.3f;
+                    speedReduceCoolTime = itemCoolTimes.speedReduce_cooltime;
 
                     cooltime = speedReduceCoolTime;
                     break;
                 case ItemType.DH.ENEMY_BEAR:
                     playerState = PlayerState.SPEED_ZERO;
                     additionalForceByEffect = 0;
+                    speedZeroCoolTime = itemCoolTimes.speedZero_cooltime;
 
                     cooltime = speedZeroCoolTime;
                     break;
                 case ItemType.DH.ENEMY_BUGS:
                     playerState = PlayerState.REVERSE_ROTATE;
+                    reverseCoolTime = itemCoolTimes.reverseRot_cooltime;
 
                     cooltime = reverseCoolTime;
                     break;
                 case ItemType.DH.OBSTACLE_POLL:
                     playerState = PlayerState.ROTATING_INC;
                     additionalAngularForceByEffect = 1.5f;
+                    rotateIncCoolTime = itemCoolTimes.increaseRot_cooltime;
 
                     cooltime = rotateIncCoolTime;
                     break;
                 case ItemType.DH.OBSTACLE_OIL:
                     playerState = PlayerState.ROTATING_DEC;
                     additionalAngularForceByEffect = 0.5f;
+                    rotateDecCoolTime = itemCoolTimes.decreaseRot_cooltime;
 
                     cooltime = rotateDecCoolTime;
                     break;

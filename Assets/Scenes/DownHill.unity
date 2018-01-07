@@ -3083,7 +3083,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fbb23736433e44eb9ab9f404375ab2d1, type: 3}
   bM: {fileID: 1793202012}
   dM: {fileID: 1268347495}
-  ic: {fileID: 0}
+  itemCoolTimes: {fileID: 1268347497}
   playerPos: {x: 0, y: 0, z: 0}
   bouceDir: {x: 0, y: 0, z: 0}
   audioSource: {fileID: 346411405}
@@ -3556,6 +3556,7 @@ GameObject:
   - component: {fileID: 1268347494}
   - component: {fileID: 1268347495}
   - component: {fileID: 1268347496}
+  - component: {fileID: 1268347497}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3644,6 +3645,23 @@ MonoBehaviour:
   sj_numPerGenerate: 
   st_standardChangeMeter: 
   st_intervalMeter: 
+--- !u!114 &1268347497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1268347493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c76e8feed01c8f4c8ef1b30ef4c8958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boosting_cooltime: 3
+  speedReduce_cooltime: 5
+  speedZero_cooltime: 1.5
+  reverseRot_cooltime: 7
+  decreaseRot_cooltime: 7
+  increaseRot_cooltime: 7
 --- !u!1001 &1289974597
 Prefab:
   m_ObjectHideFlags: 0
