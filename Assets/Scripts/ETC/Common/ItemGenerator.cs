@@ -38,7 +38,6 @@ public class ItemGenerator : MonoBehaviour {
     //스켈레톤
     public int[] st_standardChangeMeter;    //아이템 등장 기준 변경 시점 (미터)
     public int[] st_intervalMeter;          //등장 간격 (미터)
-    
 
     private GameManager gm;
 
@@ -91,13 +90,13 @@ public class ItemGenerator : MonoBehaviour {
 
             //아이템 젠 변경점
             if (charPosOfY > dh_standardChangeMeter[dh_index]) {
-                if (dh_index == dh_standardChangeMeter.Length) { return; }
-
                 for (int i=0; i<dh_numPerGenerate[dh_index]; i++){
                     Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index]);
                 }
 
                 dh_interval = dh_standardChangeMeter[dh_index] + dh_intervalMeter[dh_index];
+
+                if (dh_index == dh_standardChangeMeter.Length) { return; }
                 dh_index++;
             }
 
