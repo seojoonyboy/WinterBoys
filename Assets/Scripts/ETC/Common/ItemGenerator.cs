@@ -16,6 +16,7 @@ public class ItemGenerator : MonoBehaviour {
     public float minTime = 5f;
     private float time;
     private float spawnTime;
+    private bool canGenerate = true;
 
     public SkiJumpPlayerController sj_playerController;
     public Ski_PlayerController dh_playerController;
@@ -86,6 +87,7 @@ public class ItemGenerator : MonoBehaviour {
             }
         }
         else if(gameType == SportType.DOWNHILL) {
+            if (!canGenerate) { return; }
             float charPosOfY = dh_playerController.virtualPlayerPosOfY;
 
             //아이템 젠 변경점
@@ -96,7 +98,10 @@ public class ItemGenerator : MonoBehaviour {
 
                 dh_interval = dh_standardChangeMeter[dh_index] + dh_intervalMeter[dh_index];
 
-                if (dh_index == dh_standardChangeMeter.Length) { return; }
+                if (dh_index == dh_standardChangeMeter.Length - 1) {
+                    canGenerate = false;
+                    return;
+                }
                 dh_index++;
             }
 
