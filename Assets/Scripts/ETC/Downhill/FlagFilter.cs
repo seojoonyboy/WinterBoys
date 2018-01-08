@@ -12,8 +12,19 @@ public class FlagFilter : MonoBehaviour {
     private float refinedMinSpacing = 0;
 
     private void Start() {
+        float itemWidth = 0;
+        if(GetComponent<BoxCollider2D>() != null) {
+            itemWidth = (float)(GetComponent<BoxCollider2D>().size.x / 2.0f);
+        }
+        else {
+            if(GetComponent<PolygonCollider2D>() != null) {
+                itemWidth = 0.1f;
+            }
+            itemWidth = 0;
+        }
+
         xPoses = new Poses();
-        refinedMinSpacing = (float)(minimumSpacing/GameManager.Instance.pixelPerUnit);
+        refinedMinSpacing = (float)(minimumSpacing/GameManager.Instance.pixelPerUnit) + itemWidth;
         InvokeRepeating("check", 0, 0.1f);
     }
 
@@ -34,13 +45,13 @@ public class FlagFilter : MonoBehaviour {
         }
 
         Vector2 rightStartPos = new Vector2(transform.position.x + 0.2f, transform.position.y);
-        RaycastHit2D rightHit = Physics2D.Raycast(rightStartPos, Vector2.right);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightStartPos, Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("dh_SideTile"));
 
         if (rightHit.collider != null) {
             if (rightHit.collider.gameObject.CompareTag("DH_rightTile")) {
                 xPoses.max = rightHit.point.x - refinedMinSpacing;
 
-                RaycastHit2D leftHit = Physics2D.Raycast(transform.position, -Vector2.right);
+                RaycastHit2D leftHit = Physics2D.Raycast(transform.position, -Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("dh_SideTile"));
                 if (leftHit.collider != null) {
                     if(leftHit.collider.gameObject.CompareTag("DH_leftTile")) {
                         xPoses.min = leftHit.point.x + refinedMinSpacing;
@@ -60,7 +71,7 @@ public class FlagFilter : MonoBehaviour {
         }
         else {
             Vector2 leftStartPos = new Vector2(transform.position.x - 0.1f, transform.position.y);
-            RaycastHit2D leftHit = Physics2D.Raycast(leftStartPos, -Vector2.right);
+            RaycastHit2D leftHit = Physics2D.Raycast(leftStartPos, -Vector2.right, Mathf.Infinity, 1 << LayerMask.NameToLayer("dh_SideTile"));
             if (leftHit.collider != null) {
                 if (leftHit.collider.gameObject.CompareTag("DH_rightTile")) {
                     transform.position = leftHit.point;
