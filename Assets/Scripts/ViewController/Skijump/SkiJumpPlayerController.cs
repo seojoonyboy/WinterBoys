@@ -120,6 +120,11 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void FixedUpdate() {
         if (isLanding) return;
 
+        if (sm.isGameEnd) {
+            transform.eulerAngles = Vector3.zero;
+            return;
+        }
+
         if (isFirstAsc && rb.velocity.y < 0) {
             isFirstAsc = false;
         }

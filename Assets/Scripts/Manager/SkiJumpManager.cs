@@ -42,8 +42,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private bool 
         isLanded = false,
         isUnstableLand = false,
-        tmp = true,
-        isGameEnd = false;
+        tmp = true;
+
+    public bool isGameEnd = false;
 
     public double 
         score = 0,
@@ -129,13 +130,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void FixedUpdate() {
-        if (isGameEnd) { return; }
-
         playTime += Time.deltaTime;
         lastTime -= Time.deltaTime;
 
         if(lastTime <= 0) {
-            gameOver();
+            lastTime = 0;
+            isGameEnd = true;
         }
 
         if (isLanded) {
@@ -229,8 +229,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         Time.timeScale = 0.0f;
         Time.fixedDeltaTime = preFixedDeltaTime;
-
-        isGameEnd = true;
     }
 
     public void resumneButtonPressed() {
