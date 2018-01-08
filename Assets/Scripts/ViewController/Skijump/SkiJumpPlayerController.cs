@@ -124,6 +124,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
             isFirstAsc = false;
         }
 
+        if(transform.position.y > 35.0f) {
+            sm.gameOver();
+        }
+
         effectCheck();
 
         float angle = transform.eulerAngles.z;
@@ -204,7 +208,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
                         rb.angularVelocity = mark * statBasedRotAmount;
                     }
-                    Debug.Log(rb.velocity.x);
+                    //Debug.Log(rb.velocity.x);
                     float forceX = 10;
                     if (rb.velocity.x > 40) {
                         forceX = 0;

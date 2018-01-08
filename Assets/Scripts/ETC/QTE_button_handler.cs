@@ -47,9 +47,8 @@ public class QTE_button_handler : MonoBehaviour {
     }
 
     private void resume(SkiJump_Resume e) {
-        if(animator == null) {
-            animator = GetComponent<Animator>();
-        }
+        if (GetComponent<Animator>() == null) { return; }
+        animator = GetComponent<Animator>();
         animator.enabled = true;
     }
 }

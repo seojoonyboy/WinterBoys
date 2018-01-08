@@ -189,7 +189,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         playerController.RotatingEnd();
     }
 
-    private void gameOver() {
+    public void gameOver() {
         playerController.extraAudioSource.gameObject.SetActive(false);
 
         //착지 위치 기반 점수 계산
@@ -216,7 +216,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void resume(SkiJump_Resume e) {
         Vector2 dir = new Vector2(1, 1);
-        charRb.AddForce(dir * 40f, ForceMode2D.Impulse);
+        charRb.transform.position = new Vector3(transform.position.x, 1.35f);
+        charRb.velocity = Vector3.zero;
+
+        charRb.AddForce(dir * 20f, ForceMode2D.Impulse);
 
         isLanded = false;
         isQTE_occured = false;
