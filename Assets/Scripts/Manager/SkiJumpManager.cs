@@ -27,7 +27,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public Text 
         speedText,
-        distanceText;
+        distanceText,
+        timeText;
 
     public GameObject[] upAndDownButtons;
 
@@ -41,7 +42,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private bool 
         isLanded = false,
         isUnstableLand = false,
-        tmp = true;
+        tmp = true,
+        isGameEnd = false;
+
     public double 
         score = 0,
         bonusScore = 0,
@@ -56,8 +59,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public bool isQTE_occured = false;
 
-    private float 
+    public float 
         playTime,
+        lastTime,
         preFixedDeltaTime;
 
     private SoundManager soundManager;
@@ -74,6 +78,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         bonusScore = 0;
 
         playTime = 0;
+        lastTime = 40;
 
         qte_magnification = 0;
     }
@@ -120,10 +125,19 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             dist = 0;
         }
         distanceText.text = System.Math.Truncate(dist) + "M";
+        timeText.text = System.Math.Truncate(lastTime) + " 초";
     }
 
     private void FixedUpdate() {
+        if (isGameEnd) { return; }
+
         playTime += Time.deltaTime;
+        lastTime -= Time.deltaTime;
+
+        if(lastTime <= 0) {
+            gameOver();
+        }
+
         if (isLanded) {
             charRb.velocity = new Vector2(charRb.velocity.x * 0.999995f, charRb.velocity.y * 0.995f);
             if(charRb.velocity.x <= 0) {
@@ -215,17 +229,22 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         Time.timeScale = 0.0f;
         Time.fixedDeltaTime = preFixedDeltaTime;
+
+        isGameEnd = true;
     }
 
     public void resumneButtonPressed() {
         _eventManger.TriggerEvent(new SkiJump_Resume());
+
+        isGameEnd = false;
+        lastTime = 40f;
 
         Time.timeScale = 1;
     }
 
     private void resume(SkiJump_Resume e) {
         Vector2 dir = new Vector2(1, 1);
-        charRb.transform.position = new Vector3(transform.position.x, 1.35f);
+        charRb.transform.position = new Vector3(transform.position.x, 2f);
         charRb.velocity = Vector3.zero;
 
         charRb.AddForce(dir * 20f, ForceMode2D.Impulse);
@@ -233,6 +252,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         isLanded = false;
         isQTE_occured = false;
 
+    }
+
+    public void addCrystal(int amount) {
+        pm.addCrystal(amount);
     }
 
     private void removeListener() {

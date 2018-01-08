@@ -420,10 +420,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     playerState = PlayerState.GRAVITY_CHANGE;
                     break;
                 case ItemType.SJ.MONEY:
-
+                    sm.addCrystal(5);
                     break;
                 case ItemType.SJ.TIME:
-
+                    sm.lastTime += 15f;
                     break;
             }
             Destroy(obj);
