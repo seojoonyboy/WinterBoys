@@ -42,7 +42,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private bool 
         isLanded = false,
         isUnstableLand = false,
-        tmp = true;
+        tmp = true,
+        canClickArrowBtn = false;
 
     public bool isGameEnd = false;
 
@@ -63,7 +64,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public float 
         playTime,
         lastTime,
-        preFixedDeltaTime;
+        preFixedDeltaTime,
+        canClickArrowBtnTime;         //점프 화살표 클릭이 가능한 시간
 
     private SoundManager soundManager;
 
@@ -130,6 +132,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void FixedUpdate() {
+        if (angleUI.activeSelf) {
+            canClickArrowBtnTime -= Time.realtimeSinceStartup;
+            //Debug.Log(canClickArrowBtnTime);
+            if(canClickArrowBtnTime <= 0) {
+                canClickArrowBtn = true;
+            }
+        }
         playTime += Time.deltaTime;
         lastTime -= Time.deltaTime;
 
@@ -168,8 +177,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     //점프 버튼 클릭
     public void jumping() {
-        arrowController.stopRotating();
-        charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
+        if (canClickArrowBtn) {
+            //Debug.Log("Arrow 클릭!");
+            arrowController.stopRotating();
+            charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
+        }
     }
 
     private void _UnstableLanding(SkiJump_UnstableLandingEvent e) {
@@ -179,7 +191,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void _OnLanding(SkiJump_LandingEvent e) {
         isLanded = true;
-        Debug.Log("착지");
+        //Debug.Log("착지");
 
         playerController.extraAudioSource.gameObject.SetActive(true);
 
