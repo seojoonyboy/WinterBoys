@@ -65,7 +65,9 @@ public class ItemGenerator : MonoBehaviour {
 
     private void Update() {
         if(gameType == SportType.SKIJUMP) {
+            if (!canGenerate) { return; }
             float charPosOfX = sj_playerController.rb.transform.position.x;
+
             if (charPosOfX >= sj_standardChangeMeter[sj_index]) {
                 if(sj_index == sj_standardChangeMeter[sj_index]) { return; }
 
@@ -74,13 +76,19 @@ public class ItemGenerator : MonoBehaviour {
                 }
 
                 sj_interval = sj_standardChangeMeter[sj_index] + sj_intervalMeter[sj_index];
+
+                if(sj_index == sj_standardChangeMeter.Length - 1) {
+                    canGenerate = false;
+                    return;
+                }
+
                 sj_index++;
             }
 
             if(sj_index != 0) {
                 if (charPosOfX > sj_interval) {
                     for(int i=0; i<sj_numPerGenerate[sj_index]; i++) {
-                        Generate(SportType.SKIJUMP, sj_numPerGenerate[sj_index]);
+                        Generate(SportType.SKIJUMP, sj_numPerGenerate[sj_index - 1]);
                     }
                     sj_interval += sj_intervalMeter[sj_index];
                 }
@@ -159,7 +167,7 @@ public class ItemGenerator : MonoBehaviour {
                 randX = UnityEngine.Random.Range(0, Screen.width);
                 randY = UnityEngine.Random.Range(4, 33);
                 pos = new Vector2(
-                    sj_playerController.transform.position.x + 120f,
+                    sj_playerController.transform.position.x + randX + 120f,
                     randY
                 );
                 break;

@@ -122,8 +122,10 @@ public class SkiJumpBoardHolder : MonoBehaviour {
                 for(int i=0; i<num; i++) {
                     Vector2 lastPos = new Vector2(lastMountainPos.x, 0);
                     int imageIndex = UnityEngine.Random.Range(0, mountainPrefs.Length);
+                    float randScale = UnityEngine.Random.Range(0.5f, 1.5f);
                     GameObject mountainObj = Instantiate(mountainPrefs[imageIndex]);
                     mountainObj.transform.position = randPoses(lastPos, 0);
+                    mountainObj.transform.localScale = new Vector3(mountainObj.transform.localScale.x * randScale, mountainObj.transform.localScale.y * randScale, 1);
                     mountainObj.transform.SetParent(holder, false);
 
                     lastMountainPos = mountainObj.transform.position;

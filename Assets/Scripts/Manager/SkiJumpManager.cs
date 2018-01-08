@@ -47,12 +47,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         bonusScore = 0,
         totalScore = 0;
 
-    public Text 
-        height,
-        itemEffect;
+    public Text height;
 
     public Slider heightSlider;
     public GameObject qteButton;
+    public GameObject effectIconPanel;
+    public GameObject[] effectIcons;
 
     public bool isQTE_occured = false;
 
@@ -120,7 +120,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             dist = 0;
         }
         distanceText.text = System.Math.Truncate(dist) + "M";
-        itemEffect.text = playerController.playerState + " 효과 적용중";
     }
 
     private void FixedUpdate() {
@@ -187,6 +186,16 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         }
 
         playerController.RotatingEnd();
+    }
+
+    public void addEffectIcon(int index, float cooltime) {
+        GameObject icon = Instantiate(effectIcons[index]);
+        icon.transform.SetParent(effectIconPanel.transform);
+        icon.transform.localPosition = Vector3.zero;
+        icon.transform.localScale = Vector3.one;
+
+        var cooltimeComp = icon.transform.Find("BlackBg").gameObject.AddComponent<Icon>();
+        cooltimeComp.cooltime = cooltime;
     }
 
     public void gameOver() {

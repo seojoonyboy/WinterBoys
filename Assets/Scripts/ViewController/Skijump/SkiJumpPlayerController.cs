@@ -40,14 +40,17 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public GameObject[] characters;
     private SkeletonAnimation anim;
+    private ItemCoolTime itemCooltimes;
 
     private float 
         whiteBirdCoolTime,
+        blackBirdCoolTime,
         balloonCoolTime,
         reverseCoolTime,
         thunderCoolTime,
         buttonCoolTime;
 
+    private Vector2 beforeVelOfWhiteBird;
     public PlayerState playerState;
     private float preGravityScale;
 
@@ -64,16 +67,13 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void Start() {
         statBasedRotAmount = rotateAmount * pm.getControlPercent();
-        whiteBirdCoolTime = 3.0f;
-        balloonCoolTime = 2.0f;
-        reverseCoolTime = 7.0f;
-        thunderCoolTime = 7.0f;
-        buttonCoolTime = 0.3f;
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
 
         rb.centerOfMass = new Vector2(0, -0.6f);
+
+        itemCooltimes = sm.GetComponent<ItemCoolTime>();
 
         removeListener();
 
@@ -308,35 +308,47 @@ public class SkiJumpPlayerController : MonoBehaviour {
         itemCheck(obj);
     }
 
+    private float whiteBirdEffect() {
+        return 0;
+    }
+
     private void effectCheck() {
-        //하얀 새 효과
-        if (playerState == PlayerState.IMMORTAL) {
-            whiteBirdCoolTime -= Time.deltaTime;
-            if (whiteBirdCoolTime < 0) {
+        //검은새 효과
+        if(playerState == PlayerState.BLACK_BIRD) {
+            blackBirdCoolTime -= Time.deltaTime;
+            Vector2 dir = new Vector2(0.3f, 1.0f);
+            rb.MovePosition(rb.position + dir * 0.01f);
+
+            if (blackBirdCoolTime < 0) {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
                 playerState = PlayerState.NORMAL;
-                rb.gravityScale = preGravityScale;
-                whiteBirdCoolTime = 3.0f;
             }
-            else {
-                rb.angularVelocity = 0;
-                rb.AddForce(-transform.right * 0.01f);
-                rb.gravityScale = 0;
-            }
-            return;
         }
 
         //풍선 효과
-        if (playerState == PlayerState.BALLOON) {
+        if(playerState == PlayerState.BALLOON) {
             balloonCoolTime -= Time.deltaTime;
+            Vector2 dir = new Vector2(0.3f, 1.0f);
+            rb.MovePosition(rb.position + dir * 0.01f);
+
             if (balloonCoolTime < 0) {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
                 playerState = PlayerState.NORMAL;
-                balloonCoolTime = 2.0f;
+            }
+        }
+
+        //무적효과, 다른 아이템 무시
+        //오른쪽으로 1000m/h 속도로 강제 이동 (제어 불가)
+        //3초간 캐릭터 정면으로 이동 (중력 3초간 제거)
+        if (playerState == PlayerState.WHITE_BIRD) {
+            whiteBirdCoolTime -= Time.deltaTime;
+            if (whiteBirdCoolTime < 0) {
+                rb.velocity = beforeVelOfWhiteBird;
+                rb.AddForce(Vector2.up, ForceMode2D.Impulse);
+                playerState = PlayerState.NORMAL;
             }
             else {
-                //rb.velocity = new Vector2(rb.velocity.x, 10f);
-                if(transform.position.y < 32) {
-                    rb.AddForce(Vector3.up * 12f);
-                }
+                rb.velocity = new Vector2(34f, 0);
             }
             return;
         }
@@ -346,7 +358,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
             reverseCoolTime -= Time.deltaTime;
             if (reverseCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                reverseCoolTime = 7.0f;
             }
         }
 
@@ -355,7 +366,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
             thunderCoolTime -= Time.deltaTime;
             if (thunderCoolTime < 0) {
                 playerState = PlayerState.NORMAL;
-                thunderCoolTime = 7.0f;
                 rb.gravityScale = 0.8f;
             }
             else {
@@ -365,31 +375,54 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     public void itemCheck(GameObject obj) {
+        if(playerState == PlayerState.WHITE_BIRD) {
+            Destroy(obj);
+            return;
+        }
+
         if (obj.tag == "Item") {
             Item item = obj.GetComponent<Item>();
             switch (item.item_sj) {
                 case ItemType.SJ.BL_BIRD:
-                    //감속 효과
-                    rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y * 0.85f);
+                    //1초간 하강 (약 15%)
+                    blackBirdCoolTime = itemCooltimes.blackBird_cooltime;
+                    sm.addEffectIcon(1, blackBirdCoolTime);
+
+                    playerState = PlayerState.BLACK_BIRD;
                     break;
                 case ItemType.SJ.WH_BIRD:
-                    //무적효과, 다른 아이템 무시
-                    //3초간 캐릭터 정면으로 이동 (중력 3초간 제거)
-                    playerState = PlayerState.IMMORTAL;
+                    whiteBirdCoolTime = itemCooltimes.whiteBird_cooltime;
+                    beforeVelOfWhiteBird = rb.velocity;
+
+                    sm.addEffectIcon(0, whiteBirdCoolTime);
+
+                    playerState = PlayerState.WHITE_BIRD;
                     break;
                 case ItemType.SJ.BALLOON:
+                    balloonCoolTime = itemCooltimes.balloon_cooltime;
+                    sm.addEffectIcon(3, balloonCoolTime);
+
                     playerState = PlayerState.BALLOON;
                     break;
                 case ItemType.SJ.DK_CLOUD:
+                    reverseCoolTime = itemCooltimes.reverseRot_cooltime;
+                    sm.addEffectIcon(2, reverseCoolTime);
+
                     playerState = PlayerState.REVERSE_ROTATE;
                     break;
                 case ItemType.SJ.POINT:
                     sm.bonusScore += 50;
                     break;
                 case ItemType.SJ.THUNDER_CLOUD:
+                    thunderCoolTime = itemCooltimes.thunderCloud_cooltime;
+                    sm.addEffectIcon(4, thunderCoolTime);
+
                     playerState = PlayerState.GRAVITY_CHANGE;
                     break;
                 case ItemType.SJ.MONEY:
+
+                    break;
+                case ItemType.SJ.TIME:
 
                     break;
             }
@@ -399,7 +432,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public enum PlayerState {
         NORMAL,
-        IMMORTAL,
+        WHITE_BIRD,
+        BLACK_BIRD,
         REVERSE_ROTATE,
         GRAVITY_CHANGE,
         BALLOON
