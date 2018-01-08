@@ -223,6 +223,9 @@ public class DownhillManager : MonoBehaviour {
             case ItemType.DH.ENEMY_BEAR:
                 index = 5;
                 break;
+            case ItemType.DH.TREE:
+                index = 6;
+                break;
         }
         
         if(index == -1) { return; }

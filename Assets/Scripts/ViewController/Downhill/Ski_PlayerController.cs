@@ -427,6 +427,8 @@ public class Ski_PlayerController : MonoBehaviour {
                     playerState = PlayerState.TREECRASH;
                     additionalForceByEffect = 0;
                     treeSpeedZeroCoolTime = itemCoolTimes.treeSpeedZero_cooltime;
+
+                    cooltime = treeSpeedZeroCoolTime;
                     break;
                 case ItemType.DH.MONEY:
                     dM.addCrystal(5);
