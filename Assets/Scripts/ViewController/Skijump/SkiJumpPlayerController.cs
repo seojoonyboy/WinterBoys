@@ -321,7 +321,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         //검은새 효과
         if(playerState == PlayerState.BLACK_BIRD) {
             blackBirdCoolTime -= Time.deltaTime;
-            Vector2 dir = new Vector2(0.3f, 1.0f);
+            Vector2 dir = new Vector2(0.3f, -1.0f);
             rb.MovePosition(rb.position + dir * 0.01f);
 
             if (blackBirdCoolTime < 0) {
