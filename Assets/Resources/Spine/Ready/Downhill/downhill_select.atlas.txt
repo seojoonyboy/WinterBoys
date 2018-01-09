@@ -1,0 +1,90 @@
+
+downhill_select.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+artefact_blue
+  rotate: false
+  xy: 98, 12
+  size: 39, 68
+  orig: 39, 68
+  offset: 0, 0
+  index: -1
+back
+  rotate: false
+  xy: 2, 100
+  size: 984, 410
+  orig: 984, 410
+  offset: 0, 0
+  index: -1
+blue_bot
+  rotate: false
+  xy: 1340, 456
+  size: 106, 54
+  orig: 106, 54
+  offset: 0, 0
+  index: -1
+blue_leaf
+  rotate: false
+  xy: 988, 182
+  size: 160, 159
+  orig: 160, 159
+  offset: 0, 0
+  index: -1
+blue_top
+  rotate: true
+  xy: 1340, 391
+  size: 63, 87
+  orig: 63, 87
+  offset: 0, 0
+  index: -1
+character_blue
+  rotate: true
+  xy: 1158, 392
+  size: 118, 180
+  orig: 118, 180
+  offset: 0, 0
+  index: -1
+hole
+  rotate: false
+  xy: 988, 100
+  size: 59, 36
+  orig: 59, 36
+  offset: 0, 0
+  index: -1
+left
+  rotate: true
+  xy: 2, 2
+  size: 78, 94
+  orig: 78, 94
+  offset: 0, 0
+  index: -1
+pole_left_blue
+  rotate: true
+  xy: 1158, 352
+  size: 38, 145
+  orig: 38, 145
+  offset: 0, 0
+  index: -1
+pole_right_blue
+  rotate: true
+  xy: 988, 138
+  size: 42, 145
+  orig: 42, 145
+  offset: 0, 0
+  index: -1
+ski_blue
+  rotate: false
+  xy: 988, 343
+  size: 168, 167
+  orig: 168, 167
+  offset: 0, 0
+  index: -1
+stick
+  rotate: true
+  xy: 2, 82
+  size: 16, 178
+  orig: 16, 178
+  offset: 0, 0
+  index: -1

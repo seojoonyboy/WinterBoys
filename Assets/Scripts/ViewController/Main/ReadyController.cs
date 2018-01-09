@@ -18,6 +18,8 @@ public struct CharStat {
 	public Text stat;
 	public Text playTime;
 	public Transform playCount;
+	public Sprite fullEntry;
+	public Sprite emptyEntry;
 	public void setData(Sprite sprite, string name, int speed, int control) {
 		image.sprite = sprite;
 		this.name.text = name;
@@ -36,11 +38,26 @@ public struct CharStat {
 			}
 		} while(false);
 	}
+	public void setTime(int maxEntry, int entry, double leftTime) {
+		Image[] images = playCount.GetComponentsInChildren<Image>();
+		if(entry == maxEntry) {
+			playTime.text = "출전기회 (00:00)";
+			for(int i = 0; i < images.Length; i++)
+				images[i].sprite = fullEntry;
+			return;
+		}
+		for(int i = 0; i < entry; i++)
+			images[i].sprite = fullEntry;
+		for(int i = entry; i < maxEntry; i++)
+			images[i].sprite = emptyEntry;
+		playTime.text = string.Format("출전기회 ({0}:{1})", ((int)leftTime/60).ToString("00"), ((int)leftTime%60).ToString("00"));
+	}
 }
 
 public class ReadyController : MonoBehaviour {
     public MainSceneController mainController;
 	private SaveManager saveManager;
+	private CharacterManager cm;
 
 	private SportType sport = SportType.SKIJUMP;
 	[SerializeField] private ResourceController topLabel;
@@ -56,6 +73,7 @@ public class ReadyController : MonoBehaviour {
 
 	private void Awake() {
 		saveManager = SaveManager.Instance;
+		cm = CharacterManager.Instance;
 		setButton();
 		init();
 	}
@@ -149,27 +167,36 @@ public class ReadyController : MonoBehaviour {
 		Text buttonText = startButton.GetComponentInChildren<Text>();
 		switch(sport) {
 			case SportType.SKIJUMP :
-			startButton.onClick.AddListener(() => SceneManager.LoadScene("SkiJump"));
+			startButton.onClick.AddListener(() => startGame("SkiJump"));
 			buttonText.text = "스키점프 시작!";
 			break;
 			case SportType.SKELETON :
-			startButton.onClick.AddListener(() => SceneManager.LoadScene("Skeleton"));
+			startButton.onClick.AddListener(() => startGame("Skeleton"));
 			buttonText.text = "스켈레톤 시작!";
 			break;
 			case SportType.DOWNHILL :
-			startButton.onClick.AddListener(() => SceneManager.LoadScene("DownHill"));
+			startButton.onClick.AddListener(() => startGame("DownHill"));
 			buttonText.text = "다운힐 시작!";
 			break;
 		}
     }
+
+	private void startGame(string sceneName) {
+		if(!cm.playGame()) return; //팝업창..?
+		SceneManager.LoadScene(sceneName);
+	}
 
     public void StartButtonClicked() {
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "gameStartBtn");
     }
 
 	public void setCharData() {
-		CharacterManager cm = CharacterManager.Instance;
 		int num = cm.currentCharacter;
 		charStat.setData(characterSprite[num], cm.getName(num), cm.getSpeed(num), cm.getControl(num));
+	}
+
+	private void FixedUpdate() {
+		int num = cm.currentCharacter;
+		charStat.setTime(cm.getMaxEntry(num), cm.getCurrentEntry(num), cm.getLeftTime(num));
 	}
 }
