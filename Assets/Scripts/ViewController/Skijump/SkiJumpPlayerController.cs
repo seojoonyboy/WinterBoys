@@ -245,8 +245,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     public void RotatingEnd() {
-        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 30f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 20f * pm.getSpeedPercent());
-        rb.AddForce(forceDir);
+        Vector2 forceDir = arrow.transform.right * 10f;
+        rb.AddForce(forceDir, ForceMode2D.Impulse);
         tmp = true;
         isFirstAsc = true;
 

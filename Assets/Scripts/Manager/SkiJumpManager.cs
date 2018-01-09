@@ -187,7 +187,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public void jumping() {
         if (canClickArrowBtn) {
             //Debug.Log("Arrow 클릭!");
-            arrowController.stopRotating();
+            arrowController.OnPointerUp();
             charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
         }
     }
