@@ -84,12 +84,12 @@ MonoBehaviour:
   nickname: 
   character: 0
   poll_intervals:
-  - 350
-  - 25
-  - 8
+  - 450
+  - 30
+  - 7
   - 10
   vertical_intervals:
-  - 1000
+  - 1100
   - 30
   - 35
   - 10

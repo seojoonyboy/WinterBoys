@@ -164,7 +164,7 @@ public class DownhillManager : MonoBehaviour {
 
         score += (int)((distOfMeter - preDistOfMeter) / gm.points[0]);
         preDistOfMeter = distOfMeter;
-        additionalScore = System.Math.Truncate(score * (maxCombo * 0.02f));
+        additionalScore = System.Math.Truncate(score * (maxCombo * gm.points[1]));
 
         modal.setGame(gameObject, SportType.DOWNHILL);
         modal.setData(playTime, (float)distOfMeter, score, (int)additionalScore, maxCombo, null);

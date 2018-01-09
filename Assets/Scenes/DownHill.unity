@@ -2164,8 +2164,8 @@ RectTransform:
   - {fileID: 1925755915}
   - {fileID: 740973563}
   - {fileID: 906931507}
-  - {fileID: 1289974598}
   - {fileID: 1408653061}
+  - {fileID: 1289974598}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3050,10 +3050,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08f99d3bf59e144aea893a54584d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedForce: 1.5
+  speedForce: 2
   driftFactor: 1
   angleV: 70
-  input_sensitive: 5
+  input_sensitive: 8.25
   rotateDir: 1
   virtualPlayerPosOfY: 0
   playerState: 0
@@ -4216,7 +4216,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 641666097}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
