@@ -22,7 +22,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     [HideInInspector]public Rigidbody2D rb;
     private int type = 0;
     private float jumpAmount = 15;
-    private float rotateAmount = 35;        //회전력
+    private float rotateAmount = 40;        //회전력
     private float statBasedRotAmount;       //Stat을 적용한 회전력
 
     private bool

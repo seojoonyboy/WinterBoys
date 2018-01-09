@@ -3053,7 +3053,7 @@ MonoBehaviour:
   speedForce: 2.06
   driftFactor: 1
   angleV: 70
-  input_sensitive: 8.25
+  input_sensitive: 6
   rotateDir: 1
   virtualPlayerPosOfY: 0
   playerState: 0
