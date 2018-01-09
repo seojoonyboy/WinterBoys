@@ -9078,6 +9078,8 @@ MonoBehaviour:
     stat: {fileID: 878882435}
     playTime: {fileID: 1914087491}
     playCount: {fileID: 1677029517}
+    fullEntry: {fileID: 21300000, guid: 8bc0221fc0380f240bc212a42e1cb88c, type: 3}
+    emptyEntry: {fileID: 21300000, guid: 821e4959fca92a649a9c7a6b1bfc2064, type: 3}
   topPanel: {fileID: 1912993323}
   leftBtn: {fileID: 1161922527}
   rightBtn: {fileID: 1496354847}
@@ -13391,6 +13393,8 @@ MonoBehaviour:
     stat: {fileID: 924987918}
     playTime: {fileID: 307971909}
     playCount: {fileID: 1367525723}
+    fullEntry: {fileID: 21300000, guid: 8bc0221fc0380f240bc212a42e1cb88c, type: 3}
+    emptyEntry: {fileID: 21300000, guid: 821e4959fca92a649a9c7a6b1bfc2064, type: 3}
   maxScore: {fileID: 869223050}
   speed:
     grade: {fileID: 764383617}

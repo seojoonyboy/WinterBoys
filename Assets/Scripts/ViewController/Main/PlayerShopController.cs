@@ -35,6 +35,10 @@ public class PlayerShopController : MonoBehaviour {
 		setCharData();
 	}
 
+	private void FixedUpdate() {
+		charStat.setTime(cm.getMaxEntry(charNum), cm.getCurrentEntry(charNum), cm.getLeftTime(charNum));
+	}
+
 	private void setButton() {
 		leftBtn.onClick.AddListener(() => {--charNum; setCharData();});
 		rightBtn.onClick.AddListener(() => {++charNum; setCharData();});
