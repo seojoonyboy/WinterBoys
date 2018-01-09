@@ -92,7 +92,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void _OnJumpArea(SkiJump_JumpEvent e) {
-        forceButton.SetActive(false);
         angleUI.SetActive(true);
         jumpButton.SetActive(true);
 
@@ -179,6 +178,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         charRb.constraints = RigidbodyConstraints2D.None;
         CM_controller.playableDirectors[0].gameObject.SetActive(false);
         playerController.SkelAnimChange("run", true);
+        forceButton.SetActive(false);
 
         playerController.AddForce();
     }
