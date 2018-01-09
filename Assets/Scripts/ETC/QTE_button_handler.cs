@@ -10,21 +10,23 @@ public class QTE_button_handler : MonoBehaviour {
 
     private void Awake() {
         animator = GetComponent<Animator>();
+
+        _eventManager = EventManager.Instance;
     }
 
-    private void Start() {
-        _eventManager = EventManager.Instance;
-        _eventManager.AddListener<SkiJump_Resume>(resume);
+    private void OnEnable() {
+        animator.enabled = true;
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.Play("QTE", -1, 0);
+    }
+
+    private void OnDisable() {
+        Debug.Log("ON DISABLE");
     }
 
     public void OnClick() {
         animator.enabled = false;
-        Invoke("off", 0.5f);
-    }
-
-    public void off() {
-        //gameObject.SetActive(false);
-        gameObject.transform.parent.parent.gameObject.SetActive(false);
+        _eventManager.TriggerEvent(new SkiJump_QTE_end());
     }
 
     public void setQteScore(int index) {
@@ -44,11 +46,5 @@ public class QTE_button_handler : MonoBehaviour {
                 break;
         }
         sm.qte_magnification = value;
-    }
-
-    private void resume(SkiJump_Resume e) {
-        if (GetComponent<Animator>() == null) { return; }
-        animator = GetComponent<Animator>();
-        animator.enabled = true;
     }
 }

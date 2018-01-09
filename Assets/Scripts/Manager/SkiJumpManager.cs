@@ -39,11 +39,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         frictionFactor;     //마찰 계수
     public float qte_magnification = 0;
     private Rigidbody2D charRb;
-    private bool 
-        isLanded = false,
+    private bool
         isUnstableLand = false,
         tmp = true,
-        canClickArrowBtn = false;
+        canClickArrowBtn = false,
+        isEndQTE = false;
 
     public bool isGameEnd = false;
 
@@ -68,7 +68,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         canClickArrowBtnTime;         //점프 화살표 클릭이 가능한 시간
 
     private SoundManager soundManager;
-
+    private float lastTimeIncInterval = 1000;
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = SaveManager.Instance;
@@ -87,7 +87,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void OnDisable() {
-        isLanded = false;
         Time.timeScale = 1;
         Screen.orientation = ScreenOrientation.Portrait;
         removeListener();
@@ -111,12 +110,19 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.AddListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
         _eventManger.AddListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
         _eventManger.AddListener<SkiJump_Resume>(resume);
+        _eventManger.AddListener<SkiJump_QTE_end>(endQTE);
         //최저치
         //statBasedSpeedForce = forceAmount;
         //최대치
         //statBasedSpeedForce = forceAmount * 1.8f;
 
         preFixedDeltaTime = Time.fixedDeltaTime;
+    }
+
+    private void endQTE(SkiJump_QTE_end e) {
+        Debug.Log("END QTE LISTEN");
+        isEndQTE = true;
+        qteButton.SetActive(false);
     }
 
     private void Update() {
@@ -147,23 +153,20 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             isGameEnd = true;
         }
 
-        if (isLanded) {
-            charRb.velocity = new Vector2(charRb.velocity.x * 0.999995f, charRb.velocity.y * 0.995f);
-            if(charRb.velocity.x <= 0) {
+        if (isEndQTE) {
+            charRb.velocity = new Vector2(charRb.velocity.x * 0.5f, charRb.velocity.y * 0.995f);
+            if (charRb.velocity.x <= 0) {
                 gameOver();
             }
         }
         double value = System.Math.Round(charRb.transform.position.y * 3f);
         height.text = value + " M";
         heightSlider.value = (float)value;
-    }
 
-    public void restart() {
-        SceneManager.LoadScene("SkiJump");
-
-        Time.timeScale = 1;
-
-        removeListener();
+        if(charRb.transform.position.x >= lastTimeIncInterval) {
+            lastTime += 20.0f;
+            lastTimeIncInterval += 1000;
+        }
     }
 
     //가속 버튼
@@ -190,9 +193,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void _OnLanding(SkiJump_LandingEvent e) {
-        isLanded = true;
-        //Debug.Log("착지");
-
         playerController.extraAudioSource.gameObject.SetActive(true);
 
         playerController.extraAudioSource.clip = soundManager.searchResource(SoundManager.SoundType.EFX, "sj_landingAndSlide").clip;
@@ -243,25 +243,24 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         Time.fixedDeltaTime = preFixedDeltaTime;
     }
 
+    //이어하기 버튼 클릭
     public void resumneButtonPressed() {
         _eventManger.TriggerEvent(new SkiJump_Resume());
-
-        isGameEnd = false;
-        lastTime = 40f;
-
-        Time.timeScale = 1;
     }
 
     private void resume(SkiJump_Resume e) {
         Vector2 dir = new Vector2(1, 1);
-        charRb.transform.position = new Vector3(transform.position.x, 2f);
+        charRb.transform.position = new Vector3(charRb.transform.position.x, 2f);
         charRb.velocity = Vector3.zero;
 
         charRb.AddForce(dir * 20f, ForceMode2D.Impulse);
-
-        isLanded = false;
         isQTE_occured = false;
 
+        isGameEnd = false;
+        lastTime = 40f;
+        isEndQTE = false;
+
+        Time.timeScale = 1;
     }
 
     public void addCrystal(int amount) {
@@ -274,5 +273,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.RemoveListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
         _eventManger.RemoveListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
         _eventManger.RemoveListener<SkiJump_Resume>(resume);
+        _eventManger.RemoveListener<SkiJump_QTE_end>(endQTE);
     }
 }
