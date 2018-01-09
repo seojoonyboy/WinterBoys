@@ -41,7 +41,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private Rigidbody2D charRb;
     private bool
         isUnstableLand = false,
-        tmp = true,
         canClickArrowBtn = false,
         isEndQTE = false;
 
@@ -96,6 +95,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         forceButton.SetActive(false);
         angleUI.SetActive(true);
         jumpButton.SetActive(true);
+
+        playerController.isSliding = false;
     }
 
     private void Start() {
@@ -128,8 +129,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private void Update() {
         float speed = playerController.rb.velocity.magnitude;
         float dist = playerController.transform.position.x;
+        if (playerController.isSliding) {
+            speedText.text = playerController.virtualSpeed + ".00KM/h";
+        }
+        else {
+            speedText.text = System.Math.Round(speed * 3, 2) + "KM/h";
+        }
 
-        speedText.text = System.Math.Round(speed * 3, 2) + "KM/h";
         if(dist <= 0) {
             dist = 0;
         }
@@ -169,13 +175,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         }
     }
 
-    //가속 버튼
-    public void AddForce() {
+    public void startButtonPressed() {
+        charRb.constraints = RigidbodyConstraints2D.None;
         CM_controller.playableDirectors[0].gameObject.SetActive(false);
-        if (tmp) {
-            playerController.SkelAnimChange("run", true);
-            tmp = false;
-        }
+        playerController.SkelAnimChange("run", true);
+
+        playerController.AddForce();
     }
 
     //점프 버튼 클릭

@@ -34,6 +34,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         tmp2 = true,
         canButtonPress = true;
 
+    public bool isSliding = false;
+
     private int ascendingCnt = 0;
     private int characterIndex = 0;
     private string Slopetag;
@@ -50,6 +52,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         thunderCoolTime,
         buttonCoolTime;
 
+    public double virtualSpeed = 0;
     private Vector2 beforeVelOfWhiteBird;
     public PlayerState playerState;
     private float preGravityScale;
@@ -71,7 +74,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
 
-        rb.centerOfMass = new Vector2(0, -0.6f);
+        rb.centerOfMass = new Vector2(-1, 0);
 
         itemCooltimes = sm.GetComponent<ItemCoolTime>();
 
@@ -118,6 +121,22 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (isSliding) {
+            if(Slopetag == "EndSlope") {
+                //Debug.Log(rb.velocity);
+                return;
+            }
+            //Debug.Log(rb.velocity.magnitude);
+            if (rb.velocity.x >= 9.0f) {
+                rb.velocity = new Vector2(9.0f, -9.0f);
+                virtualSpeed = 45;
+            }
+            else {
+                rb.AddForce(transform.right * 100f);
+                virtualSpeed = System.Math.Round(rb.velocity.magnitude * 3, 2);
+            }
+        }
+
         if (isLanding) return;
 
         if (sm.isGameEnd) {
@@ -226,7 +245,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     public void RotatingEnd() {
-        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 5f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 10f * pm.getSpeedPercent());
+        Vector2 forceDir = new Vector2(arrow.transform.right.x * forceAmount * 30f * pm.getSpeedPercent(), arrow.transform.right.y * forceAmount * 20f * pm.getSpeedPercent());
         rb.AddForce(forceDir);
         tmp = true;
         isFirstAsc = true;
@@ -241,18 +260,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     //가속 버튼
     public void AddForce() {
-        if(Slopetag == "StartSlope") {
-            rb.AddForce(transform.right * 20f);
-        }
-
-        else if(Slopetag == "MainSlope") {
-            rb.AddForce(transform.right * sm.statBasedSpeedForce * 2.5f);
-
-            extraAudioSource.clip = soundManager.searchResource(SoundManager.SoundType.EFX, "sj_slideMove").clip;
-            if (!extraAudioSource.isPlaying) {
-                extraAudioSource.Play();
-            }
-        }
+        isSliding = true;
 
         sm.CM_controller.Play(1);
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "sj_addForceBtn");
@@ -302,9 +310,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if(Slopetag == "MainSlope") {
-            return;
-        }
         Slopetag = collision.gameObject.tag;
     }
 
