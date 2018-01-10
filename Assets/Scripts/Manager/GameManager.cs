@@ -32,6 +32,9 @@ public class GameManager : Singleton<GameManager> {
     public float panelty_time;              //폴 통과하지 못한 경우 패널티
     public int startTime;
     public float[] highestScores;                    //각 종목별 최고 점수
+
+    public enum tutorialEnum { SELECT, READY, SHOP, CHARACTER, DOWNHLL, SKELETON, SKIJUMP }
+    private bool[] tutorialList;
     
     private void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -40,6 +43,7 @@ public class GameManager : Singleton<GameManager> {
     }
     public void init() {
         Application.targetFrameRate = 60;
+        tutorialDataLoad();
         //startTime = RemoteSettings.GetInt("startTime");
 
         //getRemoteData("Downhill_bonus_times", ref bonus_times);
@@ -71,5 +75,22 @@ public class GameManager : Singleton<GameManager> {
     [System.Serializable]
     public class percentages {
         public float[] values;
+    }
+
+    private void tutorialDataLoad() {
+        string data = PlayerPrefs.GetString("tutorial", "[false,false,false,false,false,false,false]");
+        IList list = ANMiniJSON.Json.Deserialize(data) as IList;
+        for(int i = 0; i < list.Count; i++)
+            tutorialList[i] = (bool)list[i];
+    }
+
+    public bool isTutorial(tutorialEnum tuto) {
+        return tutorialList[(int)tuto];
+    }
+
+    public void tutorialDone(tutorialEnum tuto) {
+        tutorialList[(int)tuto] = true;
+        string data = ANMiniJSON.Json.Serialize(tutorialList);
+        PlayerPrefs.SetString("tutorial", data);
     }
 }
