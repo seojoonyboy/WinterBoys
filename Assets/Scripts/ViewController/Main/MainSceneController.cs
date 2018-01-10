@@ -15,7 +15,7 @@ public class MainSceneController : MonoBehaviour {
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "selGame");
         if(gm.isTutorial(GameManager.tutorialEnum.SELECT)) return;
         tutorialModal.SetActive(true);
-        //gm.tutorialDone(GameManager.tutorialEnum.SELECT);
+        gm.tutorialDone(GameManager.tutorialEnum.SELECT);
     }
 
     public void LoadGame(int type) {

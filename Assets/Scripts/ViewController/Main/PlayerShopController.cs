@@ -32,7 +32,7 @@ public class PlayerShopController : MonoBehaviour {
 		setButton();
 		if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.CHARACTER)) return;
         tutorialModal.SetActive(true);
-        //gm.tutorialDone(GameManager.tutorialEnum.CHARACTER);
+        gm.tutorialDone(GameManager.tutorialEnum.CHARACTER);
 	}
 
 	private void OnEnable() {

@@ -38,7 +38,7 @@ public class TutorialController : MonoBehaviour {
     }
 
     public void done() {
-        //gm.tutorialDone(type);
+        gm.tutorialDone(type);
         switch (type) {
             case GameManager.tutorialEnum.DOWNHLL:
                 loadScene("DownHill");

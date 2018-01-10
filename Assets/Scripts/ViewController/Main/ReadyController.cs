@@ -105,7 +105,7 @@ public class ReadyController : MonoBehaviour {
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "statChange");
 		if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.READY)) return;
         tutorialModal.SetActive(true);
-        //gm.tutorialDone(GameManager.tutorialEnum.READY);
+        gm.tutorialDone(GameManager.tutorialEnum.READY);
 	}
 
     public void OffPanel() {

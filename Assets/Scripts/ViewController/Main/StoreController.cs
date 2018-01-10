@@ -24,7 +24,7 @@ public class StoreController : MonoBehaviour {
         setButton();
         if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.SHOP)) return;
         tutorialModal.SetActive(true);
-        //gm.tutorialDone(GameManager.tutorialEnum.SHOP);
+        gm.tutorialDone(GameManager.tutorialEnum.SHOP);
     }
 
     private void setToggle() {
