@@ -20,9 +20,11 @@ public class TutorialController : MonoBehaviour {
     public void init(GameManager.tutorialEnum type) {
         switch (type) {
             case GameManager.tutorialEnum.DOWNHLL:
+                background.sprite = backgrounds[0];
                 Screen.orientation = ScreenOrientation.Portrait;
                 break;
             case GameManager.tutorialEnum.SKIJUMP:
+                background.sprite = backgrounds[1];
                 Screen.orientation = ScreenOrientation.Landscape;
                 break;
         }
@@ -31,7 +33,6 @@ public class TutorialController : MonoBehaviour {
 
     public void nextPage(GameObject nextTarget) {
         nextTarget.SetActive(true);
-        Debug.Log("!!");
     }
 
     public void done() {
