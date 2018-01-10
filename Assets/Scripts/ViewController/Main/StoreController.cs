@@ -12,6 +12,7 @@ public class StoreController : MonoBehaviour {
     [SerializeField] private Button[] crystalButton;
     [SerializeField] private Button staminaButton;
     [SerializeField] private Button modalButton;
+    [SerializeField] private GameObject tutorialModal;
 
     private void Awake() {
         saveManager = SaveManager.Instance;
@@ -21,6 +22,9 @@ public class StoreController : MonoBehaviour {
     private void Start() {
         setToggle();
         setButton();
+        if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.SHOP)) return;
+        tutorialModal.SetActive(true);
+        //gm.tutorialDone(GameManager.tutorialEnum.SHOP);
     }
 
     private void setToggle() {

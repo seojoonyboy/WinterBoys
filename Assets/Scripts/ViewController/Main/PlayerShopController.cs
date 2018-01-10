@@ -17,6 +17,7 @@ public class PlayerShopController : MonoBehaviour {
 	[SerializeField] private Button currentBtn;
 	[SerializeField] private Button closeBtn;
 	[SerializeField] private GameObject modal;
+	[SerializeField] private GameObject tutorialModal;
 	private int charNum;
 
 
@@ -29,6 +30,9 @@ public class PlayerShopController : MonoBehaviour {
 	private void Start() {
 		charNum = cm.currentCharacter;
 		setButton();
+		if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.CHARACTER)) return;
+        tutorialModal.SetActive(true);
+        //gm.tutorialDone(GameManager.tutorialEnum.CHARACTER);
 	}
 
 	private void OnEnable() {

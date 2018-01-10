@@ -80,6 +80,7 @@ public class GameManager : Singleton<GameManager> {
     private void tutorialDataLoad() {
         string data = PlayerPrefs.GetString("tutorial", "[false,false,false,false,false,false,false]");
         IList list = ANMiniJSON.Json.Deserialize(data) as IList;
+        tutorialList = new bool[list.Count];
         for(int i = 0; i < list.Count; i++)
             tutorialList[i] = (bool)list[i];
     }

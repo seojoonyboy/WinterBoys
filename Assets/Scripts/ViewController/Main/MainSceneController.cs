@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class MainSceneController : MonoBehaviour {
     private GameManager gm;
     public ReadyController ready;
+    public GameObject tutorialModal;
     private void Awake() {
         gm = GameManager.Instance;
     }
 
     private void Start() {
-        
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "selGame");
+        if(gm.isTutorial(GameManager.tutorialEnum.SELECT)) return;
+        tutorialModal.SetActive(true);
+        //gm.tutorialDone(GameManager.tutorialEnum.SELECT);
     }
 
     public void LoadGame(int type) {
