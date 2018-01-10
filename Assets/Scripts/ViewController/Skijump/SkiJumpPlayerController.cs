@@ -18,6 +18,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     public Transform startPos;
 
     public float forceAmount;
+    private float oxygenNotIncludeTime = 0;
 
     [HideInInspector]public Rigidbody2D rb;
     private int type = 0;
@@ -32,7 +33,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         isFirstAsc = false,
         tmp = false,
         tmp2 = true,
-        canButtonPress = true;
+        canButtonPress = true,
+        isFaint = false;
 
     public bool isSliding = false;
 
@@ -50,8 +52,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
         balloonCoolTime,
         reverseCoolTime,
         thunderCoolTime,
-        buttonCoolTime;
+        buttonCoolTime,
+        faintCoolTime;
 
+    private float faintCooltimeVal = 1.0f;
     public double virtualSpeed = 0;
     private Vector2 beforeVelOfWhiteBird;
     public PlayerState playerState;
@@ -69,6 +73,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void Start() {
+        faintCoolTime = faintCooltimeVal;
+
         statBasedRotAmount = rotateAmount * pm.getControlPercent();
 
         playerState = PlayerState.NORMAL;
@@ -121,6 +127,25 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        //기절 상태인 경우
+        if (isFaint) {
+            rb.gravityScale = 0.5f;
+            faintCoolTime -= Time.deltaTime;
+            float tmpAngle = transform.eulerAngles.z;
+            if ((tmpAngle <= 45 && tmpAngle >= 0) || (tmpAngle <= 360 && tmpAngle >= 305)) {
+                rb.angularVelocity = statBasedRotAmount;
+            }
+            Vector2 val = new Vector2(0, -0.0001f);
+            rb.AddForce(val);
+
+            if (faintCoolTime < 0) {
+                Debug.Log("쿨타임 종료");
+                rb.gravityScale = 1.0f;
+                faintCoolTime = faintCooltimeVal;
+                isFaint = false;
+            }
+        }
+
         if (isSliding) {
             if(Slopetag == "EndSlope") {
                 //Debug.Log(rb.velocity);
@@ -149,7 +174,21 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
 
         if(transform.position.y > 35.0f) {
-            sm.gameOver();
+            oxygenNotIncludeTime += Time.deltaTime;
+            if(sm.warningSign)
+            sm.warningSign.SetActive(true);
+            //Debug.Log(oxygenNotIncludeTime);
+        }
+        else {
+            oxygenNotIncludeTime = 0;
+            sm.warningSign.SetActive(false);
+        }
+
+        if(oxygenNotIncludeTime >= 2.0f) {
+            //기절상태
+            sm.warningSign.SetActive(false);
+            isFaint = true;
+            //sm.gameOver();
         }
 
         effectCheck();
@@ -175,6 +214,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
 
         if (isAscending) {
+            if (isFaint) { return; }
+
             buttonCoolTime -= Time.deltaTime;
             if(buttonCoolTime < 0) {
                 buttonCoolTime = 0.8f;
@@ -210,6 +251,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         else {
             //하강 버튼을 누르는 경우
+            if (isFaint) { return; }
+
             if (isDescending) {
                 int mark = -1;
                 if(playerState == PlayerState.REVERSE_ROTATE) {

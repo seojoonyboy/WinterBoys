@@ -20,6 +20,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public ResultModalController modal;
 
     public GameObject
+        warningSign,
         character,
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
@@ -120,7 +121,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void endQTE(SkiJump_QTE_end e) {
-        Debug.Log("END QTE LISTEN");
+        //Debug.Log("END QTE LISTEN");
         isEndQTE = true;
         qteButton.SetActive(false);
     }
