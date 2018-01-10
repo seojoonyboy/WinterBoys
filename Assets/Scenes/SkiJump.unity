@@ -2296,7 +2296,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 86.04703
-    OrthographicSize: 14.27585
+    OrthographicSize: 3
     NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
@@ -5131,7 +5131,7 @@ Camera:
   far clip plane: 100
   field of view: 86.04703
   orthographic: 1
-  orthographic size: 14.27585
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9914,54 +9914,6 @@ Prefab:
     - target: {fileID: 4736896347084430, guid: f989ba49869ec3846a25dae7575a261d, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114337707204483298, guid: f989ba49869ec3846a25dae7575a261d,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4736896347084430, guid: f989ba49869ec3846a25dae7575a261d, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4736896347084430, guid: f989ba49869ec3846a25dae7575a261d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4736896347084430, guid: f989ba49869ec3846a25dae7575a261d, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.1039373
-      objectReference: {fileID: 0}
-    - target: {fileID: 212633733736038698, guid: f989ba49869ec3846a25dae7575a261d,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1726974177
-      objectReference: {fileID: 0}
-    - target: {fileID: 212633733736038698, guid: f989ba49869ec3846a25dae7575a261d,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 212633733736038698, guid: f989ba49869ec3846a25dae7575a261d,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f989ba49869ec3846a25dae7575a261d, type: 2}
