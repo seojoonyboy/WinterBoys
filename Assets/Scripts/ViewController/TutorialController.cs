@@ -13,6 +13,7 @@ public class TutorialController : MonoBehaviour {
     private GameManager.tutorialEnum type;
     private GameManager gm;
     private void Start() {
+        gm = GameManager.Instance;
         type = GameManager.Instance.tutorialSports;
         init();
 
