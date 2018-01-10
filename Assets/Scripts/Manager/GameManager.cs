@@ -35,6 +35,7 @@ public class GameManager : Singleton<GameManager> {
 
     public enum tutorialEnum { SELECT, READY, SHOP, CHARACTER, DOWNHLL, SKELETON, SKIJUMP }
     private bool[] tutorialList;
+    public tutorialEnum tutorialSports = tutorialEnum.SELECT;
     
     private void Awake() {
         DontDestroyOnLoad(gameObject);

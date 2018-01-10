@@ -13,11 +13,12 @@ public class TutorialController : MonoBehaviour {
     private GameManager.tutorialEnum type;
     private GameManager gm;
     private void Start() {
-        //gm = GameManager.Instance;
+        type = GameManager.Instance.tutorialSports;
+        init();
 
     }
 
-    public void init(GameManager.tutorialEnum type) {
+    public void init() {
         switch (type) {
             case GameManager.tutorialEnum.DOWNHLL:
                 background.sprite = backgrounds[0];
@@ -30,7 +31,6 @@ public class TutorialController : MonoBehaviour {
                 Screen.orientation = ScreenOrientation.Landscape;
                 break;
         }
-        this.type = type;
     }
 
     public void nextPage(GameObject nextTarget) {

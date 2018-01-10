@@ -171,22 +171,28 @@ public class ReadyController : MonoBehaviour {
 		Text buttonText = startButton.GetComponentInChildren<Text>();
 		switch(sport) {
 			case SportType.SKIJUMP :
-			startButton.onClick.AddListener(() => startGame("SkiJump"));
+			startButton.onClick.AddListener(() => startGame("SkiJump", GameManager.tutorialEnum.SKIJUMP));
 			buttonText.text = "스키점프 시작!";
 			break;
 			case SportType.SKELETON :
-			startButton.onClick.AddListener(() => startGame("Skeleton"));
+			startButton.onClick.AddListener(() => startGame("Skeleton", GameManager.tutorialEnum.SKELETON));
 			buttonText.text = "스켈레톤 시작!";
 			break;
 			case SportType.DOWNHILL :
-			startButton.onClick.AddListener(() => startGame("DownHill"));
+			startButton.onClick.AddListener(() => startGame("DownHill", GameManager.tutorialEnum.DOWNHLL));
 			buttonText.text = "다운힐 시작!";
 			break;
 		}
     }
 
-	private void startGame(string sceneName) {
+	private void startGame(string sceneName, GameManager.tutorialEnum tutorial) {
 		if(!cm.playGame()) return; //팝업창..?
+		bool isTutorial = GameManager.Instance.isTutorial(tutorial);
+		if(!isTutorial) {
+			GameManager.Instance.tutorialSports = tutorial;
+			SceneManager.LoadScene("Tutorial");
+			return;
+		}
 		SceneManager.LoadScene(sceneName);
 	}
 
