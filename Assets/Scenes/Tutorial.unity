@@ -2439,7 +2439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1117625907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3665,7 +3665,7 @@ MonoBehaviour:
   startingAnimation: right
   startingLoop: 0
   timeScale: 1
-  freeze: 0
+  freeze: 1
   unscaledTime: 0
   meshGenerator:
     settings:
@@ -4083,7 +4083,7 @@ MonoBehaviour:
   startingAnimation: left
   startingLoop: 0
   timeScale: 1
-  freeze: 0
+  freeze: 1
   unscaledTime: 0
   meshGenerator:
     settings:
