@@ -70,6 +70,7 @@ public class ReadyController : MonoBehaviour {
 	//[SerializeField] private Text pointLeft;
 	[SerializeField] private Button startButton;
     //[SerializeField] private Image character;
+	[SerializeField] private GameObject tutorialModal;
 
 	private void Awake() {
 		saveManager = SaveManager.Instance;
@@ -102,6 +103,9 @@ public class ReadyController : MonoBehaviour {
 		setScene();
 		setCharData();
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "statChange");
+		if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.READY)) return;
+        tutorialModal.SetActive(true);
+        //gm.tutorialDone(GameManager.tutorialEnum.READY);
 	}
 
     public void OffPanel() {
