@@ -19,7 +19,8 @@ public class TutorialController : MonoBehaviour {
         background.sprite = backgrounds[index];
     }
 
-    public void nextPage() {
-
+    public void nextPage(int index, GameObject obj) {
+        gameObject.SetActive(false);
+        
     }
 }
