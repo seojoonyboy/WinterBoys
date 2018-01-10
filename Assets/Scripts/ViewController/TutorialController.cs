@@ -21,10 +21,12 @@ public class TutorialController : MonoBehaviour {
         switch (type) {
             case GameManager.tutorialEnum.DOWNHLL:
                 background.sprite = backgrounds[0];
+                dh_paragraph[0].SetActive(true);
                 Screen.orientation = ScreenOrientation.Portrait;
                 break;
             case GameManager.tutorialEnum.SKIJUMP:
                 background.sprite = backgrounds[1];
+                sj_paragraph[0].SetActive(true);
                 Screen.orientation = ScreenOrientation.Landscape;
                 break;
         }
