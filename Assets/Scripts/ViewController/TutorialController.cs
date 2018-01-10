@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class TutorialController : MonoBehaviour {
     public Sprite[] backgrounds;
     public Image background;
@@ -12,6 +11,11 @@ public class TutorialController : MonoBehaviour {
     public GameObject[] sj_paragraph;
 
     private GameManager.tutorialEnum type;
+    private GameManager gm;
+    private void Start() {
+        //gm = GameManager.Instance;
+
+    }
 
     public void init(GameManager.tutorialEnum type) {
         switch (type) {
@@ -27,10 +31,11 @@ public class TutorialController : MonoBehaviour {
 
     public void nextPage(GameObject nextTarget) {
         nextTarget.SetActive(true);
+        Debug.Log("!!");
     }
 
     public void done() {
-        GameManager.Instance.tutorialDone(type);
+        //gm.tutorialDone(type);
         switch (type) {
             case GameManager.tutorialEnum.DOWNHLL:
                 loadScene("DownHill");
