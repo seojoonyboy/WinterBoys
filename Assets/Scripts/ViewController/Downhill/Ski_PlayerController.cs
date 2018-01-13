@@ -105,13 +105,8 @@ public class Ski_PlayerController : MonoBehaviour {
         beginQuarternion = transform.rotation;
     }
 
-    public void bounce(Vector3 dir) {
-        if (isBoucing) {
-            rb.velocity = Vector3.zero;
-            return;
-        }
-
-        bouceDir = dir;
+    public void bounce(Vector3 amount) {
+        rb.AddForce(amount, ForceMode2D.Impulse);
         isBoucing = true;
     }
 
@@ -128,11 +123,7 @@ public class Ski_PlayerController : MonoBehaviour {
         //sideTile에 부딪힌 경우 캐릭터의 정면벡터의 반대 방향으로 순간 힘을 가한다.
         if (isBoucing) {
             bounceCoolTime -= Time.deltaTime;
-            rb.velocity *= 0.8f;
-            if(rb.velocity.y < 0) {
-                rb.velocity = new Vector2(rb.velocity.x, 0.01f);
-            }
-            rb.AddForce(bouceDir * 10);
+            rb.velocity = rb.velocity * 0.8f;
             if (bounceCoolTime < 0) {
                 isBoucing = false;
                 bounceCoolTime = 0.2f;
