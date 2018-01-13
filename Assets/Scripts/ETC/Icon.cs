@@ -14,11 +14,10 @@ public class Icon : MonoBehaviour {
 
     private void Update() {
         currentTime += Time.deltaTime;
+        float val = currentTime / cooltime;
+        GetComponent<Image>().fillAmount = val;
 
-        if(currentTime <= cooltime) {
-            GetComponent<Image>().fillAmount = (float)(currentTime / cooltime);
-        }
-        if(GetComponent<Image>().fillAmount > 0.99) {
+        if(val > 1) {
             Destroy(transform.parent.gameObject);
         }
     }

@@ -106,6 +106,8 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     public void bounce(Vector3 amount) {
+        rb.velocity = Vector3.zero;
+
         rb.AddForce(amount, ForceMode2D.Impulse);
         isBoucing = true;
     }
