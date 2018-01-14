@@ -139,23 +139,11 @@ public class ItemGenerator : MonoBehaviour {
         int randNum = UnityEngine.Random.Range(0, 100);
         int itemIndex = getPercentageBasedIndex(type, randNum);
         GameObject item = Instantiate(items[itemIndex]);
-        
-        switch (type) {
-            case SportType.SKIJUMP:
-                item.GetComponent<Item>().item_sj = (ItemType.SJ)itemIndex;
-                break;
-            case SportType.DOWNHILL:
-                item.GetComponent<Item>().item_dh = (ItemType.DH)itemIndex;
-                break;
-            case SportType.SKELETON:
-                item.GetComponent<Item>().item_st = (ItemType.ST)itemIndex;
-                break;
-        }
+
         Vector3 itemPos = randPos(type);
         item.GetComponent<Item>().gameType = type;
         item.transform.position = itemPos;
         item.transform.SetParent(parent);
-        //Debug.Log("아이템 생성");
     }
 
     private Vector3 randPos(SportType type) {

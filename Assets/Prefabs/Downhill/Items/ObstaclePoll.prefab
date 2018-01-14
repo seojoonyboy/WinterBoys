@@ -176,6 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 2
-  item_dh: 5
+  item_dh: 6
   item_sj: 0
   item_st: 0
