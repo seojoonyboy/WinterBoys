@@ -1,0 +1,90 @@
+
+title_animation.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blue_body
+  rotate: true
+  xy: 489, 134
+  size: 113, 172
+  orig: 113, 172
+  offset: 0, 0
+  index: -1
+blue_pole_left
+  rotate: true
+  xy: 142, 48
+  size: 37, 139
+  orig: 37, 139
+  offset: 0, 0
+  index: -1
+blue_pole_right
+  rotate: true
+  xy: 2, 44
+  size: 41, 138
+  orig: 41, 138
+  offset: 0, 0
+  index: -1
+red_body
+  rotate: true
+  xy: 663, 134
+  size: 113, 172
+  orig: 113, 172
+  offset: 0, 0
+  index: -1
+red_pole_left
+  rotate: true
+  xy: 629, 95
+  size: 37, 139
+  orig: 37, 139
+  offset: 0, 0
+  index: -1
+red_pole_right
+  rotate: true
+  xy: 2, 2
+  size: 40, 138
+  orig: 40, 138
+  offset: 0, 0
+  index: -1
+ski_black
+  rotate: false
+  xy: 165, 87
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+ski_blue
+  rotate: false
+  xy: 2, 87
+  size: 161, 160
+  orig: 161, 160
+  offset: 0, 0
+  index: -1
+ski_yellow
+  rotate: false
+  xy: 327, 87
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+yellow_body
+  rotate: true
+  xy: 837, 135
+  size: 112, 172
+  orig: 112, 172
+  offset: 0, 0
+  index: -1
+yellow_pole_left
+  rotate: true
+  xy: 142, 9
+  size: 37, 139
+  orig: 37, 139
+  offset: 0, 0
+  index: -1
+yellow_pole_right
+  rotate: true
+  xy: 489, 91
+  size: 41, 138
+  orig: 41, 138
+  offset: 0, 0
+  index: -1
