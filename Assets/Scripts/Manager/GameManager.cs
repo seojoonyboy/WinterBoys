@@ -36,7 +36,9 @@ public class GameManager : Singleton<GameManager> {
     public enum tutorialEnum { SELECT, READY, SHOP, CHARACTER, DOWNHLL, SKELETON, SKIJUMP }
     private bool[] tutorialList;
     public tutorialEnum tutorialSports = tutorialEnum.SELECT;
-    
+    private GameObject modal;
+    private GameObject exitModal;
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         //RemoteSettings.ForceUpdate();
@@ -95,4 +97,28 @@ public class GameManager : Singleton<GameManager> {
         string data = ANMiniJSON.Json.Serialize(tutorialList);
         PlayerPrefs.SetString("tutorial", data);
     }
+
+    #if UNITY_ANDROID || UNITY_EDITOR
+	void Update() {
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			if(modal) modal.SetActive(false);
+			else exitModal.SetActive(true);
+		}
+	}
+#endif
+	public void gameOff() {
+		Application.Quit();
+	}
+
+	public void setQuitModal(GameObject modal) {
+		this.modal = modal;
+	}
+
+    public void setExitModal(GameObject exitModal) {
+        this.exitModal = exitModal;
+    }
+
+	public void releaseQuitModal() {
+		modal = null;
+	}
 }

@@ -7,6 +7,7 @@ public class MainSceneController : MonoBehaviour {
     private GameManager gm;
     public ReadyController ready;
     public GameObject tutorialModal;
+    public GameObject exitModal;
     private void Awake() {
         gm = GameManager.Instance;
     }
@@ -16,6 +17,8 @@ public class MainSceneController : MonoBehaviour {
         if(gm.isTutorial(GameManager.tutorialEnum.SELECT)) return;
         tutorialModal.SetActive(true);
         gm.tutorialDone(GameManager.tutorialEnum.SELECT);
+        gm.setExitModal(exitModal);
+        exitModal.GetComponentInChildren<Button>().onClick.AddListener(gm.gameOff);
     }
 
     public void LoadGame(int type) {

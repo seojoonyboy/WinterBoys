@@ -1,0 +1,20 @@
+
+button_snow.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+freeze_a
+  rotate: false
+  xy: 2, 2
+  size: 42, 47
+  orig: 42, 47
+  offset: 0, 0
+  index: -1
+freeze_b
+  rotate: false
+  xy: 46, 12
+  size: 33, 37
+  orig: 33, 37
+  offset: 0, 0
+  index: -1
