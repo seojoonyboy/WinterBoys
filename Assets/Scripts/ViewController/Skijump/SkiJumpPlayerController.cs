@@ -55,7 +55,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         buttonCoolTime,
         faintCoolTime;
 
-    private float faintCooltimeVal = 1.0f;
+    private float faintCooltimeVal = 4.0f;
     public double virtualSpeed = 0;
     private Vector2 beforeVelOfWhiteBird;
     public PlayerState playerState;
@@ -129,21 +129,33 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void FixedUpdate() {
         //기절 상태인 경우
         if (isFaint) {
-            rb.gravityScale = 0.5f;
+            if(rb.velocity.y > 0) {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
+
             faintCoolTime -= Time.deltaTime;
+            if(faintCoolTime < 0) {
+                faintCoolTime = faintCooltimeVal;
+                isFaint = false;
+            }
+
+            //if(transform.position.y < 34.0f) {
+            //    faintCoolTime -= Time.deltaTime;
+            //    if (faintCoolTime < 0) {
+            //        faintCoolTime = faintCooltimeVal;
+            //        isFaint = false;
+            //    }
+            //    else {
+            //        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.995f);
+            //    }
+            //}
+
             float tmpAngle = transform.eulerAngles.z;
             if ((tmpAngle <= 45 && tmpAngle >= 0) || (tmpAngle <= 360 && tmpAngle >= 305)) {
                 rb.angularVelocity = statBasedRotAmount;
             }
-            Vector2 val = new Vector2(0, -0.0001f);
+            Vector2 val = new Vector2(0, -0.001f);
             rb.AddForce(val);
-
-            if (faintCoolTime < 0) {
-                Debug.Log("쿨타임 종료");
-                rb.gravityScale = 1.0f;
-                faintCoolTime = faintCooltimeVal;
-                isFaint = false;
-            }
         }
 
         if (isSliding) {
@@ -173,21 +185,21 @@ public class SkiJumpPlayerController : MonoBehaviour {
             isFirstAsc = false;
         }
 
-        if(transform.position.y > 35.0f) {
+        if(transform.position.y > 35.0f && !isFaint) {
             oxygenNotIncludeTime += Time.deltaTime;
-            if(sm.warningSign)
-            sm.warningSign.SetActive(true);
-            //Debug.Log(oxygenNotIncludeTime);
+            sm.freezingSign.GetComponent<FreezingAnim>().setAnim(FreezingAnim.Type.FREEZING);
         }
         else {
             oxygenNotIncludeTime = 0;
-            sm.warningSign.SetActive(false);
+            if (!isFaint) {
+                sm.freezingSign.GetComponent<FreezingAnim>().setAnim(FreezingAnim.Type.NONE);
+            }
         }
 
         if(oxygenNotIncludeTime >= 2.0f) {
             //기절상태
-            sm.warningSign.SetActive(false);
             isFaint = true;
+            sm.freezingSign.GetComponent<FreezingAnim>().setAnim(FreezingAnim.Type.STUNNING);
             //sm.gameOver();
         }
 

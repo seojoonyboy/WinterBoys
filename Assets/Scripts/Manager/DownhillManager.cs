@@ -65,6 +65,18 @@ public class DownhillManager : MonoBehaviour {
         setUIText();
     }
 
+    public void Onpause() {
+        Time.timeScale = 0;
+    }
+
+    public void OnResume() {
+        Time.timeScale = 1.0f;
+    }
+
+    public void OnQuit() {
+        SceneManager.LoadScene("main");
+    }
+
     public float getTimeScale {
         get {
             return _timeScale;

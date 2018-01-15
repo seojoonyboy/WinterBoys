@@ -21,6 +21,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public GameObject
         warningSign,
+        freezingSign,
         character,
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
@@ -191,6 +192,18 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             arrowController.OnPointerUp();
             charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
         }
+    }
+
+    public void Onpause() {
+        Time.timeScale = 0;
+    }
+
+    public void OnResume() {
+        Time.timeScale = 1.0f;
+    }
+
+    public void OnQuit() {
+        SceneManager.LoadScene("main");
     }
 
     private void _UnstableLanding(SkiJump_UnstableLandingEvent e) {
