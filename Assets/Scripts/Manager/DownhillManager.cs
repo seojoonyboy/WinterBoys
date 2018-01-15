@@ -44,6 +44,7 @@ public class DownhillManager : MonoBehaviour {
 
     public SoundManager soundManager;
     private GameoverReason gameoverReason;
+    public GameObject pauseModal;
     private void Awake() {
         gm = GameManager.Instance;
         pm = SaveManager.Instance;
@@ -55,6 +56,7 @@ public class DownhillManager : MonoBehaviour {
     private void Start() {
         init();
         InvokeRepeating("timeDec", 1.0f, 1.0f);
+        gm.setExitModal(pauseModal);
     }
 
     private void OnDisable() {

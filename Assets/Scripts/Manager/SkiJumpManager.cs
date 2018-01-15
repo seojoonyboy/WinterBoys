@@ -18,6 +18,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public SkiJumpCM_controller CM_controller;
     public SkiJumpBoardHolder boardHolder;
     public ResultModalController modal;
+    public GameObject pauseModal;
 
     public GameObject
         warningSign,
@@ -119,6 +120,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         //statBasedSpeedForce = forceAmount * 1.8f;
 
         preFixedDeltaTime = Time.fixedDeltaTime;
+        GameManager.Instance.setExitModal(pauseModal);
     }
 
     private void endQTE(SkiJump_QTE_end e) {
