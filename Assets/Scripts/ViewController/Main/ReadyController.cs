@@ -67,10 +67,9 @@ public class ReadyController : MonoBehaviour {
 	[SerializeField] private Text maxScore;
 	[SerializeField] public PointStat speed;
 	[SerializeField] public PointStat control;
-	//[SerializeField] private Text pointLeft;
 	[SerializeField] private Button startButton;
-    //[SerializeField] private Image character;
 	[SerializeField] private GameObject tutorialModal;
+	[SerializeField] private GameObject noStaminaModal;
 
 	private void Awake() {
 		saveManager = SaveManager.Instance;
@@ -186,7 +185,10 @@ public class ReadyController : MonoBehaviour {
     }
 
 	private void startGame(string sceneName, GameManager.tutorialEnum tutorial) {
-		if(!cm.playGame()) return; //팝업창..?
+		if(!cm.playGame()) {
+			noStaminaModal.SetActive(true);
+			return;
+		}
 		bool isTutorial = GameManager.Instance.isTutorial(tutorial);
 		if(!isTutorial) {
 			GameManager.Instance.tutorialSports = tutorial;
