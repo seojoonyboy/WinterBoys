@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 72346276}
   - component: {fileID: 72346275}
   - component: {fileID: 72346279}
+  - component: {fileID: 72346280}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -240,7 +241,7 @@ Canvas:
   m_GameObject: {fileID: 72346274}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1929110245}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -291,6 +292,19 @@ MonoBehaviour:
   signupPanel: {fileID: 680254158}
   msg: {fileID: 1695621701}
   chara: {fileID: 675273117}
+--- !u!114 &72346280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 72346274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa1cdc7c67236444af4957103177c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standard_resolution: {x: 1080, y: 1920}
+  camera: {fileID: 1929110245}
 --- !u!1 &111924067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2500,7 +2514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10.8}
+  m_AnchoredPosition: {x: 0, y: 10.799999}
   m_SizeDelta: {x: 0, y: -21.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944014879
