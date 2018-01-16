@@ -71,6 +71,7 @@ public class CharacterManager : Singleton<CharacterManager> {
             players[i].time = data.time;
         }
         startTime = DateTime.Parse(PlayerPrefs.GetString("time", DateTime.UtcNow.ToString()));
+        currentCharacter = PlayerPrefs.GetInt("character", 0);
     }
 
     private void saveData() {

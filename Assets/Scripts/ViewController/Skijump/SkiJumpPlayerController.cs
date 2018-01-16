@@ -91,7 +91,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void OnEnable() {
-        characterIndex = gm.character;
+        characterIndex = CharacterManager.Instance.currentCharacter;
 
         initChar(characterIndex);                   //Spine Character 설정
         anim = characters[characterIndex].GetComponent<SkeletonAnimation>();

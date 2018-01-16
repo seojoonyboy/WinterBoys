@@ -48,11 +48,9 @@ public class SignInController : MonoBehaviour {
             signUp();
         }
         else {
-            gm.nickname = nickname;
 
             int character = PlayerPrefs.GetInt("character");
-            gm.character = character;
-            gm.nickname = PlayerPrefs.GetString("nickname");
+            CharacterManager.Instance.currentCharacter = character;
 
             SceneManager.LoadScene("Main");
         }
@@ -76,9 +74,9 @@ public class SignInController : MonoBehaviour {
 
     //최종 회원가입 버튼 처리
     public void submit() {
-        PlayerPrefs.SetInt("character", gm.character);
-        //PlayerPrefs.DeleteKey("characters");
-        CharacterManager.Instance.sold(gm.character);
+        int character = CharacterManager.Instance.currentCharacter;
+        PlayerPrefs.SetInt("character", character);
+        CharacterManager.Instance.sold(character);
         TrackEntry track = chara.AnimationState.SetAnimation(0, "approval", false);
         Invoke("changeScene", track.AnimationEnd + 0.5f);
         Invoke("submitSound", track.AnimationEnd - 0.8f);
