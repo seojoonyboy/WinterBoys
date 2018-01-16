@@ -10,6 +10,6 @@ public class AndroidBack : MonoBehaviour {
 	void OnDisable() {
 		GameManager.Instance.releaseQuitModal();
 		Time.timeScale = 1;
-		//AudioManager.Instance.playSound("start_button");
+		SoundManager.Instance.Play(SoundManager.SoundType.EFX, "gameSelBtn");
 	}
 }
