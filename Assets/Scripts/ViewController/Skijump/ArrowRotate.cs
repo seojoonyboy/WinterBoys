@@ -4,7 +4,6 @@ using UnityEngine;
 using GameEvents;
 
 public class ArrowRotate : MonoBehaviour {
-    private Rigidbody2D rb;
     private float limitTime = 1.0f;
     public float rotateAmount = 1;
     public bool canRotate;
@@ -14,7 +13,6 @@ public class ArrowRotate : MonoBehaviour {
 
     public AudioSource extraAudioSource;
     private void Start() {
-        rb = GetComponent<Rigidbody2D>();
         canRotate = false;
     }
 
@@ -37,7 +35,6 @@ public class ArrowRotate : MonoBehaviour {
     }
 
     public void OnPointerUp() {
-        Debug.Log("OnPointerUp");
         EventManager.Instance.TriggerEvent(new SkiJump_ArrowRotEndEvent());
         canRotate = false;
 
