@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 61626336026864402}
   - component: {fileID: 114603526288226574}
   - component: {fileID: 114485914932830290}
+  - component: {fileID: 50974076694805474}
   m_Layer: 0
   m_Name: BoostItem
   m_TagString: Item
@@ -85,6 +86,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136230696182516}
   m_Mesh: {fileID: 0}
+--- !u!50 &50974076694805474
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136230696182516}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61626336026864402
 BoxCollider2D:
   m_ObjectHideFlags: 1

@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 61595250225422064}
   - component: {fileID: 114253804452459030}
   - component: {fileID: 114064204506581676}
+  - component: {fileID: 50542164993707446}
   m_Layer: 0
   m_Name: Point
   m_TagString: Item
@@ -85,6 +86,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1444902496347810}
   m_Mesh: {fileID: 0}
+--- !u!50 &50542164993707446
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444902496347810}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61595250225422064
 BoxCollider2D:
   m_ObjectHideFlags: 1
