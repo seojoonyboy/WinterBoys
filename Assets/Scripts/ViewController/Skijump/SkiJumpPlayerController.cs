@@ -358,6 +358,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private void _OnLanding(SkiJump_LandingEvent e) {
         isLanding = true;
+        isFaint = false;
     }
 
     private void resume(SkiJump_Resume e) {

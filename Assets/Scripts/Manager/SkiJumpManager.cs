@@ -273,6 +273,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         Vector2 dir = new Vector2(1, 1);
         charRb.transform.position = new Vector3(charRb.transform.position.x, 2f);
         charRb.velocity = Vector3.zero;
+        charRb.transform.rotation = Quaternion.identity;
 
         charRb.AddForce(dir * 20f, ForceMode2D.Impulse);
         isQTE_occured = false;
