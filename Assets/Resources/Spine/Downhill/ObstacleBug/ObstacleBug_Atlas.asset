@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: ObstacleBug_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 5689fe37d8a64ed44b0bc8413e1a8322, type: 3}
+  atlasFile: {fileID: 4900000, guid: ec9223fc575e0b64988a9258e56cc0f6, type: 3}
   materials:
-  - {fileID: 2100000, guid: 5199caeb65d9a484e8dc627b53d4264e, type: 2}
+  - {fileID: 2100000, guid: 0e60f43527c0eba4eb7934172c8f73fb, type: 2}

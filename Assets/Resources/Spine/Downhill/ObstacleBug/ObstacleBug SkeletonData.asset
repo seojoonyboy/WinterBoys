@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: ObstacleBug SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: c36690e6c1be21b41b0eadf014e93ed2, type: 2}
-  scale: 0.0015
-  skeletonJSON: {fileID: 4900000, guid: 79dff1f11d340e64bac0f26337c556b9, type: 3}
+  - {fileID: 11400000, guid: 22665276bb500be4e8903d6552f883d7, type: 2}
+  scale: 0.0018
+  skeletonJSON: {fileID: 4900000, guid: 59a9dfc519730b54eb4239935ef0f4b9, type: 3}
   fromAnimation: []
   toAnimation: []
   duration: []

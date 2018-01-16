@@ -60,7 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5199caeb65d9a484e8dc627b53d4264e, type: 2}
+  - {fileID: 2100000, guid: 0e60f43527c0eba4eb7934172c8f73fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18426819, y: 0.16211787}
+  m_Size: {x: 0.33550298, y: 0.30400243}
   m_EdgeRadius: 0
 --- !u!114 &114399042297796460
 MonoBehaviour:
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 573bcd61c64a1fd4bae9f86aad6ab753, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: d5e8a59e894c65544941d887e147c66f, type: 2}
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
