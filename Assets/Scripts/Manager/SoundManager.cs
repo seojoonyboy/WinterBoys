@@ -21,7 +21,7 @@ public class SoundManager : Singleton<SoundManager> {
         switch (type) {
             case SoundType.BGM:
                 bgmSource.clip = targetRes.clip;
-                bgmSource.volume = volume;
+                bgmSource.volume = 0.1f;
                 bgmSource.Play();
                 break;
 
