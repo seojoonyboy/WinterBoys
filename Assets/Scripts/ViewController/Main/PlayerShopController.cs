@@ -95,6 +95,7 @@ public class PlayerShopController : MonoBehaviour {
 		text.text = canBuy ? "구매 하시겠습니까?" : "잔액이 부족합니다.";
 		closeBtnText.text = canBuy ? "아니오" : "확인";
 		modal.SetActive(true);
+		modal.GetComponent<AndroidBackOverride>().beforeModal = gameObject;
 		if(!canBuy) return;
 		btn.onClick.AddListener(() => {
 			if(isCrystal) {

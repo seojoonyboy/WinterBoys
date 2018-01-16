@@ -40,6 +40,7 @@ public class StoreController : MonoBehaviour {
 
     private void setModalButton(int crystal) {
         modalButton.transform.parent.parent.parent.gameObject.SetActive(true);
+        modalButton.GetComponentInParent<AndroidBackOverride>().beforeModal = gameObject;
         soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
         modalButton.onClick.RemoveAllListeners();
         modalButton.onClick.AddListener(() => purchaseDone(crystal));
@@ -49,7 +50,7 @@ public class StoreController : MonoBehaviour {
         saveManager.addCrystal(crystal);
         soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
         resourceController.setData();
-        modalButton.transform.parent.parent.gameObject.SetActive(false);
+        modalButton.transform.parent.parent.parent.gameObject.SetActive(false);
     }
 
     private void toggleChange(Toggle toggle, bool value) {
