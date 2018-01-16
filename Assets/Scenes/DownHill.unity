@@ -287,7 +287,7 @@ SpriteRenderer:
   m_Size: {x: 1.7, y: 2.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &152105115
 GameObject:
@@ -3097,7 +3097,6 @@ GameObject:
   - component: {fileID: 723963476}
   - component: {fileID: 952238715}
   - component: {fileID: 952238717}
-  - component: {fileID: 952238716}
   m_Layer: 9
   m_Name: Controller
   m_TagString: Player
@@ -3126,19 +3125,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &952238716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 952238713}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 377ad29e6f988ee4d855159622f79dc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimumSpacing: 350
-  limitedTime: 2
 --- !u!114 &952238717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3380,7 +3366,7 @@ Prefab:
     - target: {fileID: 224202650473584010, guid: d8c5f1f8338a80d40bd09ae75ded604e,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224202650473584010, guid: d8c5f1f8338a80d40bd09ae75ded604e,
         type: 2}
@@ -3964,7 +3950,7 @@ Prefab:
     - target: {fileID: 224156996289894668, guid: ca39e0b98bd83401e969e6156689df66,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224156996289894668, guid: ca39e0b98bd83401e969e6156689df66,
         type: 2}
@@ -5494,7 +5480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -97.90991, y: -88.8501}
+  m_AnchoredPosition: {x: -97.91016, y: -88.8501}
   m_SizeDelta: {x: 196.03, y: 177.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1686933992

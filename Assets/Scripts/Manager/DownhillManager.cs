@@ -43,7 +43,6 @@ public class DownhillManager : MonoBehaviour {
     public static event gameOverHandler OngameOver;
 
     public SoundManager soundManager;
-    private GameoverReason gameoverReason;
     public GameObject pauseModal;
     private void Awake() {
         gm = GameManager.Instance;
@@ -57,10 +56,6 @@ public class DownhillManager : MonoBehaviour {
         init();
         InvokeRepeating("timeDec", 1.0f, 1.0f);
         gm.setExitModal(pauseModal);
-    }
-
-    private void OnDisable() {
-        removeListener();
     }
 
     private void Update() {
@@ -100,8 +95,6 @@ public class DownhillManager : MonoBehaviour {
     }
 
     private void init() {
-        initEventHandler();
-
         remainTime = gm.startTime;
 
         score = 0;
@@ -116,13 +109,6 @@ public class DownhillManager : MonoBehaviour {
         soundManager.Play(SoundManager.SoundType.BGM, "dh");
     }
 
-    private void initEventHandler() {
-        _eventManager.AddListener<Downhill_RepositionCharToResume>(resetCharPosReq);
-        _eventManager.AddListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
-
-        OngameOver += OnGameOver;
-    }
-
     void timeDec() {
         if(_timeScale == 0) { return; }
 
@@ -131,7 +117,7 @@ public class DownhillManager : MonoBehaviour {
 
         if(remainTime <= 0) {
             remainTime = 0;
-            OnGameOver(GameoverReason.TIMEEND);
+            OnGameOver();
         }
     }
 
@@ -167,7 +153,7 @@ public class DownhillManager : MonoBehaviour {
         score += amount;
     }
 
-    public void OnGameOver(GameoverReason reason) {
+    public void OnGameOver() {
         setTimeScale = 0;
 
         modal.gameObject.SetActive(true);
@@ -182,8 +168,6 @@ public class DownhillManager : MonoBehaviour {
 
         modal.setGame(gameObject, SportType.DOWNHILL);
         modal.setData(playTime, (float)distOfMeter, score, (int)additionalScore, maxCombo, null);
-
-        gameoverReason = reason;
     }
 
     //이어하기 버튼 클릭
@@ -191,28 +175,10 @@ public class DownhillManager : MonoBehaviour {
         setTimeScale = 1;
 
         remainTime = 30;
-
-        //캐릭터를 이동 가는한 영역의 중앙으로 강제이동시킴(Side Tile 충돌하여 게임 종료되었을 시 재개해도 바로 다시 충돌함)
-        //회전전부 초기화
-        if(gameoverReason == GameoverReason.SIDETILE) {
-            playerController.resetQuarternion();
-            _eventManager.TriggerEvent(new Downhill_RepositionCharToResume());
-        }
     }
 
     public void addCrystal(int amount) {
         pm.addCrystal(amount);
-    }
-
-    private void resetCharPosReq(Downhill_RepositionCharToResume e) {
-        setTimeScale = 0;
-        if (playerController != null) {
-            playerController.GetComponent<CharResumePosFilter>().enabled = true;
-        }
-    }
-
-    private void finishResetCharPosReq(Downhill_RepositionCharToResumeFinished e) {
-        setTimeScale = 1;
     }
 
     //현재 받고 있는 아이템 효과 아이콘
@@ -251,11 +217,6 @@ public class DownhillManager : MonoBehaviour {
 
         var iconComp = icon.transform.Find("BlackBg").gameObject.AddComponent<Icon>();
         iconComp.cooltime = coolTime;
-    }
-
-    private void removeListener() {
-        _eventManager.RemoveListener<Downhill_RepositionCharToResume>(resetCharPosReq);
-        _eventManager.RemoveListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
     }
 
     public enum GameoverReason {
