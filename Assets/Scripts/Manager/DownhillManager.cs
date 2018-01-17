@@ -95,6 +95,9 @@ public class DownhillManager : MonoBehaviour {
     private void setUIText() {
         playTime += Time.deltaTime;
         distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
+        if(distOfMeter < 0) {
+            distOfMeter = 0;
+        }
         distanceTxt.text = distOfMeter + " M";
         float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude;
         speedTxt.text = System.Math.Truncate(speed) + "KM/S";
