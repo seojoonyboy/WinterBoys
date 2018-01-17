@@ -14,11 +14,11 @@ public class MainSceneController : MonoBehaviour {
 
     private void Start() {
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "selGame");
+        gm.setExitModal(exitModal);
+        exitModal.GetComponentInChildren<Button>().onClick.AddListener(gm.gameOff);
         if(gm.isTutorial(GameManager.tutorialEnum.SELECT)) return;
         tutorialModal.SetActive(true);
         gm.tutorialDone(GameManager.tutorialEnum.SELECT);
-        gm.setExitModal(exitModal);
-        exitModal.GetComponentInChildren<Button>().onClick.AddListener(gm.gameOff);
     }
 
     public void LoadGame(int type) {
