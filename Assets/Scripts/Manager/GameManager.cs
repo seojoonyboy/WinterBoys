@@ -13,9 +13,9 @@ public class GameManager : Singleton<GameManager> {
     public int pixelPerUnit = 1024;
 
     //유저 닉네임
-    public string nickname = null;
+    //public string nickname = null;
     //유저 캐릭터 번호
-    public int character = 0;
+    //public int character = 0;
 
     public float[]
         poll_intervals,                     //폴 사이 정보
@@ -81,7 +81,8 @@ public class GameManager : Singleton<GameManager> {
     }
 
     private void tutorialDataLoad() {
-        string data = "[false,false,false,false,false,false,false]";//PlayerPrefs.GetString("tutorial", "[false,false,false,false,false,false,false]");
+        string data = PlayerPrefs.GetString("tutorial", "[false,false,false,false,false,false,false]");
+        //string data = "[false,false,false,false,false,false,false]";
         IList list = ANMiniJSON.Json.Deserialize(data) as IList;
         tutorialList = new bool[list.Count];
         for(int i = 0; i < list.Count; i++)

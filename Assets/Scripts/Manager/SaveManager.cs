@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Analytics.MiniJSON;
 
 public class SaveData {
-	public int point = 99999;
-	public int crystal = 10000;
+	public int point = 0;
+	public int crystal = 0;
 	public int speedLv = 0;
 	public int controlLv = 0;
 	public float[] maxRecord = {0f, 0f, 0f};

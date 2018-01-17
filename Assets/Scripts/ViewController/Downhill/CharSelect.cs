@@ -12,7 +12,6 @@ public class CharSelect : MonoBehaviour {
     private int charIndex = -1;
 
     private void Awake() {
-        gm = GameManager.Instance;
         cm = CharacterManager.Instance;
     }
 
@@ -24,7 +23,7 @@ public class CharSelect : MonoBehaviour {
     private void nextCharacter() {
         charIndex++;
         if(charIndex >= 3) charIndex = 0;
-        gm.character = charIndex;
+        cm.currentCharacter = charIndex;
         string charNameString = string.Format("<color=yellow>\"{0}\"</color> 선수로\n등록하실래요?", cm.getName(charIndex));
         charStat.setData(charSprites[charIndex], charNameString, cm.getSpeed(charIndex), cm.getControl(charIndex));
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "charChangeBtn");

@@ -118,7 +118,7 @@ public class ReadyController : MonoBehaviour {
     }
 
     private void init() {
-		maxScore.text = saveManager.getRecord(sport).ToString("#0.00");
+		maxScore.text = saveManager.getRecord(sport).ToString("#0");
 		speed.percent.text = (100f * saveManager.getSpeedPercent() - 100f).ToString("00.0");
 		speed.needPoint.text = saveManager.getSpeedPointNeed().ToString();
 		setGrade(speed.grade, saveManager.getSpeedPercent());
@@ -205,6 +205,8 @@ public class ReadyController : MonoBehaviour {
 	public void setCharData() {
 		int num = cm.currentCharacter;
 		charStat.setData(characterSprite[num], cm.getName(num), cm.getSpeed(num), cm.getControl(num));
+		PlayerPrefs.SetInt("character", num);
+		init();
 	}
 
 	private void FixedUpdate() {
