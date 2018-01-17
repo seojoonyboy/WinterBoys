@@ -121,6 +121,8 @@ public class CharResumePosFilter : MonoBehaviour {
         float middle = (xPoses.min + xPoses.max) / 2.0f;
         transform.position = new Vector3(middle, transform.position.y, -0.2f);
         enabled = false;
+
+        EventManager.Instance.TriggerEvent(new Downhill_RepositionCharToResumeFinished());
     }
 
     class Poses {

@@ -60,7 +60,7 @@ public class Ski_PlayerController : MonoBehaviour {
         playerPos,
         bouceDir;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private float additionalForceByEffect = 1f;
     private float additionalAngularForceByEffect = 1.0f;
 
@@ -131,6 +131,11 @@ public class Ski_PlayerController : MonoBehaviour {
 
         changePlayerImage();
 
+        Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        if(pos.x < 0 || pos.x > 1) {
+            dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
+        }
+
         if (dM.isTimeUp) {
             rb.MoveRotation(180);
             rb.velocity *= 0.9995f;
@@ -138,7 +143,6 @@ public class Ski_PlayerController : MonoBehaviour {
             //selectedCharacters[5].gameObject.SetActive(true);
             
             if (!isPlayedDeadAnim) {
-                Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
                 //카메라 중앙 기준 왼쪽인 경우
                 if(pos.x < 0.5f) {
                     //flip anim
@@ -367,7 +371,7 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     void DeadAnimEnd() {
-        dM.OnGameOver();
+        dM.OnGameOver(DownhillManager.GameoverReason.TIMEEND);
     }
 
     public void OnPointerDown(int i) {

@@ -41,6 +41,7 @@ public class DownhillManager : MonoBehaviour {
 
     public delegate void gameOverHandler(GameoverReason reason);
     public static event gameOverHandler OngameOver;
+    private GameoverReason gameoverReason;
 
     public SoundManager soundManager;
     public GameObject pauseModal;
@@ -57,6 +58,10 @@ public class DownhillManager : MonoBehaviour {
         init();
         InvokeRepeating("timeDec", 1.0f, 1.0f);
         gm.setExitModal(pauseModal);
+    }
+
+    private void OnDisable() {
+        removeListener();
     }
 
     private void Update() {
@@ -154,7 +159,7 @@ public class DownhillManager : MonoBehaviour {
         score += amount;
     }
 
-    public void OnGameOver() {
+    public void OnGameOver(GameoverReason reason) {
         Debug.Log("게임 종료");
         setTimeScale = 0;
 
@@ -170,6 +175,26 @@ public class DownhillManager : MonoBehaviour {
 
         modal.setGame(gameObject, SportType.DOWNHILL);
         modal.setData(playTime, (float)distOfMeter, score, (int)additionalScore, maxCombo, null);
+
+        gameoverReason = reason;
+    }
+
+    private void initEventHandler() {
+        _eventManager.AddListener<Downhill_RepositionCharToResume>(resetCharPosReq);
+        _eventManager.AddListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
+
+        OngameOver += OnGameOver;
+    }
+
+    private void resetCharPosReq(Downhill_RepositionCharToResume e) {
+        setTimeScale = 0;
+        if (playerController != null) {
+            playerController.GetComponent<CharResumePosFilter>().enabled = true;
+        }
+    }
+
+    private void finishResetCharPosReq(Downhill_RepositionCharToResumeFinished e) {
+        setTimeScale = 1;
     }
 
     //이어하기 버튼 클릭
@@ -178,6 +203,13 @@ public class DownhillManager : MonoBehaviour {
 
         remainTime = 30;
         isTimeUp = false;
+
+        if (gameoverReason == GameoverReason.SIDETILE) {
+            playerController.transform.position = new Vector3(0, playerController.transform.position.y, -0.2f);
+            playerController.rb.velocity = Vector3.zero;
+            playerController.resetQuarternion();
+            _eventManager.TriggerEvent(new Downhill_RepositionCharToResume());
+        }
     }
 
     public void addCrystal(int amount) {
@@ -220,6 +252,11 @@ public class DownhillManager : MonoBehaviour {
 
         var iconComp = icon.transform.Find("BlackBg").gameObject.AddComponent<Icon>();
         iconComp.cooltime = coolTime;
+    }
+
+    private void removeListener() {
+        _eventManager.RemoveListener<Downhill_RepositionCharToResume>(resetCharPosReq);
+        _eventManager.RemoveListener<Downhill_RepositionCharToResumeFinished>(finishResetCharPosReq);
     }
 
     public enum GameoverReason {
