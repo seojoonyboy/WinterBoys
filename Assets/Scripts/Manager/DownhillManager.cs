@@ -102,6 +102,7 @@ public class DownhillManager : MonoBehaviour {
 
     private void init() {
         remainTime = gm.startTime;
+        setTimeScale = 0;
 
         score = 0;
         comboNum = 0;
