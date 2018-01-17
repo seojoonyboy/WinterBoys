@@ -3,7 +3,7 @@
   <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
   <uses-feature android:glEsVersion="0x00020000" />
   <uses-sdk android:minSdkVersion="18" android:targetSdkVersion="26" />
-  <permission android:name="com.feedbackloop.wintersports.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+  <permission android:name="kr.fbl.winterboy.permission.C2D_MESSAGE" android:protectionLevel="signature" />
   <application android:icon="@drawable/app_icon" android:label="@string/app_name" android:debuggable="false">
     <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="\ 487564575414" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
@@ -12,7 +12,7 @@
       <intent-filter>
         <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         <action android:name="com.androidnative.push.intent.OPEN" />
-        <category android:name="com.feedbackloop.wintersports" />
+        <category android:name="kr.fbl.winterboy" />
       </intent-filter>
     </receiver>
     <receiver android:name="com.androidnative.features.notifications.LocalNotificationReceiver" android:enabled="true" android:exported="true">
@@ -25,7 +25,7 @@
     <service android:name="com.androidnative.gcm.GcmIntentService" />
     <service android:name="com.androidnative.features.notifications.LocalNotificationService" />
     <activity android:name="com.unity3d.player.UnityPlayerActivity" android:label="@string/app_name" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" android:launchMode="singleTask" android:screenOrientation="landscape">
-      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="false" />
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -37,7 +37,7 @@
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="oauth" android:host="com.feedbackloop.wintersports" />
+        <data android:scheme="oauth" android:host="kr.fbl.winterboy" />
       </intent-filter>
     </activity>
     <activity android:name="com.androidnative.OAuthProxyActivity" android:launchMode="singleTask" android:label="@string/app_name" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -57,5 +57,5 @@
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   <uses-permission android:name="android.permission.GET_ACCOUNTS" />
   <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
-  <uses-permission android:name="com.feedbackloop.wintersports.permission.C2D_MESSAGE" />
+  <uses-permission android:name="kr.fbl.winterboy.permission.C2D_MESSAGE" />
 </manifest>

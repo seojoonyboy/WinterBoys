@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Firebase.Analytics;
 
 public class GameManager : Singleton<GameManager> {
     protected GameManager() { }
@@ -44,6 +45,7 @@ public class GameManager : Singleton<GameManager> {
         DontDestroyOnLoad(gameObject);
         //RemoteSettings.ForceUpdate();
         init();
+        FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
     }
     public void init() {
         Application.targetFrameRate = 60;

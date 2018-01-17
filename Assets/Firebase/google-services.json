@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "487564575414",
+    "firebase_url": "https://winterboy-50066591.firebaseio.com",
+    "project_id": "winterboy-50066591",
+    "storage_bucket": "winterboy-50066591.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487564575414:android:6005a44a19dab915",
+        "android_client_info": {
+          "package_name": "kr.fbl.winterboy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487564575414-7tce2nhvmevnt22gcq115kthjut0u6ap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZHwjHpghQwLjtADVqgwkeaWzY2J80tY4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
