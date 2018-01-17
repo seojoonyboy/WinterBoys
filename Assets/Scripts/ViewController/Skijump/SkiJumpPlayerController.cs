@@ -62,6 +62,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private float preGravityScale;
 
     public AudioSource extraAudioSource;
+    public GameObject stunObj;
     private void Awake() {
         _eventManger = EventManager.Instance;
         soundManager = SoundManager.Instance;
@@ -129,7 +130,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void FixedUpdate() {
         //기절 상태인 경우
         if (isFaint) {
-            if(rb.velocity.y > 0) {
+            if (!stunObj.activeSelf) {
+                stunObj.SetActive(true);
+            }
+            if (rb.velocity.y > 0) {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
 
@@ -156,6 +160,9 @@ public class SkiJumpPlayerController : MonoBehaviour {
             }
             Vector2 val = new Vector2(0, -0.001f);
             rb.AddForce(val);
+        }
+        else {
+            stunObj.SetActive(false);
         }
 
         if (isSliding) {
