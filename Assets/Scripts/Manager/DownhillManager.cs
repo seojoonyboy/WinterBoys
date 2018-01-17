@@ -127,6 +127,10 @@ public class DownhillManager : MonoBehaviour {
         }
     }
 
+    public void StartButtonPressed() {
+        setTimeScale = 1;
+    }
+
     public void passNumInc() {
         passNum++;
         if(passNum >= gm.bonus_times[0]) {

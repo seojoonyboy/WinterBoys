@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GameEvents;
 
 public class ArrowRotate : MonoBehaviour {
@@ -12,13 +13,13 @@ public class ArrowRotate : MonoBehaviour {
     private int rotCnt = 0;
 
     public AudioSource extraAudioSource;
+    public Slider slider;
     private void Start() {
         canRotate = false;
     }
 
     private void Update() {
         limitTime -= Time.fixedUnscaledDeltaTime;
-        Debug.Log(transform.right);
         if (canRotate) {
             if(transform.eulerAngles.z < 90) {
                 transform.Rotate(Vector3.forward * 2f);
@@ -28,6 +29,8 @@ public class ArrowRotate : MonoBehaviour {
         if (limitTime < 0) {
             OnPointerUp();
         }
+
+        slider.value = transform.eulerAngles.z;
     }
 
     public void OnPointerDown() {
