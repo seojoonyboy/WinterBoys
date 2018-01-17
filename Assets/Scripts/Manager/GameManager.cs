@@ -117,8 +117,14 @@ public class GameManager : Singleton<GameManager> {
             rect.transform.localScale = new Vector3(48, 48, 0);
             rect.localPosition = new Vector3(1, 1, 0);
             Vector3 pos = Input.mousePosition;
-            pos.z = 10.0f;
+            if (scene.name == "Tutorial") {
+                pos.z = 100;
+            }
+            else {
+                pos.z = 10.0f;
+            }
             obj.transform.position = Camera.main.ScreenToWorldPoint(pos);
+            
         }
 	}
 #endif
