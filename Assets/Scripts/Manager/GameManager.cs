@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
     protected GameManager() { }
@@ -11,7 +12,7 @@ public class GameManager : Singleton<GameManager> {
     public percentages st_percentages;
 
     public int pixelPerUnit = 1024;
-
+    public GameObject touchEffect;
     //유저 닉네임
     //public string nickname = null;
     //유저 캐릭터 번호
@@ -105,6 +106,20 @@ public class GameManager : Singleton<GameManager> {
 			if(modal) modal.SetActive(false);
 			else exitModal.SetActive(true);
 		}
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name == "DownHill" || scene.name == "SkiJump" || scene.name == "Skeleton") {
+            return;
+        }
+        if (Input.GetMouseButtonDown(0)) {
+            GameObject obj = Instantiate(touchEffect);
+            obj.transform.SetParent(GameObject.Find("Canvas").transform);
+            RectTransform rect = obj.GetComponent<RectTransform>();
+            rect.transform.localScale = new Vector3(48, 48, 0);
+            rect.localPosition = new Vector3(1, 1, 0);
+            Vector3 pos = Input.mousePosition;
+            pos.z = 10.0f;
+            obj.transform.position = Camera.main.ScreenToWorldPoint(pos);
+        }
 	}
 #endif
 	public void gameOff() {

@@ -1,0 +1,13 @@
+
+touchEffect.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+freezing
+  rotate: false
+  xy: 2, 2
+  size: 71, 71
+  orig: 71, 71
+  offset: 0, 0
+  index: -1

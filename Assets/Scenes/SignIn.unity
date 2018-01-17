@@ -602,6 +602,12 @@ Prefab:
       propertyPath: points.Array.data[0]
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114211051410775464, guid: 0d22755868a635d409f8fc64f551ecdb,
+        type: 2}
+      propertyPath: touchEffect
+      value: 
+      objectReference: {fileID: 1265278443057628, guid: 7c7a707b5d0f67d4a8cf2bead32fc393,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d22755868a635d409f8fc64f551ecdb, type: 2}
   m_IsPrefabParent: 0
