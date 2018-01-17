@@ -1,0 +1,27 @@
+﻿
+Starttouch.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect
+  rotate: false
+  xy: 2, 2
+  size: 171, 84
+  orig: 171, 84
+  offset: 0, 0
+  index: -1
+finger_1
+  rotate: false
+  xy: 2, 88
+  size: 298, 344
+  orig: 298, 344
+  offset: 0, 0
+  index: -1
+finger_2
+  rotate: false
+  xy: 302, 135
+  size: 298, 297
+  orig: 298, 297
+  offset: 0, 0
+  index: -1
