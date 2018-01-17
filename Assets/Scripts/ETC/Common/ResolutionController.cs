@@ -8,13 +8,17 @@ public class ResolutionController : MonoBehaviour {
 
     private float rate;
 
-    void Start() {
+    private void Update() {
+        Setting();
+    }
+
+    void Setting() {
         rate = standard_resolution.y / standard_resolution.x;
 
         float mobile_rate = (float)Screen.height / (float)Screen.width;
 
         //위아래가 길어지는 경우
-        if(mobile_rate > rate) {
+        if (mobile_rate > rate) {
             float h = rate / mobile_rate;
 
             Rect fixR = camera.GetComponent<Camera>().GetComponent<Camera>().rect;
