@@ -44,6 +44,7 @@ public class DownhillManager : MonoBehaviour {
 
     public SoundManager soundManager;
     public GameObject pauseModal;
+    public bool isTimeUp = false;
     private void Awake() {
         gm = GameManager.Instance;
         pm = SaveManager.Instance;
@@ -117,7 +118,7 @@ public class DownhillManager : MonoBehaviour {
 
         if(remainTime <= 0) {
             remainTime = 0;
-            OnGameOver();
+            isTimeUp = true;
         }
     }
 
@@ -154,6 +155,7 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void OnGameOver() {
+        Debug.Log("게임 종료");
         setTimeScale = 0;
 
         modal.gameObject.SetActive(true);
@@ -175,6 +177,7 @@ public class DownhillManager : MonoBehaviour {
         setTimeScale = 1;
 
         remainTime = 30;
+        isTimeUp = false;
     }
 
     public void addCrystal(int amount) {

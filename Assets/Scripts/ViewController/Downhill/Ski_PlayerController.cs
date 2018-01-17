@@ -25,13 +25,18 @@ public class Ski_PlayerController : MonoBehaviour {
         rotateDecCoolTime,
         bounceCoolTime;
 
-    bool 
+    bool
         buttonDown = false,
-        isBoucing = false;
+        isBoucing = false,
+        isPlayedDeadAnim = false;
 
     public PlayerState playerState;
 
-    public GameObject playerImage;
+    public GameObject 
+        playerImage,
+        plate,
+        snowFricEffect;
+
     public GameObject[]
         blue_chars,
         red_chars,
@@ -62,6 +67,8 @@ public class Ski_PlayerController : MonoBehaviour {
     public AudioSource audioSource;
     private Quaternion beginQuarternion;
     private Vector2 beginEular;
+    private SkeletonAnimation anim;
+
     [SerializeField] private Material[] materials;
 
     private void Awake() {
@@ -120,6 +127,37 @@ public class Ski_PlayerController : MonoBehaviour {
         if (dM.getTimeScale == 0) {
             rb.velocity = Vector3.zero;
             return;
+        }
+
+        changePlayerImage();
+
+        if (dM.isTimeUp) {
+            rb.MoveRotation(180);
+            rb.velocity *= 0.9995f;
+            offSpines(5);
+            //selectedCharacters[5].gameObject.SetActive(true);
+            
+            if (!isPlayedDeadAnim) {
+                Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+                //카메라 중앙 기준 왼쪽인 경우
+                if(pos.x < 0.5f) {
+                    //flip anim
+                    anim.initialFlipX = true;
+                }
+
+                else {
+                    anim.initialFlipX = false;
+                }
+                anim.Initialize(true);
+
+                Spine.TrackEntry track = anim.AnimationState.SetAnimation(0, "die", false);
+                Invoke("DeadAnimEnd", track.animationEnd);
+                isPlayedDeadAnim = true;
+            }
+            return;
+        }
+        else {
+            isPlayedDeadAnim = false;
         }
 
         //sideTile에 부딪힌 경우 캐릭터의 정면벡터의 반대 방향으로 순간 힘을 가한다.
@@ -280,8 +318,6 @@ public class Ski_PlayerController : MonoBehaviour {
         else {
             rb.velocity = AdditionalForce() + RightVelocity() * driftFactor;
         }
-
-        changePlayerImage();
     }
 
     //전방으로의 가속도 부여
@@ -326,6 +362,12 @@ public class Ski_PlayerController : MonoBehaviour {
                 offSpines(3);
             }
         }
+
+        anim = selectedCharacters[5].GetComponent<SkeletonAnimation>();
+    }
+
+    void DeadAnimEnd() {
+        dM.OnGameOver();
     }
 
     public void OnPointerDown(int i) {
@@ -359,6 +401,16 @@ public class Ski_PlayerController : MonoBehaviour {
             }
             selectedCharacters[index].SetActive(true);
             preObj = selectedCharacters[index];
+
+            //죽는 모션
+            if(index == 5) {
+                plate.SetActive(false);
+                snowFricEffect.SetActive(false);
+            }
+            else {
+                plate.SetActive(true);
+                snowFricEffect.SetActive(true);
+            }
         }
     }
 

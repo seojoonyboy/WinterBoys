@@ -1,0 +1,62 @@
+﻿
+red_dead.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+accessory
+  rotate: true
+  xy: 314, 2
+  size: 53, 60
+  orig: 53, 60
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 314, 57
+  size: 196, 300
+  orig: 196, 300
+  offset: 0, 0
+  index: -1
+pole_left
+  rotate: false
+  xy: 937, 12
+  size: 64, 241
+  orig: 64, 241
+  offset: 0, 0
+  index: -1
+pole_right
+  rotate: false
+  xy: 865, 12
+  size: 70, 241
+  orig: 70, 241
+  offset: 0, 0
+  index: -1
+ski
+  rotate: false
+  xy: 2, 21
+  size: 310, 232
+  orig: 310, 232
+  offset: 0, 0
+  index: -1
+snow_effect
+  rotate: false
+  xy: 616, 23
+  size: 247, 230
+  orig: 247, 230
+  offset: 0, 0
+  index: -1
+snow_effect_s
+  rotate: false
+  xy: 376, 30
+  size: 22, 25
+  orig: 22, 25
+  offset: 0, 0
+  index: -1
+snow_effect_ss
+  rotate: true
+  xy: 1003, 237
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1

@@ -151,4 +151,5 @@ namespace GameEvents {
     public class SkiJump_Resume : GameEvent { }
     public class Skeleton_Fall : GameEvent { }
     public class Skeleton_Rise : GameEvent { }
+    public class Downhill_TimesUp : GameEvent { }
 }
