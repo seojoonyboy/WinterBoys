@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 2
-  item_dh: 0
+  item_dh: 9
   item_sj: 7
   item_st: 0
 --- !u!114 &114651955209174874
