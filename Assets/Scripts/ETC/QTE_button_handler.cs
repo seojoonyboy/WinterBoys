@@ -20,10 +20,6 @@ public class QTE_button_handler : MonoBehaviour {
         animator.Play("QTE", -1, 0);
     }
 
-    private void OnDisable() {
-        Debug.Log("ON DISABLE");
-    }
-
     public void OnClick() {
         animator.enabled = false;
         _eventManager.TriggerEvent(new SkiJump_QTE_end());

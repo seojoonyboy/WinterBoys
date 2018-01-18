@@ -326,11 +326,18 @@ public class Ski_PlayerController : MonoBehaviour {
 
     //전방으로의 가속도 부여
     Vector3 ForwardForce() {
-        return transform.up * Vector3.Dot(-Vector3.up, transform.up) * statBasedSpeedForce;
+        Vector3 dotVal = transform.up * Vector3.Dot(-Vector3.up, transform.up) * statBasedSpeedForce;
+        Vector3 dotVal2 = transform.right * Vector3.Dot(-Vector3.up, -transform.right) * statBasedSpeedForce;
+        Vector3 forceVal = new Vector3(dotVal2.x, dotVal.y);
+        return forceVal;
     }
 
     //추가적인 전방으로의 속도
     Vector2 AdditionalForce() {
+        Vector2 forceVal = GetComponent<Rigidbody2D>().velocity;
+        if (forceVal.x < 1) {
+            forceVal = new Vector2(2.1f, forceVal.y);
+        }
         return transform.up * Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.up);
     }
 
