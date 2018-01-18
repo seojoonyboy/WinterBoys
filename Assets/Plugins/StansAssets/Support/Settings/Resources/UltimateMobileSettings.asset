@@ -12,7 +12,40 @@ MonoBehaviour:
   m_Name: UltimateMobileSettings
   m_EditorClassIdentifier: 
   ToolbarSelectedIndex: 0
-  InAppProducts: []
+  InAppProducts:
+  - IsOpen: 1
+    id: crystal100
+    Type: 0
+    PriceTier: 0
+    Texture: {fileID: 0}
+    DisplayName: "\uC218\uC815 100\uAC1C"
+    Description: 
+    IOSId: kr.fbl.winterboy.crystal100i
+    AndroidId: kr.fbl.winterboy.crystal100
+    WP8Id: 
+    AmazonId: 
+  - IsOpen: 1
+    id: crystal400
+    Type: 0
+    PriceTier: 3
+    Texture: {fileID: 0}
+    DisplayName: "\uC218\uC815 400\uAC1C"
+    Description: 
+    IOSId: kr.fbl.winterboy.crystal400i
+    AndroidId: kr.fbl.winterboy.crystal400
+    WP8Id: 
+    AmazonId: 
+  - IsOpen: 1
+    id: crystal1000
+    Type: 0
+    PriceTier: 9
+    Texture: {fileID: 0}
+    DisplayName: "\uC218\uC815 1000\uAC1C"
+    Description: 
+    IOSId: kr.fbl.winterboy.crystal1000i
+    AndroidId: kr.fbl.winterboy.crystal1000
+    WP8Id: 
+    AmazonId: 
   TransactionsHandlingMode: 0
   InApps_EditorFillRateIndex: 4
   InApps_EditorFillRate: 100
@@ -21,21 +54,21 @@ MonoBehaviour:
   Leaderboards:
   - id: DownHill
     IsOpen: 1
-    IOSId: kr.fbl.dev.wintersports.downhill
+    IOSId: kr.fbl.winterboy.downhill
     AndroidId: CgkItoX0qJgOEAIQAA
     AmazonId: new leaderboard1
     _Description: 
     _Texture: {fileID: 0}
   - id: Skeleton
     IsOpen: 1
-    IOSId: kr.fbl.dev.wintersports.skeleton
+    IOSId: kr.fbl.winterboy.skeleton
     AndroidId: CgkItoX0qJgOEAIQAQ
     AmazonId: new leaderboard2
     _Description: 
     _Texture: {fileID: 0}
   - id: SkiJump
     IsOpen: 1
-    IOSId: kr.fbl.dev.wintersports.skijump
+    IOSId: kr.fbl.winterboy.skijump
     AndroidId: CgkItoX0qJgOEAIQAg
     AmazonId: new leaderboard3
     _Description: 

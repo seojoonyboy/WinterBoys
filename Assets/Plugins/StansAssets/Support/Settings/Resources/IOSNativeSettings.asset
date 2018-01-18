@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnableGameCenterAPI: 1
   EnableInAppsAPI: 1
-  EnableCameraAPI: 1
-  EnableSocialSharingAPI: 1
+  EnableCameraAPI: 0
+  EnableSocialSharingAPI: 0
   EnablePickerAPI: 0
   EnableMediaPlayerAPI: 0
   EnableReplayKit: 0
@@ -27,8 +27,8 @@ MonoBehaviour:
   EnableAppEventsAPI: 0
   EnableUserNotificationsAPI: 0
   EnablePermissionAPI: 0
-  AppleId: 1301761262
-  ToolbarIndex: 0
+  AppleId: 1336879701
+  ToolbarIndex: 5
   ExpandMoreActionsMenu: 1
   ExpandModulesSettings: 1
   InAppsEditorTesting: 1
@@ -36,28 +36,64 @@ MonoBehaviour:
   PromotedPurchaseSupport: 1
   TransactionsHandlingMode: 0
   DefaultStoreProductsView: []
-  InAppProducts: []
+  InAppProducts:
+  - IsOpen: 1
+    _IsAvailable: 0
+    _Id: kr.fbl.winterboy.crystal100i
+    _DisplayName: "\uC218\uC815 100\uAC1C"
+    _Description: 
+    _Price: 0.99
+    _LocalizedPrice: 
+    _CurrencySymbol: $
+    _CurrencyCode: USD
+    _Texture: {fileID: 0}
+    _ProductType: 0
+    _PriceTier: 0
+  - IsOpen: 1
+    _IsAvailable: 0
+    _Id: kr.fbl.winterboy.crystal400i
+    _DisplayName: "\uC218\uC815 400\uAC1C"
+    _Description: 
+    _Price: 3.99
+    _LocalizedPrice: 
+    _CurrencySymbol: $
+    _CurrencyCode: USD
+    _Texture: {fileID: 0}
+    _ProductType: 0
+    _PriceTier: 3
+  - IsOpen: 1
+    _IsAvailable: 0
+    _Id: kr.fbl.winterboy.crystal1000i
+    _DisplayName: "\uC218\uC815 1000\uAC1C"
+    _Description: 
+    _Price: 9.99
+    _LocalizedPrice: 
+    _CurrencySymbol: $
+    _CurrencyCode: USD
+    _Texture: {fileID: 0}
+    _ProductType: 0
+    _PriceTier: 9
   ShowStoreKitProducts: 1
   Leaderboards:
   - IsOpen: 1
     _info:
       Title: Skeleton
       Description: 
-      Identifier: kr.fbl.dev.wintersports.skeleton
+      Identifier: kr.fbl.winterboy.skeleton
       Texture: {fileID: 0}
       MaxRange: 0
   - IsOpen: 1
     _info:
       Title: SkiJump
       Description: 
-      Identifier: kr.fbl.dev.wintersports.skijump
+      Identifier: kr.fbl.winterboy.skijump
       Texture: {fileID: 0}
       MaxRange: 0
   - IsOpen: 1
     _info:
       Title: DownHill
       Description: 
-      Identifier: kr.fbl.dev.wintersports.downhill
+      Identifier: kr.fbl.winterboy.downhill
       Texture: {fileID: 0}
       MaxRange: 0
   Achievements: []
