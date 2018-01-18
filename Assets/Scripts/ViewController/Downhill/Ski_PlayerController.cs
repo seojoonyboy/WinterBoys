@@ -12,7 +12,8 @@ public class Ski_PlayerController : MonoBehaviour {
     public float angleV = 45.0f;
     public float input_sensitive = 5.0f;        //캐릭터 회전력
     private float statBasedRotSenstive;         //Stat을 적용한 캐릭터 회전력
-    public int rotateDir = 1;
+    public int rotateDir = 1;                   //좌측회전 버튼 : -1, 우측회전 버튼 : 1
+
     public float virtualPlayerPosOfY;
 
     private float
@@ -29,8 +30,6 @@ public class Ski_PlayerController : MonoBehaviour {
         buttonDown = false,
         isBoucing = false,
         isPlayedDeadAnim = false;
-
-    public PlayerState playerState;
 
     public GameObject 
         playerImage,
@@ -68,7 +67,7 @@ public class Ski_PlayerController : MonoBehaviour {
     private Quaternion beginQuarternion;
     private Vector2 beginEular;
     private SkeletonAnimation anim;
-
+    private CharStateMachine stateMachine;
     [SerializeField] private Material[] materials;
 
     private void Awake() {
@@ -107,9 +106,9 @@ public class Ski_PlayerController : MonoBehaviour {
         statBasedSpeedForce = speedForce * pm.getSpeedPercent();
         statBasedRotSenstive = input_sensitive * pm.getControlPercent();
 
-        playerState = PlayerState.NORMAL;
-
         beginQuarternion = transform.rotation;
+
+        stateMachine = GetComponent<CharStateMachine>();
     }
 
     public void bounce(Vector3 amount) {
@@ -180,83 +179,68 @@ public class Ski_PlayerController : MonoBehaviour {
         }
         virtualPlayerPosOfY = -1 * selectedCharacters[0].transform.position.y * 3.0f;
 
+        //부스팅 효과를 받는 중이면 추가 AddForce
         rb.AddForce(ForwardForce() * additionalForceByEffect);
 
+        //항상 제자리나 아래방향으로 이동하도록 추가 제어
         if(rb.velocity.y >= 0) {
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
 
         //부스팅 효과
-        if(playerState == PlayerState.BOOSTING) {
+        if(stateMachine.array[0]) {
             boostCoolTime -= Time.deltaTime;
             if(boostCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                additionalForceByEffect = 1.0f;
-            }
-            else {
-                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
-            }
-        }
+                stateMachine.array.Set(0, false);
 
-        //눈덩이 과속방지턱 효과
-        if(playerState == PlayerState.SPEED_REDUCING) {
-            speedReduceCoolTime -= Time.deltaTime;
-            if(speedReduceCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                additionalForceByEffect = 1.0f;
-            }
-            else {
-                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
             }
         }
 
         //곰 충돌 효과
-        if(playerState == PlayerState.SPEED_ZERO) {
+        if(stateMachine.array[1]) {
             speedZeroCoolTime -= Time.deltaTime;
             if(speedZeroCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                additionalForceByEffect = 1.0f;
+                stateMachine.array.Set(1, false);
+
             }
-            else {
-                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
-            }
+            rb.velocity = Vector2.zero;
         }
 
         //나무 충돌 효과
-        if(playerState == PlayerState.TREECRASH) {
+        if(stateMachine.array[2]) {
             treeSpeedZeroCoolTime -= Time.deltaTime;
             if(treeSpeedZeroCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                additionalForceByEffect = 1.0f;
+                stateMachine.array.Set(2, false);
             }
             else {
-                rb.AddForce(AdditionalForceByEffect(additionalForceByEffect));
+                rb.velocity = Vector2.zero;
             }
         }
 
         //날벌레 효과
-        if(playerState == PlayerState.REVERSE_ROTATE) {
+        if(stateMachine.array[3]) {
             reverseCoolTime -= Time.deltaTime;
             if(reverseCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
+                stateMachine.array.Set(3, false);
+
             }
         }
 
         //눈에 박혀있는 폴 효과
-        if (playerState == PlayerState.ROTATING_INC) {
+        if (stateMachine.array[4]) {
             rotateIncCoolTime -= Time.deltaTime;
             if(rotateIncCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                additionalAngularForceByEffect = 1.0f;
+                stateMachine.array.Set(4, false);
+
             }
         }
 
         //눈에 뿌려진 검은 기름 효과
-        if (playerState == PlayerState.ROTATING_DEC) {
+        if (stateMachine.array[5]) {
             rotateDecCoolTime -= Time.deltaTime;
             if(rotateDecCoolTime < 0) {
-                playerState = PlayerState.NORMAL;
-                additionalAngularForceByEffect = 1.0f;
+                stateMachine.array.Set(5, false);
+
             }
         }
 
@@ -268,7 +252,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 audioSource.Play();
             }
 
-            if (playerState == PlayerState.REVERSE_ROTATE) {
+            if (stateMachine.array[3]) {
                 rb.angularVelocity += statBasedRotSenstive * -rotateDir * additionalAngularForceByEffect;
             }
             else {
@@ -431,86 +415,70 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     public void itemCheck(GameObject obj) {
-        if(playerState == PlayerState.BOOSTING) {
+        //부스팅 효과 적용중일 때 다른 효과 무시
+        if(stateMachine.array[0]) {
             return;
         }
+        //아이템 태그가 없는 경우 무시
+        if(obj.tag != "Item") { return; }
+        Item item = obj.GetComponent<Item>();
+        //아이템 컴포넌트가 없는 경우 무시
+        if (item == null) { return; }
+
         float cooltime = 0;
-        if (obj.tag == "Item") {
-            Item item = obj.GetComponent<Item>();
-            switch (item.item_dh) {
-                case ItemType.DH.BOOSTING_HILL:
-                    playerState = PlayerState.BOOSTING;
-                    additionalForceByEffect = 1.0f;
-                    boostCoolTime = itemCoolTimes.boosting_cooltime;
+        switch (item.item_dh) {
+            case ItemType.DH.BOOSTING_HILL:
+                stateMachine.array.Set(0, true);
 
-                    cooltime = boostCoolTime;
-                    break;
-                case ItemType.DH.POINT:
-                    dM.scoreInc(50);
-                    break;
-                case ItemType.DH.ANTI_SPEED_HILL:
-                    playerState = PlayerState.SPEED_REDUCING;
-                    additionalForceByEffect = 0.3f;
-                    speedReduceCoolTime = itemCoolTimes.speedReduce_cooltime;
+                boostCoolTime = itemCoolTimes.boosting_cooltime;
+                cooltime = boostCoolTime;
 
-                    cooltime = speedReduceCoolTime;
-                    break;
-                case ItemType.DH.ENEMY_BEAR:
-                    playerState = PlayerState.SPEED_ZERO;
-                    additionalForceByEffect = 0;
-                    speedZeroCoolTime = itemCoolTimes.speedZero_cooltime;
+                additionalForceByEffect = 1.0f;
+                break;
+            case ItemType.DH.ENEMY_BEAR:
+                stateMachine.array.Set(1, true);
 
-                    cooltime = speedZeroCoolTime;
-                    break;
-                case ItemType.DH.ENEMY_BUGS:
-                    playerState = PlayerState.REVERSE_ROTATE;
-                    reverseCoolTime = itemCoolTimes.reverseRot_cooltime;
+                speedZeroCoolTime = itemCoolTimes.speedZero_cooltime;
+                cooltime = speedZeroCoolTime;
+                break;
+            case ItemType.DH.TREE:
+                stateMachine.array.Set(2, true);
 
-                    cooltime = reverseCoolTime;
-                    break;
-                case ItemType.DH.OBSTACLE_POLL:
-                    playerState = PlayerState.ROTATING_INC;
-                    additionalAngularForceByEffect = 1.5f;
-                    rotateIncCoolTime = itemCoolTimes.increaseRot_cooltime;
+                treeSpeedZeroCoolTime = itemCoolTimes.treeSpeedZero_cooltime;
+                cooltime = treeSpeedZeroCoolTime;
+                break;
+            case ItemType.DH.ENEMY_BUGS:
+                stateMachine.array.Set(3, true);
 
-                    cooltime = rotateIncCoolTime;
-                    break;
-                case ItemType.DH.OBSTACLE_OIL:
-                    playerState = PlayerState.ROTATING_DEC;
-                    additionalAngularForceByEffect = 0.5f;
-                    rotateDecCoolTime = itemCoolTimes.decreaseRot_cooltime;
+                reverseCoolTime = itemCoolTimes.reverseRot_cooltime;
+                cooltime = reverseCoolTime;
+                break;
+            case ItemType.DH.OBSTACLE_POLL:
+                stateMachine.array.Set(4, true);
 
-                    cooltime = rotateDecCoolTime;
-                    break;
-                case ItemType.DH.TREE:
-                    playerState = PlayerState.TREECRASH;
-                    additionalForceByEffect = 0;
-                    treeSpeedZeroCoolTime = itemCoolTimes.treeSpeedZero_cooltime;
+                rotateIncCoolTime = itemCoolTimes.increaseRot_cooltime;
+                cooltime = rotateIncCoolTime;
+                break;
+            case ItemType.DH.OBSTACLE_OIL:
+                stateMachine.array.Set(5, true);
 
-                    cooltime = treeSpeedZeroCoolTime;
-                    break;
-                case ItemType.DH.MONEY:
-                    dM.addCrystal(5);
-                    break;
-                case ItemType.DH.TIME:
-                    dM.remainTime += 15;
-                    break;
-            }
-            dM.setItemEffectIcon(cooltime, item.item_dh);
-            if(item.item_dh != ItemType.DH.TREE) {
-                Destroy(obj);
-            }
+                rotateDecCoolTime = itemCoolTimes.decreaseRot_cooltime;
+                cooltime = rotateDecCoolTime;
+                break;
+
+            case ItemType.DH.POINT:
+                dM.scoreInc(50);
+                break;
+            case ItemType.DH.TIME:
+                dM.remainTime += 15;
+                break;
+            case ItemType.DH.MONEY:
+                dM.addCrystal(5);
+                break;
         }
-    }
-
-    public enum PlayerState {
-        NORMAL,
-        BOOSTING,
-        SPEED_REDUCING,
-        SPEED_ZERO,
-        REVERSE_ROTATE,
-        ROTATING_INC,
-        ROTATING_DEC,
-        TREECRASH
+        dM.setItemEffectIcon(cooltime, item.item_dh);
+        if (item.item_dh != ItemType.DH.TREE) {
+            Destroy(obj);
+        }
     }
 }
