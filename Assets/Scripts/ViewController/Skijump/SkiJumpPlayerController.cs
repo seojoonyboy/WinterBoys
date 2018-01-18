@@ -80,8 +80,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         playerState = PlayerState.NORMAL;
         preGravityScale = rb.gravityScale;
-
-        rb.centerOfMass = new Vector2(-1, 0);
+        rb.centerOfMass = new Vector2(0, 0);
 
         itemCooltimes = sm.GetComponent<ItemCoolTime>();
 
@@ -449,7 +448,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public void itemCheck(GameObject obj) {
         if(playerState == PlayerState.WHITE_BIRD) {
-            Destroy(obj);
+            //Destroy(obj);
             return;
         }
 

@@ -102,7 +102,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void Start() {
-        Time.timeScale = 0;
         Screen.orientation = ScreenOrientation.Landscape;
         
         charRb = character.GetComponent<Rigidbody2D>();
