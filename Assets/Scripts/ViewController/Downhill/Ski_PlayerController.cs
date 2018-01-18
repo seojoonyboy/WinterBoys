@@ -431,6 +431,9 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     public void itemCheck(GameObject obj) {
+        if(playerState == PlayerState.BOOSTING) {
+            return;
+        }
         float cooltime = 0;
         if (obj.tag == "Item") {
             Item item = obj.GetComponent<Item>();
