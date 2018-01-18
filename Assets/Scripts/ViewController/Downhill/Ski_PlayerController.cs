@@ -61,7 +61,9 @@ public class Ski_PlayerController : MonoBehaviour {
 
     public Rigidbody2D rb;
     private float additionalForceByEffect = 1f;
-    private float additionalAngularForceByEffect = 1.0f;
+    private float 
+        pollBuff = 1.4f,
+        oilBuff = 0.6f;
 
     public AudioSource audioSource;
     private Quaternion beginQuarternion;
@@ -231,7 +233,7 @@ public class Ski_PlayerController : MonoBehaviour {
             rotateIncCoolTime -= Time.deltaTime;
             if(rotateIncCoolTime < 0) {
                 stateMachine.array.Set(4, false);
-
+                pollBuff = 1.0f;
             }
         }
 
@@ -240,7 +242,7 @@ public class Ski_PlayerController : MonoBehaviour {
             rotateDecCoolTime -= Time.deltaTime;
             if(rotateDecCoolTime < 0) {
                 stateMachine.array.Set(5, false);
-
+                oilBuff = 1.0f;
             }
         }
 
@@ -253,10 +255,10 @@ public class Ski_PlayerController : MonoBehaviour {
             }
 
             if (stateMachine.array[3]) {
-                rb.angularVelocity += statBasedRotSenstive * -rotateDir * additionalAngularForceByEffect;
+                rb.angularVelocity += statBasedRotSenstive * -rotateDir * oilBuff * pollBuff;
             }
             else {
-                rb.angularVelocity += statBasedRotSenstive * rotateDir * additionalAngularForceByEffect;
+                rb.angularVelocity += statBasedRotSenstive * rotateDir * oilBuff * pollBuff;
             }
         }
         else {
@@ -458,12 +460,16 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 rotateIncCoolTime = itemCoolTimes.increaseRot_cooltime;
                 cooltime = rotateIncCoolTime;
+
+                pollBuff = 1.4f;
                 break;
             case ItemType.DH.OBSTACLE_OIL:
                 stateMachine.array.Set(5, true);
 
                 rotateDecCoolTime = itemCoolTimes.decreaseRot_cooltime;
                 cooltime = rotateDecCoolTime;
+
+                oilBuff = 0.6f;
                 break;
 
             case ItemType.DH.POINT:
