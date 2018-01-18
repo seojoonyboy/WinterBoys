@@ -30,8 +30,8 @@ MonoBehaviour:
   TWITTER_ACCESS_TOKEN: 
   TWITTER_ACCESS_TOKEN_SECRET: 
   ShowEditorOauthTestingBlock: 0
-  TwitterAPI: 1
-  NativeSharingAPI: 1
-  InstagramAPI: 1
-  EnableImageSharing: 1
+  TwitterAPI: 0
+  NativeSharingAPI: 0
+  InstagramAPI: 0
+  EnableImageSharing: 0
   KeepManifestClean: 1
