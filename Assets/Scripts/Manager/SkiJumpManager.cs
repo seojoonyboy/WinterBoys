@@ -44,7 +44,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private bool
         isUnstableLand = false,
         canClickArrowBtn = false,
-        isEndQTE = false;
+        isEndQTE = false,
+        isGameStart = false;
 
     public bool isGameEnd = false;
 
@@ -78,12 +79,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void OnEnable() {
-        Time.timeScale = 1;
         bonusScore = 0;
 
         playTime = 0;
         lastTime = 40;
 
+        isGameStart = false;
         qte_magnification = 0;
     }
 
@@ -101,6 +102,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void Start() {
+        Time.timeScale = 0;
         Screen.orientation = ScreenOrientation.Landscape;
         
         charRb = character.GetComponent<Rigidbody2D>();
@@ -146,6 +148,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void FixedUpdate() {
+        if (isGameStart) {
+            playTime += Time.deltaTime;
+            lastTime -= Time.deltaTime;
+        }
+
         if (angleUI.activeSelf) {
             canClickArrowBtnTime -= Time.realtimeSinceStartup;
             //Debug.Log(canClickArrowBtnTime);
@@ -153,8 +160,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
                 canClickArrowBtn = true;
             }
         }
-        playTime += Time.deltaTime;
-        lastTime -= Time.deltaTime;
 
         if(lastTime <= 0) {
             lastTime = 0;
@@ -178,6 +183,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     public void startButtonPressed() {
+        Time.timeScale = 1;
         charRb.constraints = RigidbodyConstraints2D.None;
         CM_controller.playableDirectors[0].gameObject.SetActive(false);
         playerController.SkelAnimChange("run", true);
@@ -193,6 +199,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             arrowController.OnPointerUp();
             charRb.AddForce(angleUI.transform.up * 10, ForceMode2D.Impulse);
         }
+        isGameStart = true;
     }
 
     public void Onpause() {
