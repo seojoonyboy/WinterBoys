@@ -23,7 +23,7 @@ public class ObstacleGenerator : MonoBehaviour {
     }
 
     private void generate() {
-        Debug.Log("나무 생성");
+        //Debug.Log("나무 생성");
         int[] arr = { 1, maxDensity };
         float randNum = arr.Random();
         for(int i=0; i<=randNum; i++) {

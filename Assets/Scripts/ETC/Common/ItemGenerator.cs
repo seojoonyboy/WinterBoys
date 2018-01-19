@@ -95,9 +95,18 @@ public class ItemGenerator : MonoBehaviour {
             }
         }
         else if(gameType == SportType.DOWNHILL) {
-            if (!canGenerate) { return; }
             float charPosOfY = dh_playerController.virtualPlayerPosOfY;
+            //다음 아이템 젠 변경까지
+            if (dh_index != 0) {
+                if (charPosOfY > dh_interval) {
+                    for (int i = 0; i < dh_numPerGenerate[dh_index]; i++) {
+                        Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index - 1]);
+                    }
+                    dh_interval += dh_intervalMeter[dh_index];
+                }
+            }
 
+            if (!canGenerate) { return; }
             //아이템 젠 변경점
             if (charPosOfY > dh_standardChangeMeter[dh_index]) {
                 for (int i=0; i<dh_numPerGenerate[dh_index]; i++){
@@ -111,16 +120,6 @@ public class ItemGenerator : MonoBehaviour {
                     return;
                 }
                 dh_index++;
-            }
-
-            //다음 아이템 젠 변경까지
-            if(dh_index != 0) {
-                if(charPosOfY > dh_interval) {
-                    for (int i = 0; i < dh_numPerGenerate[dh_index]; i++) {
-                        Generate(SportType.DOWNHILL, dh_numPerGenerate[dh_index - 1]);
-                    }
-                    dh_interval += dh_intervalMeter[dh_index];
-                }
             }
         }
     }
@@ -162,7 +161,6 @@ public class ItemGenerator : MonoBehaviour {
             case SportType.DOWNHILL:
                 randX = UnityEngine.Random.Range(0, Screen.width);
                 float randInterval = UnityEngine.Random.Range(0, (float)(dh_itemArea[dh_index]/gm.pixelPerUnit));
-                //Debug.Log(randInterval);
                 pos = new Vector2(
                     dh_playerController.playerPos.x,
                     dh_playerController.playerPos.y - (float)(Screen.height / gm.pixelPerUnit) * 2f - randInterval
