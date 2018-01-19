@@ -6,15 +6,9 @@ using GameEvents;
 public class Landing : MonoBehaviour {
     private EventManager _eventManger;
 
-    private bool isFirst;
-
     private void Awake() {
         _eventManger = EventManager.Instance;
         _eventManger.AddListener<SkiJump_Resume>(resume);
-    }
-
-    private void OnEnable() {
-        isFirst = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -27,15 +21,11 @@ public class Landing : MonoBehaviour {
             
         }
 
-        if (isFirst) {
-            SoundManager.Instance.Play(SoundManager.SoundType.EFX, "sj_landing");
-
-            _eventManger.TriggerEvent(new SkiJump_LandingEvent());
-            isFirst = false;
-        }
+        SoundManager.Instance.Play(SoundManager.SoundType.EFX, "sj_landing");
+        _eventManger.TriggerEvent(new SkiJump_LandingEvent());
     }
 
     private void resume(SkiJump_Resume e) {
-        isFirst = true;
+
     }
 }

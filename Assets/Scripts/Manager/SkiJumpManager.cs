@@ -113,18 +113,21 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.AddListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
         _eventManger.AddListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
         _eventManger.AddListener<SkiJump_Resume>(resume);
+        _eventManger.AddListener<SkiJump_QTE_start>(startQTE);
         _eventManger.AddListener<SkiJump_QTE_end>(endQTE);
-        //최저치
-        //statBasedSpeedForce = forceAmount;
-        //최대치
-        //statBasedSpeedForce = forceAmount * 1.8f;
 
         preFixedDeltaTime = Time.fixedDeltaTime;
         GameManager.Instance.setExitModal(pauseModal);
     }
 
+    private void startQTE(SkiJump_QTE_start e) {
+        Debug.Log("QTE 시작");
+        qteButton.SetActive(true);
+        Time.timeScale = 0;
+    }
+
     private void endQTE(SkiJump_QTE_end e) {
-        //Debug.Log("END QTE LISTEN");
+        Time.timeScale = 1;
         isEndQTE = true;
         qteButton.SetActive(false);
     }
@@ -300,6 +303,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.RemoveListener<SkiJump_UnstableLandingEvent>(_UnstableLanding);
         _eventManger.RemoveListener<SkiJump_ArrowRotEndEvent>(_OffZooming);
         _eventManger.RemoveListener<SkiJump_Resume>(resume);
+        _eventManger.AddListener<SkiJump_QTE_start>(startQTE);
         _eventManger.RemoveListener<SkiJump_QTE_end>(endQTE);
     }
 }
