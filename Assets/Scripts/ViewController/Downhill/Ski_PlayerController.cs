@@ -255,10 +255,10 @@ public class Ski_PlayerController : MonoBehaviour {
             }
 
             if (stateMachine.array[3]) {
-                rb.angularVelocity += statBasedRotSenstive * -rotateDir * oilBuff * pollBuff;
+                rb.angularVelocity += statBasedRotSenstive * -rotateDir * AdditionalAngularForce();
             }
             else {
-                rb.angularVelocity += statBasedRotSenstive * rotateDir * oilBuff * pollBuff;
+                rb.angularVelocity += statBasedRotSenstive * rotateDir * AdditionalAngularForce();
             }
         }
         else {
@@ -308,6 +308,31 @@ public class Ski_PlayerController : MonoBehaviour {
         else {
             rb.velocity = AdditionalForce() + RightVelocity() * driftFactor;
         }
+    }
+
+    float AdditionalAngularForce() {
+        float result = 1;
+        bool oilEffect = stateMachine.array[5];
+        bool pollEffect = stateMachine.array[4];
+
+        if (oilEffect) {
+            if (pollEffect) {
+                result = 1;
+            }
+            else {
+                result = 0.6f;
+            }
+        }
+        else {
+            if (pollEffect) {
+                result = 1.4f;
+            }
+            else {
+                result = 1;
+            }
+        }
+
+        return result;
     }
 
     //전방으로의 가속도 부여
