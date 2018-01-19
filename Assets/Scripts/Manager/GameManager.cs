@@ -49,6 +49,7 @@ public class GameManager : Singleton<GameManager> {
     public void init() {
         Application.targetFrameRate = 60;
         tutorialDataLoad();
+        UM_GameServiceManager.Instance.Connect();
         UM_InAppPurchaseManager.Client.Connect();
         FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
         //startTime = RemoteSettings.GetInt("startTime");
