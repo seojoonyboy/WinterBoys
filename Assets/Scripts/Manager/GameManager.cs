@@ -45,11 +45,12 @@ public class GameManager : Singleton<GameManager> {
         DontDestroyOnLoad(gameObject);
         //RemoteSettings.ForceUpdate();
         init();
-        FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
     }
     public void init() {
         Application.targetFrameRate = 60;
         tutorialDataLoad();
+        UM_InAppPurchaseManager.Client.Connect();
+        FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
         //startTime = RemoteSettings.GetInt("startTime");
 
         //getRemoteData("Downhill_bonus_times", ref bonus_times);

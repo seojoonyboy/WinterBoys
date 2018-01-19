@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +11,15 @@ public class StoreController : MonoBehaviour {
     [SerializeField] private Toggle[] toggle;
     [SerializeField] private Sprite[] toggleSprite;
     [SerializeField] private Button[] crystalButton;
+    [SerializeField] private Button[] pointButton;
     [SerializeField] private Button staminaButton;
     [SerializeField] private Button modalButton;
     [SerializeField] private GameObject tutorialModal;
+	private string[] PRODUCT_ID = {"crystal100", "crystal400", "crystal1000"};
+    private int[] crystalAmount = {100, 400, 1000};
+    private int buyingItem;
+    private int[] pointAmount = {3000, 10000, 30000};
+    private int[] pointPrice = {100, 200, 400, 550};
 
     private void Awake() {
         saveManager = SaveManager.Instance;
@@ -33,24 +40,74 @@ public class StoreController : MonoBehaviour {
     }
 
     private void setButton() {
-        crystalButton[0].onClick.AddListener(() => setModalButton(100));
-        crystalButton[1].onClick.AddListener(() => setModalButton(400));
-        crystalButton[2].onClick.AddListener(() => setModalButton(1000));
+        for(int i = 0; i < crystalButton.Length; i++) {
+            int num = i;
+            crystalButton[i].onClick.AddListener(() => setModalCrystal(crystalAmount[num]));
+            crystalButton[i].transform.GetChild(1).GetComponent<Text>().text = UM_InAppPurchaseManager.InAppProducts[i].LocalizedPrice;
+            pointButton[i].onClick.AddListener(() => setModalPoint(num));
+        }
+        staminaButton.onClick.AddListener(()=>setModalPoint(3));
     }
 
-    private void setModalButton(int crystal) {
+    private void setModalCrystal(int crystal) {
         modalButton.transform.parent.parent.parent.gameObject.SetActive(true);
         modalButton.GetComponentInParent<AndroidBackOverride>().beforeModal = gameObject;
         soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
         modalButton.onClick.RemoveAllListeners();
-        modalButton.onClick.AddListener(() => purchaseDone(crystal));
+        modalButton.onClick.AddListener(() => purchaseCrystal(crystal));
     }
 
-    private void purchaseDone(int crystal) {
-        saveManager.addCrystal(crystal);
+	public void purchaseCrystal(int crystal) {
+		buyingItem = crystal;
+		UM_InAppPurchaseManager.Client.OnPurchaseFinished += OnPurchaseFlowFinishedAction;
         soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
+        int num = crystal == 100 ? 0 : crystal == 400 ? 1 : 2;
+		UM_InAppPurchaseManager.Client.Purchase(PRODUCT_ID[num]);
+	}
+
+    private void OnPurchaseFlowFinishedAction(UM_PurchaseResult result) {
+        UM_InAppPurchaseManager.Client.OnPurchaseFinished -= OnPurchaseFlowFinishedAction;
+        if(!result.isSuccess) return;
+        purchaseDone();
+    }
+
+    private void purchaseDone() {
+        saveManager.addCrystal(buyingItem);
         resourceController.setData();
         modalButton.transform.parent.parent.parent.gameObject.SetActive(false);
+    }
+
+    private void setModalPoint(int num) {
+        modalButton.transform.parent.parent.parent.gameObject.SetActive(true);
+        Text info = modalButton.transform.parent.parent.GetComponentInChildren<Text>();
+        modalButton.GetComponentInParent<AndroidBackOverride>().beforeModal = gameObject;
+        soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
+        modalButton.onClick.RemoveAllListeners();
+
+        if(saveManager.getCrystalLeft() < pointPrice[num]) {
+            modalButton.gameObject.SetActive(false);
+            info.text = "잔액이 부족합니다.";
+        } 
+        else {
+            modalButton.gameObject.SetActive(true);
+            info.text = "구매 하시겠습니까?";
+            modalButton.onClick.AddListener(() => purchasePoint(num));
+        }
+        
+    }
+
+    private void purchasePoint(int num) {
+        modalButton.transform.parent.parent.parent.gameObject.SetActive(false);
+        if(num == 3) {chargeStamina(num); return;}
+        if(!saveManager.useCrystal(pointPrice[num])) return;
+        saveManager.addPoint(pointAmount[num]);
+        resourceController.setData();
+    }
+
+    private void chargeStamina(int num) {
+        if(!saveManager.useCrystal(pointPrice[num])) return;
+        CharacterManager.Instance.purchaseCharacter();
+        resourceController.setData();
     }
 
     private void toggleChange(Toggle toggle, bool value) {
@@ -60,5 +117,4 @@ public class StoreController : MonoBehaviour {
         }
         else toggle.GetComponent<Image>().sprite = toggleSprite[1];
     }
-
 }

@@ -8,17 +8,26 @@ public class MainSceneController : MonoBehaviour {
     public ReadyController ready;
     public GameObject tutorialModal;
     public GameObject exitModal;
+    public GameObject optionBtn;
     private void Awake() {
         gm = GameManager.Instance;
     }
 
     private void Start() {
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "selGame");
-        gm.setExitModal(exitModal);
-        exitModal.GetComponentInChildren<Button>().onClick.AddListener(gm.gameOff);
+        setAndroidGameOff();
         if(gm.isTutorial(GameManager.tutorialEnum.SELECT)) return;
         tutorialModal.SetActive(true);
         gm.tutorialDone(GameManager.tutorialEnum.SELECT);
+    }
+
+    private void setAndroidGameOff() {
+        #if UNITY_ANDROID
+        gm.setExitModal(exitModal);
+        exitModal.GetComponentInChildren<Button>().onClick.AddListener(gm.gameOff);
+        #elif UNITY_IOS
+        optionBtn.SetActive(false);
+        #endif
     }
 
     public void LoadGame(int type) {

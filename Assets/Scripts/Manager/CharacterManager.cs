@@ -187,4 +187,12 @@ public class CharacterManager : Singleton<CharacterManager> {
     private void OnDisable() {
         saveData();
     }
+
+    public void purchaseCharacter() {
+        for(int i = 0; i < players.Length; i++) {
+            if(players[i].entry == players[i].MaxEntry) continue;
+            players[i].entry = players[i].MaxEntry-1;
+            players[i].time = players[i].ChargeTime -1.0;
+        }
+    }
 }
