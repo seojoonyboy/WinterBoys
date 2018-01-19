@@ -44,6 +44,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private bool
         isUnstableLand = false,
         canClickArrowBtn = false,
+        isQTETriggerOccured = false,
         isEndQTE = false,
         isGameStart = false;
 
@@ -60,8 +61,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public GameObject qteButton;
     public GameObject effectIconPanel;
     public GameObject[] effectIcons;
-
-    public bool isQTE_occured = false;
 
     public float 
         playTime,
@@ -121,7 +120,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void startQTE(SkiJump_QTE_start e) {
-        Debug.Log("QTE 시작");
+        if (isQTETriggerOccured) {
+            return;
+        }
+
+        isQTETriggerOccured = true;
         qteButton.SetActive(true);
         Time.timeScale = 0;
     }
@@ -266,8 +269,6 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         modal.setGame(gameObject, SportType.SKIJUMP);
         modal.setData(playTime, character.transform.position.x, (int)score, (int)bonusScore, null, qte_magnification);
 
-        Debug.Log("추가 배율 : " + qte_magnification);
-
         Time.timeScale = 0.0f;
         Time.fixedDeltaTime = preFixedDeltaTime;
     }
@@ -281,16 +282,17 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         Vector2 dir = new Vector2(1, 1);
         charRb.transform.position = new Vector3(charRb.transform.position.x, 2f);
         charRb.velocity = Vector3.zero;
-        charRb.transform.rotation = Quaternion.identity;
 
         charRb.AddForce(dir * 20f, ForceMode2D.Impulse);
-        isQTE_occured = false;
 
         isGameEnd = false;
         lastTime = 40f;
         isEndQTE = false;
 
         Time.timeScale = 1;
+
+        charRb.centerOfMass = new Vector2(0, 0);
+        isQTETriggerOccured = false;
     }
 
     public void addCrystal(int amount) {
