@@ -48,8 +48,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     private float 
         whiteBirdCoolTime,
-        blackBirdCoolTime,
-        balloonCoolTime,
         reverseCoolTime,
         thunderCoolTime,
         buttonCoolTime,
@@ -385,30 +383,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
     }
 
     private void effectCheck() {
-        //검은새 효과
-        if(playerState == PlayerState.BLACK_BIRD) {
-            blackBirdCoolTime -= Time.deltaTime;
-            Vector2 dir = new Vector2(0.3f, -1.0f);
-            rb.MovePosition(rb.position + dir * 0.01f);
-
-            if (blackBirdCoolTime < 0) {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-                playerState = PlayerState.NORMAL;
-            }
-        }
-
-        //풍선 효과
-        if(playerState == PlayerState.BALLOON) {
-            balloonCoolTime -= Time.deltaTime;
-            Vector2 dir = new Vector2(0.3f, 1.0f);
-            rb.MovePosition(rb.position + dir * 0.01f);
-
-            if (balloonCoolTime < 0) {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-                playerState = PlayerState.NORMAL;
-            }
-        }
-
         //무적효과, 다른 아이템 무시
         //오른쪽으로 1000m/h 속도로 강제 이동 (제어 불가)
         //3초간 캐릭터 정면으로 이동 (중력 3초간 제거)
@@ -456,11 +430,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
             Item item = obj.GetComponent<Item>();
             switch (item.item_sj) {
                 case ItemType.SJ.BL_BIRD:
-                    //1초간 하강 (약 15%)
-                    blackBirdCoolTime = itemCooltimes.blackBird_cooltime;
-                    sm.addEffectIcon(1, blackBirdCoolTime);
-
-                    playerState = PlayerState.BLACK_BIRD;
+                    Vector2 BL_BIRD_forceDir = new Vector2(2f, -10f);
+                    rb.AddForce(BL_BIRD_forceDir, ForceMode2D.Impulse);
                     break;
                 case ItemType.SJ.WH_BIRD:
                     whiteBirdCoolTime = itemCooltimes.whiteBird_cooltime;
@@ -471,10 +442,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     playerState = PlayerState.WHITE_BIRD;
                     break;
                 case ItemType.SJ.BALLOON:
-                    balloonCoolTime = itemCooltimes.balloon_cooltime;
-                    sm.addEffectIcon(3, balloonCoolTime);
-
-                    playerState = PlayerState.BALLOON;
+                    Vector2 forceDir = new Vector2(2f, 10f);
+                    rb.AddForce(forceDir, ForceMode2D.Impulse);
                     break;
                 case ItemType.SJ.DK_CLOUD:
                     reverseCoolTime = itemCooltimes.reverseRot_cooltime;
@@ -507,8 +476,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         WHITE_BIRD,
         BLACK_BIRD,
         REVERSE_ROTATE,
-        GRAVITY_CHANGE,
-        BALLOON
+        GRAVITY_CHANGE
     }
 
     private void removeListener() {
