@@ -11,6 +11,9 @@ public class FlagFilter : MonoBehaviour {
     [SerializeField] private float minimumSpacing = 0;
     private float refinedMinSpacing = 0;
 
+    private float limitTime = 2.0f;
+    private bool isAnyTileFounded = false;
+
     private void Start() {
         float itemWidth = 0;
         if(GetComponent<BoxCollider2D>() != null) {
@@ -28,11 +31,35 @@ public class FlagFilter : MonoBehaviour {
         InvokeRepeating("check", 0, 0.1f);
     }
 
+    private void FixedUpdate() {
+        var item = GetComponent<Item>();
+        if(item == null) { return; }
+
+        if (item.item_dh == ItemType.DH.ENEMY_BEAR) {
+            AdditionalHandler();
+        }
+    }
+
+    private void AdditionalHandler() {
+        if (isAnyTileFounded) {
+            limitTime -= Time.deltaTime;
+        }
+
+        if (limitTime < 0) {
+            GetComponent<BearMove>().enabled = true;
+            Destroy(GetComponent<FlagFilter>());
+        }
+    }
+
     private void stopIvoke() {
         CancelInvoke("check");
     }
 
     private void check() {
+        if(minXFinded || maxXFinded) {
+            isAnyTileFounded = true;
+        }
+
         if (isSolved) {
             stopIvoke();
             setPoses();
