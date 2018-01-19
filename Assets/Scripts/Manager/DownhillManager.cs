@@ -108,7 +108,7 @@ public class DownhillManager : MonoBehaviour {
         }
 
         distanceTxt.text = distOfMeter + " M";
-        float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude;
+        float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude * 30f;
         speedTxt.text = System.Math.Truncate(speed) + "KM/S";
 
         remainTimeTxt.text = System.Math.Truncate(remainTime) + " 초";
