@@ -34,7 +34,8 @@ public class Ski_PlayerController : MonoBehaviour {
     public GameObject 
         playerImage,
         plate,
-        snowFricEffect;
+        snowFricEffect,
+        playerHeadBugEffect;
 
     public GameObject[]
         blue_chars,
@@ -132,6 +133,14 @@ public class Ski_PlayerController : MonoBehaviour {
 
         changePlayerImage();
 
+        if (stateMachine.array[3]) {
+            if (!playerHeadBugEffect.activeSelf) {
+                playerHeadBugEffect.SetActive(true);
+            }
+        }
+        else {
+            playerHeadBugEffect.SetActive(false);
+        }
         Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
         if(pos.x < 0 || pos.x > 1) {
             dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
