@@ -12,6 +12,8 @@ public class QTE_button_handler : MonoBehaviour {
     private RectTransform rect;
 
     private int qteCnt = 0;
+    private int successCnt = 0;
+    private bool isSuccess = false;
     private void Awake() {
         animator = GetComponent<Animator>();
 
@@ -25,6 +27,9 @@ public class QTE_button_handler : MonoBehaviour {
     }
 
     public void OnClick() {
+        if (isSuccess) {
+            successCnt++;
+        }
         nextQTE();
     }
 
@@ -40,28 +45,22 @@ public class QTE_button_handler : MonoBehaviour {
             animator.enabled = true;
             animator.updateMode = AnimatorUpdateMode.UnscaledTime;
             animator.Play("QTE", -1, 0);
+
+            sm.qte_magnification = successCnt * 0.1f;
+            Debug.Log(sm.qte_magnification);
         }
         else {
             _eventManager.TriggerEvent(new SkiJump_QTE_end());
+            Debug.Log("QTE 종료 트리거");
         }
     }
 
-    public void setQteScore(int index) {
-        float value = 0;
-        switch (index) {
-            case 0:
-                value = 0;
-                break;
-            case 1:
-                value = 0.1f;
-                break;
-            case 2:
-                value = 0.2f;
-                break;
-            case 3:
-                value = 0.3f;
-                break;
+    public void SetState(int value) {
+        if(value == 1) {
+            isSuccess = true;
         }
-        sm.qte_magnification = value;
+        else {
+            isSuccess = false;
+        }
     }
 }
