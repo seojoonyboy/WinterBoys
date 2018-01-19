@@ -473,6 +473,9 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 treeSpeedZeroCoolTime = itemCoolTimes.treeSpeedZero_cooltime;
                 cooltime = treeSpeedZeroCoolTime;
+
+                Vector3 forceDir = new Vector3(0, 2, 0);
+                bounce(forceDir);
                 break;
             case ItemType.DH.ENEMY_BUGS:
                 stateMachine.array.Set(3, true);
