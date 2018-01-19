@@ -119,13 +119,15 @@ public class ReadyController : MonoBehaviour {
 
     private void init() {
 		maxScore.text = saveManager.getRecord(sport).ToString("#0");
-		speed.percent.text = (100f * saveManager.getSpeedPercent() - 100f).ToString("00.0");
+		float speedPercent = saveManager.getSpeedPercent()-cm.getSpeedPercent;
+		speed.percent.text = (100f * speedPercent - 100f).ToString("00.0");
 		speed.needPoint.text = saveManager.getSpeedPointNeed().ToString();
-		setGrade(speed.grade, saveManager.getSpeedPercent());
+		setGrade(speed.grade, speedPercent);
 
-		control.percent.text = (100f * saveManager.getControlPercent() - 100f).ToString("00.0");
+		float controlPercent = saveManager.getControlPercent() - cm.getControlPercent;
+		control.percent.text = (100f * controlPercent - 100f).ToString("00.0");
 		control.needPoint.text = saveManager.getControlPointNeed().ToString();
-		setGrade(control.grade, saveManager.getControlPercent());
+		setGrade(control.grade, controlPercent);
 
 		topLabel.setData();
     }

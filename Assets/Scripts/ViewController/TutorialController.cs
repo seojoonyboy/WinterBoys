@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour {
+    public ResolutionController resolution;
     public Sprite[] backgrounds;
     public Image background;
     public GameObject[] dh_paragraph;
@@ -15,8 +16,9 @@ public class TutorialController : MonoBehaviour {
     private void Start() {
         gm = GameManager.Instance;
         type = GameManager.Instance.tutorialSports;
+        resolution.isLandScape = !(type == GameManager.tutorialEnum.DOWNHLL);
+        if(resolution.isLandScape) resolution.standard_resolution = new Vector2(1920f,1080f);
         init();
-
     }
 
     public void init() {
