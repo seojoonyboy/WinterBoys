@@ -12,7 +12,7 @@ public class DownhillManager : MonoBehaviour {
     public ResultModalController modal;
     private GameManager gm;
     private SaveManager pm;
-    public int remainTime;
+    public float remainTime;
     public GameObject[] icons;
     public Transform iconPanel;
 
@@ -56,7 +56,6 @@ public class DownhillManager : MonoBehaviour {
 
     private void Start() {
         init();
-        InvokeRepeating("timeDec", 1.0f, 1.0f);
         gm.setExitModal(pauseModal);
     }
 
@@ -66,6 +65,10 @@ public class DownhillManager : MonoBehaviour {
 
     private void Update() {
         setUIText();
+    }
+
+    private void FixedUpdate() {
+        remainTime -= Time.deltaTime;
     }
 
     public void Onpause() {
@@ -95,12 +98,20 @@ public class DownhillManager : MonoBehaviour {
     private void setUIText() {
         playTime += Time.deltaTime;
         distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
-        if(distOfMeter < 0) {
+
+        if (distOfMeter < 0) {
             distOfMeter = 0;
         }
+        if(remainTime < 0) {
+            remainTime = 0;
+            isTimeUp = true;
+        }
+
         distanceTxt.text = distOfMeter + " M";
         float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude;
         speedTxt.text = System.Math.Truncate(speed) + "KM/S";
+
+        remainTimeTxt.text = System.Math.Truncate(remainTime) + " 초";
     }
 
     private void init() {
@@ -117,18 +128,6 @@ public class DownhillManager : MonoBehaviour {
         additionalScore = 0;
 
         soundManager.Play(SoundManager.SoundType.BGM, "dh");
-    }
-
-    void timeDec() {
-        if(_timeScale == 0) { return; }
-
-        remainTime -= 1;
-        remainTimeTxt.text = remainTime + " 초";
-
-        if(remainTime <= 0) {
-            remainTime = 0;
-            isTimeUp = true;
-        }
     }
 
     public void StartButtonPressed() {

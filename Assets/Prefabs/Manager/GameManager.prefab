@@ -54,11 +54,10 @@ MonoBehaviour:
   dh_percentages:
     values:
     - 25
-    - 5
+    - 10
     - 20
     - 10
     - 10
-    - 5
     - 10
     - 5
     - 10
@@ -81,8 +80,7 @@ MonoBehaviour:
     - 5
     - 10
   pixelPerUnit: 512
-  nickname: 
-  character: 0
+  touchEffect: {fileID: 0}
   poll_intervals:
   - 450
   - 30
@@ -118,3 +116,4 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  tutorialSports: 0
