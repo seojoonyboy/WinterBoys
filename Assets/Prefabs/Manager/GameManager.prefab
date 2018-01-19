@@ -80,7 +80,8 @@ MonoBehaviour:
     - 5
     - 10
   pixelPerUnit: 512
-  touchEffect: {fileID: 0}
+  touchEffect: {fileID: 1265278443057628, guid: 7c7a707b5d0f67d4a8cf2bead32fc393,
+    type: 2}
   poll_intervals:
   - 450
   - 30
@@ -92,10 +93,10 @@ MonoBehaviour:
   - 35
   - 10
   bonus_times:
-  - 8
   - 20
+  - 10
   points:
-  - 25
+  - 9
   - 0.02
   skeleton_bonus_times:
   - 650

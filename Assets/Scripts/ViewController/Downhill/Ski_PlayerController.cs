@@ -504,7 +504,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.scoreInc(50);
                 break;
             case ItemType.DH.TIME:
-                dM.remainTime += 15;
+                dM.remainTime += 10;
                 break;
             case ItemType.DH.MONEY:
                 dM.addCrystal(5);
