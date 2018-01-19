@@ -111,6 +111,7 @@ public class PlayerShopController : MonoBehaviour {
 	private void sold() {
 		cm.sold(charNum);
 		modal.SetActive(false);
+		topPanel.setData();
 		setCharData();
 	}
 
