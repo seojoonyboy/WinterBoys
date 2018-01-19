@@ -166,7 +166,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         }
 
         if (isEndQTE) {
-            charRb.velocity = new Vector2(charRb.velocity.x * 0.5f, charRb.velocity.y * 0.995f);
+            charRb.velocity = new Vector2(charRb.velocity.x * 0.995f, charRb.velocity.y * 0.995f);
             if (charRb.velocity.x <= 0) {
                 gameOver();
             }
