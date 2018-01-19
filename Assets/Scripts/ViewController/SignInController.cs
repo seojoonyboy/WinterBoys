@@ -40,15 +40,10 @@ public class SignInController : MonoBehaviour {
     }
 
     public void signIn() {
-        UM_GameServiceManager.OnPlayerConnected += OnPlayerConnected;
-        UM_GameServiceManager.OnPlayerDisconnected += OnPlayerDisconnected;
-        UM_GameServiceManager.Instance.Connect();
-        string nickname = PlayerPrefs.GetString("nickname");
         if (PlayerPrefs.GetInt("character", -1) == -1) {
             signUp();
         }
         else {
-
             int character = PlayerPrefs.GetInt("character");
             CharacterManager.Instance.currentCharacter = character;
 
@@ -58,17 +53,8 @@ public class SignInController : MonoBehaviour {
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "main_startBtn");
     }
 
-    private void OnPlayerConnected() {
-        Debug.Log("Player Connected");
-    }
-
-    private void OnPlayerDisconnected() {
-        Debug.Log("Player Disconnected");
-    }
-
     private void signUp() {
         signupPanel.SetActive(true);
-
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "regist");
     }
 
