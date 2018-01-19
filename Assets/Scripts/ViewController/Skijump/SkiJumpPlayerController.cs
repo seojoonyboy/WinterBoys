@@ -53,7 +53,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         buttonCoolTime,
         faintCoolTime;
 
-    private float faintCooltimeVal = 4.0f;
+    private float faintCooltimeVal = 2.0f;
     public double virtualSpeed = 0;
     private Vector2 beforeVelOfWhiteBird;
     public PlayerState playerState;
