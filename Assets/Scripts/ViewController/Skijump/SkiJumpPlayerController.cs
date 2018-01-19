@@ -230,7 +230,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
 
         if (isAscending) {
-            if (isFaint) { return; }
+            if (isFaint || isDescending) { return; }
 
             buttonCoolTime -= Time.deltaTime;
             if(buttonCoolTime < 0) {
@@ -267,7 +267,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         else {
             //하강 버튼을 누르는 경우
-            if (isFaint) { return; }
+            if (isFaint || isAscending) { return; }
 
             if (isDescending) {
                 int mark = -1;
