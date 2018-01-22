@@ -118,6 +118,8 @@ public class Ski_PlayerController : MonoBehaviour {
 
         rb.AddForce(amount, ForceMode2D.Impulse);
         isBoucing = true;
+
+        gm.vibrate();
     }
 
     private void Update() {
@@ -488,6 +490,8 @@ public class Ski_PlayerController : MonoBehaviour {
                 cooltime = speedZeroCoolTime;
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_bigCrash");
+
+                gm.vibrate();
                 break;
             case ItemType.DH.TREE:
                 stateMachine.array.Set(2, true);
