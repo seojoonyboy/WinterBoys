@@ -363,6 +363,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
     private void _OnLanding(SkiJump_LandingEvent e) {
         isLanding = true;
         isFaint = false;
+
+        gm.vibrate();
     }
 
     private void resume(SkiJump_Resume e) {
@@ -432,6 +434,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 case ItemType.SJ.BL_BIRD:
                     Vector2 BL_BIRD_forceDir = new Vector2(2f, -10f);
                     rb.AddForce(BL_BIRD_forceDir, ForceMode2D.Impulse);
+
+                    gm.vibrate();
                     break;
                 case ItemType.SJ.WH_BIRD:
                     whiteBirdCoolTime = itemCooltimes.whiteBird_cooltime;
