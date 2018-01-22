@@ -202,8 +202,8 @@ public class Ski_PlayerController : MonoBehaviour {
         if(stateMachine.array[0]) {
             boostCoolTime -= Time.deltaTime;
             if(boostCoolTime < 0) {
+                additionalForceByEffect = 1.0f;
                 stateMachine.array.Set(0, false);
-
             }
         }
 
@@ -469,7 +469,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 boostCoolTime = itemCoolTimes.boosting_cooltime;
                 cooltime = boostCoolTime;
 
-                additionalForceByEffect = 1.0f;
+                additionalForceByEffect = 1.5f;
                 break;
             case ItemType.DH.ENEMY_BEAR:
                 stateMachine.array.Set(1, true);
