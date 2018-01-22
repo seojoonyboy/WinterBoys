@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using GameEvents;
 using UnityEngine.Advertisements;
+using Spine.Unity;
 
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
@@ -23,6 +24,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public GameObject
         meterSign,                  //미터 표시기
         freezingSign,
+        countdown,                  //시작전 카운트다운
+        countdownBg,
         character,
         forceButton,                //가속 버튼
         angleUI,                    //각도기 UI
@@ -189,11 +192,24 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     public void startButtonPressed() {
+        countdown.SetActive(true);
+        countdownBg.SetActive(true);
+
+        forceButton.SetActive(false);
+
+        var skeletonGraphic = countdown.GetComponent<SkeletonGraphic>();
+        Spine.AnimationState state = skeletonGraphic.AnimationState;
+        Invoke("CountAnimEnd", state.Tracks.Items[0].AnimationEnd);
+    }
+
+    private void CountAnimEnd() {
+        countdown.SetActive(false);
+        countdownBg.SetActive(false);
+
         Time.timeScale = 1;
         charRb.constraints = RigidbodyConstraints2D.None;
         CM_controller.playableDirectors[0].gameObject.SetActive(false);
         playerController.SkelAnimChange("run", true);
-        forceButton.SetActive(false);
 
         playerController.AddForce();
     }
