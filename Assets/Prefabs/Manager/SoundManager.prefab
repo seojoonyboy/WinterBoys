@@ -297,7 +297,7 @@ MonoBehaviour:
   - name: dh_move
     clip: {fileID: 8300000, guid: db372ea25d58342ed9b964bd2ef75278, type: 3}
   - name: dh_dirChange
-    clip: {fileID: 8300000, guid: 7c82737c1e1227642ad01b6a88f10f78, type: 3}
+    clip: {fileID: 8300000, guid: 4ef201a6209d24dc093d39ce640a508c, type: 3}
   - name: dh_flagCrash
     clip: {fileID: 8300000, guid: 0bb5c809e36a3274caba52515e6f131a, type: 3}
   - name: timeAdd

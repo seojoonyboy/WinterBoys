@@ -151,7 +151,11 @@ public class Ski_PlayerController : MonoBehaviour {
             rb.velocity *= 0.9995f;
             offSpines(5);
             //selectedCharacters[5].gameObject.SetActive(true);
-            
+            if (!audioSource.isPlaying) {
+                audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
+                audioSource.Play();
+            }
+
             if (!isPlayedDeadAnim) {
                 //카메라 중앙 기준 왼쪽인 경우
                 if(pos.x < 0.5f) {
@@ -470,12 +474,16 @@ public class Ski_PlayerController : MonoBehaviour {
                 cooltime = boostCoolTime;
 
                 additionalForceByEffect = 1.5f;
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.ENEMY_BEAR:
                 stateMachine.array.Set(1, true);
 
                 speedZeroCoolTime = itemCoolTimes.speedZero_cooltime;
                 cooltime = speedZeroCoolTime;
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_bigCrash");
                 break;
             case ItemType.DH.TREE:
                 stateMachine.array.Set(2, true);
@@ -485,12 +493,16 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 Vector3 forceDir = new Vector3(0, 2, 0);
                 bounce(forceDir);
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_tree");
                 break;
             case ItemType.DH.ENEMY_BUGS:
                 stateMachine.array.Set(3, true);
 
                 reverseCoolTime = itemCoolTimes.reverseRot_cooltime;
                 cooltime = reverseCoolTime;
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
             case ItemType.DH.OBSTACLE_POLL:
                 stateMachine.array.Set(4, true);
@@ -499,6 +511,8 @@ public class Ski_PlayerController : MonoBehaviour {
                 cooltime = rotateIncCoolTime;
 
                 pollBuff = 1.4f;
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.OBSTACLE_OIL:
                 stateMachine.array.Set(5, true);
@@ -507,16 +521,24 @@ public class Ski_PlayerController : MonoBehaviour {
                 cooltime = rotateDecCoolTime;
 
                 oilBuff = 0.6f;
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
 
             case ItemType.DH.POINT:
                 dM.scoreInc(50);
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.TIME:
                 dM.remainTime += 10;
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.MONEY:
                 dM.addCrystal(5);
+
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
         }
         dM.setItemEffectIcon(cooltime, item.item_dh);

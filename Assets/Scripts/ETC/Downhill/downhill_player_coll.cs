@@ -19,11 +19,15 @@ public class downhill_player_coll : MonoBehaviour {
             //dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
             Vector3 contactPoint = new Vector3(3, 0, 0);
             controller.bounce(contactPoint);
+
+            SoundManager.Instance.Play(SoundManager.SoundType.EFX, "dh_bigCrash");
         }
 
         if(collision.tag == "DH_rightTile") {
             Vector3 contactPoint = new Vector3(-3, 0, 0);
             controller.bounce(contactPoint);
+
+            SoundManager.Instance.Play(SoundManager.SoundType.EFX, "dh_bigCrash");
         }
 
         if (collision.tag == "Item") {
