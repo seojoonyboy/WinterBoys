@@ -21,6 +21,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public GameObject pauseModal;
 
     public GameObject
+        meterSign,                  //미터 표시기
         freezingSign,
         character,
         forceButton,                //가속 버튼

@@ -1,0 +1,55 @@
+﻿
+countdown.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 335, 81
+  size: 162, 321
+  orig: 162, 321
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 1519, 309
+  size: 249, 315
+  orig: 249, 315
+  offset: 0, 0
+  index: -1
+3
+  rotate: true
+  xy: 2, 2
+  size: 241, 331
+  orig: 241, 331
+  offset: 0, 0
+  index: -1
+back
+  rotate: false
+  xy: 861, 284
+  size: 656, 656
+  orig: 656, 656
+  offset: 0, 0
+  index: -1
+effect_a
+  rotate: false
+  xy: 2, 403
+  size: 857, 537
+  orig: 857, 537
+  offset: 0, 0
+  index: -1
+effect_b
+  rotate: false
+  xy: 1519, 560
+  size: 380, 380
+  orig: 380, 380
+  offset: 0, 0
+  index: -1
+start
+  rotate: false
+  xy: 2, 245
+  size: 622, 156
+  orig: 622, 156
+  offset: 0, 0
+  index: -1
