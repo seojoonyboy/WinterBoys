@@ -189,9 +189,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2ec978859f6cf0d408bc49dd9a5f24fe, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ecb8447bedabf4a50a50cf3a2e13048c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   - name: closeBtn
     clip: {fileID: 8300000, guid: 4afb9697b44570940b7ba550b1e32b09, type: 3}
   - name: dh_move
-    clip: {fileID: 8300000, guid: 619247724f6a871468a7728f5de9bf48, type: 3}
+    clip: {fileID: 8300000, guid: db372ea25d58342ed9b964bd2ef75278, type: 3}
   - name: dh_dirChange
     clip: {fileID: 8300000, guid: 7c82737c1e1227642ad01b6a88f10f78, type: 3}
   - name: dh_flagCrash
@@ -328,6 +328,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 66c49982fdc6ab144802f5c736a9c2d9, type: 3}
   - name: resumeBtn
     clip: {fileID: 8300000, guid: 7356dd9623c73f749b8cfdd1f180c759, type: 3}
+  - name: dh_stop
+    clip: {fileID: 8300000, guid: 4ef201a6209d24dc093d39ce640a508c, type: 3}
+  - name: dh_bigCrash
+    clip: {fileID: 8300000, guid: b8c5e94692ef748fda43f5db7f4694e3, type: 3}
+  - name: dh_tree
+    clip: {fileID: 8300000, guid: fe1accfeb8c734320815849df6c8db53, type: 3}
+  - name: item_good
+    clip: {fileID: 8300000, guid: f771c2263e3b648419c9aea3900115d4, type: 3}
+  - name: item_bad
+    clip: {fileID: 8300000, guid: 3b823bb959459409385fbb9bcb1b6d5f, type: 3}
+  - name: sj_freezing
+    clip: {fileID: 8300000, guid: 0ebcfad6f35f64c42b1926e67bc44d0f, type: 3}
+  - name: sj_frozed
+    clip: {fileID: 8300000, guid: 05ecb1580c7d240bca6c37a8d6d6f689, type: 3}
   bgm_sounds:
   - name: main
     clip: {fileID: 8300000, guid: ecb8447bedabf4a50a50cf3a2e13048c, type: 3}
