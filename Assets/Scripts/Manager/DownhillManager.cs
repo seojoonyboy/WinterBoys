@@ -67,10 +67,6 @@ public class DownhillManager : MonoBehaviour {
         setUIText();
     }
 
-    private void FixedUpdate() {
-        remainTime -= Time.deltaTime;
-    }
-
     public void Onpause() {
         Time.timeScale = 0;
     }
@@ -96,7 +92,10 @@ public class DownhillManager : MonoBehaviour {
     }
 
     private void setUIText() {
+        if(_timeScale == 0) { return; }
+
         playTime += Time.deltaTime;
+        remainTime -= Time.deltaTime;
         distOfMeter = System.Math.Truncate(playerController.virtualPlayerPosOfY);
 
         if (distOfMeter < 0) {
@@ -116,6 +115,7 @@ public class DownhillManager : MonoBehaviour {
 
     private void init() {
         remainTime = gm.startTime;
+        remainTimeTxt.text = System.Math.Truncate(remainTime) + " 초";
         setTimeScale = 0;
 
         score = 0;
