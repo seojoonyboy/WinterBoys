@@ -499,6 +499,8 @@ public class Ski_PlayerController : MonoBehaviour {
                 bounce(forceDir);
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_tree");
+
+                item.transform.Find("Image").GetComponent<TreeHandler>().Play();
                 break;
             case ItemType.DH.ENEMY_BUGS:
                 stateMachine.array.Set(3, true);

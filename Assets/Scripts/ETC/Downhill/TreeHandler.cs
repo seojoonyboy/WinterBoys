@@ -20,22 +20,20 @@ public class TreeHandler : MonoBehaviour {
         anim = GetComponent<SkeletonAnimation>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "Player") {
-            anim.loop = false;
-            if (type == TreeType.BLUE) {
-                anim.AnimationName = "blue_crash";
-            }
-            else if (type == TreeType.GREEN) {
-                anim.AnimationName = "green_crash";
-            }
-
-            float time = anim.Skeleton.Data.FindAnimation("blue_crash").duration;
-            Invoke("destroyItself", time);
-        }
-    }
-
     private void destroyItself() {
         Destroy(transform.parent.gameObject);
+    }
+
+    public void Play() {
+        anim.loop = false;
+        if (type == TreeType.BLUE) {
+            anim.AnimationName = "blue_crash";
+        }
+        else if (type == TreeType.GREEN) {
+            anim.AnimationName = "green_crash";
+        }
+
+        float time = anim.Skeleton.Data.FindAnimation("blue_crash").duration;
+        Invoke("destroyItself", time);
     }
 }

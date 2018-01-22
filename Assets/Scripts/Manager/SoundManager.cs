@@ -17,8 +17,8 @@ public class SoundManager : Singleton<SoundManager> {
 
     public void setOption() {
         GameManager.OptionData option = GameManager.Instance.optionData;
-        bgmSource.gameObject.SetActive(option.bgm);        
-        efxSource.gameObject.SetActive(option.efx);
+        //bgmSource.gameObject.SetActive(option.bgm);        
+        //efxSource.gameObject.SetActive(option.efx);
     }
 
     public void Play(SoundType type, string name, float volume = 1) {
