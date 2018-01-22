@@ -15,15 +15,37 @@ public class BearMove : MonoBehaviour {
     private int[] marks = { -1, 1 };
     private int mark = 1;
     private float speed = 0.005f;
+    private bool isLeftDir = false;
 
     private void Start() {
         makeRandTime();
         anim = GetComponent<SkeletonAnimation>();
         mark = marks.Random();
+
+        setRandDir();
+    }
+
+    private void setRandDir() {
+        int[] arr = { -1, 1 };
+        int randNum = arr.Random();
+
+        if (randNum == -1) {
+            anim.initialFlipX = true;
+            anim.Initialize(true);
+            isLeftDir = false;
+        }
+        else {
+            isLeftDir = true;
+        }
     }
 
     private void FixedUpdate() {
-        transform.Translate(Vector2.left * speed);
+        if (isLeftDir) {
+            transform.Translate(Vector2.left * speed);
+        }
+        else {
+            transform.Translate(Vector2.right * speed);
+        }
 
         time -= Time.deltaTime;
         if(time < 0) {
