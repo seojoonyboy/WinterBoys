@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 using Firebase.Analytics;
 
 public class GameManager : Singleton<GameManager> {
+    public class OptionData {
+        public bool bgm = true;
+        public bool efx = true;
+        public bool vibrate = true;
+    }
+
+    public OptionData optionData;
     protected GameManager() { }
 
     public percentages dh_percentages;
@@ -52,6 +59,7 @@ public class GameManager : Singleton<GameManager> {
         UM_GameServiceManager.Instance.Connect();
         UM_InAppPurchaseManager.Client.Connect();
         FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
+        optionLoad();
         //startTime = RemoteSettings.GetInt("startTime");
 
         //getRemoteData("Downhill_bonus_times", ref bonus_times);
@@ -147,4 +155,19 @@ public class GameManager : Singleton<GameManager> {
 	public void releaseQuitModal() {
 		modal = null;
 	}
+
+    private void optionLoad() {
+        string data = PlayerPrefs.GetString("option");
+        if(string.IsNullOrEmpty(data)) return;
+        JsonUtility.FromJsonOverwrite(data, optionData);
+    }
+
+    public void optionSave() {
+        string data = JsonUtility.ToJson(optionData);
+        PlayerPrefs.SetString("option", data);
+    }
+
+    public void vibrate() {
+        if(optionData.vibrate) Handheld.Vibrate();
+    }
 }

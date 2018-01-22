@@ -11,6 +11,16 @@ public class SoundManager : Singleton<SoundManager> {
     [SerializeField] public Sound[] efx_sounds;
     [SerializeField] public Sound[] bgm_sounds;
 
+    private void Start() {
+        setOption();
+    }
+
+    public void setOption() {
+        GameManager.OptionData option = GameManager.Instance.optionData;
+        bgmSource.gameObject.SetActive(option.bgm);        
+        efxSource.gameObject.SetActive(option.efx);
+    }
+
     public void Play(SoundType type, string name, float volume = 1) {
         Sound targetRes = searchResource(type, name);
         if (name == null || targetRes == null) {
