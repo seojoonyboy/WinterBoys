@@ -44,7 +44,10 @@ public class DownhillManager : MonoBehaviour {
     private GameoverReason gameoverReason;
 
     public SoundManager soundManager;
-    public GameObject pauseModal;
+    public GameObject 
+        pauseModal,
+        countdown;
+
     public bool isTimeUp = false;
     private void Awake() {
         gm = GameManager.Instance;
@@ -131,6 +134,23 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void StartButtonPressed() {
+        countdownAnimPlay();
+    }
+
+    private void countdownAnimPlay() {
+        countdown.SetActive(true);
+        var skeletonGraphic = countdown.GetComponent<SkeletonGraphic>();
+        Spine.AnimationState state = skeletonGraphic.AnimationState;
+        //Debug.Log(state.Tracks.Items[0].animationEnd);
+        //Spine.TrackEntry track = 
+        //state.SetAnimation(0, "animation", false);
+        //var num = countdown.GetComponent<SkeletonGraphic>().AnimationState.Tracks.Count;
+        //Spine.TrackEntry track = countdown.GetComponent<SkeletonAnimation>().AnimationState.Tracks.SetAnimation(0, false);
+        Invoke("CountAnimEnd", state.Tracks.Items[0].animationEnd);
+    }
+
+    private void CountAnimEnd() {
+        countdown.SetActive(false);
         setTimeScale = 1;
     }
 
