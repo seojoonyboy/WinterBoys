@@ -17,6 +17,7 @@ public class ResultModalController : MonoBehaviour {
 	[SerializeField] private Button continueBtn;
 	[SerializeField] private Button mainBtn;
 	[SerializeField] private Button rankBtn;
+	[SerializeField] private GameObject noMoneyModal;
 
 	private GameObject currentGame;
 	private SportType sport;
@@ -120,6 +121,12 @@ public class ResultModalController : MonoBehaviour {
 
 	private void revive() {
 		soundManager.Play(SoundManager.SoundType.EFX, "resumeBtn");
+		//돈 부족시 코드 필요 .
+		if(SaveManager.Instance.getCrystalLeft() < 50) {
+			noMoneyModal.SetActive(true);
+			return;
+		}
+		SaveManager.Instance.useCrystal(50);
 		currentGame.SendMessage(getSportRevive(), SendMessageOptions.DontRequireReceiver);
 		Destroy(continueBtn);
         continueBtn.gameObject.SetActive(false);

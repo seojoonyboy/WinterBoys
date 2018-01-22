@@ -988,6 +988,7 @@ MonoBehaviour:
   continueBtn: {fileID: 114120197573884338}
   mainBtn: {fileID: 114170266670766596}
   rankBtn: {fileID: 114236840620500332}
+  noMoneyModal: {fileID: 1882908244641154}
 --- !u!114 &114215667086020464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1168,7 +1169,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB3C8\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4."
+  m_Text: "\uC218\uC815\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4."
 --- !u!114 &114309836410033192
 MonoBehaviour:
   m_ObjectHideFlags: 1
