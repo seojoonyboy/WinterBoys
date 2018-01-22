@@ -74,6 +74,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private SoundManager soundManager;
     private float lastTimeIncInterval = 1000;
+    private float nextMeterSignInterval = 500;  //미터 표시 간격
+
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = SaveManager.Instance;
@@ -160,6 +162,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         if (isGameStart) {
             playTime += Time.deltaTime;
             lastTime -= Time.deltaTime;
+        }
+
+        if(nextMeterSignInterval < charRb.transform.position.x) {
+            OnMeterSign(nextMeterSignInterval);
+            nextMeterSignInterval += 500;
         }
 
         if (angleUI.activeSelf) {
@@ -319,6 +326,16 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     public void addCrystal(int amount) {
         pm.addCrystal(amount);
+    }
+
+    private void OnMeterSign(float value) {
+        meterSign.SetActive(true);
+        meterSign.transform.Find("Text").GetComponent<Text>().text = value + " M";
+        Invoke("OffMeterSign", 2.0f);
+    }
+
+    private void OffMeterSign() {
+        meterSign.SetActive(false);
     }
 
     private void removeListener() {
