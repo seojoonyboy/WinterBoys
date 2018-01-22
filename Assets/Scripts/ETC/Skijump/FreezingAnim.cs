@@ -22,10 +22,12 @@ public class FreezingAnim : MonoBehaviour {
             case Type.FREEZING:
                 anim.timeScale = 2f;
                 anim.AnimationName = "freezing";
+                SoundManager.Instance.Play(SoundManager.SoundType.EFX, "sj_freezing");
                 break;
             case Type.STUNNING:
                 anim.timeScale = 1f;
                 anim.AnimationName = "freezing_stun";
+                SoundManager.Instance.Play(SoundManager.SoundType.EFX, "sj_frozed");
                 break;
             case Type.NONE:
                 gameObject.SetActive(false);
