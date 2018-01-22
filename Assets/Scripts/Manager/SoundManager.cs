@@ -66,6 +66,17 @@ public class SoundManager : Singleton<SoundManager> {
         }
     }
 
+    public void Stop(SoundType type) {
+        switch (type) {
+            case SoundType.BGM:
+                bgmSource.Stop();
+                break;
+            case SoundType.EFX:
+                efxSource.Stop();
+                break;
+        }
+    }
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
     }

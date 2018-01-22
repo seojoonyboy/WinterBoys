@@ -206,7 +206,6 @@ public class DownhillManager : MonoBehaviour {
 
         modal.setGame(gameObject, SportType.DOWNHILL);
         modal.setData(playTime, (float)distOfMeter, score, (int)additionalScore, maxCombo, null);
-
         gameoverReason = reason;
     }
 
@@ -234,6 +233,7 @@ public class DownhillManager : MonoBehaviour {
 
         remainTime = 30;
         isTimeUp = false;
+        playerController.audioSource.loop = true;
 
         if (gameoverReason == GameoverReason.SIDETILE) {
             playerController.transform.position = new Vector3(0, playerController.transform.position.y, -0.2f);

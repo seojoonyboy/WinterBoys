@@ -30,7 +30,6 @@ public class Ski_PlayerController : MonoBehaviour {
         buttonDown = false,
         isBoucing = false,
         isPlayedDeadAnim = false;
-
     public GameObject 
         playerImage,
         plate,
@@ -128,6 +127,7 @@ public class Ski_PlayerController : MonoBehaviour {
     private void FixedUpdate() {
         if (dM.getTimeScale == 0) {
             rb.velocity = Vector3.zero;
+            audioSource.loop = false;
             return;
         }
 
@@ -260,11 +260,13 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         if (buttonDown) {
-            audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
-
-            if (!audioSource.isPlaying) {
+            if(dM.getTimeScale != 0) {
                 audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
-                audioSource.Play();
+
+                if (!audioSource.isPlaying) {
+                    audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
+                    audioSource.Play();
+                }
             }
 
             if (stateMachine.array[3]) {
@@ -275,14 +277,16 @@ public class Ski_PlayerController : MonoBehaviour {
             }
         }
         else {
-            rb.angularVelocity = 0;
-
-            audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
-
-            if (!audioSource.isPlaying) {
+            if (dM.getTimeScale != 0) {
                 audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
-                audioSource.Play();
+
+                if (!audioSource.isPlaying) {
+                    audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
+                    audioSource.Play();
+                }
             }
+
+            rb.angularVelocity = 0;
         }
 
         float angle = transform.eulerAngles.z;
