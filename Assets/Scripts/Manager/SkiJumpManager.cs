@@ -277,12 +277,17 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         playerController.extraAudioSource.gameObject.SetActive(false);
 
         //착지 위치 기반 점수 계산
-        score = System.Math.Round(character.transform.position.x / 6.0f);
+        score = System.Math.Round(character.transform.position.x / 5.0f);
+        //1000m 간격 보너스 배율
+        double bonusPrecentage = 1 + (50 * System.Math.Round(character.transform.position.x / 1000) / 100);
+
+        score *= (1 + qte_magnification + bonusPrecentage);
+
         if (isUnstableLand) {
             Debug.Log("불안정 착지로 인한 감점");
             score = System.Math.Round(score * 0.75f);
         }
-        score *= (1 + qte_magnification);
+
         modal.setGame(gameObject, SportType.SKIJUMP);
         modal.setData(playTime, character.transform.position.x, (int)score, (int)bonusScore, null, qte_magnification);
 
