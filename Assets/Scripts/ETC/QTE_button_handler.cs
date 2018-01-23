@@ -43,10 +43,10 @@ public class QTE_button_handler : MonoBehaviour {
         float stopedAnimTime = myAnimatorClip[0].clip.length * animState.normalizedTime;
         animator.speed = 0.0f;
 
-        if (stopedAnimTime > 0.99f) {
+        if (stopedAnimTime > 0.9999f) {
             isSuccess = false;
         }
-        else if (stopedAnimTime < 0.99f && stopedAnimTime > 0.45f) {
+        else if (stopedAnimTime < 0.9999f && stopedAnimTime > 0.45f) {
             isSuccess = true;
         }
         else {
