@@ -31,6 +31,7 @@ public class QTE_button_handler : MonoBehaviour {
     private void OnEnable() {
         rect = transform.parent.GetComponent<RectTransform>();
         blur.SetActive(true);
+        QTEResults.SetActive(true);
     }
 
     private void OnDisable() {
@@ -47,8 +48,8 @@ public class QTE_button_handler : MonoBehaviour {
         failObj.SetActive(false);
         successObj.SetActive(false);
 
-        successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
-        failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
+        //successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
+        //failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
 
         if (stopedAnimTime > 1.03f) {
             isSuccess = false;
@@ -61,11 +62,13 @@ public class QTE_button_handler : MonoBehaviour {
         }
         if (isSuccess) {
             successObj.SetActive(true);
+            successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
             successCnt++;
             Debug.Log("성공" + successCnt);
         }
         else {
             failObj.SetActive(true);
+            failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
         }
 
         QTEResults.GetComponent<RectTransform>().localPosition = rect.localPosition;
@@ -81,10 +84,11 @@ public class QTE_button_handler : MonoBehaviour {
         
         successObj.SetActive(false);
 
-        successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
-        failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
+        //successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
+        //failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
 
         failObj.SetActive(true);
+        failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
 
         QTEResults.GetComponent<RectTransform>().localPosition = rect.localPosition;
         nextQTE();
@@ -103,6 +107,7 @@ public class QTE_button_handler : MonoBehaviour {
         if (qteCnt >= 3) {
             _eventManager.TriggerEvent(new SkiJump_QTE_end());
             rect.gameObject.SetActive(false);
+            QTEResults.SetActive(false);
 
             sm.qte_magnification = successCnt * 0.1f;
             qteCnt = 0;
