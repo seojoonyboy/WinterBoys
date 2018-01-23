@@ -24,11 +24,10 @@ public class QTE_button_handler : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         _eventManager = EventManager.Instance;
-        rect = transform.parent.GetComponent<RectTransform>();
     }
 
     private void OnEnable() {
-        nextQTE();
+        rect = transform.parent.GetComponent<RectTransform>();
     }
 
     public void OnClick() {
@@ -52,8 +51,9 @@ public class QTE_button_handler : MonoBehaviour {
         else {
             isSuccess = false;
         }
+        nextQTE();
 
-        Vector3 newPosOfResultText = new Vector3(rect.localPosition.x, rect.localPosition.y + 10f, 0);
+        Vector3 newPosOfResultText = new Vector3(rect.transform.Find("QTE").position.x, rect.transform.Find("QTE").position.y + 230f, 0);
         if (isSuccess) {
             successObj.GetComponent<RectTransform>().localPosition = newPosOfResultText;
             successObj.SetActive(true);
@@ -62,7 +62,6 @@ public class QTE_button_handler : MonoBehaviour {
             failObj.GetComponent<RectTransform>().localPosition = newPosOfResultText;
             failObj.SetActive(true);
         }
-        nextQTE();
     }
 
     private void nextQTE() {
@@ -73,11 +72,11 @@ public class QTE_button_handler : MonoBehaviour {
 
         rect.localPosition = new Vector3(randX, randY, 0);
 
-        if(qteCnt <= 3) {
-            animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-            animator.Play("QTE", -1, 0);
-            animator.speed = 1.0f;
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.Play("QTE", -1, 0);
+        animator.speed = 1.0f;
 
+        if (qteCnt < 3) {
             sm.qte_magnification = successCnt * 0.1f;
         }
         else {
