@@ -44,13 +44,16 @@ public class QTE_button_handler : MonoBehaviour {
         float stopedAnimTime = myAnimatorClip[0].clip.length * animState.normalizedTime;
         animator.enabled = false;
 
+        failObj.SetActive(false);
+        successObj.SetActive(false);
+
         successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
         failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
 
-        if (stopedAnimTime > 0.9999f) {
+        if (stopedAnimTime > 1.03f) {
             isSuccess = false;
         }
-        else if (stopedAnimTime < 0.9999f && stopedAnimTime > 0.45f) {
+        else if (stopedAnimTime <= 1.03f && stopedAnimTime > 0.45f) {
             isSuccess = true;
         }
         else {
@@ -58,10 +61,30 @@ public class QTE_button_handler : MonoBehaviour {
         }
         if (isSuccess) {
             successObj.SetActive(true);
+            successCnt++;
         }
         else {
             failObj.SetActive(true);
         }
+
+        QTEResults.GetComponent<RectTransform>().localPosition = rect.localPosition;
+        nextQTE();
+    }
+
+    public void fail() {
+        AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorClipInfo[] myAnimatorClip = animator.GetCurrentAnimatorClipInfo(0);
+
+        float stopedAnimTime = myAnimatorClip[0].clip.length * animState.normalizedTime;
+        animator.enabled = false;
+        
+        successObj.SetActive(false);
+
+        successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
+        failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
+
+        failObj.SetActive(true);
+
         QTEResults.GetComponent<RectTransform>().localPosition = rect.localPosition;
         nextQTE();
     }
@@ -73,8 +96,6 @@ public class QTE_button_handler : MonoBehaviour {
         float randY = Random.Range(-300, 300);
 
         rect.localPosition = new Vector3(randX, randY, 0);
-
-        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.Play("QTE", -1, 0);
         animator.enabled = true;
 
@@ -87,5 +108,7 @@ public class QTE_button_handler : MonoBehaviour {
 
             qteCnt = 0;
         }
+
+        transform.parent.GetComponent<Button>().enabled = true;
     }
 }
