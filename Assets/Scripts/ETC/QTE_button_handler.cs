@@ -17,6 +17,7 @@ public class QTE_button_handler : MonoBehaviour {
     private bool isSuccess = false;
 
     public GameObject 
+        QTEResults,
         successObj,
         failObj;
 
@@ -31,16 +32,14 @@ public class QTE_button_handler : MonoBehaviour {
     }
 
     public void OnClick() {
-        successObj.SetActive(false);
-        failObj.SetActive(false);
-
-        successObj.GetComponent<SkeletonGraphic>().Skeleton.SetToSetupPose();
-        failObj.GetComponent<SkeletonGraphic>().Skeleton.SetToSetupPose();
-
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
         AnimatorClipInfo[] myAnimatorClip = animator.GetCurrentAnimatorClipInfo(0);
+
         float stopedAnimTime = myAnimatorClip[0].clip.length * animState.normalizedTime;
-        animator.speed = 0.0f;
+        animator.enabled = false;
+
+        successObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "great", false);
+        failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
 
         if (stopedAnimTime > 0.9999f) {
             isSuccess = false;
@@ -51,17 +50,15 @@ public class QTE_button_handler : MonoBehaviour {
         else {
             isSuccess = false;
         }
-        nextQTE();
-
-        Vector3 newPosOfResultText = new Vector3(rect.transform.Find("QTE").position.x, rect.transform.Find("QTE").position.y + 230f, 0);
+        
         if (isSuccess) {
-            successObj.GetComponent<RectTransform>().localPosition = newPosOfResultText;
             successObj.SetActive(true);
         }
         else {
-            failObj.GetComponent<RectTransform>().localPosition = newPosOfResultText;
             failObj.SetActive(true);
         }
+        QTEResults.GetComponent<RectTransform>().localPosition = rect.localPosition;
+        nextQTE();
     }
 
     private void nextQTE() {
@@ -74,7 +71,7 @@ public class QTE_button_handler : MonoBehaviour {
 
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.Play("QTE", -1, 0);
-        animator.speed = 1.0f;
+        animator.enabled = true;
 
         if (qteCnt < 3) {
             sm.qte_magnification = successCnt * 0.1f;
