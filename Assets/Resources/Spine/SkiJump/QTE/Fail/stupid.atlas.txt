@@ -1,0 +1,13 @@
+
+stupid.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+stupid
+  rotate: false
+  xy: 2, 2
+  size: 203, 70
+  orig: 203, 70
+  offset: 0, 0
+  index: -1

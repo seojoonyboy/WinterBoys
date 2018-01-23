@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: qte SkeletonData
+  m_Name: great SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 60e8e554968d6304c81a80a9c4f4cdc7, type: 2}
+  - {fileID: 11400000, guid: 3439112ee23e7a04ebe98bada58b6c77, type: 2}
   scale: 0.0001
-  skeletonJSON: {fileID: 4900000, guid: b427ed0f7e20f2946b94c3ebc82c2270, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: a27041356f985fa449f495cca737cc70, type: 3}
   fromAnimation: []
   toAnimation: []
   duration: []

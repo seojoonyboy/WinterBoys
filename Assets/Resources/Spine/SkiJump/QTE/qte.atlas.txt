@@ -1,0 +1,34 @@
+
+qte.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+TOUCH
+  rotate: false
+  xy: 608, 332
+  size: 162, 45
+  orig: 162, 45
+  offset: 0, 0
+  index: -1
+TOUCH_effect
+  rotate: false
+  xy: 2, 2
+  size: 175, 56
+  orig: 175, 56
+  offset: 0, 0
+  index: -1
+base
+  rotate: false
+  xy: 321, 92
+  size: 285, 285
+  orig: 285, 285
+  offset: 0, 0
+  index: -1
+effect
+  rotate: false
+  xy: 2, 60
+  size: 317, 317
+  orig: 317, 317
+  offset: 0, 0
+  index: -1
