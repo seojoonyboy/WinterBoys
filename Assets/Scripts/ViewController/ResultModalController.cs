@@ -75,7 +75,7 @@ public class ResultModalController : MonoBehaviour {
 	}
 
     private void setTime(SportType sport, float time) {
-        if(sport == SportType.SKIJUMP) timeText.text = string.Format("{0}초", time.ToString("#"));
+        if(sport == SportType.SKIJUMP) timeText.text = string.Format("{0}초", time.ToString("0"));
 		else timeText.text = string.Format("{0} : {1}", ((int)time / 60).ToString("00"), ((int)time % 60).ToString("00"));
     }
 
