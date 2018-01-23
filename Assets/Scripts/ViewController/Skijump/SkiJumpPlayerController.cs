@@ -448,6 +448,8 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 case ItemType.SJ.BALLOON:
                     Vector2 forceDir = new Vector2(2f, 10f);
                     rb.AddForce(forceDir, ForceMode2D.Impulse);
+
+                    gm.vibrate();
                     break;
                 case ItemType.SJ.DK_CLOUD:
                     reverseCoolTime = itemCooltimes.reverseRot_cooltime;
