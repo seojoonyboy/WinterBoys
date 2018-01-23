@@ -218,7 +218,6 @@ public class Ski_PlayerController : MonoBehaviour {
             speedZeroCoolTime -= Time.deltaTime;
             if(speedZeroCoolTime < 0) {
                 stateMachine.array.Set(1, false);
-
             }
             rb.velocity = Vector2.zero;
         }
@@ -411,6 +410,10 @@ public class Ski_PlayerController : MonoBehaviour {
         dM.OnGameOver(DownhillManager.GameoverReason.TIMEEND);
     }
 
+    void BearImpactAnimEnd() {
+        dM.bearImpactPref.SetActive(false);
+    }
+
     public void OnPointerDown(int i) {
         //다른 방향버튼이 눌리고 있는 중인 경우
         if (buttonDown) {
@@ -490,6 +493,10 @@ public class Ski_PlayerController : MonoBehaviour {
                 cooltime = speedZeroCoolTime;
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_bigCrash");
+
+                dM.bearImpactPref.SetActive(true);
+                float endTime = dM.bearImpactPref.GetComponent<SkeletonAnimation>().AnimationState.Tracks.Items[0].AnimationEnd;
+                Invoke("BearImpactAnimEnd", endTime);
 
                 gm.vibrate();
                 break;

@@ -1157,6 +1157,100 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &262438830
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 723963476}
+    m_Modifications:
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697719663580212, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 33822272599979872, guid: fe92dc515a3697b44ac58de105239c42,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884966913179050, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_Name
+      value: BearImpact
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884966913179050, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532692770580934, guid: fe92dc515a3697b44ac58de105239c42,
+        type: 2}
+      propertyPath: loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23066677899587562, guid: fe92dc515a3697b44ac58de105239c42,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f8a937ec98483a448c3449a51c2df44, type: 2}
+    - target: {fileID: 114532692770580934, guid: fe92dc515a3697b44ac58de105239c42,
+        type: 2}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: dd9b758901c01ae4581e9cb350c706b5,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 50632911446260656, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+    - {fileID: 114399042297796460, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+    - {fileID: 114723181294886524, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+    - {fileID: 114722959394393698, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+    - {fileID: 61883485685027606, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: fe92dc515a3697b44ac58de105239c42, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &262438831 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1884966913179050, guid: fe92dc515a3697b44ac58de105239c42,
+    type: 2}
+  m_PrefabInternal: {fileID: 262438830}
+--- !u!114 &262438832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 262438831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeadd04ad7683b74c80f1b2b4c71d95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 399751644}
+  isBear: 1
 --- !u!1 &330596346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,7 +2737,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1958759409}
+  m_Material: {fileID: 1445223118}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -3705,6 +3799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 399751644}
+  isBear: 0
 --- !u!1 &999791829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4287,6 +4382,7 @@ MonoBehaviour:
   - {fileID: 1597047473836184, guid: 1e6a0ae0c8c00d84fa720c97ecc6f0ae, type: 2}
   - {fileID: 1915719564050186, guid: b93652e2ed1a1474f8f60b4b039e7499, type: 2}
   iconPanel: {fileID: 1408653061}
+  bearImpactPref: {fileID: 262438831}
   playTime: 0
   _timeScale: 1
   remainTimeTxt: {fileID: 1820518643}
@@ -5022,6 +5118,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17690258, y: 0.12954648, z: 1}
   m_Center: {x: 0.00021468848, y: 0.014773242, z: 0}
+--- !u!21 &1445223118
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Smkgames/Menu/SimpleGrabPassBlur
+  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Distortion: 18
+    m_Colors:
+    - _Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
 --- !u!1 &1469817338
 GameObject:
   m_ObjectHideFlags: 0
@@ -6775,32 +6897,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1958759409
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Smkgames/Menu/SimpleGrabPassBlur
-  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Distortion: 18
-    m_Colors:
-    - _Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
 --- !u!1 &2015306668
 GameObject:
   m_ObjectHideFlags: 0

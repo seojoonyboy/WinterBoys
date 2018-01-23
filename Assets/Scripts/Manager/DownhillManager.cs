@@ -16,6 +16,8 @@ public class DownhillManager : MonoBehaviour {
     public GameObject[] icons;
     public Transform iconPanel;
 
+    public GameObject bearImpactPref;
+
     [HideInInspector] public float playTime;
 
     [SerializeField] private float _timeScale = 1;

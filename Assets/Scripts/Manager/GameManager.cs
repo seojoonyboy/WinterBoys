@@ -168,6 +168,6 @@ public class GameManager : Singleton<GameManager> {
     }
 
     public void vibrate() {
-        if(optionData.vibrate) Handheld.Vibrate();
+        if (optionData.vibrate) Handheld.Vibrate();
     }
 }
