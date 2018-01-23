@@ -71,6 +71,7 @@ public class Ski_PlayerController : MonoBehaviour {
     private SkeletonAnimation anim;
     private CharStateMachine stateMachine;
     [SerializeField] private Material[] materials;
+    private bool efxOn;
 
     private void Awake() {
         gm = GameManager.Instance;
@@ -79,6 +80,7 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void Start() {
+        efxOn = gm.optionData.efx;
         offSpines(-1);
         characterIndex = CharacterManager.Instance.currentCharacter;
 
@@ -154,8 +156,10 @@ public class Ski_PlayerController : MonoBehaviour {
             offSpines(5);
             //selectedCharacters[5].gameObject.SetActive(true);
             if (!audioSource.isPlaying) {
-                audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
-                audioSource.Play();
+                if(efxOn) {
+                    audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
+                    audioSource.Play();
+                }
             }
 
             if (!isPlayedDeadAnim) {
@@ -261,15 +265,16 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         if (buttonDown) {
-            if(dM.getTimeScale != 0) {
-                audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
-
-                if (!audioSource.isPlaying) {
+            if(efxOn) {
+                if(dM.getTimeScale != 0) {
                     audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
-                    audioSource.Play();
+
+                    if (!audioSource.isPlaying) {
+                        audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_dirChange").clip;
+                        audioSource.Play();
+                    }
                 }
             }
-
             if (stateMachine.array[3]) {
                 rb.angularVelocity += statBasedRotSenstive * -rotateDir * AdditionalAngularForce();
             }
@@ -278,15 +283,16 @@ public class Ski_PlayerController : MonoBehaviour {
             }
         }
         else {
-            if (dM.getTimeScale != 0) {
-                audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
-
-                if (!audioSource.isPlaying) {
+            if(efxOn) {
+                if (dM.getTimeScale != 0) {
                     audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
-                    audioSource.Play();
+
+                    if (!audioSource.isPlaying) {
+                        audioSource.clip = dM.soundManager.searchResource(SoundManager.SoundType.EFX, "dh_move").clip;
+                        audioSource.Play();
+                    }
                 }
             }
-
             rb.angularVelocity = 0;
         }
 

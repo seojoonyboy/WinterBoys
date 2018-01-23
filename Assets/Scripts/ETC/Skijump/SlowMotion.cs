@@ -22,7 +22,7 @@ public class SlowMotion : MonoBehaviour {
 
             Time.timeScale = sm.slowdownFactor;
             Time.fixedDeltaTime = Time.timeScale * .02f;
-
+            if(!GameManager.Instance.optionData.efx) return;
             extraAudioSource.clip = SoundManager.Instance.searchResource(SoundManager.SoundType.EFX, "sj_jump").clip;
             extraAudioSource.Play();
         }

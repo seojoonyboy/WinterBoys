@@ -25,8 +25,6 @@ public class MainSceneController : MonoBehaviour {
         #if UNITY_ANDROID
         gm.setExitModal(exitModal);
         exitModal.GetComponentInChildren<Button>().onClick.AddListener(gm.gameOff);
-        #elif UNITY_IOS
-        optionBtn.SetActive(false);
         #endif
     }
 

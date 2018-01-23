@@ -17,14 +17,14 @@ public class SoundManager : Singleton<SoundManager> {
 
     public void setOption() {
         GameManager.OptionData option = GameManager.Instance.optionData;
-        //bgmSource.gameObject.SetActive(option.bgm);        
-        //efxSource.gameObject.SetActive(option.efx);
+        bgmSource.gameObject.SetActive(option.bgm);        
+        efxSource.gameObject.SetActive(option.efx);
     }
 
     public void Play(SoundType type, string name, float volume = 1) {
         Sound targetRes = searchResource(type, name);
         if (name == null || targetRes == null) {
-            Debug.LogError("CAN NOT FIND " + name + " SOUND");
+            //Debug.LogError("CAN NOT FIND " + name + " SOUND");
             return;
         }
 
@@ -51,9 +51,11 @@ public class SoundManager : Singleton<SoundManager> {
         switch (type) {
             case SoundType.BGM:
                 arr = bgm_sounds;
+                if(!bgmSource.gameObject.activeSelf) return null;
                 break;
             case SoundType.EFX:
                 arr = efx_sounds;
+                if(!efxSource.gameObject.activeSelf) return null;
                 break;
         }
 

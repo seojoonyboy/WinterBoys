@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 70df4ac74a18fe5458b26f450523c952
   - enabled: 1
-    path: Assets/Scenes/Skeleton.unity
-    guid: ff382326c7f634315819b023cd47e911
-  - enabled: 1
     path: Assets/Scenes/DownHill.unity
     guid: bb2842399300fc648ae203fa3d5c45f6
   - enabled: 1

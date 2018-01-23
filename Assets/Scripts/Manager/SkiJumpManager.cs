@@ -250,7 +250,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
     private void _OnLanding(SkiJump_LandingEvent e) {
         playerController.extraAudioSource.gameObject.SetActive(true);
-
+        if(!GameManager.Instance.optionData.efx) return;
         playerController.extraAudioSource.clip = soundManager.searchResource(SoundManager.SoundType.EFX, "sj_landingAndSlide").clip;
         playerController.extraAudioSource.Play();
 

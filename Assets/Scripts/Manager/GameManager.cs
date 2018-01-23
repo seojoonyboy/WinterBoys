@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager> {
         public bool vibrate = true;
     }
 
-    public OptionData optionData;
+    public OptionData optionData = new OptionData();
     protected GameManager() { }
 
     public percentages dh_percentages;
