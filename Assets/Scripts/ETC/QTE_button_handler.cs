@@ -16,7 +16,8 @@ public class QTE_button_handler : MonoBehaviour {
     private int successCnt = 0;
     private bool isSuccess = false;
 
-    public GameObject 
+    public GameObject
+        blur,
         QTEResults,
         successObj,
         failObj;
@@ -29,6 +30,11 @@ public class QTE_button_handler : MonoBehaviour {
 
     private void OnEnable() {
         rect = transform.parent.GetComponent<RectTransform>();
+        blur.SetActive(true);
+    }
+
+    private void OnDisable() {
+        blur.SetActive(false);
     }
 
     public void OnClick() {
@@ -50,7 +56,6 @@ public class QTE_button_handler : MonoBehaviour {
         else {
             isSuccess = false;
         }
-        
         if (isSuccess) {
             successObj.SetActive(true);
         }
