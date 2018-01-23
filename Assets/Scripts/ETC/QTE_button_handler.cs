@@ -62,6 +62,7 @@ public class QTE_button_handler : MonoBehaviour {
         if (isSuccess) {
             successObj.SetActive(true);
             successCnt++;
+            Debug.Log("성공" + successCnt);
         }
         else {
             failObj.SetActive(true);
@@ -98,14 +99,12 @@ public class QTE_button_handler : MonoBehaviour {
         rect.localPosition = new Vector3(randX, randY, 0);
         animator.Play("QTE", -1, 0);
         animator.enabled = true;
-
-        if (qteCnt < 3) {
-            sm.qte_magnification = successCnt * 0.1f;
-        }
-        else {
+        
+        if (qteCnt >= 3) {
             _eventManager.TriggerEvent(new SkiJump_QTE_end());
             rect.gameObject.SetActive(false);
 
+            sm.qte_magnification = successCnt * 0.1f;
             qteCnt = 0;
         }
 
