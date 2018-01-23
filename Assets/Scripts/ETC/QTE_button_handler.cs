@@ -40,7 +40,7 @@ public class QTE_button_handler : MonoBehaviour {
     public void OnClick() {
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
         AnimatorClipInfo[] myAnimatorClip = animator.GetCurrentAnimatorClipInfo(0);
-
+        
         float stopedAnimTime = myAnimatorClip[0].clip.length * animState.normalizedTime;
         animator.enabled = false;
 
