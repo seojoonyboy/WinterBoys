@@ -22,7 +22,7 @@ public class MainSceneController : MonoBehaviour {
     }
 
     private void setAndroidGameOff() {
-        #if UNITY_ANDROID
+        #if UNITY_ANDROID || UNITY_EDITOR
         gm.setExitModal(exitModal);
         exitModal.GetComponentInChildren<Button>().onClick.AddListener(gm.gameOff);
         #endif
