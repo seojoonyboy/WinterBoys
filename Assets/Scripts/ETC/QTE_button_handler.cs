@@ -39,6 +39,8 @@ public class QTE_button_handler : MonoBehaviour {
     }
 
     public void OnClick() {
+        StartCoroutine(nextQTE());
+
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
         AnimatorClipInfo[] myAnimatorClip = animator.GetCurrentAnimatorClipInfo(0);
         
@@ -72,10 +74,11 @@ public class QTE_button_handler : MonoBehaviour {
         }
 
         QTEResults.GetComponent<RectTransform>().localPosition = rect.localPosition;
-        nextQTE();
     }
 
     public void fail() {
+        StartCoroutine(nextQTE());
+
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
         AnimatorClipInfo[] myAnimatorClip = animator.GetCurrentAnimatorClipInfo(0);
 
@@ -91,10 +94,11 @@ public class QTE_button_handler : MonoBehaviour {
         failObj.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "stupid", false);
 
         QTEResults.GetComponent<RectTransform>().localPosition = rect.localPosition;
-        nextQTE();
     }
 
-    private void nextQTE() {
+    private IEnumerator nextQTE() {
+        yield return sm.WaitForRealSeconds(1.0f);
+
         qteCnt++;
 
         float randX = Random.Range(-630, 630);
@@ -103,7 +107,7 @@ public class QTE_button_handler : MonoBehaviour {
         rect.localPosition = new Vector3(randX, randY, 0);
         animator.Play("QTE", -1, 0);
         animator.enabled = true;
-        
+
         if (qteCnt >= 3) {
             _eventManager.TriggerEvent(new SkiJump_QTE_end());
             rect.gameObject.SetActive(false);
@@ -112,7 +116,5 @@ public class QTE_button_handler : MonoBehaviour {
             sm.qte_magnification = successCnt * 0.1f;
             qteCnt = 0;
         }
-
-        transform.parent.GetComponent<Button>().enabled = true;
     }
 }

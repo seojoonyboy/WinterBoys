@@ -76,6 +76,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private float lastTimeIncInterval = 1000;
     private float nextMeterSignInterval = 500;  //미터 표시 간격
 
+    public IEnumerator WaitForRealSeconds(float time) {
+        float start = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup < start + time) {
+            yield return null;
+        }
+    }
+
     private void Awake() {
         _eventManger = EventManager.Instance;
         pm = SaveManager.Instance;
