@@ -115,6 +115,7 @@ public class QTE_button_handler : MonoBehaviour {
 
             sm.qte_magnification = successCnt * 0.1f;
             qteCnt = 0;
+            successCnt = 0;
         }
     }
 }
