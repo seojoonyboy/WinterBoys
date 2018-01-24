@@ -43,8 +43,8 @@ public class SaveManager : Singleton<SaveManager> {
 		}
 		List<object> savefile = Json.Deserialize(saveString) as List<object>;
 		if(savefile != null) {
-			Debug.Log("Delete old save file");
-			Debug.Log(saveString);
+			//Debug.Log("Delete old save file");
+			//Debug.Log(saveString);
 			saveData = new SaveData();
 			return;
 		}
@@ -52,7 +52,7 @@ public class SaveManager : Singleton<SaveManager> {
 	}
 
 	private void save() {
-		Debug.Log(JsonUtility.ToJson(saveData));
+		//Debug.Log(JsonUtility.ToJson(saveData));
 		PlayerPrefs.SetString("savefile", JsonUtility.ToJson(saveData));
 	}
 
