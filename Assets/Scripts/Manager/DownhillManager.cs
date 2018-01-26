@@ -249,6 +249,22 @@ public class DownhillManager : MonoBehaviour {
         pm.addCrystal(amount);
     }
 
+    public void decreaseTime(int amount) {
+        remainTime -= amount;
+        GameObject fontEffect = Instantiate(playerController.FontEffect);
+        fontEffect.transform.SetParent(playerController.transform.Find("Canvas").transform);
+
+        fontEffect.transform.localScale = Vector3.one;
+        fontEffect.GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+        FontEffect fontEffectComp = fontEffect.GetComponent<FontEffect>();
+
+        fontEffectComp.isNegative = true;
+        fontEffectComp.text = "깃발 지나침 -5초";
+
+        fontEffect.SetActive(true);
+    }
+
     //현재 받고 있는 아이템 효과 아이콘
     public void setItemEffectIcon(float coolTime, ItemType.DH type) {
         int index = -1;

@@ -56,7 +56,7 @@ public class FlagController : MonoBehaviour {
         else if(flagType == type.LEFT && dir == Vector3.right) {
             //실패
             dm.setCombo(0);
-            dm.remainTime -= 5;
+            dm.decreaseTime(5);
             //Debug.Log("Ray로 실패");
         }
 
@@ -69,7 +69,7 @@ public class FlagController : MonoBehaviour {
         else if (flagType == type.RIGHT && dir == Vector3.left) {
             //실패
             dm.setCombo(0);
-            dm.remainTime -= 5;
+            dm.decreaseTime(5);
             //Debug.Log("Ray로 실패");
         }
     }
