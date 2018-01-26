@@ -61,6 +61,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
     public AudioSource extraAudioSource;
     public GameObject stunObj;
+    public GameObject fontEffectPref;
     private void Awake() {
         _eventManger = EventManager.Instance;
         soundManager = SoundManager.Instance;
@@ -430,10 +431,18 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
         if (obj.tag == "Item") {
             Item item = obj.GetComponent<Item>();
+            GameObject fontEffectObj = Instantiate(fontEffectPref);
+            fontEffectObj.transform.SetParent(GameObject.Find("Canvas").transform, false);
+            SJ_fontEffect fontComp = fontEffectObj.GetComponent<SJ_fontEffect>();
+            fontComp.target = gameObject;
+
             switch (item.item_sj) {
                 case ItemType.SJ.BL_BIRD:
                     Vector2 BL_BIRD_forceDir = new Vector2(2f, -10f);
                     rb.AddForce(BL_BIRD_forceDir, ForceMode2D.Impulse);
+
+                    fontComp.text = "충돌";
+                    fontComp.isNegative = true;
 
                     gm.vibrate();
                     break;
@@ -443,11 +452,17 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
                     sm.addEffectIcon(0, whiteBirdCoolTime);
 
+                    fontComp.text = "무적";
+                    fontComp.isNegative = false;
+
                     playerState = PlayerState.WHITE_BIRD;
                     break;
                 case ItemType.SJ.BALLOON:
                     Vector2 forceDir = new Vector2(2f, 10f);
                     rb.AddForce(forceDir, ForceMode2D.Impulse);
+
+                    fontComp.text = "상승";
+                    fontComp.isNegative = false;
 
                     gm.vibrate();
                     break;
@@ -456,23 +471,44 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     sm.addEffectIcon(2, reverseCoolTime);
 
                     playerState = PlayerState.REVERSE_ROTATE;
+
+                    fontComp.text = "좌우 반전";
+                    fontComp.isNegative = true;
+
                     break;
                 case ItemType.SJ.POINT:
                     sm.bonusScore += 50;
+
+                    fontComp.text = "골드 +50";
+                    fontComp.isNegative = false;
+
                     break;
                 case ItemType.SJ.THUNDER_CLOUD:
                     thunderCoolTime = itemCooltimes.thunderCloud_cooltime;
                     sm.addEffectIcon(4, thunderCoolTime);
 
                     playerState = PlayerState.GRAVITY_CHANGE;
+
+                    fontComp.text = "중력 증가";
+                    fontComp.isNegative = true;
+
                     break;
                 case ItemType.SJ.MONEY:
                     sm.addCrystal(5);
+
+                    fontComp.text = "크리스탈 +5";
+                    fontComp.isNegative = false;
+
                     break;
                 case ItemType.SJ.TIME:
                     sm.lastTime += 15f;
+
+                    fontComp.text = "시간 +15";
+                    fontComp.isNegative = false;
+
                     break;
             }
+            fontComp.gameObject.SetActive(true);
             Destroy(obj);
         }
     }
