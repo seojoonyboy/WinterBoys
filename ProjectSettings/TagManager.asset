@@ -80,3 +80,6 @@ TagManager:
   - name: DH_UI
     uniqueID: 2375769605
     locked: 0
+  - name: EffectUI
+    uniqueID: 1492393313
+    locked: 0

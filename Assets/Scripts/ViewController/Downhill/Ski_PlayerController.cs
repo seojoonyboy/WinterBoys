@@ -34,7 +34,8 @@ public class Ski_PlayerController : MonoBehaviour {
         playerImage,
         plate,
         snowFricEffect,
-        playerHeadBugEffect;
+        playerHeadBugEffect,
+        FontEffect;
 
     public GameObject[]
         blue_chars,
@@ -482,6 +483,13 @@ public class Ski_PlayerController : MonoBehaviour {
         if (item == null) { return; }
 
         float cooltime = 0;
+        GameObject fontEffect = Instantiate(FontEffect);
+        fontEffect.transform.SetParent(transform.Find("Canvas"));
+
+        fontEffect.transform.localScale = Vector3.one;
+        fontEffect.GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+        FontEffect fontEffectComp = fontEffect.GetComponent<FontEffect>();
         switch (item.item_dh) {
             case ItemType.DH.BOOSTING_HILL:
                 stateMachine.array.Set(0, true);
@@ -491,6 +499,9 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 additionalForceByEffect = 1.5f;
 
+                fontEffectComp.isNegative = false;
+                fontEffectComp.text = "속도 증가";
+                
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.ENEMY_BEAR:
@@ -505,6 +516,9 @@ public class Ski_PlayerController : MonoBehaviour {
                 float endTime = dM.bearImpactPref.GetComponent<SkeletonAnimation>().AnimationState.Tracks.Items[0].AnimationEnd;
                 Invoke("BearImpactAnimEnd", endTime);
 
+                fontEffectComp.isNegative = true;
+                fontEffectComp.text = "기절";
+
                 gm.vibrate();
                 break;
             case ItemType.DH.TREE:
@@ -518,6 +532,9 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_tree");
 
+                fontEffectComp.isNegative = true;
+                fontEffectComp.text = "기절";
+
                 item.transform.Find("Image").GetComponent<TreeHandler>().Play();
                 break;
             case ItemType.DH.ENEMY_BUGS:
@@ -525,6 +542,9 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 reverseCoolTime = itemCoolTimes.reverseRot_cooltime;
                 cooltime = reverseCoolTime;
+
+                fontEffectComp.isNegative = true;
+                fontEffectComp.text = "방향 반전";
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
@@ -536,6 +556,9 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 pollBuff = 1.4f;
 
+                fontEffectComp.isNegative = false;
+                fontEffectComp.text = "회전력 증가";
+
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.OBSTACLE_OIL:
@@ -546,25 +569,38 @@ public class Ski_PlayerController : MonoBehaviour {
 
                 oilBuff = 0.6f;
 
+                fontEffectComp.isNegative = true;
+                fontEffectComp.text = "회전력 감소";
+
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
 
             case ItemType.DH.POINT:
                 dM.scoreInc(50);
 
+                fontEffectComp.isNegative = false;
+                fontEffectComp.text = "골드 +50";
+
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.TIME:
                 dM.remainTime += 10;
+
+                fontEffectComp.isNegative = false;
+                fontEffectComp.text = "시간 +10";
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
             case ItemType.DH.MONEY:
                 dM.addCrystal(5);
 
+                fontEffectComp.isNegative = false;
+                fontEffectComp.text = "크리스탈 +5";
+
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
         }
+        fontEffect.SetActive(true);
         dM.setItemEffectIcon(cooltime, item.item_dh);
         if (item.item_dh != ItemType.DH.TREE) {
             Destroy(obj);
