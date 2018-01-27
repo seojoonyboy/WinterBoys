@@ -49,7 +49,8 @@ public class DownhillManager : MonoBehaviour {
     public GameObject 
         pauseModal,
         countdown,
-        countdownBg;
+        countdownBg,
+        timeWarningModal;
 
     public bool isTimeUp = false;
     private void Awake() {
@@ -107,6 +108,16 @@ public class DownhillManager : MonoBehaviour {
         if (distOfMeter < 0) {
             distOfMeter = 0;
         }
+
+        if(remainTime < 5 && remainTime > 0) {
+            timeWarningModal.SetActive(true);
+        }
+        else {
+            if (timeWarningModal.activeSelf) {
+                timeWarningModal.SetActive(false);
+            }
+        }
+
         if(remainTime < 0) {
             remainTime = 0;
             isTimeUp = true;
@@ -132,6 +143,7 @@ public class DownhillManager : MonoBehaviour {
         distOfMeter = 0;
         preDistOfMeter = 0;
         additionalScore = 0;
+
 
         soundManager.Play(SoundManager.SoundType.BGM, "dh");
     }
@@ -178,6 +190,10 @@ public class DownhillManager : MonoBehaviour {
             comboNum = 0;
         }
         else if(isPass == 1) {
+            if(comboNum > 0) {
+                string text = comboNum + "회 콤보";
+                makeFontEffect(text, false);
+            }
             comboNum++;
         }
 
@@ -250,7 +266,16 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void decreaseTime(int amount) {
+        if (playerController.stateMachine.array[0]) {
+            return;
+        }
+
         remainTime -= amount;
+
+        makeFontEffect("깃발 지나침 -5초", true);
+    }
+    
+    private void makeFontEffect(string text, bool isNegative) {
         GameObject fontEffect = Instantiate(playerController.FontEffect);
         fontEffect.transform.SetParent(playerController.transform.Find("Canvas").transform);
 
@@ -259,8 +284,8 @@ public class DownhillManager : MonoBehaviour {
 
         FontEffect fontEffectComp = fontEffect.GetComponent<FontEffect>();
 
-        fontEffectComp.isNegative = true;
-        fontEffectComp.text = "깃발 지나침 -5초";
+        fontEffectComp.isNegative = isNegative;
+        fontEffectComp.text = text;
 
         fontEffect.SetActive(true);
     }

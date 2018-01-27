@@ -7,7 +7,7 @@ public class FlagController : MonoBehaviour {
     public enum type { LEFT, RIGHT };
     public type flagType;
 
-    private bool isSend = false;
+    private bool isHit;
 
     private DownhillManager dm;
     private BoardManager bm;
@@ -24,9 +24,13 @@ public class FlagController : MonoBehaviour {
 
         anim = GetComponent<SkeletonAnimation>();
         anim.loop = false;
+
+        isHit = false;
     }
 
     private void FixedUpdate() {
+        if (isHit) { return; }
+
         Vector3 dir = Vector3.left;
         ray(dir);
 
@@ -35,13 +39,12 @@ public class FlagController : MonoBehaviour {
     }
 
     private void ray(Vector3 dir) {
-        if (isSend) return;
-
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit)) {
             if (hit.collider.gameObject.CompareTag("Player")) {
+                isHit = true;
                 checkSuccessOrFail(dir);
-                isSend = true;
+                GetComponent<FlagController>().enabled = false;
             }
         }
     }
@@ -75,9 +78,12 @@ public class FlagController : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        if (isHit) { return; }
+
         if (collision.gameObject.CompareTag("Player")) {
             //성공
-            isSend = true;
+            isHit = true;
+
             dm.passNumInc();
             dm.setCombo(1);
             //Debug.Log("충돌로 성공");
@@ -94,6 +100,8 @@ public class FlagController : MonoBehaviour {
             rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y * 0.8f);
 
             SoundManager.Instance.Play(SoundManager.SoundType.EFX, "dh_flagCrash");
+
+            GetComponent<FlagController>().enabled = false;
         }
     }
 }

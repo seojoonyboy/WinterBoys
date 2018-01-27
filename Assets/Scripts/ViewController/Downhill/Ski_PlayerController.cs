@@ -70,7 +70,7 @@ public class Ski_PlayerController : MonoBehaviour {
     private Quaternion beginQuarternion;
     private Vector2 beginEular;
     private SkeletonAnimation anim;
-    private CharStateMachine stateMachine;
+    public CharStateMachine stateMachine;
     [SerializeField] private Material[] materials;
     private bool efxOn;
 
