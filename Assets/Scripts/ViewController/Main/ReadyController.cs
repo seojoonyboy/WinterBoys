@@ -71,7 +71,10 @@ public class ReadyController : MonoBehaviour {
 	[SerializeField] private GameObject tutorialModal;
 	[SerializeField] private GameObject noStaminaModal;
 
-	private void Awake() {
+    Color32 positiveButtonColor = new Color32(255, 255, 255, 255);
+    Color32 negativeButtonColor = new Color32(110, 110, 110, 255);
+
+    private void Awake() {
 		saveManager = SaveManager.Instance;
 		cm = CharacterManager.Instance;
 		setButton();
@@ -79,7 +82,8 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void setButton() {
-		speed.levelUp.onClick.AddListener(levelUpSpeed);
+        setButtonColor();
+        speed.levelUp.onClick.AddListener(levelUpSpeed);
 		control.levelUp.onClick.AddListener(levelUpControl);
 		checkButton();
 	}
@@ -146,6 +150,7 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpSpeed() {
+        setButtonColor();
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "statChange");
         if (saveManager.levelUpSpeed()) {
 			Debug.Log(sport+" level up!!");
@@ -157,6 +162,7 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpControl() {
+        setButtonColor();
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "statChange");
         if (saveManager.levelUpControl()) {
 			Debug.Log(sport+"level up!!");
@@ -210,6 +216,22 @@ public class ReadyController : MonoBehaviour {
 		PlayerPrefs.SetInt("character", num);
 		init();
 	}
+
+    private void setButtonColor() {
+        if (saveManager.levelUpSpeed()) {
+            speed.levelUp.GetComponent<Image>().color = positiveButtonColor;
+        }
+        else {
+            speed.levelUp.GetComponent<Image>().color = negativeButtonColor;
+        }
+
+        if (saveManager.levelUpControl()) {
+            control.levelUp.GetComponent<Image>().color = positiveButtonColor;
+        }
+        else {
+            control.levelUp.GetComponent<Image>().color = negativeButtonColor;
+        }
+    }
 
 	private void FixedUpdate() {
 		int num = cm.currentCharacter;
