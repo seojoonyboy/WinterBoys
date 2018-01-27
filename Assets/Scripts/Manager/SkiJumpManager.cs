@@ -19,7 +19,9 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     public SkiJumpCM_controller CM_controller;
     public SkiJumpBoardHolder boardHolder;
     public ResultModalController modal;
-    public GameObject pauseModal;
+    public GameObject 
+        pauseModal,
+        timeWarningModal;
 
     public GameObject
         meterSign,                  //미터 표시기
@@ -182,6 +184,13 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             if(canClickArrowBtnTime <= 0) {
                 canClickArrowBtn = true;
             }
+        }
+
+        if(lastTime <= 5 && lastTime > 0) {
+            timeWarningModal.SetActive(true);
+        }
+        else {
+            timeWarningModal.SetActive(false);
         }
 
         if(lastTime <= 0) {
