@@ -83,7 +83,7 @@ public class DownhillManager : MonoBehaviour {
     }
 
     public void OnQuit() {
-        SceneManager.LoadScene("main");
+        GameManager.Instance.LoadSceneFromIngame("Main", SportType.DOWNHILL);
     }
 
     public float getTimeScale {

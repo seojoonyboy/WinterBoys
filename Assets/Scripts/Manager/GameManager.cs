@@ -48,6 +48,9 @@ public class GameManager : Singleton<GameManager> {
     private GameObject modal;
     private GameObject exitModal;
 
+    public bool isFromIngame;
+    public SportType preType;
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         //RemoteSettings.ForceUpdate();
@@ -110,6 +113,12 @@ public class GameManager : Singleton<GameManager> {
         tutorialList[(int)tuto] = true;
         string data = ANMiniJSON.Json.Serialize(tutorialList);
         PlayerPrefs.SetString("tutorial", data);
+    }
+
+    public void LoadSceneFromIngame(string sceneName, SportType type) {
+        preType = type;
+        isFromIngame = true;
+        SceneManager.LoadScene(sceneName);
     }
 
     #if UNITY_ANDROID || UNITY_EDITOR

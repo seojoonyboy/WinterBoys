@@ -256,7 +256,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     public void OnQuit() {
-        SceneManager.LoadScene("main");
+        GameManager.Instance.LoadSceneFromIngame("Main", SportType.SKIJUMP);
     }
 
     private void _UnstableLanding(SkiJump_UnstableLandingEvent e) {

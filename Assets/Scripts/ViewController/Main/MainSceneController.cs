@@ -14,6 +14,10 @@ public class MainSceneController : MonoBehaviour {
     }
 
     private void Start() {
+        if (gm.isFromIngame) {
+            ready.open(gm.preType);
+        }
+
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "selGame");
         setAndroidGameOff();
         if(gm.isTutorial(GameManager.tutorialEnum.SELECT)) return;
@@ -29,6 +33,7 @@ public class MainSceneController : MonoBehaviour {
     }
 
     public void LoadGame(int type) {
+        gm.isFromIngame = false;
         switch (type) {
             case 0:
                 ready.open(SportType.DOWNHILL);
