@@ -67,4 +67,20 @@ public class NetworkManager : Singleton<NetworkManager> {
         token = new Token();
         JsonUtility.FromJsonOverwrite(response.DataAsText, token);
     }
+
+    /// <summary>
+    /// 인게임 종료 후 점수 서버 전달
+    /// callback으로 랭킹정보 받기?
+    /// </summary>
+    public void sendMyRank(networkResult callback) {
+
+    }
+
+    /// <summary>
+    /// 전체 랭킹 보기
+    /// </summary>
+    /// <param name="callback"></param>
+    public void GetTotalRank(networkResult callback) {
+
+    }
 }
