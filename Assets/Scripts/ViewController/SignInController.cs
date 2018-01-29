@@ -11,6 +11,7 @@ public class SignInController : MonoBehaviour {
         signupPanel;
     private GameManager gm;
     public Text msg;
+    public Text nickName;
     public SkeletonGraphic chara;
 
     private void Start() {
@@ -60,7 +61,9 @@ public class SignInController : MonoBehaviour {
 
     //최종 회원가입 버튼 처리
     public void submit() {
+        if(string.IsNullOrEmpty(nickName.text)) return;
         int character = CharacterManager.Instance.currentCharacter;
+        PlayerPrefs.SetString("nickname", nickName.text);
         PlayerPrefs.SetInt("character", character);
         CharacterManager.Instance.sold(character);
         TrackEntry track = chara.AnimationState.SetAnimation(0, "approval", false);

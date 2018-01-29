@@ -8,6 +8,7 @@ public class CharSelect : MonoBehaviour {
     CharacterManager cm;
     [SerializeField] private CharStat charStat;
     [SerializeField] private Sprite[] charSprites;
+    [SerializeField] private Button beforeBtn;
     [SerializeField] private Button nextBtn;
     private int charIndex = -1;
 
@@ -16,15 +17,18 @@ public class CharSelect : MonoBehaviour {
     }
 
     private void Start() {
-        nextBtn.onClick.AddListener(nextCharacter);
-        nextCharacter();
+        beforeBtn.onClick.AddListener(() => nextCharacter(false));
+        nextBtn.onClick.AddListener(() => nextCharacter(true));
+        nextCharacter(true);
     }
 
-    private void nextCharacter() {
-        charIndex++;
+    private void nextCharacter(bool next) {
+        if(next) charIndex++;
+        else charIndex--;
         if(charIndex >= 3) charIndex = 0;
+        if(charIndex < 0) charIndex = 2;
         cm.currentCharacter = charIndex;
-        string charNameString = string.Format("<color=yellow>\"{0}\"</color> 선수로\n등록하실래요?", cm.getName(charIndex));
+        string charNameString = string.Format("선수와 감독명을\n정하세요");
         charStat.setData(charSprites[charIndex], charNameString, cm.getSpeed(charIndex), cm.getControl(charIndex));
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "charChangeBtn");
     }
