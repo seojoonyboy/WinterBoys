@@ -289,9 +289,6 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     }
                 }
                 else {
-                    if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
-                        rb.angularVelocity = mark * statBasedRotAmount;
-                    }
                     //Debug.Log(rb.velocity.x);
                     float forceX = 10;
                     if (rb.velocity.x > 40) {
@@ -299,6 +296,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     }
                     Vector2 val = new Vector2(forceX, -0.01f);
                     rb.AddForce(val);
+                }
+
+                if ((angle <= 45 && angle >= 0) || (angle <= 360 && angle >= 305)) {
+                    rb.angularVelocity = mark * statBasedRotAmount;
                 }
             }
         }
