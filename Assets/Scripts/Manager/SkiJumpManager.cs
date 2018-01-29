@@ -11,6 +11,8 @@ using Spine.Unity;
 public class SkiJumpManager : Singleton<SkiJumpManager> {
     protected SkiJumpManager() { }
 
+    private List<IconList> iconList;
+
     private EventManager _eventManger;
     private SaveManager pm;
 
@@ -132,6 +134,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         preFixedDeltaTime = Time.fixedDeltaTime;
         GameManager.Instance.setExitModal(pauseModal);
+
+        iconList = new List<IconList>();
     }
 
     private void startQTE(SkiJump_QTE_start e) {
@@ -287,6 +291,12 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     public void addEffectIcon(int index, float cooltime) {
+        IconList preItem = iconList.Find(x => x.id == index);
+        if (preItem != null) {
+            Destroy(preItem.obj);
+            iconList.Remove(preItem);
+        }
+
         GameObject icon = Instantiate(effectIcons[index]);
         icon.transform.SetParent(effectIconPanel.transform);
         icon.transform.localPosition = Vector3.zero;
@@ -294,6 +304,11 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         var cooltimeComp = icon.transform.Find("BlackBg").gameObject.AddComponent<Icon>();
         cooltimeComp.cooltime = cooltime;
+
+        IconList item = new IconList();
+        item.id = index;
+        item.obj = icon;
+        iconList.Add(item);
     }
 
     public void gameOver() {
@@ -362,5 +377,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.RemoveListener<SkiJump_Resume>(resume);
         _eventManger.AddListener<SkiJump_QTE_start>(startQTE);
         _eventManger.RemoveListener<SkiJump_QTE_end>(endQTE);
+    }
+
+    public class IconList {
+        public int id;
+        public GameObject obj;
     }
 }

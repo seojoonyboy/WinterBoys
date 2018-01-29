@@ -9,6 +9,7 @@ using GameEvents;
 using System;
 
 public class DownhillManager : MonoBehaviour {
+    private List<IconList> iconList;
     public ResultModalController modal;
     private GameManager gm;
     private SaveManager pm;
@@ -146,6 +147,8 @@ public class DownhillManager : MonoBehaviour {
 
 
         soundManager.Play(SoundManager.SoundType.BGM, "dh");
+
+        iconList = new List<IconList>();
     }
 
     public void StartButtonPressed() {
@@ -292,6 +295,12 @@ public class DownhillManager : MonoBehaviour {
 
     //현재 받고 있는 아이템 효과 아이콘
     public void setItemEffectIcon(float coolTime, ItemType.DH type) {
+        IconList preItem = iconList.Find(x => x.name == type);
+        if(preItem != null) {
+            Destroy(preItem.obj);
+            iconList.Remove(preItem);
+        }
+
         int index = -1;
         switch (type) {
             case ItemType.DH.BOOSTING_HILL:
@@ -326,6 +335,11 @@ public class DownhillManager : MonoBehaviour {
 
         var iconComp = icon.transform.Find("BlackBg").gameObject.AddComponent<Icon>();
         iconComp.cooltime = coolTime;
+
+        IconList item = new IconList();
+        item.name = type;
+        item.obj = icon;
+        iconList.Add(item);
     }
 
     private void removeListener() {
@@ -336,5 +350,10 @@ public class DownhillManager : MonoBehaviour {
     public enum GameoverReason {
         SIDETILE,
         TIMEEND
+    }
+
+    public class IconList {
+        public ItemType.DH name;
+        public GameObject obj;
     }
 }
