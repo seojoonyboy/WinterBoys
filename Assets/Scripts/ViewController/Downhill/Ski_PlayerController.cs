@@ -549,6 +549,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 fontEffectComp.text = "기절";
 
                 item.transform.Find("Image").GetComponent<TreeHandler>().Play();
+                item.GetComponent<BoxCollider2D>().enabled = false;
                 break;
             case ItemType.DH.ENEMY_BUGS:
                 stateMachine.array.Set(3, true);
