@@ -69,6 +69,7 @@ public class ReadyController : MonoBehaviour {
 	[SerializeField] public PointStat control;
 	[SerializeField] private Button startButton;
 	[SerializeField] private GameObject tutorialModal;
+	[SerializeField] private GameObject pointTutoModal;
 	[SerializeField] private GameObject noStaminaModal;
 
     Color32 positiveButtonColor = new Color32(255, 255, 255, 255);
@@ -106,9 +107,20 @@ public class ReadyController : MonoBehaviour {
 		setScene();
 		setCharData();
         SoundManager.Instance.Play(SoundManager.SoundType.BGM, "statChange");
-		if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.READY)) return;
+		checkTutorial();
+        
+	}
+
+	private void checkTutorial() {
+		GameManager gm = GameManager.Instance;
+		if(gm.isTutorial(GameManager.tutorialEnum.POINT)) return;
+		if(gm.isTutorial(GameManager.tutorialEnum.DOWNHLL)||gm.isTutorial(GameManager.tutorialEnum.SKIJUMP)) {
+			pointTutoModal.SetActive(true);
+			gm.tutorialDone(GameManager.tutorialEnum.POINT);
+		}
+		if(gm.isTutorial(GameManager.tutorialEnum.READY)) return;
         tutorialModal.SetActive(true);
-        GameManager.Instance.tutorialDone(GameManager.tutorialEnum.READY);
+		gm.tutorialDone(GameManager.tutorialEnum.READY);
 	}
 
     public void OffPanel() {

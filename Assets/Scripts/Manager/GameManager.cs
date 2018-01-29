@@ -42,7 +42,7 @@ public class GameManager : Singleton<GameManager> {
     public int startTime;
     public float[] highestScores;                    //각 종목별 최고 점수
 
-    public enum tutorialEnum { SELECT, READY, SHOP, CHARACTER, DOWNHLL, SKELETON, SKIJUMP }
+    public enum tutorialEnum { SELECT, READY, SHOP, CHARACTER, DOWNHLL, SKELETON, SKIJUMP, POINT }
     private bool[] tutorialList;
     public tutorialEnum tutorialSports = tutorialEnum.SELECT;
     private GameObject modal;
@@ -97,8 +97,8 @@ public class GameManager : Singleton<GameManager> {
     }
 
     private void tutorialDataLoad() {
-        string data = PlayerPrefs.GetString("tutorial", "[false,false,false,false,false,false,false]");
-        //string data = "[false,false,false,false,false,false,false]";
+        string data = PlayerPrefs.GetString("tutorial", "[false,false,false,false,false,false,false,false]");
+        //string data = "[false,false,false,false,false,false,false,false]";
         IList list = ANMiniJSON.Json.Deserialize(data) as IList;
         tutorialList = new bool[list.Count];
         for(int i = 0; i < list.Count; i++)
