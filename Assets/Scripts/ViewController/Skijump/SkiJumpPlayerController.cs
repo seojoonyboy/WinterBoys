@@ -508,6 +508,14 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.isNegative = false;
 
                     break;
+
+                case ItemType.SJ.SNOW_CLOUD:
+                    rb.velocity *= 0.75f;
+
+                    fontComp.text = "속도 감소";
+                    fontComp.isNegative = true;
+
+                    break;
             }
             fontComp.gameObject.SetActive(true);
             Destroy(obj);

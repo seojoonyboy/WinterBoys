@@ -22,7 +22,8 @@
         BALLOON,
         THUNDER_CLOUD,
         MONEY,
-        TIME
+        TIME,
+        SNOW_CLOUD
     }
 
     //skelton

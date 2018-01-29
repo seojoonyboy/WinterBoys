@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4815722244438722}
   - component: {fileID: 114211051410775464}
+  - component: {fileID: 114399205085493824}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -63,12 +64,15 @@ MonoBehaviour:
     - 10
   sj_percentages:
     values:
-    - 30
+    - 20
     - 10
     - 20
-    - 15
+    - 10
+    - 10
+    - 10
     - 5
-    - 15
+    - 5
+    - 10
   st_percentages:
     values:
     - 25
@@ -118,3 +122,16 @@ MonoBehaviour:
   - 0
   - 0
   tutorialSports: 0
+  isFromIngame: 0
+  preType: 0
+--- !u!114 &114399205085493824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361582929206780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5a582b0f969704f9ce97ddfa6c2a8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
