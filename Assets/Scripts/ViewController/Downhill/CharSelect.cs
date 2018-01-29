@@ -28,8 +28,7 @@ public class CharSelect : MonoBehaviour {
         if(charIndex >= 3) charIndex = 0;
         if(charIndex < 0) charIndex = 2;
         cm.currentCharacter = charIndex;
-        string charNameString = string.Format("선수와 감독명을\n정하세요");
-        charStat.setData(charSprites[charIndex], charNameString, cm.getSpeed(charIndex), cm.getControl(charIndex));
+        charStat.setData(charSprites[charIndex], cm.getName(charIndex), cm.getSpeed(charIndex), cm.getControl(charIndex));
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "charChangeBtn");
     }
 }
