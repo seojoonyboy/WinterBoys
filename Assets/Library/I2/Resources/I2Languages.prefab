@@ -54,7 +54,7 @@ MonoBehaviour:
   Google_WebServiceURL: https://script.google.com/macros/s/AKfycbyyKsnI0ivx8Mz7gLM1ifxW6XdU1fStzIP0E7aUp9zJwO57aYM2/exec
   Google_SpreadsheetKey: 1lyjeDvqY3ERu7rRQ6VbQQ8UsCyjJNTkTxnwBvEcqqHg
   Google_SpreadsheetName: I2Loc WinterBoy Localization
-  Google_LastUpdatedVersion: 1517044476431
+  Google_LastUpdatedVersion: 1517218290067
   GoogleUpdateFrequency: 3
   GoogleUpdateDelay: 5
   mTerms:
@@ -89,7 +89,8 @@ MonoBehaviour:
     - "\uAC01 \uC885\uBAA9\uBCC4\uB85C \uCD5C\uACE0 \uAE30\uB85D\uC744 \uC138\uC6B4
       <color=yellow>\uB7AD\uD0B9</color>\uC744 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uC804
       <color=yellow>\uC138\uACC4</color> \uC0AC\uB78C\uB4E4\uACFC <color=yellow>\uACBD\uC7C1</color>\uD574\uBCF4\uC138\uC694."
-    - BlahBlah1
+    - You can see <color = yellow> ranking </ color>, which has the highest record
+      for each event. Try competing with <color = yellow> world people </ color>.
     - 
     Languages_Touch:
     - 
@@ -100,13 +101,16 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uACBD\uAE30\uB97C \uC9C4\uD589\uD560 \uCE90\uB9AD\uD130\uB97C <color=yellow>\uACE0\uC6A9</color>\uD558\uACE0
+    - "\uACBD\uAE30\uB97C \uC9C4\uD589\uD560 \uCE90\uB9AD\uD130\uB97C <color=yellow>\uC601\uC785</color>\uD558\uACE0
       <color=yellow>\uC120\uD0DD</color>\uD560\uC218 \uC788\uB294 \uACF3\uC785\uB2C8\uB2E4.
       \uCE90\uB9AD\uD130\uC758 <color=yellow>\uC678\uD615</color>\uACFC <color=yellow>\uB2A5\uB825\uCE58</color>\uB97C
-      \uD655\uC778\uD560 \uC218 \uC788\uACE0, \uACE0\uC6A9\uD55C \uCE90\uB9AD\uD130
+      \uD655\uC778\uD560 \uC218 \uC788\uACE0, \uC601\uC785\uD55C \uCE90\uB9AD\uD130
       \uC911 \uC6D0\uD558\uB294 \uCE90\uB9AD\uD130\uB97C \uC120\uD0DD\uD560 \uC218
       \uC788\uC2B5\uB2C8\uB2E4."
-    - 1
+    - This is where you can <color = yellow> recruit </ color> and <color = yellow>
+      select </ color> characters to play the game. You can check your character's
+      <color = yellow> appearance </ color> and <color = yellow> ability </ color>
+      and select the character you want from the recruited character.
     - 
     Languages_Touch:
     - 
@@ -117,10 +121,11 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uAC8C\uC784\uC744 \uD558\uBA74\uC11C \uD68D\uB4DD\uD55C  <color=yellow>\uC218\uC815</color>\uC744
+    - "\uAC8C\uC784\uC744 \uD558\uBA74\uC11C \uD68D\uB4DD\uD55C <color=yellow>\uC218\uC815</color>\uC744
       \uC0AC\uC6A9\uD558\uAC70\uB098, \uBAA8\uC790\uB780 \uC218\uC815\uC744 <color=yellow>\uCDA9\uC804</color>\uD560
       \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - 2
+    - You can use the <color = yellow> crytal </ color> you acquired during the game,
+      or you can make a <color = yellow> charge </ color> crystal.
     - 
     Languages_Touch:
     - 
@@ -131,12 +136,13 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uC774\uBC88 \uC2DC\uC98C\uB3D9\uC548 \uD574\uB2F9 <color=yellow>\uC885\uBAA9</color>\uC5D0\uC11C
-      \uC138\uC6B4 \uAC00\uC7A5 \uC88B\uC740 <color=yellow>\uAE30\uB85D</color>\uC785\uB2C8\uB2E4.\n\uD574\uB2F9
-      \uC885\uBAA9 \uB7AD\uD0B9\uC5D0 \uB4F1\uB85D\uB418\uB294 \uAE30\uB85D\uC774\uB2C8
-      \uB354 \uC88B\uC740 \uAE30\uB85D\uC744 \uC704\uD574 <color=yellow>\uB3C4\uC804</color>\uD574
-      \uBCF4\uC138\uC694!"
-    - 3
+    - "\uD574\uB2F9 <color=yellow>\uC885\uBAA9</color>\uC5D0\uC11C \uC138\uC6B4 \uAC00\uC7A5
+      \uC88B\uC740 <color=yellow>\uAE30\uB85D</color>\uC785\uB2C8\uB2E4. \uB7AD\uD0B9\uC5D0
+      \uB4F1\uB85D\uB418\uB294 \uAE30\uB85D\uC774\uB2C8 \uB354 \uC88B\uC740 \uAE30\uB85D\uC744
+      \uC704\uD574 <color=yellow>\uB3C4\uC804</color>\uD574 \uBCF4\uC138\uC694!"
+    - This is the <color = yellow> best record </ color> you have set for your <color
+      = yellow> event </ color>. For records that are listed in the ranking, try <color
+      = yellow> challenge </ color> for a better record!
     - 
     Languages_Touch:
     - 
@@ -151,7 +157,8 @@ MonoBehaviour:
       \uD3EC\uC778\uD2B8\uB97C \uD1B5\uD574 <color=yellow>\uD6C8\uB828</color>\uD560
       \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uD3EC\uC778\uD2B8\uB294 \uAC8C\uC784 \uD50C\uB808\uC774\uB97C
       \uD1B5\uD574 \uC5BB\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - 4
+    - Your <color = yellow> ability </ color>. You can do <color = yellow> training
+      </ color> through your points. Points can be obtained through gameplay.
     - 
     Languages_Touch:
     - 
@@ -165,7 +172,8 @@ MonoBehaviour:
     - "<color=yellow>\uC18D\uB3C4</color>\uB97C \uB192\uC774\uBA74 \uBAA8\uB4E0 \uC885\uBAA9\uC5D0\uC11C
       \uC18D\uB3C4 \uC99D\uAC00\uC2DC\uAC04\uC774 \uC9E7\uC544\uC9C0\uACE0\n\uCD5C\uACE0
       \uC18D\uB3C4\uC758 \uC81C\uD55C\uC774 \uB192\uC544\uC9D1\uB2C8\uB2E4."
-    - 5
+    - Increasing <color = yellow> speed </ color> will shorten the speed increase
+      time and increase the maximum speed limit in all events.
     - 
     Languages_Touch:
     - 
@@ -178,7 +186,8 @@ MonoBehaviour:
     Languages:
     - "<color=yellow>\uC870\uC791</color>\uC744 \uB192\uC774\uBA74 \uBAA8\uB4E0 \uC885\uBAA9\uC5D0\uC11C
       \uC6C0\uC9C1\uC784\uC774\uB098 \uC870\uC791\uC758 \uD6A8\uC728\uC774 \uC88B\uC544\uC9D1\uB2C8\uB2E4."
-    - 6
+    - Increasing the <color = yellow> operation </ color> will improve the efficiency
+      of movement and manipulation in all events.
     - 
     Languages_Touch:
     - 
@@ -191,12 +200,16 @@ MonoBehaviour:
     Languages:
     - "\uB2F9\uC2E0\uC774 \uC120\uD0DD\uD55C \uCE90\uB9AD\uD130\uC758 <color=yellow>\uCD9C\uC804
       \uAE30\uD68C</color>\uC785\uB2C8\uB2E4.\n1\uD68C \uD50C\uB808\uC774 \uD560 \uB54C\uB9C8\uB2E4
-      \uCD9C\uC804 \uAE30\uD68C\uAC00 1\uD68C \uC904\uC5B4\uB4E4\uACE0 \uC2DC\uAC04\uC774\n\uC9C0\uB098\uBA74
-      <color=yellow>\uCDA9\uC804</color>\uB429\uB2C8\uB2E4.\n\uCE90\uB9AD\uD130\uB9C8\uB2E4
+      \uCD9C\uC804 \uAE30\uD68C\uAC00 1\uAC1C \uC904\uC5B4\uB4E4\uACE0, \uC2DC\uAC04\uC774
+      \uC9C0\uB098\uBA74 <color=yellow>\uCDA9\uC804</color>\uB429\uB2C8\uB2E4.\n\uCE90\uB9AD\uD130\uB9C8\uB2E4
       \uAC1C\uBCC4\uB85C \uCD9C\uC804\uAE30\uD68C\uB97C \uAC00\uC9C0\uACE0 \uC788\uC73C\uB2C8
       \uC5EC\uB7EC \uCE90\uB9AD\uD130\uB97C \uBCF4\uC720\uC911\uC774\uB77C\uBA74 <color=yellow>\uAD50\uCCB4</color>\uB97C
       \uD1B5\uD574 \uB354 \uB9CE\uC774 \uD50C\uB808\uC774 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - 7
+    - <Color = yellow> Competing chance </ color> of your chosen character. Each time
+      you play, the chance to play is reduced by one, and <color = yellow> is charged
+      </ color> after a time. Each character has a chance to play individually, so
+      if you have multiple characters, you can play more with <color = yellow> Change
+      </ color>. "
     - 
     Languages_Touch:
     - 
@@ -212,7 +225,9 @@ MonoBehaviour:
       \uB4F1\uC758 \uC1FC\uD551\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uC0AC\uC6A9\uD560
       \uC218 \uC788\uB294 \uC218\uC815\uC774 \uBD80\uC871\uD558\uB2E4\uBA74 \uCDA9\uC804
       \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - 8
+    - You can shop through the crystal to get <color = yellow> points </ color> or
+      to fill <color = yellow> competing chance </ color>. If there is not enough
+      crystal available, you can charge it.
     - 
     Languages_Touch:
     - 
@@ -223,11 +238,13 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCE90\uB9AD\uD130\uC758 <color=yellow>\uC678</color>\uACFC <color=yellow>\uB2A5\uB825\uCE58</color>\uB97C
-      \uD655\uC778\uD560 \uC218 \uC788\uACE0 \uC88C\uC6B0 \uBC84\uD2BC\uC744 \uD1B5\uD574
+    - "\uCE90\uB9AD\uD130\uC758 <color=yellow>\uC678\uD615</color>\uACFC <color=yellow>\uB2A5\uB825\uCE58</color>\uB97C
+      \uD655\uC778\uD560 \uC218 \uC788\uACE0, \uC88C\uC6B0 \uBC84\uD2BC\uC744 \uD1B5\uD574
       \uB2E4\uB978 \uCE90\uB9AD\uD130\uB85C <color=yellow>\uC218\uC815</color>\uD560
       \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - 9
+    - You can see the <color = yellow> appearance </ color> and <color = yellow> ability
+      </ color> of the character. You can <color = yellow> change to another character
+      </ color> with left / right buttons.
     - 
     Languages_Touch:
     - 
@@ -239,9 +256,11 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uC544\uB798 <color=yellow>\uBC84\uD2BC</color>\uC744 \uD1B5\uD574 \uCE90\uB9AD\uD130\uB97C
-      <color=yellow>\uACE0\uC6A9</color>\uD558\uAC70\uB098 \uC774\uBBF8 \uACE0\uC6A9\uD55C
+      <color=yellow>\uC601\uC785</color>\uD558\uAC70\uB098 \uC774\uBBF8 \uC601\uC785\uD55C
       \uCE90\uB9AD\uD130\uB97C <color=yellow>\uC120\uD0DD</color>\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - 10
+    - You can either use the <color=yellow>button</color> to <color=yellow>recruit</color>
+      the character, or you can <color=yellow>select</color> the character you have
+      already recruited.
     - 
     Languages_Touch:
     - 
@@ -254,7 +273,8 @@ MonoBehaviour:
     Languages:
     - "<color=yellow>\uC81C\uD55C\uC2DC\uAC04</color>\uB3D9\uC548 \uCD5C\uB300\uD55C
       <color=yellow>\uBA3C \uAC70\uB9AC</color>\uB97C <color=yellow>\uC774\uB3D9</color>\uD558\uC138\uC694!"
-    - 11
+    - <color = yellow> Move </ color> <color = yellow> as far as possible <color =
+      yellow> far distance </ color> during <color = yellow> timeout </ color>!
     - 
     Languages_Touch:
     - 
@@ -267,9 +287,12 @@ MonoBehaviour:
     Languages:
     - "<color=yellow>\uD30C\uB780\uC0C9</color>\uD50C\uB798\uADF8\uB294 <color=yellow>\uC624\uB978\uCABD</color>\uC73C\uB85C,
       <color=yellow>\uBE68\uAC04\uC0C9</color> \uD50C\uB798\uADF8\uB294 <color=yellow>\uC67C\uCABD</color>\uC73C\uB85C\n\uD1B5\uACFC\uD574\uC57C
-      \uD558\uBA70 \uD1B5\uACFC\uD558\uC9C0 \uBABB\uD558\uBA74 <color=yellow>\uC81C\uD55C\uC2DC\uAC04</color>\uC774
+      \uD569\uB2C8\uB2E4. \uD1B5\uACFC\uD558\uC9C0 \uBABB\uD558\uBA74 <color=yellow>\uC81C\uD55C\uC2DC\uAC04</color>\uC774
       \uC904\uC5B4\uB4ED\uB2C8\uB2E4."
-    - 12
+    - The <color = yellow> blue </ color> flag should pass through <color = yellow>
+      right </ color> and the <color = yellow> red </ color> flag should pass through
+      <color = yellow> left </ color> . Failure to pass <color = yellow> timeout </
+      color> will be shorter.
     - 
     Languages_Touch:
     - 
@@ -282,7 +305,8 @@ MonoBehaviour:
     Languages:
     - "\uD654\uBA74<color=yellow>\uC67C\uCABD</color>\uACFC<color=yellow>\uC624\uB978\uCABD</color>\uC744
       \uB204\uB974\uACE0 \uC788\uB294 \uAC83\uC73C\uB85C \uC88C\uC6B0 <color=yellow>\uBC29\uD5A5\uC804\uD658</color>\uC774\n\uAC00\uB2A5\uD569\uB2C8\uB2E4."
-    - 13
+    - You can turn the <color = yellow> direction </ color> by pressing <color = yellow>
+      left </ color> and <color = yellow> right </ color> on the screen.
     - 
     Languages_Touch:
     - 
@@ -295,7 +319,8 @@ MonoBehaviour:
     Languages:
     - "<color=yellow>\uC81C\uD55C\uC2DC\uAC04</color>\uB3D9\uC548 \uCD5C\uB300\uD55C
       <color=yellow>\uBA3C \uAC70\uB9AC</color>\uB97C <color=yellow>\uC774\uB3D9</color>\uD558\uC138\uC694!"
-    - 14
+    - <color = yellow> Move </ color> <color = yellow> as far as possible <color =
+      yellow> far distance </ color> during <color = yellow> timeout </ color>!
     - 
     Languages_Touch:
     - 
@@ -308,7 +333,8 @@ MonoBehaviour:
     Languages:
     - "\uB204\uB974\uACE0 \uC788\uC73C\uBA74 \uAC01\uB3C4 <color=yellow>\uC0C1\uC2B9!</color>
       \uC190\uC744 \uB5BC\uBA74 <color=yellow>\uC810\uD504!</color>"
-    - 15
+    - Hold down the screen to <color = yellow>increase the angle!</ Color> Release
+      the <color = yellow> jump! </ color>
     - 
     Languages_Touch:
     - 
@@ -323,7 +349,9 @@ MonoBehaviour:
       \uB4A4\uB85C \uAE30\uC6B8\uC5B4\uC9C0\uBA70 <color=yellow>\uC0C1\uC2B9</color>\uD558\uACE0
       \uC624\uB978\uCABD\uC744 \uB204\uB974\uBA74 \uC55E\uC73C\uB85C \uAE30\uC6B8\uC5B4\uC9C0\uBA70
       <color=yellow>\uD558\uAC15</color>\uD569\uB2C8\uB2E4."
-    - 16
+    - If you touch the left side of the screen while gliding, tilting backward <color
+      = yellow> rising </ color> and rightward tilting forward <color = yellow> descending
+      </ color>.
     - 
     Languages_Touch:
     - 
@@ -443,7 +471,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uC218\uC815\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4."
-    - 
+    - Insufficient crystal
     - 
     Languages_Touch:
     - 
@@ -468,6 +496,1040 @@ MonoBehaviour:
     Languages:
     - "\uC885\uB8CC\uD558\uAE30"
     - Quit
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: signup_title
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC120\uC218 \uB4F1\uB85D\uC99D \uBC1C\uAE09"
+    - Certification
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: signup_talk
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAC10\uB3C5\uC758 \uC774\uB984\uACFC \uCD9C\uC804 \uC120\uC218\uB97C \uC120\uD0DD\uD574
+      \uC8FC\uC138\uC694."
+    - Please type the name of the manager and choose the athletes.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: signup_sign
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC81C\uCD9C!"
+    - submission
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: signup_nickname
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAC10\uB3C5\uBA85"
+    - manager name
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: skill_title
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB2A5\uB825\uCE58"
+    - status
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: skill_speed
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC18D\uB3C4"
+    - speed
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: skill_control
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC870\uC791"
+    - control
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: title_downhill
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB2E4\uC6B4\uD790"
+    - Downhill Ski
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: title_skijump
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC2A4\uD0A4\uC810\uD504"
+    - ski jump
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: title_skeleton
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC2A4\uCF08\uB808\uD1A4"
+    - skeleton
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: main_shop
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC0C1\uC810"
+    - shop
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: main_char
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCE90\uB9AD\uD130"
+    - character
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: main_rank
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB7AD\uD0B9"
+    - ranking
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: option_title
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC124\uC815"
+    - option
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: option_bgm
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBC30\uACBD\uC74C \uB044\uAE30"
+    - bgm off
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: option_efx
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD6A8\uACFC\uC74C \uB044\uAE30"
+    - sfx off
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: option_vibrate
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC9C4\uB3D9 \uB044\uAE30"
+    - vibration off
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: option_made
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB9CC\uB4E0\uC774 \uBCF4\uAE30"
+    - credit
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_title
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC0C1\uC810"
+    - shop
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_crystal
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815 \uCDA9\uC804"
+    - buy crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_point
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815 \uC0AC\uC6A9"
+    - use crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_buy1
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815"
+    - crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_buy2
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD3EC\uC778\uD2B8"
+    - point
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_buy3
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBAA8\uB4E0 \uCE90\uB9AD\uD130 \uC804\uBD80 \uCDA9\uC804"
+    - Charging competing chance for all characters
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_discription
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815\uC744 \uAD6C\uC785\uD558\uC5EC \uC724\uD0DD\uD55C \uAC8C\uC784
+      \uB77C\uC774\uD504\uB97C \uC990\uACA8\uBCF4\uC138\uC694!"
+    - Buy a crystal and enjoy the rich game life!
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: char_title
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCE90\uB9AD\uD130"
+    - character
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: char_stamina
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD9C\uC804\uAE30\uD68C"
+    - competing chance
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: char_selected
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD9C\uC804\uC911..."
+    - in action
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: char_select
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD9C\uC804"
+    - to compete
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: char_buy
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uACE0\uC6A9\uAC00\uACA9"
+    - recruitment price
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: char_discription
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815\uC774\uB098 \uD3EC\uC778\uD2B8\uB85C \uCE90\uB9AD\uD130\uB97C
+      \uAD6C\uB9E4\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    - You can purchase characters by crystal or point.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: ready_max
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD5C\uACE0\uAE30\uB85D!"
+    - high score!
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: ready_stamina
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD9C\uC804\uAE30\uD68C"
+    - competing chance
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: ready_rank
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD574\uB2F9\uC885\uBAA9 \uB7AD\uD0B9\uBCF4\uAE30"
+    - veiw ranking
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: ready_start
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC2DC\uC791!"
+    - start!
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: modal_yes
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC608"
+    - yes
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: modal_no
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC544\uB2C8\uC624"
+    - no
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: modal_buy
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAD6C\uB9E4 \uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+    - Do you want to buy?
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: modal_refuse
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC794\uC561\uC774 \uBD80\uC871\uD569\uB2C8\uB2E4."
+    - The amount is insufficient.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: modal_check
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD655\uC778"
+    - confirm
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: modal_gameoff
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAC8C\uC784\uC744 \uC885\uB8CC\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+    - Are you sure you want to quit the game?
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Tutorial/select_tutorial0
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB3D9\uACC4 \uC2A4\uD3EC\uCE20\uC5D0 \uCC38\uC5EC\uD558\uC2E0\uAC78 \uD658\uC601\uD569\uB2C8\uB2E4.
+      \uC5EC\uB7EC\uBD84\uC740 \uC55E\uC73C\uB85C \uACBD\uAE30\uC5D0 \uCC38\uC5EC\uD558\uACE0
+      \uD6C8\uB828\uC744 \uD1B5\uD574 \uC88B\uC740 \uC131\uC801\uC744 \uB0B4\uC57C
+      \uD569\uB2C8\uB2E4.\n\uC885\uBAA9\uC740 \uB2E4\uC6B4\uD790 \uC2A4\uD0A4, \uC2A4\uD0A4\uC810\uD504\uC758
+      \uB450\uAC00\uC9C0\uAC00 \uC788\uC2B5\uB2C8\uB2E4. \uC6D0\uD558\uC2DC\uB294
+      \uC885\uBAA9\uC744 \uC120\uD0DD\uD558\uC2DC\uBA74 \uB429\uB2C8\uB2E4."
+    - 'Welcome to winter sports. You have to participate in the game in the future
+      and get good grades through training. There are two types of events: downhill
+      skiing and ski jumping. Select the item you want.'
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_point
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD3EC\uC778\uD2B8"
+    - point coin
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_crytsal
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815"
+    - crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_watch
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD08\uC2DC\uACC4"
+    - clock
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_nitro
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB2C8\uD2B8\uB85C"
+    - nitro
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_bear
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uACF0"
+    - bear
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_tree
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB098\uBB34"
+    - wood
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_bug
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB0A0\uBC8C\uB808\uB5BC"
+    - bugs
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_poll
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD3F4"
+    - pole
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_oil
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAC80\uC740 \uAE30\uB984"
+    - oil
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_pigeon
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD558\uC580 \uC0C8"
+    - white bird
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_crow
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAC80\uC740 \uC0C8"
+    - black bird
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_snowcloud
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB208\uAD6C\uB984"
+    - snow cloud
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_booster
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBD80\uC2A4\uD130"
+    - booster
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_darkcloud
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBA39\uAD6C\uB984"
+    - black cloud
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_balooon
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD48D\uC120"
+    - balloon
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_booster
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBD80\uC2A4\uD305 \uBC1C\uD310"
+    - boost platform
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_ice
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC5BC\uC74C \uACFC\uC18D\uBC29\uC9C0\uD131"
+    - speed bump
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_bug
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB0A0\uBC8C\uB808\uB5BC"
+    - bugs
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_spring
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC2A4\uD504\uB9C1"
+    - spring
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_weight
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBB34\uAC8C\uCD94"
+    - weight
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_stone
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB3CC\uB369\uC774"
+    - stone
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_point_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD5C\uC885 \uD68D\uB4DD \uD3EC\uC778\uD2B8 +10"
+    - point +10
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_crytsal_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815 +5"
+    - crystal +5
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_watch_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC2DC\uAC04 + 10\uCD08"
+    - time +10
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_nitro_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD68D\uB4DD \uC989\uC2DC 3\uCD08\uAC04 +2000m/h\uB85C \uC774\uB3D9, \uB2E4\uB978
+      \uC544\uC774\uD15C \uD68D\uB4DD \uBB34\uC2DC"
+    - boosting speed for 3 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_bear_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "1.5\uCD08\uAC04 \uC18D\uB3C4\uAC00 0\uC774 \uB418\uC5B4 \uBA48\uCDA4"
+    - stop for 1.5 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_tree_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "0.5\uCD08\uAC04 \uC18D\uB3C4\uAC00 0\uC774 \uB418\uC5B4 \uBA48\uCDA4"
+    - stop for 0.5 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_bug_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uBC29\uD5A5\uC804\uD658 \uBC18\uB300"
+    - reversing rotation for 7 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_poll_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uAC01\uB3C4 \uD68C\uC804 \uC18D\uB3C4 40% \uC99D\uAC00"
+    - Increased rotation speed by 40% for 7 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_dh_oil_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uAC01\uB3C4 \uD68C\uC804 \uC18D\uB3C4 40% \uAC10\uC18C"
+    - decreased rotation speed by 40% for 7 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_pigeon_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD68D\uB4DD \uC989\uC2DC \uCE90\uB9AD\uD130 \uC9C4\uD589 \uBC29\uD5A5\uC73C\uB85C
+      3\uCD08\uAC04 +2000m/h \uC774\uB3D9\uB825, \uB2E4\uB978 \uC544\uC774\uD15C \uD68D\uB4DD
+      \uBB34\uC2DC"
+    - boosting speed for 3 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_crow_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCDA9\uB3CC\uC2DC \uC804\uCCB4 \uACE0\uB3C4\uC758 15% \uAC10\uC18C"
+    - 15% reduction in overall altitude.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_snowcloud_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCDA9\uB3CC\uC2DC \uCD5C\uB300 \uC18D\uB3C4\uC758 25% \uAC10\uC18C"
+    - 25% reduction in maximum speed
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_booster_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD5C\uB300 \uC18D\uB3C4\uC758 20% \uC99D\uAC00"
+    - 20% increase in maximum speed
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_darkcloud_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uC55E\uB4A4 \uD68C\uC804 \uBC18\uB300"
+    - reversing rotation for 7 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_balooon_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC989\uC2DC \uACE0\uB3C4 35unit \uC0C1\uC2B9"
+    - Elevation rise.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_booster_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD68D\uB4DD \uC989\uC2DC 3\uCD08\uAC04 +2000m/h\uB85C \uC774\uB3D9, \uB2E4\uB978
+      \uC544\uC774\uD15C \uD68D\uB4DD \uBB34\uC2DC"
+    - boosting speed for 3 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_ice_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uCD5C\uB300\uC18D\uB3C4\uAC00 25% \uAC10\uC18C"
+    - Maximum speed reduced by 25% for 7 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_bug_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uC88C/\uC6B0 \uD68C\uC804 \uBC18\uB300"
+    - reversing rotation for 7 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_spring_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uC88C/\uC6B0\uB85C \uBC00\uC5B4\uB0B4\uB294 \uD798 \uC0DD\uAE40"
+    - Shake left and right for 7 seconds
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_weight_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "7\uCD08\uAC04 \uAC01\uB3C4 \uD68C\uC804 \uC18D\uB3C4 \uB290\uB824\uC9D0"
+    - decreased rotation speed by 40% for 7 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sk_stone_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "1.5\uCD08\uAC04\uC18D\uB3C40"
+    - stop for 1.5 seconds.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: signup_placeholder
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC774\uB984..."
+    - name...
     - 
     Languages_Touch:
     - 
