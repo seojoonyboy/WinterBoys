@@ -193,6 +193,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 bounceCoolTime = 0.15f;
             }
             //바운스 중에는 앞으로 나아가는 힘을 주지 말아야 한다.
+            return;
         }
 
         if (playerPos.y < bM.lastFlagPos.y + 10) {
