@@ -131,27 +131,25 @@ public class Ski_PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        //시작 전인 상태
         if (dM.getTimeScale == 0) {
             rb.velocity = Vector3.zero;
             audioSource.loop = false;
             return;
         }
+        else {
+            audioSource.loop = true;
+        }
 
         changePlayerImage();
 
-        if (stateMachine.array[3]) {
-            if (!playerHeadBugEffect.activeSelf) {
-                playerHeadBugEffect.SetActive(true);
-            }
-        }
-        else {
-            playerHeadBugEffect.SetActive(false);
-        }
+        //화면을 벗어난 경우 처리
         Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
         if(pos.x < 0 || pos.x > 1) {
             dM.OnGameOver(DownhillManager.GameoverReason.SIDETILE);
         }
 
+        //시간 초과시 처리
         if (dM.isTimeUp) {
             rb.MoveRotation(180);
             rb.velocity *= 0.9995f;
@@ -194,7 +192,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 isBoucing = false;
                 bounceCoolTime = 0.15f;
             }
-            return;
+            //바운스 중에는 앞으로 나아가는 힘을 주지 말아야 한다.
         }
 
         if (playerPos.y < bM.lastFlagPos.y + 10) {
@@ -203,7 +201,9 @@ public class Ski_PlayerController : MonoBehaviour {
         virtualPlayerPosOfY = -1 * selectedCharacters[0].transform.position.y * 3.0f;
 
         //부스팅 효과를 받는 중이면 추가 AddForce
-        rb.AddForce(ForwardForce() * additionalForceByEffect);
+        if (!isBoucing) {
+            rb.AddForce(ForwardForce() * additionalForceByEffect);
+        }
 
         //항상 제자리나 아래방향으로 이동하도록 추가 제어
         if(rb.velocity.y >= 0) {
@@ -329,10 +329,14 @@ public class Ski_PlayerController : MonoBehaviour {
             } else {
                 val = new Vector3(1, 0.6f, 0) * (angle / 150.0f);
             }
-            rb.AddForce(val);
+            if (!isBoucing) {
+                rb.AddForce(val);
+            }
         }
         else {
-            rb.velocity = AdditionalForce() + RightVelocity() * driftFactor;
+            if (!isBoucing) {
+                rb.velocity = AdditionalForce() + RightVelocity() * driftFactor;
+            }
         }
     }
 
@@ -412,6 +416,15 @@ public class Ski_PlayerController : MonoBehaviour {
         }
 
         anim = selectedCharacters[5].GetComponent<SkeletonAnimation>();
+
+        if (stateMachine.array[3]) {
+            if (!playerHeadBugEffect.activeSelf) {
+                playerHeadBugEffect.SetActive(true);
+            }
+        }
+        else {
+            playerHeadBugEffect.SetActive(false);
+        }
     }
 
     void DeadAnimEnd() {
