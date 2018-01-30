@@ -48,7 +48,8 @@ public class MainSceneController : MonoBehaviour {
     }
 
     public void rankingShow() {
-        UM_GameServiceManager.Instance.ShowLeaderBoardsUI();
+        //UM_GameServiceManager.Instance.ShowLeaderBoardsUI();
+
     }
 
     public void efxPlay(string name) {
