@@ -47,11 +47,6 @@ public class MainSceneController : MonoBehaviour {
         }
     }
 
-    public void rankingShow() {
-        //UM_GameServiceManager.Instance.ShowLeaderBoardsUI();
-
-    }
-
     public void efxPlay(string name) {
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, name);
     }
