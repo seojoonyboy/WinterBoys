@@ -33,11 +33,8 @@ public class RankingController : MonoBehaviour {
                 parent = panels[1].transform.Find("DistRaws").transform;
                 break;
         }
-        GameObject raw = Instantiate(Raw);
-
-        Tmp tmp = new Tmp();
-        JsonUtility.FromJsonOverwrite(resp.DataAsText, tmp);
-        setInfo(raw);
+        DataSet[] dataSet = JsonHelper.getJsonArray<DataSet>(resp.DataAsText);
+        setInfo(parent, dataSet);
     }
 
     private void ranksByPointCallback(HTTPResponse resp, SportType type) {
@@ -52,19 +49,29 @@ public class RankingController : MonoBehaviour {
         }
     }
 
-    private void setInfo(GameObject raw) {
-        Text rankingNum = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
-        Text nickName = raw.transform.Find("Panel/NickName").GetComponent<Text>();
-        Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
+    private void setInfo(Transform parent, DataSet[] dataSet) {
+        foreach(DataSet data in dataSet) {
+            GameObject raw = Instantiate(Raw);
+            raw.transform.SetParent(parent, false);
+
+            raw.transform.localScale = Vector3.one;
+            raw.transform.localPosition = Vector3.zero;
+
+            Text rankingNum = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
+            Text nickName = raw.transform.Find("Panel/NickName").GetComponent<Text>();
+            Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
 
 
+        }
     }
 
     private void OnEnable() {
 
     }
 
-    public class Tmp {
-
+    [System.Serializable]
+    public class DataSet {
+        public string nickName;
+        public int rankingNum;
     }
 }
