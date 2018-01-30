@@ -783,8 +783,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uBAA8\uB4E0 \uCE90\uB9AD\uD130 \uC804\uBD80 \uCDA9\uC804"
-    - Charging competing chance for all characters
+    - "\uBAA8\uB4E0 \uCE90\uB9AD\uD130 \uCD9C\uC804\uAE30\uD68C \uCDA9\uC804"
+    - Charging all competing chance
     - 
     Languages_Touch:
     - 
@@ -906,7 +906,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uD574\uB2F9\uC885\uBAA9 \uB7AD\uD0B9\uBCF4\uAE30"
-    - veiw ranking
+    - view ranking
     - 
     Languages_Touch:
     - 
@@ -1530,6 +1530,66 @@ MonoBehaviour:
     Languages:
     - "\uC774\uB984..."
     - name...
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: BMJUA_TTF
+    TermType: 1
+    Description: 
+    Languages:
+    - BMJUA_TTF
+    - BMJUA_TTF
+    - BMJUA_TTF
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: main_soon
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD94\uD6C4 \uCD9C\uC2DC \uC608\uC815."
+    - Comming Soon.
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: ready_point
+    TermType: 0
+    Description: 
+    Languages:
+    - "P \uD544\uC694"
+    - P Need
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: ready_change
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCE90\uB9AD\uD130 \uAD50\uCCB4"
+    - Change Character
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: ready_addstat
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCD94\uAC00 \uB2A5\uB825\uCE58"
+    - Additional Stat
     - 
     Languages_Touch:
     - 
