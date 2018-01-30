@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4729,17 +4729,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224202650473584010, guid: d8c5f1f8338a80d40bd09ae75ded604e,
     type: 2}
   m_PrefabInternal: {fileID: 861479904}
---- !u!114 &659249210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 659249208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577f005548aeb4176a9a2c70ba11728e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &669996465
 GameObject:
   m_ObjectHideFlags: 0
@@ -5535,21 +5524,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114650619020834880, guid: d8c5f1f8338a80d40bd09ae75ded604e,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1798261288}
-    - target: {fileID: 114361519309589672, guid: d8c5f1f8338a80d40bd09ae75ded604e,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1798261288}
     - target: {fileID: 114696576067962330, guid: d8c5f1f8338a80d40bd09ae75ded604e,
         type: 2}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 1934291226}
+    - target: {fileID: 114361519309589672, guid: d8c5f1f8338a80d40bd09ae75ded604e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1798261288}
+    - target: {fileID: 114650619020834880, guid: d8c5f1f8338a80d40bd09ae75ded604e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1798261288}
+    - target: {fileID: 1631697111586866, guid: d8c5f1f8338a80d40bd09ae75ded604e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8c5f1f8338a80d40bd09ae75ded604e, type: 2}
   m_IsPrefabParent: 0
@@ -6581,6 +6574,32 @@ Transform:
   m_PrefabParentObject: {fileID: 4705051752626108, guid: 35508049c1f45fd44bdbc4fdaa790ac5,
     type: 2}
   m_PrefabInternal: {fileID: 945387953}
+--- !u!21 &951531582
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Smkgames/Menu/SimpleGrabPassBlur
+  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Distortion: 5
+    m_Colors:
+    - _Color: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
 --- !u!1 &960213390
 GameObject:
   m_ObjectHideFlags: 0
@@ -7652,7 +7671,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1983262779}
+  m_Material: {fileID: 951531582}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -13600,32 +13619,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4705051752626108, guid: 35508049c1f45fd44bdbc4fdaa790ac5,
     type: 2}
   m_PrefabInternal: {fileID: 1959146301}
---- !u!21 &1983262779
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Smkgames/Menu/SimpleGrabPassBlur
-  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Distortion: 5
-    m_Colors:
-    - _Color: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
 --- !u!1 &1985073008
 GameObject:
   m_ObjectHideFlags: 0
