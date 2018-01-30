@@ -4,18 +4,6 @@ using System;
 using BestHTTP;
 using UnityEngine;
 
-class Token {
-    public string key;
-    public string date;
-    public int user;
-
-    public Token() {
-        key = null;
-        date = null;
-        user = 0;
-    }
-}
-
 public class NetworkManager : Singleton<NetworkManager> {
     protected NetworkManager() { }
 
@@ -23,57 +11,58 @@ public class NetworkManager : Singleton<NetworkManager> {
     private string url = "http://13.125.17.68";
     //public GameObject loadingImage;
 
-    public delegate void networkResult(HTTPResponse response);
-    //private networkResult callback;
-    private Token token;
+    public delegate void networkResult(HTTPResponse response, SportType type);
 
-    public void login(networkResult callback) {
-        HTTPRequest request = new HTTPRequest(new Uri(url + "/signin"), HTTPMethods.Post);
-        request.AddField("device_id", SystemInfo.deviceUniqueIdentifier);
-        //callback += getToken;
-        StartCoroutine(AccessNetwork(request, callback));
-    }
-
-    public void signup(string nickname, networkResult callback) {
-        HTTPRequest request = new HTTPRequest(new Uri(url + "/signup"), HTTPMethods.Post);
-        request.AddField("device_id", SystemInfo.deviceUniqueIdentifier);
-        request.AddField("nick_name", nickname);
-        StartCoroutine(AccessNetwork(request, callback));
-    }
-
-    public void getInfo(networkResult callback) {
-        if (token == null) {
-            //Debug.LogWarning("need Token");
-            return;
-        }
-        HTTPRequest request = new HTTPRequest(new Uri(url + "/me"), HTTPMethods.Get);
-        request.AddHeader("Authorization", "Token " + token.key);
-        StartCoroutine(AccessNetwork(request, callback));
-    }
-
-    public IEnumerator AccessNetwork(HTTPRequest request, networkResult callback) {
+    public IEnumerator AccessNetwork(HTTPRequest request, networkResult callback, SportType type) {
         //loadingImage.SetActive(true);
         request.Send();
         yield return request;
-        if (callback != null) callback(request.Response);
+        if (callback != null) callback(request.Response, type);
         //Debug.Log(request.Uri.ToString());
         //Debug.Log(request.Response.DataAsText);
         //loadingImage.SetActive(false);
     }
 
-    public void getToken(HTTPResponse response) {
-        bool isSuccess = response != null && response.IsSuccess;
-        if (!isSuccess) return;
-        token = new Token();
-        JsonUtility.FromJsonOverwrite(response.DataAsText, token);
+    /// <summary>
+    /// 거리 기준 순위 가져오기
+    /// </summary>
+    public void getRanksByDist(networkResult callback, SportType type) {
+        string str = null;
+        switch (type) {
+            case SportType.DOWNHILL:
+
+                break;
+            case SportType.SKIJUMP:
+
+                break;
+        }
+
+        if(str == null) { return; }
+
+        HTTPRequest request = new HTTPRequest(new Uri(url + str), HTTPMethods.Get);
+        //request.AddHeader("Authorization", "Token " + token.key);
+        StartCoroutine(AccessNetwork(request, callback, type));
     }
 
     /// <summary>
-    /// 인게임 종료 후 점수 서버 전달
-    /// callback으로 랭킹정보 받기?
+    /// 포인트 기준 순위 가져오기
     /// </summary>
-    public void sendMyRank(networkResult callback) {
+    public void getRanksByPoint(networkResult callback, SportType type) {
+        string str = null;
+        switch (type) {
+            case SportType.DOWNHILL:
 
+                break;
+            case SportType.SKIJUMP:
+
+                break;
+        }
+
+        if (str == null) { return; }
+
+        HTTPRequest request = new HTTPRequest(new Uri(url + str), HTTPMethods.Get);
+        //request.AddHeader("Authorization", "Token " + token.key);
+        StartCoroutine(AccessNetwork(request, callback, type));
     }
 
     /// <summary>

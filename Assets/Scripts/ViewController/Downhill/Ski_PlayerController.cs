@@ -610,7 +610,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.addCrystal(5);
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = "크리스탈 +5";
+                fontEffectComp.text = "수정 +5";
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;

@@ -1,42 +1,70 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using BestHTTP;
 using System;
 public class RankingController : MonoBehaviour {
-    private PanelType activeType;
-    public GameObject[] 
-        panels,
-        active_headers,
-        deactive_headers;
+    public GameObject Raw;
+    public GameObject[]
+        panels;
+    NetworkManager networkManager;
+    private void Start() {
+        networkManager = NetworkManager.Instance;
+
+        dataReq();
+    }
+
+    private void dataReq() {
+        networkManager.getRanksByDist(ranksByDistCallback, SportType.DOWNHILL);
+        networkManager.getRanksByDist(ranksByDistCallback, SportType.SKIJUMP);
+
+        networkManager.getRanksByPoint(ranksByPointCallback, SportType.DOWNHILL);
+        networkManager.getRanksByPoint(ranksByPointCallback, SportType.SKIJUMP);
+    }
+
+    private void ranksByDistCallback(HTTPResponse resp, SportType type) {
+        Transform parent = null;
+        switch (type) {
+            case SportType.DOWNHILL:
+                parent = panels[0].transform.Find("DistRaws").transform;
+                break;
+            case SportType.SKIJUMP:
+                parent = panels[1].transform.Find("DistRaws").transform;
+                break;
+        }
+        GameObject raw = Instantiate(Raw);
+
+        Tmp tmp = new Tmp();
+        JsonUtility.FromJsonOverwrite(resp.DataAsText, tmp);
+        setInfo(raw);
+    }
+
+    private void ranksByPointCallback(HTTPResponse resp, SportType type) {
+        Transform parent = null;
+        switch (type) {
+            case SportType.DOWNHILL:
+
+                break;
+            case SportType.SKIJUMP:
+
+                break;
+        }
+    }
+
+    private void setInfo(GameObject raw) {
+        Text rankingNum = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
+        Text nickName = raw.transform.Find("Panel/NickName").GetComponent<Text>();
+        Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
+
+
+    }
 
     private void OnEnable() {
-        activeType = PanelType.Downhill;
-        TogglePanel("Downhill");
+
     }
 
-    public void TogglePanel(string str) {
-        //DB에서 정보 불러오기
-        activeType = (PanelType)Enum.Parse(typeof(PanelType), str);
-        int index = (int)activeType;
+    public class Tmp {
 
-        initPanel(index);
-    }
-
-    private void initPanel(int index) {
-        GameObject panel = null;
-        for(int i=0; i<panels.Length; i++) {
-            if(index == i) {
-                panel = panels[i];
-            }
-        }
-        panel.SetActive(true);
-
-        panel.transform.Find("DistRaws").gameObject.SetActive(true);
-        panel.transform.Find("PointRaws").gameObject.SetActive(false);
-    }
-
-    public enum PanelType {
-        Downhill,
-        Skijump
     }
 }
