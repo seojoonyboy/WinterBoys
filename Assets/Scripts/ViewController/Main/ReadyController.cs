@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using I2.Loc;
 
 [System.Serializable]
 public struct PointStat {
@@ -25,15 +26,16 @@ public struct CharStat {
 		this.name.text = name;
 		do {
 			if(speed != 0 && control != 0) {
-				stat.text = string.Format("속도 + {0}% / 조작 + {1}%", speed, control);
+				stat.text = string.Format("{0}+{1}%/{2}+{3}%", LocalizationManager.GetTranslation("skill_speed"), speed, 
+																LocalizationManager.GetTranslation("skill_control"), control);
 				break;
 			}
 			if(speed == 0) {
-				stat.text = string.Format("조작 + {0}%", control);
+				stat.text = string.Format("{0} + {1}%", LocalizationManager.GetTranslation("skill_control"), control);
 				break;
 			}
 			if(control == 0) {
-				stat.text = string.Format("속도 + {0}%", speed);
+				stat.text = string.Format("{0} + {1}%", LocalizationManager.GetTranslation("skill_speed"), speed);
 				break;
 			}
 		} while(false);
@@ -41,7 +43,7 @@ public struct CharStat {
 	public void setTime(int maxEntry, int entry, double leftTime) {
 		Image[] images = playCount.GetComponentsInChildren<Image>();
 		if(entry == maxEntry) {
-			playTime.text = "출전기회 (00:00)";
+			playTime.text = string.Format("{0} (00:00)", LocalizationManager.GetTranslation("ready_stamina"));
 			for(int i = 0; i < images.Length; i++)
 				images[i].sprite = fullEntry;
 			return;
@@ -50,7 +52,7 @@ public struct CharStat {
 			images[i].sprite = fullEntry;
 		for(int i = entry; i < maxEntry; i++)
 			images[i].sprite = emptyEntry;
-		playTime.text = string.Format("출전기회 ({0}:{1})", ((int)leftTime/60).ToString("00"), ((int)leftTime%60).ToString("00"));
+		playTime.text = string.Format("{0} ({1}:{2})", LocalizationManager.GetTranslation("ready_stamina"), ((int)leftTime/60).ToString("00"), ((int)leftTime%60).ToString("00"));
 	}
 }
 

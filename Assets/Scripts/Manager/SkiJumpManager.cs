@@ -168,7 +168,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             dist = 0;
         }
         distanceText.text = System.Math.Truncate(dist) + "M";
-        timeText.text = System.Math.Truncate(lastTime) + " 초";
+        timeText.text = System.Math.Truncate(lastTime) + " " + I2.Loc.LocalizationManager.GetTranslation("InGameCommon/sec");
     }
 
     private void FixedUpdate() {

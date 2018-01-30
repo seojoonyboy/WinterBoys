@@ -128,12 +128,12 @@ public class DownhillManager : MonoBehaviour {
         float speed = playerController.GetComponent<Rigidbody2D>().velocity.magnitude * 30f;
         speedTxt.text = System.Math.Truncate(speed) + "KM/S";
 
-        remainTimeTxt.text = System.Math.Truncate(remainTime) + " 초";
+        remainTimeTxt.text = System.Math.Truncate(remainTime) + " " + I2.Loc.LocalizationManager.GetTranslation("InGameCommon/sec");
     }
 
     private void init() {
         remainTime = gm.startTime;
-        remainTimeTxt.text = System.Math.Truncate(remainTime) + " 초";
+        remainTimeTxt.text = System.Math.Truncate(remainTime) + " " + I2.Loc.LocalizationManager.GetTranslation("InGameCommon/sec");
         setTimeScale = 0;
 
         score = 0;
