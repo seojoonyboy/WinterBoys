@@ -89,7 +89,7 @@ public class CharacterManager : Singleton<CharacterManager> {
     }
 
     public string getName(int num) {
-        return players[num].Name;
+        return I2.Loc.LocalizationManager.GetTranslation(players[num].Name);
     }
     
     public int getSpeed(int num) {

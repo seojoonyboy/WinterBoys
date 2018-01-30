@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - name: "\uD53C\uC26C"
+  - name: name_fish
     grade: 1
     speed: 1
     control: 1
@@ -61,9 +61,9 @@ MonoBehaviour:
     maxEntry: 15
     entry: 15
     chargeTime: 900
-    currentTime: 0
+    time: 0
     isBought: 0
-  - name: "\uBCA0\uB9AC"
+  - name: name_berry
     grade: 1
     speed: 2
     control: 0
@@ -72,9 +72,9 @@ MonoBehaviour:
     maxEntry: 15
     entry: 15
     chargeTime: 900
-    currentTime: 0
+    time: 0
     isBought: 0
-  - name: "\uB098\uB098"
+  - name: name_nana
     grade: 1
     speed: 0
     control: 2
@@ -83,6 +83,6 @@ MonoBehaviour:
     maxEntry: 15
     entry: 15
     chargeTime: 900
-    currentTime: 0
+    time: 0
     isBought: 0
   currentCharacter: 0
