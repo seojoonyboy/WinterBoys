@@ -92,7 +92,7 @@ public class ResultModalController : MonoBehaviour {
 
         postRecord(distance, point);
 
-        transform.Find("CurrentScorePanel/PanelBg/DistHeader/Value").GetComponent<Text>().text = distance + " M";
+        transform.Find("CurrentScorePanel/PanelBg/DistHeader/Value").GetComponent<Text>().text = string.Format("{0} M", distance.ToString("##,0"));
         transform.Find("CurrentScorePanel/PanelBg/PointHeader/Value").GetComponent<Text>().text = point + " P";
     }
 
