@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2021,7 +2021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8.3}
+  m_AnchoredPosition: {x: 0, y: 8.299999}
   m_SizeDelta: {x: 708, y: 942.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &116358547
@@ -2547,7 +2547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 428.50003, y: -82.65}
+  m_AnchoredPosition: {x: 428.5, y: -82.65}
   m_SizeDelta: {x: 121, y: 122.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161298546
@@ -7339,7 +7339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: option_vibrate
+  mTerm: option_english
   mTermSecondary: BMJUA_TTF
   PrimaryTermModifier: 0
   SecondaryTermModifier: 0
@@ -7393,7 +7393,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC9C4\uB3D9 \uB044\uAE30"
+  m_Text: "\uC601\uC5B4"
 --- !u!222 &371111499
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14311,7 +14311,7 @@ MonoBehaviour:
   mGUI_ShowReferences: 0
   mGUI_ShowTems: 1
   mGUI_ShowCallback: 0
---- !u!21 &720528830
+--- !u!21 &706096915
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -14369,7 +14369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 353.99997, y: -597.10004}
+  m_AnchoredPosition: {x: 353.99997, y: -597.1}
   m_SizeDelta: {x: 704.7, y: 130.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &723168946
@@ -16357,6 +16357,7 @@ GameObject:
   - component: {fileID: 849349330}
   - component: {fileID: 849349331}
   - component: {fileID: 849349332}
+  - component: {fileID: 849349333}
   m_Layer: 5
   m_Name: OptionModal
   m_TagString: Untagged
@@ -16406,7 +16407,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 720528830}
+  m_Material: {fileID: 706096915}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -16521,6 +16522,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Distortion: 5
   color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &849349333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 849349325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d7972c568b50940a54c7f599af66c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Language: Korean
+  mSource: {fileID: 114522475204222868, guid: cdefacc0dd81345e79030a20f970df3e, type: 2}
 --- !u!1 &850819231
 GameObject:
   m_ObjectHideFlags: 0
@@ -28085,7 +28099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 428.50003, y: -82.65}
+  m_AnchoredPosition: {x: 428.5, y: -82.65}
   m_SizeDelta: {x: 121, y: 122.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390403421
