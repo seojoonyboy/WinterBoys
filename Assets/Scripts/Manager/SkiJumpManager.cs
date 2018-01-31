@@ -379,6 +379,10 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         _eventManger.RemoveListener<SkiJump_QTE_end>(endQTE);
     }
 
+    public void efxPlay(string name) {
+        soundManager.Play(SoundManager.SoundType.EFX, name);
+    }
+
     public class IconList {
         public int id;
         public GameObject obj;
