@@ -77,9 +77,26 @@ public class RankingController : MonoBehaviour {
             Text nickName = raw.transform.Find("Panel/NickName").GetComponent<Text>();
             Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
 
-            //if(data.user.device_id == SystemInfo.deviceUniqueIdentifier)
-            if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
-            rankingNum.text = data.rank + "위";
+            if(data.user.device_id == SystemInfo.deviceUniqueIdentifier) panel.sprite = myPanel;
+            //if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
+            if(I2.Loc.LocalizationManager.CurrentLanguage.CompareTo("English") == 0) {
+                switch(data.rank) {
+                    case 1:
+                    rankingNum.text = data.rank + "st";
+                    break;
+                    case 2:
+                    rankingNum.text = data.rank + "nd";
+                    break;
+                    case 3:
+                    rankingNum.text = data.rank + "rd";
+                    break;
+                    default:
+                    rankingNum.text = data.rank + "th";
+                    break;
+                }
+            }
+            else
+                rankingNum.text = data.rank + "위";
             nickName.text = data.user.nickname;
             if (isDistance) {
                 record.text = data.distance + "M";
