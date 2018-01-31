@@ -9,16 +9,16 @@ public class RankingController : MonoBehaviour {
     public GameObject[]
         panels;
     NetworkManager networkManager;
-    private void Start() {
+    private void Awake() {
         networkManager = NetworkManager.Instance;
     }
 
     private void dataReq() {
-        NetworkManager.Instance.getRanksByDist(ranksByDistCallback, SportType.DOWNHILL);
-        NetworkManager.Instance.getRanksByDist(ranksByDistCallback, SportType.SKIJUMP);
+        networkManager.getRanksByDist(ranksByDistCallback, SportType.DOWNHILL);
+        networkManager.getRanksByDist(ranksByDistCallback, SportType.SKIJUMP);
 
-        NetworkManager.Instance.getRanksByPoint(ranksByPointCallback, SportType.DOWNHILL);
-        NetworkManager.Instance.getRanksByPoint(ranksByPointCallback, SportType.SKIJUMP);
+        networkManager.getRanksByPoint(ranksByPointCallback, SportType.DOWNHILL);
+        networkManager.getRanksByPoint(ranksByPointCallback, SportType.SKIJUMP);
     }
 
     private void ranksByDistCallback(HTTPResponse resp, SportType type) {

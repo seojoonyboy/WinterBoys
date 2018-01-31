@@ -24,6 +24,10 @@ public class NetworkManager : Singleton<NetworkManager> {
         //loadingImage.SetActive(false);
     }
 
+    private void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
+
     /// <summary>
     /// 거리 기준 순위 가져오기
     /// </summary>
