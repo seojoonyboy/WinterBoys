@@ -54,7 +54,7 @@ MonoBehaviour:
   Google_WebServiceURL: https://script.google.com/macros/s/AKfycbyyKsnI0ivx8Mz7gLM1ifxW6XdU1fStzIP0E7aUp9zJwO57aYM2/exec
   Google_SpreadsheetKey: 1lyjeDvqY3ERu7rRQ6VbQQ8UsCyjJNTkTxnwBvEcqqHg
   Google_SpreadsheetName: I2Loc WinterBoy Localization
-  Google_LastUpdatedVersion: 1517301481365
+  Google_LastUpdatedVersion: 1517364803241
   GoogleUpdateFrequency: 3
   GoogleUpdateDelay: 5
   mTerms:
@@ -1258,7 +1258,7 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCD5C\uC885 \uD68D\uB4DD \uD3EC\uC778\uD2B8 +10"
+    - "\uCD94\uAC00 \uD3EC\uC778\uD2B8 \uD68D\uB4DD"
     - point +10
     - 
     Languages_Touch:
@@ -1270,7 +1270,7 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uC218\uC815 +5"
+    - "\uACFC\uAE08 \uC7AC\uD654 + 5"
     - crystal +5
     - 
     Languages_Touch:
@@ -1294,9 +1294,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uD68D\uB4DD \uC989\uC2DC 3\uCD08\uAC04 +2000m/h\uB85C \uC774\uB3D9, \uB2E4\uB978
-      \uC544\uC774\uD15C \uD68D\uB4DD \uBB34\uC2DC"
-    - boosting speed for 3 seconds.
+    - "\uC18D\uB3C4 \uC99D\uAC00 \uBC0F \uC544\uC774\uD15C \uD68D\uB4DD \uBB34\uC2DC"
+    - boosting speed, ignore item
     - 
     Languages_Touch:
     - 
@@ -1307,8 +1306,9 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "1.5\uCD08\uAC04 \uC18D\uB3C4\uAC00 0\uC774 \uB418\uC5B4 \uBA48\uCDA4"
-    - stop for 1.5 seconds.
+    - "\uC18D\uB3C4\uB97C 0\uC73C\uB85C \uB9CC\uB4E4\uACE0 \uC77C\uC815 \uC2DC\uAC04
+      \uC815\uC9C0"
+    - stop for certain time
     - 
     Languages_Touch:
     - 
@@ -1319,8 +1319,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "0.5\uCD08\uAC04 \uC18D\uB3C4\uAC00 0\uC774 \uB418\uC5B4 \uBA48\uCDA4"
-    - stop for 0.5 seconds.
+    - "\uC18D\uB3C4\uB97C 0\uC73C\uB85C \uB9CC\uB4E4\uACE0 \uD295\uACA8\uB098\uAC10"
+    - stop and bounce off
     - 
     Languages_Touch:
     - 
@@ -1331,8 +1331,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "7\uCD08\uAC04 \uBC29\uD5A5\uC804\uD658 \uBC18\uB300"
-    - reversing rotation for 7 seconds.
+    - "\uAC01\uB3C4 \uD68C\uC804 \uBCC0\uACBD"
+    - reversing rotation
     - 
     Languages_Touch:
     - 
@@ -1343,8 +1343,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "7\uCD08\uAC04 \uAC01\uB3C4 \uD68C\uC804 \uC18D\uB3C4 40% \uC99D\uAC00"
-    - Increased rotation speed by 40% for 7 seconds.
+    - "\uAC01\uB3C4 \uD68C\uC804 \uC18D\uB3C4 \uC99D\uAC00"
+    - Increased rotation speed
     - 
     Languages_Touch:
     - 
@@ -1355,8 +1355,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "7\uCD08\uAC04 \uAC01\uB3C4 \uD68C\uC804 \uC18D\uB3C4 40% \uAC10\uC18C"
-    - decreased rotation speed by 40% for 7 seconds.
+    - "\uAC01\uB3C4\uD68C\uC804\uC18D\uB3C4 \uAC10\uC18C"
+    - decreased rotation speed
     - 
     Languages_Touch:
     - 
@@ -1367,10 +1367,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uD68D\uB4DD \uC989\uC2DC \uCE90\uB9AD\uD130 \uC9C4\uD589 \uBC29\uD5A5\uC73C\uB85C
-      3\uCD08\uAC04 +2000m/h \uC774\uB3D9\uB825, \uB2E4\uB978 \uC544\uC774\uD15C \uD68D\uB4DD
-      \uBB34\uC2DC"
-    - boosting speed for 3 seconds.
+    - "\uC18D\uB3C4 \uC99D\uAC00 \uBC0F \uC544\uC774\uD15C \uD68D\uB4DD \uBB34\uC2DC"
+    - boosting speed, ignore item
     - 
     Languages_Touch:
     - 
@@ -1381,8 +1379,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCDA9\uB3CC\uC2DC \uC804\uCCB4 \uACE0\uB3C4\uC758 15% \uAC10\uC18C"
-    - 15% reduction in overall altitude.
+    - "\uACE0\uB3C4 \uAC10\uC18C"
+    - reduction overall altitude.
     - 
     Languages_Touch:
     - 
@@ -1393,8 +1391,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCDA9\uB3CC\uC2DC \uCD5C\uB300 \uC18D\uB3C4\uC758 25% \uAC10\uC18C"
-    - 25% reduction in maximum speed
+    - "\uC18D\uB3C4 \uAC10\uC18C"
+    - reduction maximum speed
     - 
     Languages_Touch:
     - 
@@ -1405,8 +1403,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCD5C\uB300 \uC18D\uB3C4\uC758 20% \uC99D\uAC00"
-    - 20% increase in maximum speed
+    - "\uC18D\uB3C4 \uC99D\uAC00 \uBC0F \uC544\uC774\uD15C \uD68D\uB4DD \uBB34\uC2DC"
+    - increase maximum speed
     - 
     Languages_Touch:
     - 
@@ -1417,8 +1415,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "7\uCD08\uAC04 \uC55E\uB4A4 \uD68C\uC804 \uBC18\uB300"
-    - reversing rotation for 7 seconds.
+    - "\uAC01\uB3C4 \uD68C\uC804 \uBC18\uC804"
+    - reversing rotation
     - 
     Languages_Touch:
     - 
@@ -1429,7 +1427,7 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uC989\uC2DC \uACE0\uB3C4 35unit \uC0C1\uC2B9"
+    - "\uACE0\uB3C4 \uC0C1\uC2B9"
     - Elevation rise.
     - 
     Languages_Touch:
@@ -1502,7 +1500,7 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "1.5\uCD08\uAC04\uC18D\uB3C40"
+    - "1.5\uCD08\uAC04 \uC18D\uB3C4 0"
     - stop for 1.5 seconds.
     - 
     Languages_Touch:
@@ -1697,6 +1695,18 @@ MonoBehaviour:
     - "\uD574\uB2F9 \uAC8C\uC784\uC5D0 \uCD9C\uD604\uD558\uB294 <color=yellow>\uC544\uC774\uD15C</color>\uC885\uB958
       \uC785\uB2C8\uB2E4."
     - Appearing <color=Yellow> item </color> in the game
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Item/item_sj_lightingcloud_d
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC911\uB825 \uAC15\uD654"
+    - Enhanced Gravity
     - 
     Languages_Touch:
     - 
