@@ -54,7 +54,7 @@ MonoBehaviour:
   Google_WebServiceURL: https://script.google.com/macros/s/AKfycbyyKsnI0ivx8Mz7gLM1ifxW6XdU1fStzIP0E7aUp9zJwO57aYM2/exec
   Google_SpreadsheetKey: 1lyjeDvqY3ERu7rRQ6VbQQ8UsCyjJNTkTxnwBvEcqqHg
   Google_SpreadsheetName: I2Loc WinterBoy Localization
-  Google_LastUpdatedVersion: 1517364803241
+  Google_LastUpdatedVersion: 1517406325012
   GoogleUpdateFrequency: 3
   GoogleUpdateDelay: 5
   mTerms:
@@ -892,7 +892,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uD574\uB2F9\uC885\uBAA9 \uB7AD\uD0B9\uBCF4\uAE30"
-    - VEIW RANKING
+    - VIEW RANKING
     - 
     Languages_Touch:
     - 
@@ -1839,6 +1839,222 @@ MonoBehaviour:
     Languages:
     - "\uC601\uC5B4"
     - English
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_speed_up
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC18D\uB3C4 \uC99D\uAC00"
+    - speed up
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_faint
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAE30\uC808"
+    - faint
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_reverse
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBC29\uD5A5 \uBC18\uC804"
+    - reverse
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_rotation_up
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD68C\uC804\uB825 \uC99D\uAC00"
+    - rotation up
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_rotation_down
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD68C\uC804\uB825 \uAC10\uC18C"
+    - rotation down
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_gold
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uACE8\uB4DC +50"
+    - gold + 50
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_time
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC2DC\uAC04 +10"
+    - 10 sec +
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_crystal
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC218\uC815 +5"
+    - crystal + 5
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_crash
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uCDA9\uB3CC"
+    - crash
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_flag
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAE43\uBC1C \uC9C0\uB098\uCE68 -5\uCD08"
+    - flag pass -5sec
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/dh_combo
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD68C \uCF64\uBCF4"
+    - combo
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/sj_increase
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC0C1\uC2B9"
+    - rise
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/sj_invincible
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBB34\uC801"
+    - invincibility
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/sj_mirror
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC88C\uC6B0 \uBC18\uC804"
+    - reverse
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/sj_gold
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uACE8\uB4DC +50"
+    - gold + 50
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/sj_time
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC2DC\uAC04 +15"
+    - 15 sec +
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/sj_gravity
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC911\uB825 \uC99D\uAC00"
+    - gravity up
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Effect/sj_speed_down
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC18D\uB3C4 \uAC10\uC18C"
+    - speed down
     - 
     Languages_Touch:
     - 

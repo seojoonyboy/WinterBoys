@@ -69,10 +69,12 @@ public class ReadyController : MonoBehaviour {
 	[SerializeField] private Text maxScore;
 	[SerializeField] public PointStat speed;
 	[SerializeField] public PointStat control;
+	[SerializeField] private Button rankButton;
 	[SerializeField] private Button startButton;
 	[SerializeField] private GameObject tutorialModal;
 	[SerializeField] private GameObject pointTutoModal;
 	[SerializeField] private GameObject noStaminaModal;
+	[SerializeField] private GameObject rankingModal;
 
     Color32 positiveButtonColor = new Color32(255, 255, 255, 255);
     Color32 negativeButtonColor = new Color32(255, 249, 23, 144);
@@ -89,6 +91,7 @@ public class ReadyController : MonoBehaviour {
         speed.levelUp.onClick.AddListener(levelUpSpeed);
 		control.levelUp.onClick.AddListener(levelUpControl);
 		checkButton();
+		rankButton.onClick.AddListener(showRanking);
 	}
 
 	private void checkButton() {
@@ -179,12 +182,12 @@ public class ReadyController : MonoBehaviour {
         setButtonColor();
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "statChange");
         if (saveManager.levelUpControl()) {
-			Debug.Log(sport+"level up!!");
+			//Debug.Log(sport+"level up!!");
 			init();
 			checkButton();
 			return;
 		}
-		Debug.Log(sport+" level up Fail");
+		//Debug.Log(sport+" level up Fail");
     }
 
 	private void setScene() {
@@ -193,18 +196,22 @@ public class ReadyController : MonoBehaviour {
 		switch(sport) {
 			case SportType.SKIJUMP :
 			startButton.onClick.AddListener(() => startGame("SkiJump", GameManager.tutorialEnum.SKIJUMP));
-			buttonText.text = "스키점프 시작!";
+			buttonText.text = string.Format("{0} {1}",translate("title_skijump"), translate("ready_start"));
 			break;
 			case SportType.SKELETON :
 			startButton.onClick.AddListener(() => startGame("Skeleton", GameManager.tutorialEnum.SKELETON));
-			buttonText.text = "스켈레톤 시작!";
+			buttonText.text = string.Format("{0} {1}",translate("title_skeleton"), translate("ready_start"));
 			break;
 			case SportType.DOWNHILL :
 			startButton.onClick.AddListener(() => startGame("DownHill", GameManager.tutorialEnum.DOWNHLL));
-			buttonText.text = "다운힐 시작!";
+			buttonText.text = string.Format("{0} {1}",translate("title_downhill"), translate("ready_start"));
 			break;
 		}
     }
+
+	private string translate(string str) {
+		return I2.Loc.LocalizationManager.GetTranslation(str);
+	}
 
 	private void startGame(string sceneName, GameManager.tutorialEnum tutorial) {
 		if(!cm.playGame()) {
@@ -250,5 +257,11 @@ public class ReadyController : MonoBehaviour {
 	private void FixedUpdate() {
 		int num = cm.currentCharacter;
 		charStat.setTime(cm.getMaxEntry(num), cm.getCurrentEntry(num), cm.getLeftTime(num));
+	}
+
+	private void showRanking() {
+		SoundManager.Instance.Play(SoundManager.SoundType.EFX, "gameSelBtn");
+		rankingModal.SetActive(true);
+		if(sport == SportType.SKIJUMP) rankingModal.transform.Find("ButtonArea/Skijump_Button").GetComponent<Toggle>().isOn = true;
 	}
 }

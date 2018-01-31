@@ -485,6 +485,10 @@ public class Ski_PlayerController : MonoBehaviour {
         rb.angularVelocity = 0;
     }
 
+    private string translate(string str) {
+        return I2.Loc.LocalizationManager.GetTranslation(str);
+    }
+
     public void itemCheck(GameObject obj) {
         //부스팅 효과 적용중일 때 다른 효과 무시
         if(stateMachine.array[0]) {
@@ -514,7 +518,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 additionalForceByEffect = 1.5f;
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = "속도 증가";
+                fontEffectComp.text = translate("dh_speed_up");
                 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
@@ -531,7 +535,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 Invoke("BearImpactAnimEnd", endTime);
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = "기절";
+                fontEffectComp.text = translate("dh_speed_faint");
 
                 gm.vibrate();
                 break;
@@ -547,7 +551,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_tree");
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = "기절";
+                fontEffectComp.text = translate("dh_speed_faint");
 
                 item.transform.Find("Image").GetComponent<TreeHandler>().Play();
                 item.GetComponent<BoxCollider2D>().enabled = false;
@@ -559,7 +563,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 cooltime = reverseCoolTime;
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = "방향 반전";
+                fontEffectComp.text = translate("dh_reverse");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
@@ -572,7 +576,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 pollBuff = 1.4f;
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = "회전력 증가";
+                fontEffectComp.text = translate("dh_rotation_up");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
@@ -585,7 +589,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 oilBuff = 0.6f;
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = "회전력 감소";
+                fontEffectComp.text = translate("dh_rotation_down");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
@@ -594,7 +598,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.scoreInc(50);
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = "골드 +50";
+                fontEffectComp.text = translate("dh_gold");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
@@ -602,7 +606,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.remainTime += 10;
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = "시간 +10";
+                fontEffectComp.text = translate("dh_time");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
@@ -610,7 +614,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.addCrystal(5);
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = "수정 +5";
+                fontEffectComp.text = translate("dh_crystal");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
