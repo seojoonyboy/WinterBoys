@@ -1,0 +1,34 @@
+﻿
+ranking_change_effect.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+base
+  rotate: true
+  xy: 135, 57
+  size: 69, 109
+  orig: 69, 109
+  offset: 0, 0
+  index: -1
+blue
+  rotate: true
+  xy: 2, 2
+  size: 31, 48
+  orig: 31, 48
+  offset: 0, 0
+  index: -1
+effect
+  rotate: true
+  xy: 2, 35
+  size: 91, 131
+  orig: 91, 131
+  offset: 0, 0
+  index: -1
+green
+  rotate: true
+  xy: 52, 5
+  size: 28, 43
+  orig: 28, 43
+  offset: 0, 0
+  index: -1
