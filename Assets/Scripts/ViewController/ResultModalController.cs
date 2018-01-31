@@ -77,6 +77,9 @@ public class ResultModalController : MonoBehaviour {
 		soundManager.Play(SoundManager.SoundType.EFX, "gameOver");
 
         postRecord(distance, point);
+
+        transform.Find("CurrentScorePanel/PanelBg/DistHeader/Value").GetComponent<Text>().text = distance + " M";
+        transform.Find("CurrentScorePanel/PanelBg/PointHeader/Value").GetComponent<Text>().text = point + " P";
     }
 
 	private void setDistance(float distance) {
@@ -166,6 +169,8 @@ public class ResultModalController : MonoBehaviour {
         Distance_rank[] dist_ranks = dataSet.distance_rank;
         Transform parent = transform.Find("RankingPanel/DistRaws");
 
+        destroyRaws(parent);
+
         foreach (Distance_rank data in dist_ranks) {
             GameObject raw = Instantiate(rawPref);
 
@@ -186,6 +191,8 @@ public class ResultModalController : MonoBehaviour {
 
         Point_rank[] point_ranks = dataSet.point_rank;
 
+        destroyRaws(parent);
+
         foreach (Point_rank data in point_ranks) {
             GameObject raw = Instantiate(rawPref);
 
@@ -200,6 +207,12 @@ public class ResultModalController : MonoBehaviour {
             nickname.text = data.user.nickname;
             rank.text = data.rank + "위";
             record.text = data.distance.ToString();
+        }
+    }
+
+    private void destroyRaws(Transform parent) {
+        foreach(Transform raw in parent) {
+            Destroy(raw.gameObject);
         }
     }
 
