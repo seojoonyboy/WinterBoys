@@ -112,7 +112,7 @@ MonoBehaviour:
     - "\uAC8C\uC784\uC744 \uD558\uBA74\uC11C \uD68D\uB4DD\uD55C <color=yellow>\uC218\uC815</color>\uC744
       \uC0AC\uC6A9\uD558\uAC70\uB098, \uBAA8\uC790\uB780 \uC218\uC815\uC744 <color=yellow>\uCDA9\uC804</color>\uD560
       \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - You can use the <color=yellow> crytal </color> you acquired during the game,
+    - You can use the <color=yellow> crystal </color> you acquired during the game,
       or you can make a <color=yellow> charge </color> crystal.
     - 
     Languages_Touch:
@@ -193,11 +193,11 @@ MonoBehaviour:
       \uAC1C\uBCC4\uB85C \uCD9C\uC804\uAE30\uD68C\uB97C \uAC00\uC9C0\uACE0 \uC788\uC73C\uB2C8
       \uC5EC\uB7EC \uCE90\uB9AD\uD130\uB97C \uBCF4\uC720\uC911\uC774\uB77C\uBA74 <color=yellow>\uAD50\uCCB4</color>\uB97C
       \uD1B5\uD574 \uB354 \uB9CE\uC774 \uD50C\uB808\uC774 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-    - <color=yellow> Competing chance </color> of your chosen character. Each time
+    - '<color=yellow> Competing chance </color> of your chosen character. Each time
       you play, the chance to play is reduced by one, and <color=yellow> is charged
       </color> after a time. Each character has a chance to play individually, so
       if you have multiple characters, you can play more with <color=yellow> Change
-      </color>. "
+      </color>. '
     - 
     Languages_Touch:
     - 
@@ -626,7 +626,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uCE90\uB9AD\uD130"
-    - character
+    - player
     - 
     Languages_Touch:
     - 
@@ -686,7 +686,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uC9C4\uB3D9 \uB044\uAE30"
-    - vibration off
+    - vibrate off
     - 
     Languages_Touch:
     - 
@@ -831,7 +831,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uCD9C\uC804"
-    - to compete
+    - competing chance
     - 
     Languages_Touch:
     - 
@@ -892,7 +892,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uD574\uB2F9\uC885\uBAA9 \uB7AD\uD0B9\uBCF4\uAE30"
-    - veiw ranking
+    - VEIW RANKING
     - 
     Languages_Touch:
     - 
@@ -1707,6 +1707,126 @@ MonoBehaviour:
     Languages:
     - "\uC911\uB825 \uAC15\uD654"
     - Enhanced Gravity
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_crystal100
+    TermType: 0
+    Description: 
+    Languages:
+    - "100 \uC218\uC815"
+    - 100 crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_crystal400
+    TermType: 0
+    Description: 
+    Languages:
+    - "400 \uC218\uC815"
+    - 400 crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_crystal1000
+    TermType: 0
+    Description: 
+    Languages:
+    - "1000 \uC218\uC815"
+    - 1000 crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_point10000
+    TermType: 0
+    Description: 
+    Languages:
+    - "10000 \uD3EC\uC778\uD2B8"
+    - 10000 point
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_point3000
+    TermType: 0
+    Description: 
+    Languages:
+    - "3000 \uD3EC\uC778\uD2B8"
+    - 3000 point
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: shop_point30000
+    TermType: 0
+    Description: 
+    Languages:
+    - "30000 \uD3EC\uC778\uD2B8"
+    - 30000 point
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Tutorial/character_stat
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC18D\uB3C4+1/\uC870\uC791+1"
+    - speed+1/control+1
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Tutorial/character_crystal
+    TermType: 0
+    Description: 
+    Languages:
+    - "500 \uC218\uC815"
+    - 500 crystal
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Tutorial/character_point
+    TermType: 0
+    Description: 
+    Languages:
+    - "6000 \uD3EC\uC778\uD2B8"
+    - 6000 point
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: modal_player
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD574\uB2F9 \uC120\uC218\uC758 \n\uCD9C\uC804\uAE30\uD68C\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."
+    - "Current player has \nno chance to compete."
     - 
     Languages_Touch:
     - 

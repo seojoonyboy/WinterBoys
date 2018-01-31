@@ -79,6 +79,7 @@ public class StoreController : MonoBehaviour {
 
     private void setModalPoint(int num) {
         modalButton.transform.parent.parent.parent.gameObject.SetActive(true);
+        Text noBtn = modalButton.transform.parent.GetChild(1).GetChild(0).GetComponent<Text>();
         Text info = modalButton.transform.parent.parent.GetComponentInChildren<Text>();
         modalButton.GetComponentInParent<AndroidBackOverride>().beforeModal = gameObject;
         soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
@@ -86,11 +87,13 @@ public class StoreController : MonoBehaviour {
 
         if(saveManager.getCrystalLeft() < pointPrice[num]) {
             modalButton.gameObject.SetActive(false);
-            info.text = "잔액이 부족합니다.";
+            noBtn.text = I2.Loc.LocalizationManager.GetTranslation("modal_check");
+            info.text = I2.Loc.LocalizationManager.GetTranslation("modal_refuse");
         } 
         else {
             modalButton.gameObject.SetActive(true);
-            info.text = "구매 하시겠습니까?";
+            noBtn.text = I2.Loc.LocalizationManager.GetTranslation("modal_no");
+            info.text = I2.Loc.LocalizationManager.GetTranslation("modal_buy");
             modalButton.onClick.AddListener(() => purchasePoint(num));
         }
         

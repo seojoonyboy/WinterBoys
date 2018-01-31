@@ -75,7 +75,7 @@ public class ReadyController : MonoBehaviour {
 	[SerializeField] private GameObject noStaminaModal;
 
     Color32 positiveButtonColor = new Color32(255, 255, 255, 255);
-    Color32 negativeButtonColor = new Color32(110, 110, 110, 255);
+    Color32 negativeButtonColor = new Color32(255, 249, 23, 144);
 
     private void Awake() {
 		saveManager = SaveManager.Instance;

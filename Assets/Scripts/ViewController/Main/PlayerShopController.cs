@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using I2.Loc;
 
 public class PlayerShopController : MonoBehaviour {
 	private SaveManager sm;
@@ -69,11 +70,11 @@ public class PlayerShopController : MonoBehaviour {
 		buyCrystalBtn.gameObject.SetActive(!isSold);
 		buyPointBtn.gameObject.SetActive(!isSold);
 		if(charNum == cm.currentCharacter)
-			currentBtn.GetComponentInChildren<Text>().text = "출전중...";
+			currentBtn.GetComponentInChildren<Text>().text = LocalizationManager.GetTranslation("char_selected");
 		else
-			currentBtn.GetComponentInChildren<Text>().text = "출전";
-		buyCrystalBtn.GetComponentInChildren<Text>().text = string.Format("{0} 보석", cm.getPriceCrystal(charNum));
-		buyPointBtn.GetComponentInChildren<Text>().text = string.Format("{0} 포인트", cm.getPricePoint(charNum));
+			currentBtn.GetComponentInChildren<Text>().text = LocalizationManager.GetTranslation("char_select");
+		buyCrystalBtn.GetComponentInChildren<Text>().text = string.Format("{0} {1}", cm.getPriceCrystal(charNum), translate("shop_buy1"));
+		buyPointBtn.GetComponentInChildren<Text>().text = string.Format("{0} {1}", cm.getPricePoint(charNum), translate("shop_buy2"));
 	}
 
 	private void buyCrystal() {
@@ -92,8 +93,8 @@ public class PlayerShopController : MonoBehaviour {
 		Text text = modal.GetComponentInChildren<Text>();
 		btn.onClick.RemoveAllListeners();
 		btn.gameObject.SetActive(canBuy);
-		text.text = canBuy ? "구매 하시겠습니까?" : "잔액이 부족합니다.";
-		closeBtnText.text = canBuy ? "아니오" : "확인";
+		text.text = canBuy ? translate("modal_buy") : translate("modal_refuse");
+		closeBtnText.text = canBuy ? translate("modal_no") : translate("modal_check");
 		modal.SetActive(true);
 		modal.GetComponent<AndroidBackOverride>().beforeModal = gameObject;
 		if(!canBuy) return;
@@ -127,9 +128,13 @@ public class PlayerShopController : MonoBehaviour {
 		Text closeBtnText = modal.transform.Find("Panel/Buttons/NO/Text").GetComponent<Text>();
 		btn.gameObject.SetActive(true);
 		btn.onClick.RemoveAllListeners();
-		modal.GetComponentInChildren<Text>().text = "구매 하시겠습니까?";
-		closeBtnText.text = "아니오";
+		modal.GetComponentInChildren<Text>().text = translate("modal_buy");
+		closeBtnText.text = translate("modal_no");
 		//sound.Play(SoundManager.SoundType.EFX, "closeBtn");
 	}
 	
+	private string translate(string str) {
+		return LocalizationManager.GetTranslation(str);
+	}
+
 }
