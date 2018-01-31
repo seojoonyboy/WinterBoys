@@ -19,6 +19,7 @@ public class ResultModalController : MonoBehaviour {
 	[SerializeField] private Button continueBtn;
 	[SerializeField] private Button mainBtn;
 	[SerializeField] private GameObject noMoneyModal;
+    [SerializeField] private Sprite myPanel;
 
 	private GameObject currentGame;
 	private SportType sport;
@@ -178,9 +179,13 @@ public class ResultModalController : MonoBehaviour {
             raw.transform.localPosition = Vector3.zero;
             raw.transform.localScale = Vector3.one;
 
+            Image panel = raw.GetComponentInChildren<Image>();
             Text nickname = raw.transform.Find("Panel/NickName").GetComponent<Text>();
             Text rank = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
             Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
+
+            //if(data.user.device_id == SystemInfo.deviceUniqueIdentifier)
+            if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
 
             nickname.text = data.user.nickname;
             rank.text = data.rank + "위";
@@ -200,10 +205,13 @@ public class ResultModalController : MonoBehaviour {
             raw.transform.localPosition = Vector3.zero;
             raw.transform.localScale = Vector3.one;
 
+            Image panel = raw.GetComponentInChildren<Image>();
             Text nickname = raw.transform.Find("Panel/NickName").GetComponent<Text>();
             Text rank = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
             Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
 
+            //if(data.user.device_id == SystemInfo.deviceUniqueIdentifier)
+            if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
             nickname.text = data.user.nickname;
             rank.text = data.rank + "위";
             record.text = data.distance.ToString();

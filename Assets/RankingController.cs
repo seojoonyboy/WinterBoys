@@ -77,7 +77,7 @@ public class RankingController : MonoBehaviour {
             Text nickName = raw.transform.Find("Panel/NickName").GetComponent<Text>();
             Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
 
-            //if(data.user.device_id == Application.identifier)
+            //if(data.user.device_id == SystemInfo.deviceUniqueIdentifier)
             if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
             rankingNum.text = data.rank + "위";
             nickName.text = data.user.nickname;
