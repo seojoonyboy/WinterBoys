@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System;
+using System.Text;
 using BestHTTP;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class NetworkManager : Singleton<NetworkManager> {
     protected NetworkManager() { }
 
     //private string url = "http://ec2-13-124-187-31.ap-northeast-2.compute.amazonaws.com";
-    private string url = "http://13.125.17.68";
+    private string url = "https://apptest.fbl.kr/winterboy";
     //public GameObject loadingImage;
 
     public delegate void networkResult(HTTPResponse response, SportType type);
@@ -27,19 +28,25 @@ public class NetworkManager : Singleton<NetworkManager> {
     /// 거리 기준 순위 가져오기
     /// </summary>
     public void getRanksByDist(networkResult callback, SportType type) {
-        string str = null;
+        StringBuilder builderStr = new StringBuilder();
+        builderStr
+            .Append(url)
+            .Append("/rank_by_id/");
+
         switch (type) {
             case SportType.DOWNHILL:
-
+                builderStr.Append("downhill/");
                 break;
             case SportType.SKIJUMP:
-
+                builderStr.Append("skijump/");
                 break;
         }
-
-        if(str == null) { return; }
-
-        HTTPRequest request = new HTTPRequest(new Uri(url + str), HTTPMethods.Get);
+        builderStr
+            .Append("distance/")
+            //.Append(SystemInfo.deviceUniqueIdentifier)
+            .Append("b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e")
+            .Append("/");
+        HTTPRequest request = new HTTPRequest(new Uri(builderStr.ToString()), HTTPMethods.Get);
         //request.AddHeader("Authorization", "Token " + token.key);
         StartCoroutine(AccessNetwork(request, callback, type));
     }
@@ -48,19 +55,24 @@ public class NetworkManager : Singleton<NetworkManager> {
     /// 포인트 기준 순위 가져오기
     /// </summary>
     public void getRanksByPoint(networkResult callback, SportType type) {
-        string str = null;
+        StringBuilder builderStr = new StringBuilder();
+        builderStr
+            .Append(url)
+            .Append("/rank_by_id/");
+
         switch (type) {
             case SportType.DOWNHILL:
-
+                builderStr.Append("downhill/");
                 break;
             case SportType.SKIJUMP:
-
+                builderStr.Append("skijump/");
                 break;
         }
-
-        if (str == null) { return; }
-
-        HTTPRequest request = new HTTPRequest(new Uri(url + str), HTTPMethods.Get);
+        builderStr
+            .Append("point/")
+            .Append("b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e")
+            .Append("/");
+        HTTPRequest request = new HTTPRequest(new Uri(builderStr.ToString()), HTTPMethods.Get);
         //request.AddHeader("Authorization", "Token " + token.key);
         StartCoroutine(AccessNetwork(request, callback, type));
     }
