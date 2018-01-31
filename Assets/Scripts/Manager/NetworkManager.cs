@@ -59,8 +59,8 @@ public class NetworkManager : Singleton<NetworkManager> {
         }
         builderStr
             .Append("distance/")
-            //.Append(SystemInfo.deviceUniqueIdentifier)
-            .Append("b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e")
+            .Append(SystemInfo.deviceUniqueIdentifier)
+            //.Append("b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e")
             .Append("/");
         HTTPRequest request = new HTTPRequest(new Uri(builderStr.ToString()), HTTPMethods.Get);
         //request.AddHeader("Authorization", "Token " + token.key);
@@ -86,7 +86,8 @@ public class NetworkManager : Singleton<NetworkManager> {
         }
         builderStr
             .Append("point/")
-            .Append("b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e")
+            .Append(SystemInfo.deviceUniqueIdentifier)
+            //.Append("b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e")
             .Append("/");
         HTTPRequest request = new HTTPRequest(new Uri(builderStr.ToString()), HTTPMethods.Get);
         //request.AddHeader("Authorization", "Token " + token.key);
@@ -115,7 +116,7 @@ public class NetworkManager : Singleton<NetworkManager> {
         //fields[1].value = "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e";
 
         fields[2].key = "nickname";
-        fields[2].value = "nickname";
+        fields[2].value = PlayerPrefs.GetString("nickname", "nickname");
 
         fields[3].key = "distance";
         fields[3].value = dist.ToString();

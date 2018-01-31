@@ -518,7 +518,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 additionalForceByEffect = 1.5f;
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = translate("dh_speed_up");
+                fontEffectComp.text = translate("Effect/dh_speed_up");
                 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
@@ -528,14 +528,14 @@ public class Ski_PlayerController : MonoBehaviour {
                 speedZeroCoolTime = itemCoolTimes.speedZero_cooltime;
                 cooltime = speedZeroCoolTime;
 
-                dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_bigCrash");
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "Effect/dh_bigCrash");
 
                 dM.bearImpactPref.SetActive(true);
                 float endTime = dM.bearImpactPref.GetComponent<SkeletonAnimation>().AnimationState.Tracks.Items[0].AnimationEnd;
                 Invoke("BearImpactAnimEnd", endTime);
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = translate("dh_speed_faint");
+                fontEffectComp.text = translate("Effect/dh_faint");
 
                 gm.vibrate();
                 break;
@@ -551,7 +551,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "dh_tree");
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = translate("dh_speed_faint");
+                fontEffectComp.text = translate("Effect/dh_faint");
 
                 item.transform.Find("Image").GetComponent<TreeHandler>().Play();
                 item.GetComponent<BoxCollider2D>().enabled = false;
@@ -563,7 +563,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 cooltime = reverseCoolTime;
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = translate("dh_reverse");
+                fontEffectComp.text = translate("Effect/dh_reverse");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
@@ -576,7 +576,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 pollBuff = 1.4f;
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = translate("dh_rotation_up");
+                fontEffectComp.text = translate("Effect/dh_rotation_up");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
@@ -589,7 +589,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 oilBuff = 0.6f;
 
                 fontEffectComp.isNegative = true;
-                fontEffectComp.text = translate("dh_rotation_down");
+                fontEffectComp.text = translate("Effect/dh_rotation_down");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                 break;
@@ -598,7 +598,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.scoreInc(50);
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = translate("dh_gold");
+                fontEffectComp.text = translate("Effect/dh_gold");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;
@@ -606,7 +606,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.remainTime += 10;
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = translate("dh_time");
+                fontEffectComp.text = translate("Effect/dh_time");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "addTime");
                 break;
@@ -614,7 +614,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 dM.addCrystal(5);
 
                 fontEffectComp.isNegative = false;
-                fontEffectComp.text = translate("dh_crystal");
+                fontEffectComp.text = translate("Effect/dh_crystal");
 
                 dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                 break;

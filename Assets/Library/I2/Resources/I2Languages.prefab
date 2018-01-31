@@ -54,7 +54,7 @@ MonoBehaviour:
   Google_WebServiceURL: https://script.google.com/macros/s/AKfycbyyKsnI0ivx8Mz7gLM1ifxW6XdU1fStzIP0E7aUp9zJwO57aYM2/exec
   Google_SpreadsheetKey: 1lyjeDvqY3ERu7rRQ6VbQQ8UsCyjJNTkTxnwBvEcqqHg
   Google_SpreadsheetName: I2Loc WinterBoy Localization
-  Google_LastUpdatedVersion: 1517406325012
+  Google_LastUpdatedVersion: 1517407641922
   GoogleUpdateFrequency: 3
   GoogleUpdateDelay: 5
   mTerms:
@@ -2055,6 +2055,90 @@ MonoBehaviour:
     Languages:
     - "\uC18D\uB3C4 \uAC10\uC18C"
     - speed down
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: rank_distance
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAC70\uB9AC \uC21C\uC704"
+    - Distance Rank
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: rank_point
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD3EC\uC778\uD2B8 \uC21C\uC704"
+    - Point Rank
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: rank_discription
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAC01 \uAC8C\uC784\uB9C8\uB2E4 \uC790\uC2E0\uC758 \uC21C\uC704\uB97C \uD655\uC778\uD574\uBCF4\uC138\uC694!"
+    - Check out your rank each game!
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: rank_soon
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC900\uBE44\uC911.."
+    - comming soon..
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: InGameCommon/get_point
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD68D\uB4DD \uD3EC\uC778\uD2B8"
+    - Point Get
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: InGameCommon/ads1
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uAD11\uACE0\uBCF4\uACE0"
+    - watch ads
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: InGameCommon/ads2
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uD3EC\uC778\uD2B8 2\uBC30 \uCC2C\uC2A4!"
+    - to get point X 2!
     - 
     Languages_Touch:
     - 

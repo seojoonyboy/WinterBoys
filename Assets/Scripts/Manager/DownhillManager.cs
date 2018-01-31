@@ -201,7 +201,8 @@ public class DownhillManager : MonoBehaviour {
         }
         else if(isPass == 1) {
             if(comboNum > 0) {
-                string text = comboNum + I2.Loc.LocalizationManager.GetTranslation("dh_combo");
+                string text = comboNum + I2.Loc.LocalizationManager.GetTranslation("Effect/dh_combo");
+                Debug.Log(text);
                 makeFontEffect(text, false);
             }
             comboNum++;
@@ -282,7 +283,7 @@ public class DownhillManager : MonoBehaviour {
 
         remainTime -= amount;
 
-        makeFontEffect("Effect/dh_flag", true);
+        makeFontEffect(I2.Loc.LocalizationManager.GetTranslation("Effect/dh_flag"), true);
 
         soundManager.Play(SoundManager.SoundType.EFX, "lossTime");
     }
@@ -297,7 +298,7 @@ public class DownhillManager : MonoBehaviour {
         FontEffect fontEffectComp = fontEffect.GetComponent<FontEffect>();
 
         fontEffectComp.isNegative = isNegative;
-        fontEffectComp.text = I2.Loc.LocalizationManager.GetTranslation(text);
+        fontEffectComp.text = text;
 
         fontEffect.SetActive(true);
     }

@@ -211,7 +211,24 @@ public class ResultModalController : MonoBehaviour {
             }
 
             nickname.text = data.user.nickname;
-            rank.text = data.rank + "위";
+            if(I2.Loc.LocalizationManager.CurrentLanguage.CompareTo("English") == 0) {
+                switch(data.rank) {
+                    case 1:
+                    rank.text = data.rank + "st";
+                    break;
+                    case 2:
+                    rank.text = data.rank + "nd";
+                    break;
+                    case 3:
+                    rank.text = data.rank + "rd";
+                    break;
+                    default:
+                    rank.text = data.rank + "th";
+                    break;
+                }
+            }
+            else
+                rank.text = data.rank + "위";
             record.text = data.distance + "M";
         }
 
@@ -240,7 +257,24 @@ public class ResultModalController : MonoBehaviour {
                 currMyPointRank = data.rank;
             }
             nickname.text = data.user.nickname;
-            rank.text = data.rank + "위";
+            if(I2.Loc.LocalizationManager.CurrentLanguage.CompareTo("English") == 0) {
+                switch(data.rank) {
+                    case 1:
+                    rank.text = data.rank + "st";
+                    break;
+                    case 2:
+                    rank.text = data.rank + "nd";
+                    break;
+                    case 3:
+                    rank.text = data.rank + "rd";
+                    break;
+                    default:
+                    rank.text = data.rank + "th";
+                    break;
+                }
+            }
+            else
+                rank.text = data.rank + "위";
             record.text = data.point.ToString();
 
             //distArrow.transform.SetParent(raw.transform, false);
