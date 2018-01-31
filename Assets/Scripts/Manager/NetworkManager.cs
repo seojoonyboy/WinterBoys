@@ -10,7 +10,7 @@ public class NetworkManager : Singleton<NetworkManager> {
     protected NetworkManager() { }
 
     //private string url = "http://ec2-13-124-187-31.ap-northeast-2.compute.amazonaws.com";
-    private string url = "https://apptest.fbl.kr/winterboy";
+    private string url = "https://winterboy.fbl.kr";
     //public GameObject loadingImage;
 
     public delegate void networkResult(HTTPResponse response, SportType type);
