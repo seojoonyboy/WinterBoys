@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using BestHTTP;
+using Firebase.Analytics;
 using UnityEngine;
 
 public class NetworkManager : Singleton<NetworkManager> {
@@ -31,6 +32,8 @@ public class NetworkManager : Singleton<NetworkManager> {
         request.Send();
         yield return request;
         if (callback != null) callback(request.Response, type);
+        //에러 날 경우
+        if(!request.Response.IsSuccess) FirebaseAnalytics.LogEvent("InternetError","Code", request.Response.StatusCode);
     }
 
     private void Awake() {

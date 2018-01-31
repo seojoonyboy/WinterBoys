@@ -1833,6 +1833,18 @@ MonoBehaviour:
     - 
     - 
     Flags: 000000
+  - Term: option_english
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC601\uC5B4"
+    - English
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
   mLanguages:
   - Name: Korean
     Code: ko
