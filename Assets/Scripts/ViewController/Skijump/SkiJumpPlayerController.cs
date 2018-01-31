@@ -449,6 +449,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("dh_crash");
                     fontComp.isNegative = true;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                     gm.vibrate();
                     break;
                 case ItemType.SJ.WH_BIRD:
@@ -460,6 +461,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("sj_invincible");
                     fontComp.isNegative = false;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                     playerState = PlayerState.WHITE_BIRD;
                     break;
                 case ItemType.SJ.BALLOON:
@@ -469,6 +471,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("sj_increase");
                     fontComp.isNegative = false;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                     gm.vibrate();
                     break;
                 case ItemType.SJ.DK_CLOUD:
@@ -480,6 +483,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("sj_mirror");
                     fontComp.isNegative = true;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                     break;
                 case ItemType.SJ.POINT:
                     sm.bonusScore += 50;
@@ -487,6 +491,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("sj_gold");
                     fontComp.isNegative = false;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                     break;
                 case ItemType.SJ.THUNDER_CLOUD:
                     thunderCoolTime = itemCooltimes.thunderCloud_cooltime;
@@ -497,6 +502,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("sj_gravitiy");
                     fontComp.isNegative = true;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                     break;
                 case ItemType.SJ.MONEY:
                     sm.addCrystal(5);
@@ -504,6 +510,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("sj_crystal");
                     fontComp.isNegative = false;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "item_good");
                     break;
                 case ItemType.SJ.TIME:
                     sm.lastTime += 15f;
@@ -511,6 +518,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     fontComp.text = translate("sj_time");
                     fontComp.isNegative = false;
 
+                    soundManager.Play(SoundManager.SoundType.EFX, "addTime");
                     break;
 
                 case ItemType.SJ.SNOW_CLOUD:

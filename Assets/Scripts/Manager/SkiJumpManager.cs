@@ -54,7 +54,8 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
         canClickArrowBtn = false,
         isQTETriggerOccured = false,
         isEndQTE = false,
-        isGameStart = false;
+        isGameStart = false,
+        canPlayTimeLessEfx = true;
 
     public bool isGameEnd = false;
 
@@ -192,9 +193,14 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         if(lastTime <= 5 && lastTime > 0) {
             timeWarningModal.SetActive(true);
+            if (canPlayTimeLessEfx) {
+                soundManager.Play(SoundManager.SoundType.EFX, "timeless");
+                canPlayTimeLessEfx = false;
+            }
         }
         else {
             timeWarningModal.SetActive(false);
+            canPlayTimeLessEfx = true;
         }
 
         if(lastTime <= 0) {

@@ -54,6 +54,8 @@ public class DownhillManager : MonoBehaviour {
         timeWarningModal;
 
     public bool isTimeUp = false;
+    private bool canPlayTimeLessEfx = true;
+
     private void Awake() {
         gm = GameManager.Instance;
         pm = SaveManager.Instance;
@@ -112,11 +114,16 @@ public class DownhillManager : MonoBehaviour {
 
         if(remainTime < 5 && remainTime > 0) {
             timeWarningModal.SetActive(true);
+            if (canPlayTimeLessEfx) {
+                soundManager.Play(SoundManager.SoundType.EFX, "timeless");
+                canPlayTimeLessEfx = false;
+            }
         }
         else {
             if (timeWarningModal.activeSelf) {
                 timeWarningModal.SetActive(false);
             }
+            canPlayTimeLessEfx = true;
         }
 
         if(remainTime < 0) {
@@ -276,6 +283,8 @@ public class DownhillManager : MonoBehaviour {
         remainTime -= amount;
 
         makeFontEffect("Effect/dh_flag", true);
+
+        soundManager.Play(SoundManager.SoundType.EFX, "lossTime");
     }
     
     private void makeFontEffect(string text, bool isNegative) {

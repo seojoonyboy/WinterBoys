@@ -608,7 +608,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 fontEffectComp.isNegative = false;
                 fontEffectComp.text = translate("dh_time");
 
-                dM.soundManager.Play(SoundManager.SoundType.EFX, "item_good");
+                dM.soundManager.Play(SoundManager.SoundType.EFX, "addTime");
                 break;
             case ItemType.DH.MONEY:
                 dM.addCrystal(5);
