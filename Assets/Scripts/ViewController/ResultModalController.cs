@@ -32,6 +32,17 @@ public class ResultModalController : MonoBehaviour {
     public GameObject[] rankPanels;
     Dictionary<string, object> dic;
 
+    private GameObject 
+        myDistRaw,
+        myPointRaw;
+    private int 
+        currMyDistRank,
+        currMyPointRank;
+
+    public GameObject 
+        distArrow,
+        pointArrow;
+
     private void setManager() {
 		saveManager = SaveManager.Instance;
 		gameManager = GameManager.Instance;
@@ -185,7 +196,11 @@ public class ResultModalController : MonoBehaviour {
             Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
 
             //if(data.user.device_id == SystemInfo.deviceUniqueIdentifier)
-            if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
+            if(data.user.device_id == SystemInfo.deviceUniqueIdentifier) {
+                panel.sprite = myPanel;
+                myDistRaw = raw;
+                currMyDistRank = data.distance;
+            }
 
             nickname.text = data.user.nickname;
             rank.text = data.rank + "위";
@@ -211,10 +226,41 @@ public class ResultModalController : MonoBehaviour {
             Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
 
             //if(data.user.device_id == SystemInfo.deviceUniqueIdentifier)
-            if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
+            if (data.user.device_id == SystemInfo.deviceUniqueIdentifier) {
+                panel.sprite = myPanel;
+                myPointRaw = raw;
+                currMyPointRank = data.point;
+            }
             nickname.text = data.user.nickname;
             rank.text = data.rank + "위";
             record.text = data.distance.ToString();
+        }
+
+        int expectDistRank = dataSet.expect_rank.distance;
+        int expectPointRank = dataSet.expect_rank.point;
+
+        //거리 순위가 높아진 경우
+        if(expectDistRank < currMyDistRank) {
+            transform.Find("RankingPanel/ToggleGroup/DistRankingToggle/New").gameObject.SetActive(true);
+            distArrow.SetActive(true);
+            distArrow.transform.SetParent(myDistRaw.transform);
+        }
+        //거리 순위가 낮아진 경우
+        else {
+            transform.Find("RankingPanel/ToggleGroup/DistRankingToggle/New").gameObject.SetActive(false);
+            distArrow.SetActive(false);
+        }
+
+        //포인트 순위가 높아진 경우
+        if(expectPointRank < currMyPointRank) {
+            transform.Find("RankingPanel/ToggleGroup/PointRankingToggle/New").gameObject.SetActive(true);
+            pointArrow.SetActive(true);
+            pointArrow.transform.SetParent(myPointRaw.transform);
+        }
+        //포인트 순위가 낮아진 경우
+        else {
+            transform.Find("RankingPanel/ToggleGroup/PointRankingToggle/New").gameObject.SetActive(false);
+            pointArrow.SetActive(false);
         }
     }
 
