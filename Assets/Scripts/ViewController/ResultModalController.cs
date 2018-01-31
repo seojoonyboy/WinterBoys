@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using BestHTTP;
+using UnityEngine.Analytics.MiniJSON;
 
 public class ResultModalController : MonoBehaviour {
 	private SaveManager saveManager;
 	private GameManager gameManager;
 	private SoundManager soundManager;
+    private NetworkManager networkManager;
+
 	private UM_GameServiceManager uM_Game;
-	[SerializeField] private Text timeText;
 	[SerializeField] private Text distanceText;
-	[SerializeField] private Text maxComboText;
 	[SerializeField] private Text pointText;
 	[SerializeField] private Button adsBtn;
 	[SerializeField] private Button continueBtn;
 	[SerializeField] private Button mainBtn;
-	[SerializeField] private Button rankBtn;
 	[SerializeField] private GameObject noMoneyModal;
 
 	private GameObject currentGame;
@@ -26,18 +27,22 @@ public class ResultModalController : MonoBehaviour {
 	private int extraPoint;
 	private float? magnification = null;
 
-	private void setManager() {
+    public GameObject rawPref;
+    public GameObject[] rankPanels;
+    Dictionary<string, object> dic;
+
+    private void setManager() {
 		saveManager = SaveManager.Instance;
 		gameManager = GameManager.Instance;
 		soundManager = SoundManager.Instance;
 		uM_Game = UM_GameServiceManager.Instance;
-	}
+        networkManager = NetworkManager.Instance;
+    }
 	
 	private void Start() {
 		adsBtn.onClick.AddListener(advertise);
 		continueBtn.onClick.AddListener(revive);
 		mainBtn.onClick.AddListener(mainLoad);
-		rankBtn.onClick.AddListener(rankLoad);
 		showAdsBtn();
 	}
 
@@ -66,23 +71,12 @@ public class ResultModalController : MonoBehaviour {
 /// <param name="maxCombo">최대 콤보(다운힐 외 null)</param>
 /// <param name="magnification">배율(스키 점프 외 null)</param>
 	public void setData(float time, float distance, int point, int extraPoint, int? maxCombo, float? magnification) {
-		setTime(sport, time);
-		setMaxCombo(maxCombo);
 		setDistance(distance);
 		setPoint(point, extraPoint, magnification);
 		gameObject.SetActive(true);
 		soundManager.Play(SoundManager.SoundType.EFX, "gameOver");
-	}
 
-    private void setTime(SportType sport, float time) {
-        if(sport == SportType.SKIJUMP) timeText.text = string.Format("{0}초", time.ToString("0"));
-		else timeText.text = string.Format("{0} : {1}", ((int)time / 60).ToString("00"), ((int)time % 60).ToString("00"));
-    }
-
-    private void setMaxCombo(int? maxCombo) {
-		if(maxComboText == null) return;
-		if(maxCombo.HasValue) maxComboText.text = maxCombo.Value.ToString();
-		else Destroy(maxComboText.transform.parent.gameObject);
+        postRecord(distance, point);
     }
 
 	private void setDistance(float distance) {
@@ -139,11 +133,6 @@ public class ResultModalController : MonoBehaviour {
         gameManager.LoadSceneFromIngame("Main", sport);
 	}
 
-	private void rankLoad() {
-		soundManager.Play(SoundManager.SoundType.EFX, "rankingShow");
-		uM_Game.ShowLeaderBoardUI(getSportString());
-	}
-
 	private string getSportString() {
 		switch(sport) {
 			case SportType.DOWNHILL : return "DownHill";
@@ -161,4 +150,128 @@ public class ResultModalController : MonoBehaviour {
 		}
 		return "revive";
 	}
+
+    private void postRecord(float distance, int point) {
+        networkManager.postRecord(postRecordCallback, sport, (int)distance, point);
+    }
+
+    private void postRecordCallback(HTTPResponse callback, SportType type) {
+        DataSet dataSet = DataSet.fromJSON(callback.DataAsText);
+        setResultRaw(dataSet);
+    }
+
+    private void setResultRaw(DataSet dataSet) {
+        transform.Find("RankingPanel/ToggleGroup/DistRankingToggle").GetComponent<Toggle>().isOn = true;
+
+        Distance_rank[] dist_ranks = dataSet.distance_rank;
+        Transform parent = transform.Find("RankingPanel/DistRaws");
+
+        foreach (Distance_rank data in dist_ranks) {
+            GameObject raw = Instantiate(rawPref);
+
+            raw.transform.SetParent(parent);
+            raw.transform.localPosition = Vector3.zero;
+            raw.transform.localScale = Vector3.one;
+
+            Text nickname = raw.transform.Find("Panel/NickName").GetComponent<Text>();
+            Text rank = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
+            Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
+
+            nickname.text = data.user.nickname;
+            rank.text = data.rank + "위";
+            record.text = data.distance + "M";
+        }
+
+        parent = transform.Find("RankingPanel/PointRaws");
+
+        Point_rank[] point_ranks = dataSet.point_rank;
+
+        foreach (Point_rank data in point_ranks) {
+            GameObject raw = Instantiate(rawPref);
+
+            raw.transform.SetParent(parent);
+            raw.transform.localPosition = Vector3.zero;
+            raw.transform.localScale = Vector3.one;
+
+            Text nickname = raw.transform.Find("Panel/NickName").GetComponent<Text>();
+            Text rank = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
+            Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
+
+            nickname.text = data.user.nickname;
+            rank.text = data.rank + "위";
+            record.text = data.distance.ToString();
+        }
+    }
+
+    [System.Serializable]
+    public class DataSet {
+        public Data data;
+        public Expect_rank expect_rank;
+        public Distance_rank[] distance_rank;
+        public Point_rank[] point_rank;
+
+        public static DataSet fromJSON(string json) {
+            return JsonUtility.FromJson<DataSet>(json);
+        }
+    }
+
+    [System.Serializable]
+    public class Data {
+        public int id;
+        public User user;
+        public int rank;
+        public int distance;
+        public int point;
+
+        public static Data fromJSON(string json) {
+            return JsonUtility.FromJson<Data>(json);
+        }
+    }
+
+    [System.Serializable]
+    public class User {
+        public int id;
+        public string device_id;
+        public string nickname;
+
+        public static User fromJSON(string json) {
+            return JsonUtility.FromJson<User>(json);
+        }
+    }
+
+    [System.Serializable]
+    public class Expect_rank {
+        public int distance;        //거리 기반 (변화될)순위
+        public int point;           //포인트 기반 (변화될)순위
+
+        public static Expect_rank fromJSON(string json) {
+            return JsonUtility.FromJson<Expect_rank>(json);
+        }
+    }
+
+    [System.Serializable]
+    public class Distance_rank {
+        public int id;
+        public User user;
+        public int rank;
+        public int distance;
+        public int point;
+
+        public static Distance_rank fromJSON(string json) {
+            return JsonUtility.FromJson<Distance_rank>(json);
+        }
+    }
+
+    [System.Serializable]
+    public class Point_rank {
+        public int id;
+        public User user;
+        public int rank;
+        public int distance;
+        public int point;
+
+        public static Point_rank fromJSON(string json) {
+            return JsonUtility.FromJson<Point_rank>(json);
+        }
+    }
 }

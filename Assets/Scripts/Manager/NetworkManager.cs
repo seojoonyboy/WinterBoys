@@ -24,6 +24,15 @@ public class NetworkManager : Singleton<NetworkManager> {
         //loadingImage.SetActive(false);
     }
 
+    public IEnumerator AccessNetwork(HTTPRequest request, networkResult callback, SportType type, Field[] fields) {
+        foreach(Field field in fields) {
+            request.AddField(field.key, field.value);
+        }
+        request.Send();
+        yield return request;
+        if (callback != null) callback(request.Response, type);
+    }
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
     }
@@ -82,10 +91,58 @@ public class NetworkManager : Singleton<NetworkManager> {
     }
 
     /// <summary>
+    /// 인게임 종료시 내 기록 db 전달
+    /// callback으로 종료 모달 내 랭킹 정보 구성
+    /// </summary>
+    public void postRecord(networkResult callback, SportType type, int dist, int point) {
+        StringBuilder builderStr = new StringBuilder();
+        builderStr
+            .Append(url)
+            .Append("/record_rank/");
+
+        Field[] fields = new Field[6];
+        for(int i=0; i<fields.Length; i++) {
+            fields[i] = new Field();
+        }
+        fields[0].key = "key";
+        fields[0].value = "gudckddhfflavlr";
+
+        fields[1].key = "device_id";
+        //fields[1].value = SystemInfo.deviceUniqueIdentifier;
+        fields[1].value = "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e";
+
+        fields[2].key = "nickname";
+        fields[2].value = "nickname";
+
+        fields[3].key = "distance";
+        fields[3].value = dist.ToString();
+
+        fields[4].key = "point";
+        fields[4].value = point.ToString();
+
+        fields[5].key = "event_name";
+        switch (type) {
+            case SportType.DOWNHILL:
+                fields[5].value = "downhill";
+                break;
+            case SportType.SKIJUMP:
+                fields[5].value = "skijump";
+                break;
+        }
+        HTTPRequest request = new HTTPRequest(new Uri(builderStr.ToString()), HTTPMethods.Post);
+        StartCoroutine(AccessNetwork(request, callback, type, fields));
+    }
+
+    /// <summary>
     /// 전체 랭킹 보기
     /// </summary>
     /// <param name="callback"></param>
     public void GetTotalRank(networkResult callback) {
 
+    }
+
+    public class Field {
+        public string key;
+        public string value;
     }
 }
