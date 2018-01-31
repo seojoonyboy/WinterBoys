@@ -25,7 +25,9 @@ public class ResultModalController : MonoBehaviour {
 	private SportType sport;
 
 	private int point;
-	private int extraPoint;
+    private float distance;
+
+    private int extraPoint;
 	private float? magnification = null;
 
     public GameObject rawPref;
@@ -95,6 +97,7 @@ public class ResultModalController : MonoBehaviour {
     }
 
 	private void setDistance(float distance) {
+        this.distance = distance;
 		distanceText.text = string.Format("{0} M", distance.ToString("##,0"));
         if(saveManager.setRecord(distance, sport)) {
             UM_GameServiceManager.Instance.SubmitScore(getSportString(), (long)distance);
@@ -171,8 +174,13 @@ public class ResultModalController : MonoBehaviour {
     }
 
     private void postRecordCallback(HTTPResponse callback, SportType type) {
-        DataSet dataSet = DataSet.fromJSON(callback.DataAsText);
-        setResultRaw(dataSet);
+        if(callback.StatusCode == 500) {
+            networkManager.postRecord(postRecordCallback, sport, (int)distance, point);
+        }
+        else {
+            DataSet dataSet = DataSet.fromJSON(callback.DataAsText);
+            setResultRaw(dataSet);
+        }
     }
 
     private void setResultRaw(DataSet dataSet) {
@@ -199,7 +207,7 @@ public class ResultModalController : MonoBehaviour {
             if(data.user.device_id == SystemInfo.deviceUniqueIdentifier) {
                 panel.sprite = myPanel;
                 myDistRaw = raw;
-                currMyDistRank = data.distance;
+                currMyDistRank = data.rank;
             }
 
             nickname.text = data.user.nickname;
@@ -229,11 +237,11 @@ public class ResultModalController : MonoBehaviour {
             if (data.user.device_id == SystemInfo.deviceUniqueIdentifier) {
                 panel.sprite = myPanel;
                 myPointRaw = raw;
-                currMyPointRank = data.point;
+                currMyPointRank = data.rank;
             }
             nickname.text = data.user.nickname;
             rank.text = data.rank + "위";
-            record.text = data.distance.ToString();
+            record.text = data.point.ToString();
 
             //distArrow.transform.SetParent(raw.transform, false);
             //distArrow.GetComponent<RectTransform>().localPosition = raw.transform.Find("Panel/ArrowLoc").GetComponent<RectTransform>().localPosition;
@@ -244,6 +252,8 @@ public class ResultModalController : MonoBehaviour {
 
         //expectPointRank = -1;
         //expectDistRank = -1;
+        Debug.Log("이전 순위" + currMyDistRank);
+        Debug.Log("변경 예정 순위 : " + expectDistRank);
         //거리 순위가 높아진 경우
         if (expectDistRank < currMyDistRank) {
             transform.Find("RankingPanel/ToggleGroup/DistRankingToggle/New").gameObject.SetActive(true);

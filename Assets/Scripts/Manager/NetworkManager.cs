@@ -111,8 +111,8 @@ public class NetworkManager : Singleton<NetworkManager> {
         fields[0].value = "gudckddhfflavlr";
 
         fields[1].key = "device_id";
-        //fields[1].value = SystemInfo.deviceUniqueIdentifier;
-        fields[1].value = "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e";
+        fields[1].value = SystemInfo.deviceUniqueIdentifier;
+        //fields[1].value = "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e";
 
         fields[2].key = "nickname";
         fields[2].value = "nickname";
