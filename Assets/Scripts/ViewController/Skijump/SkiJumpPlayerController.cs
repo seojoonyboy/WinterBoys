@@ -424,6 +424,10 @@ public class SkiJumpPlayerController : MonoBehaviour {
         }
     }
 
+    private string translate(string str) {
+        return I2.Loc.LocalizationManager.GetTranslation(str);
+    }
+
     public void itemCheck(GameObject obj) {
         if(playerState == PlayerState.WHITE_BIRD) {
             //Destroy(obj);
@@ -442,7 +446,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     Vector2 BL_BIRD_forceDir = new Vector2(2f, -10f);
                     rb.AddForce(BL_BIRD_forceDir, ForceMode2D.Impulse);
 
-                    fontComp.text = "충돌";
+                    fontComp.text = translate("dh_crash");
                     fontComp.isNegative = true;
 
                     gm.vibrate();
@@ -453,7 +457,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
                     sm.addEffectIcon(0, whiteBirdCoolTime);
 
-                    fontComp.text = "무적";
+                    fontComp.text = translate("sj_invincible");
                     fontComp.isNegative = false;
 
                     playerState = PlayerState.WHITE_BIRD;
@@ -462,7 +466,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     Vector2 forceDir = new Vector2(2f, 10f);
                     rb.AddForce(forceDir, ForceMode2D.Impulse);
 
-                    fontComp.text = "상승";
+                    fontComp.text = translate("sj_increase");
                     fontComp.isNegative = false;
 
                     gm.vibrate();
@@ -473,14 +477,14 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
                     playerState = PlayerState.REVERSE_ROTATE;
 
-                    fontComp.text = "좌우 반전";
+                    fontComp.text = translate("sj_mirror");
                     fontComp.isNegative = true;
 
                     break;
                 case ItemType.SJ.POINT:
                     sm.bonusScore += 50;
 
-                    fontComp.text = "골드 +50";
+                    fontComp.text = translate("sj_gold");
                     fontComp.isNegative = false;
 
                     break;
@@ -490,21 +494,21 @@ public class SkiJumpPlayerController : MonoBehaviour {
 
                     playerState = PlayerState.GRAVITY_CHANGE;
 
-                    fontComp.text = "중력 증가";
+                    fontComp.text = translate("sj_gravitiy");
                     fontComp.isNegative = true;
 
                     break;
                 case ItemType.SJ.MONEY:
                     sm.addCrystal(5);
 
-                    fontComp.text = "크리스탈 +5";
+                    fontComp.text = translate("sj_crystal");
                     fontComp.isNegative = false;
 
                     break;
                 case ItemType.SJ.TIME:
                     sm.lastTime += 15f;
 
-                    fontComp.text = "시간 +15";
+                    fontComp.text = translate("sj_time");
                     fontComp.isNegative = false;
 
                     break;
@@ -512,7 +516,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                 case ItemType.SJ.SNOW_CLOUD:
                     rb.velocity *= 0.75f;
 
-                    fontComp.text = "속도 감소";
+                    fontComp.text = translate("sj_speed_down");
                     fontComp.isNegative = true;
 
                     break;

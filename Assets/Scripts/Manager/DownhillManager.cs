@@ -194,7 +194,7 @@ public class DownhillManager : MonoBehaviour {
         }
         else if(isPass == 1) {
             if(comboNum > 0) {
-                string text = comboNum + "회 콤보";
+                string text = comboNum + I2.Loc.LocalizationManager.GetTranslation("dh_combo");
                 makeFontEffect(text, false);
             }
             comboNum++;
@@ -275,7 +275,7 @@ public class DownhillManager : MonoBehaviour {
 
         remainTime -= amount;
 
-        makeFontEffect("깃발 지나침 -5초", true);
+        makeFontEffect("Effect/dh_flag", true);
     }
     
     private void makeFontEffect(string text, bool isNegative) {
@@ -288,7 +288,7 @@ public class DownhillManager : MonoBehaviour {
         FontEffect fontEffectComp = fontEffect.GetComponent<FontEffect>();
 
         fontEffectComp.isNegative = isNegative;
-        fontEffectComp.text = text;
+        fontEffectComp.text = I2.Loc.LocalizationManager.GetTranslation(text);
 
         fontEffect.SetActive(true);
     }

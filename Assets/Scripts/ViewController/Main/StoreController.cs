@@ -53,6 +53,11 @@ public class StoreController : MonoBehaviour {
         modalButton.transform.parent.parent.parent.gameObject.SetActive(true);
         modalButton.GetComponentInParent<AndroidBackOverride>().beforeModal = gameObject;
         soundManager.Play(SoundManager.SoundType.EFX, "gameSelBtn");
+        Text noBtn = modalButton.transform.parent.GetChild(1).GetChild(0).GetComponent<Text>();
+        Text info = modalButton.transform.parent.parent.GetComponentInChildren<Text>();
+        modalButton.gameObject.SetActive(true);
+        noBtn.text = I2.Loc.LocalizationManager.GetTranslation("modal_no");
+        info.text = I2.Loc.LocalizationManager.GetTranslation("modal_buy");
         modalButton.onClick.RemoveAllListeners();
         modalButton.onClick.AddListener(() => purchaseCrystal(crystal));
     }
