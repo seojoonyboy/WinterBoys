@@ -8,6 +8,7 @@ public class RankingController : MonoBehaviour {
     public GameObject Raw;
     public GameObject[]
         panels;
+    [SerializeField] private Sprite myPanel;
     NetworkManager networkManager;
     private void Awake() {
         networkManager = NetworkManager.Instance;
@@ -71,10 +72,13 @@ public class RankingController : MonoBehaviour {
             raw.transform.localScale = Vector3.one;
             raw.transform.localPosition = Vector3.zero;
 
+            Image panel = raw.GetComponentInChildren<Image>();
             Text rankingNum = raw.transform.Find("Panel/RankingNum").GetComponent<Text>();
             Text nickName = raw.transform.Find("Panel/NickName").GetComponent<Text>();
             Text record = raw.transform.Find("Panel/Record").GetComponent<Text>();
 
+            //if(data.user.device_id == Application.identifier)
+            if(data.user.device_id == "b5f543b0eb99661e381d1f18e2c74d7fa9bc0c619a38be706e") panel.sprite = myPanel;
             rankingNum.text = data.rank + "위";
             nickName.text = data.user.nickname;
             if (isDistance) {

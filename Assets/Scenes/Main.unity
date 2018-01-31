@@ -352,6 +352,7 @@ MonoBehaviour:
   panels:
   - {fileID: 425283199}
   - {fileID: 2074210141}
+  myPanel: {fileID: 21300000, guid: 8eacca7829255f042a1fe0f9c25db419, type: 3}
 --- !u!114 &13788808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28223,7 +28224,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1658742213404702, guid: e356a4a7c31dc694aa61f9aec4510271, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1125372201562100, guid: e356a4a7c31dc694aa61f9aec4510271, type: 2}
       propertyPath: m_IsActive
@@ -40940,9 +40941,9 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2074210141}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2074210168}
   - {fileID: 2074210167}
@@ -40952,8 +40953,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -530}
-  m_SizeDelta: {x: 1014, y: 800}
+  m_AnchoredPosition: {x: 0, y: -528}
+  m_SizeDelta: {x: 1014, y: 804}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2074210143
 GameObject:
