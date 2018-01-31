@@ -8,6 +8,7 @@ public class OptionController : MonoBehaviour {
 	[SerializeField] Toggle bgmToggle;
 	[SerializeField] Toggle efxToggle;
 	[SerializeField] Toggle vibrateToggle;
+    [SerializeField] Toggle languageToggle;
 	[SerializeField] Sprite on;
 	[SerializeField] Sprite off;
 
