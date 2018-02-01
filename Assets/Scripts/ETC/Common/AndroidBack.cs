@@ -7,6 +7,7 @@ public class AndroidBack : MonoBehaviour {
 	}
 
 	void OnDisable() {
+		if(!GameManager.Instance) return;
 		GameManager.Instance.releaseQuitModal();
 		SoundManager.Instance.Play(SoundManager.SoundType.EFX, "gameSelBtn");
 	}

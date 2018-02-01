@@ -3,6 +3,7 @@
 public class AndroidBackOverride : AndroidBack {
 	public GameObject beforeModal;
 	void OnDisable() {
+		if(!GameManager.Instance) return;
 		if(!beforeModal.activeSelf) {
 			GameManager.Instance.releaseQuitModal();
 			return;
