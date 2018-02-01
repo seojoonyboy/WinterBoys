@@ -178,7 +178,7 @@ public class ResultModalController : MonoBehaviour {
     private void postRecordCallback(HTTPResponse callback, SportType type) {
         string statusCode = callback.StatusCode.ToString();
         char[] characters = statusCode.ToCharArray();
-        if(characters[0] == '4' || characters[1] == '5') {
+        if(characters[0] == '4' || characters[0] == '5') {
             if(postReqNum > 2) {
                 networkErrorMsg.SetActive(true);
                 postReqNum = 0;
