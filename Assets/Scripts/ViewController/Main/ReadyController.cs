@@ -87,7 +87,6 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void setButton() {
-        setButtonColor();
         speed.levelUp.onClick.AddListener(levelUpSpeed);
 		control.levelUp.onClick.AddListener(levelUpControl);
 		checkButton();
@@ -151,6 +150,7 @@ public class ReadyController : MonoBehaviour {
 		setGrade(control.grade, controlPercent);
 
 		topLabel.setData();
+		setButtonColor();
     }
 
 	private void setGrade(Image grade, float num) {
@@ -167,7 +167,6 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpSpeed() {
-        setButtonColor();
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "statChange");
         if (saveManager.levelUpSpeed()) {
 			Debug.Log(sport+" level up!!");
@@ -179,7 +178,6 @@ public class ReadyController : MonoBehaviour {
 	}
 
 	private void levelUpControl() {
-        setButtonColor();
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "statChange");
         if (saveManager.levelUpControl()) {
 			//Debug.Log(sport+"level up!!");
@@ -239,14 +237,15 @@ public class ReadyController : MonoBehaviour {
 	}
 
     private void setButtonColor() {
-        if (saveManager.levelUpSpeed()) {
+		int point = saveManager.getPointLeft();
+        if (saveManager.getSpeedPointNeed() - point < 0) {
             speed.levelUp.GetComponent<Image>().color = positiveButtonColor;
         }
         else {
             speed.levelUp.GetComponent<Image>().color = negativeButtonColor;
         }
 
-        if (saveManager.levelUpControl()) {
+        if (saveManager.getControlPointNeed() - point < 0) {
             control.levelUp.GetComponent<Image>().color = positiveButtonColor;
         }
         else {

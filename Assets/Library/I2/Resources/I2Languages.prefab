@@ -614,7 +614,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uC0C1\uC810"
-    - shop
+    - SHOP
     - 
     Languages_Touch:
     - 
@@ -625,8 +625,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCE90\uB9AD\uD130"
-    - player
+    - "\uC120\uC218"
+    - PLAYER
     - 
     Languages_Touch:
     - 
@@ -638,7 +638,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uB7AD\uD0B9"
-    - ranking
+    - RANKING
     - 
     Languages_Touch:
     - 
@@ -710,7 +710,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uC0C1\uC810"
-    - shop
+    - SHOP
     - 
     Languages_Touch:
     - 
@@ -795,7 +795,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uC120\uC218"
-    - player
+    - PLAYER
     - 
     Languages_Touch:
     - 

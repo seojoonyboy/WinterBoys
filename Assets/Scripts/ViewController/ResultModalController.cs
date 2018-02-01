@@ -146,7 +146,7 @@ public class ResultModalController : MonoBehaviour {
 	}
 
 	private void mainLoad() {
-		saveManager.addPoint(point+extraPoint);
+		saveManager.addPoint(point);
 		soundManager.Play(SoundManager.SoundType.EFX, "returnMain");
         gameManager.LoadSceneFromIngame("Main", sport);
 	}
