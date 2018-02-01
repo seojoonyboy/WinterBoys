@@ -2661,7 +2661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 428.50003, y: -82.65}
+  m_AnchoredPosition: {x: 428.5, y: -82.65}
   m_SizeDelta: {x: 121, y: 122.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161298546
@@ -3160,7 +3160,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB2E4\uC6B4\uD790"
+  m_Text: Downhill Ski
 --- !u!222 &183937603
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4350,7 +4350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0A4\uC810\uD504"
+  m_Text: ski jump
 --- !u!222 &240851793
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7875,7 +7875,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB7AD\uD0B9"
+  m_Text: ranking
 --- !u!222 &389810642
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8787,7 +8787,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uCD94\uD6C4 \uCD9C\uC2DC \uC608\uC815."
+  m_Text: Comming Soon.
 --- !u!222 &435850810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13887,6 +13887,116 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 670836539}
+--- !u!1 &674853988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 674853989}
+  - component: {fileID: 674853992}
+  - component: {fileID: 674853991}
+  - component: {fileID: 674853990}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &674853989
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674853988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 425283200}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1014, y: 208.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &674853990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674853988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: rank_nodata
+  mTermSecondary: BMJUA_TTF
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  TermPrefix: 
+  TermSuffix: 
+  LocalizeOnAwake: 1
+  Source: {fileID: 0}
+  mTarget: {fileID: 674853991}
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  IgnoreNumbersInRTL: 1
+  CorrectAlignmentForRTL: 1
+  AddSpacesToJoinedLanguages: 0
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
+  AlwaysForceLocalize: 0
+  mGUI_ShowReferences: 0
+  mGUI_ShowTems: 1
+  mGUI_ShowCallback: 0
+--- !u!114 &674853991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674853988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 6eec7ecb3dfe94761b5ec33750615d95, type: 3}
+    m_FontSize: 49
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 49
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'need to play game first
+
+    we do not have your record'
+--- !u!222 &674853992
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674853988}
 --- !u!1 &676023105
 GameObject:
   m_ObjectHideFlags: 0
@@ -15426,7 +15536,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB2E4\uC6B4\uD790"
+  m_Text: Downhill Ski
 --- !u!222 &747721665
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15603,7 +15713,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB7AD\uD0B9"
+  m_Text: ranking
 --- !u!222 &756620186
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18479,6 +18589,7 @@ RectTransform:
   m_Children:
   - {fileID: 1597794097}
   - {fileID: 1128242542}
+  - {fileID: 1552190579}
   m_Father: {fileID: 493593950}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18730,6 +18841,116 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &911798529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 911798530}
+  - component: {fileID: 911798533}
+  - component: {fileID: 911798532}
+  - component: {fileID: 911798531}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &911798530
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911798529}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_Children: []
+  m_Father: {fileID: 2074210142}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.0004734993}
+  m_SizeDelta: {x: 1014, y: 208.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &911798531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911798529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: rank_nodata
+  mTermSecondary: BMJUA_TTF
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  TermPrefix: 
+  TermSuffix: 
+  LocalizeOnAwake: 1
+  Source: {fileID: 0}
+  mTarget: {fileID: 911798532}
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  IgnoreNumbersInRTL: 1
+  CorrectAlignmentForRTL: 1
+  AddSpacesToJoinedLanguages: 0
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
+  AlwaysForceLocalize: 0
+  mGUI_ShowReferences: 0
+  mGUI_ShowTems: 1
+  mGUI_ShowCallback: 0
+--- !u!114 &911798532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911798529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 6eec7ecb3dfe94761b5ec33750615d95, type: 3}
+    m_FontSize: 49
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 49
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'need to play game first
+
+    we do not have record'
+--- !u!222 &911798533
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911798529}
 --- !u!1 &914262571
 GameObject:
   m_ObjectHideFlags: 0
@@ -22791,8 +23012,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 729}
-  m_SizeDelta: {x: 331, y: 331}
+  m_AnchoredPosition: {x: 0, y: 653}
+  m_SizeDelta: {x: 271.4, y: 271.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128242543
 MonoBehaviour:
@@ -29041,7 +29262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uCE90\uB9AD\uD130"
+  m_Text: player
 --- !u!222 &1370084809
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29127,7 +29348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 428.50003, y: -82.65}
+  m_AnchoredPosition: {x: 428.5, y: -82.65}
   m_SizeDelta: {x: 121, y: 122.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390403421
@@ -29647,12 +29868,12 @@ Prefab:
     - target: {fileID: 114773249400770958, guid: e356a4a7c31dc694aa61f9aec4510271,
         type: 2}
       propertyPath: m_Text
-      value: "\uAC70\uB9AC \uC21C\uC704"
+      value: Distance Rank
       objectReference: {fileID: 0}
     - target: {fileID: 114877991798047230, guid: e356a4a7c31dc694aa61f9aec4510271,
         type: 2}
       propertyPath: m_Text
-      value: "\uD3EC\uC778\uD2B8 \uC21C\uC704"
+      value: Point Rank
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e356a4a7c31dc694aa61f9aec4510271, type: 2}
@@ -33109,6 +33330,73 @@ MonoBehaviour:
   mGUI_ShowReferences: 0
   mGUI_ShowTems: 1
   mGUI_ShowCallback: 0
+--- !u!1 &1552190578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1552190579}
+  - component: {fileID: 1552190581}
+  - component: {fileID: 1552190580}
+  m_Layer: 5
+  m_Name: RawImage (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1552190579
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552190578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 894270874}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -698}
+  m_SizeDelta: {x: 649.9, y: 138.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1552190580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552190578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 2800000, guid: b6f472e664b0c4364ad07b8bf612d144, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1552190581
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552190578}
 --- !u!1 &1555379914
 GameObject:
   m_ObjectHideFlags: 0
@@ -33707,8 +33995,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 47}
+  m_SizeDelta: {x: 0, y: -0.00012207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1597794098
 MonoBehaviour:
@@ -33731,20 +34019,20 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6eec7ecb3dfe94761b5ec33750615d95, type: 3}
-    m_FontSize: 80
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 6
     m_MaxSize: 83
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\nOne for All, All for Fun!!\n\nProgrammer\n\uC11C\uC900\uC6D0(Seo Joonwon)\n\uC774\uC885\uC6B1(Lee
-    Jong Wouk)\n\nDesigner\n\uCD5C\uC131\uD601(Choi Sunghyuck)\n\nDirector\n\uD669\uC740\uC0C1(Hwang
-    Eunsang)\n\nThanks to Play!"
+  m_Text: "\n\n\n\n\n\n\n\n\n\nOne for All, All for Fun!!\n\nProgrammer\n\uC11C\uC900\uC6D0(Seo
+    Joonwon)\n\uC774\uC885\uC6B1(Lee Jong Wouk)\n\nDesigner\n\uCD5C\uC131\uD601(Choi
+    Sunghyuck)\n\nDirector\n\uD669\uC740\uC0C1(Hwang Eunsang)\n\n\n\uC81C\uC791 \uC9C0\uC6D0"
 --- !u!222 &1597794099
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34499,7 +34787,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD0A4\uC810\uD504"
+  m_Text: ski jump
 --- !u!222 &1635701232
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35780,7 +36068,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAC01 \uAC8C\uC784\uB9C8\uB2E4 \uC790\uC2E0\uC758 \uC21C\uC704\uB97C \uD655\uC778\uD574\uBCF4\uC138\uC694!"
+  m_Text: Check out your rank each game!
 --- !u!222 &1689642578
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36413,7 +36701,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC900\uBE44\uC911.."
+  m_Text: comming soon..
 --- !u!222 &1724122875
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38196,7 +38484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC0C1\uC810"
+  m_Text: shop
 --- !u!222 &1841513300
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42541,6 +42829,7 @@ RectTransform:
   - {fileID: 2074210168}
   - {fileID: 2074210167}
   - {fileID: 1802077565}
+  - {fileID: 911798530}
   m_Father: {fileID: 1783410140}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

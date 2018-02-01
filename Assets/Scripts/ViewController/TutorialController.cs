@@ -24,11 +24,13 @@ public class TutorialController : MonoBehaviour {
     public void init() {
         switch (type) {
             case GameManager.tutorialEnum.DOWNHLL:
+                gameObject.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1080f, 1920f);
                 background.sprite = backgrounds[0];
                 dh_paragraph[0].SetActive(true);
                 Screen.orientation = ScreenOrientation.Portrait;
                 break;
             case GameManager.tutorialEnum.SKIJUMP:
+                gameObject.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1920f, 1080f);
                 background.sprite = backgrounds[1];
                 sj_paragraph[0].SetActive(true);
                 Screen.orientation = ScreenOrientation.Landscape;

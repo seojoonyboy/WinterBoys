@@ -578,7 +578,7 @@ MonoBehaviour:
     Description: 
     Languages:
     - "\uB2E4\uC6B4\uD790"
-    - Downhill Ski
+    - downhill ski
     - 
     Languages_Touch:
     - 
@@ -794,8 +794,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCE90\uB9AD\uD130"
-    - character
+    - "\uC120\uC218"
+    - player
     - 
     Languages_Touch:
     - 
@@ -1560,8 +1560,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCE90\uB9AD\uD130 \uAD50\uCCB4"
-    - Change Character
+    - "\uC120\uC218 \uAD50\uCCB4"
+    - Change Player
     - 
     Languages_Touch:
     - 
@@ -2139,6 +2139,48 @@ MonoBehaviour:
     Languages:
     - "\uD3EC\uC778\uD2B8 2\uBC30 \uCC2C\uC2A4!"
     - to get point X 2!
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: Tutorial/ingame_time
+    TermType: 0
+    Description: 
+    Languages:
+    - "00\uCD08"
+    - 00sec
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: rank_nodata
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uBCF8\uC778\uC758 \uAE30\uB85D\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.\n\uAC8C\uC784\uC744
+      \uD50C\uB808\uC774 \uD574\uC8FC\uC138\uC694."
+    - 'need to play game first
+
+      we do not have your record'
+    - 
+    Languages_Touch:
+    - 
+    - 
+    - 
+    Flags: 000000
+  - Term: rank_error
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uC11C\uBC84\uC640\uC758 \uD1B5\uC2E0\uC911 \uC624\uB958\uAC00 \uBC1C\uC0DD\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uB7AD\uD0B9
+      \uC815\uBCF4\uB294 \uBA54\uC778\uC5D0\uC11C \uB2E4\uC2DC \uD655\uC778 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+    - 'An error occurred while communicating with the server.
+
+      ranking information is available on the main scene'
     - 
     Languages_Touch:
     - 

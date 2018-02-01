@@ -15,17 +15,34 @@ public class RankingController : MonoBehaviour {
     }
 
     private void dataReq() {
-        networkManager.getRanksByDist(ranksByDistCallback, SportType.DOWNHILL);
-        networkManager.getRanksByDist(ranksByDistCallback, SportType.SKIJUMP);
-
-        networkManager.getRanksByPoint(ranksByPointCallback, SportType.DOWNHILL);
-        networkManager.getRanksByPoint(ranksByPointCallback, SportType.SKIJUMP);
+        if(SaveManager.Instance.getRecord(SportType.DOWNHILL) != 0f) {
+            networkManager.getRanksByDist(ranksByDistCallback, SportType.DOWNHILL);
+            networkManager.getRanksByPoint(ranksByPointCallback, SportType.DOWNHILL);
+            panels[0].transform.GetChild(3).gameObject.SetActive(false);
+        } 
+        else {
+            panels[0].transform.GetChild(3).gameObject.SetActive(true);
+        }
+        if(SaveManager.Instance.getRecord(SportType.DOWNHILL) != 0f) {
+            networkManager.getRanksByDist(ranksByDistCallback, SportType.SKIJUMP);
+            networkManager.getRanksByPoint(ranksByPointCallback, SportType.SKIJUMP);
+            panels[1].transform.GetChild(3).gameObject.SetActive(false);
+        }
+        else {
+            panels[1].transform.GetChild(3).gameObject.SetActive(true);
+        }
     }
 
     private void ranksByDistCallback(HTTPResponse resp, SportType type) {
         if (!resp.IsSuccess) {
             if(resp.StatusCode == 404) {
                 Debug.LogError("네트워크 에러 발생");
+                int num;
+                if(type == SportType.DOWNHILL) num = 0;
+                else num = 1;
+                GameObject error = panels[num].transform.GetChild(3).gameObject;
+                error.SetActive(true);
+                error.GetComponent<I2.Loc.Localize>().mTerm = "rank_error";
             }
             return;
         }

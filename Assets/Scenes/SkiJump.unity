@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3205,7 +3205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 224.72, y: -60.2}
+  m_AnchoredPosition: {x: 224.71999, y: -60.2}
   m_SizeDelta: {x: 166.66, y: 50.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383242955
@@ -9874,7 +9874,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1550938194}
+  m_Material: {fileID: 1221588229}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -10514,6 +10514,13 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114928874265766280, guid: 37d7021254f1b634fb0f55e782d61097,
+        type: 2}
+      propertyPath: m_Text
+      value: 'An error occurred while communicating with the server.
+
+        ranking information is available on the main scene'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37d7021254f1b634fb0f55e782d61097, type: 2}
   m_IsPrefabParent: 0
@@ -10527,6 +10534,45 @@ GameObject:
   m_PrefabParentObject: {fileID: 1404292772695282, guid: 37d7021254f1b634fb0f55e782d61097,
     type: 2}
   m_PrefabInternal: {fileID: 1106977951}
+--- !u!114 &1106977954 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114928874265766280, guid: 37d7021254f1b634fb0f55e782d61097,
+    type: 2}
+  m_PrefabInternal: {fileID: 1106977951}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1106977955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1106977953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: rank_error
+  mTermSecondary: BMJUA_TTF
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  TermPrefix: 
+  TermSuffix: 
+  LocalizeOnAwake: 1
+  Source: {fileID: 0}
+  mTarget: {fileID: 1106977954}
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  IgnoreNumbersInRTL: 1
+  CorrectAlignmentForRTL: 1
+  AddSpacesToJoinedLanguages: 0
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
+  AlwaysForceLocalize: 0
+  mGUI_ShowReferences: 0
+  mGUI_ShowTems: 1
+  mGUI_ShowCallback: 0
 --- !u!1 &1107476347
 GameObject:
   m_ObjectHideFlags: 0
@@ -11890,6 +11936,32 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!21 &1221588229
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Smkgames/Menu/SimpleGrabPassBlur
+  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Distortion: 5
+    m_Colors:
+    - _Color: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
 --- !u!1 &1226933291
 GameObject:
   m_ObjectHideFlags: 0
@@ -14401,32 +14473,6 @@ MonoBehaviour:
   mGUI_ShowReferences: 0
   mGUI_ShowTems: 1
   mGUI_ShowCallback: 0
---- !u!21 &1550938194
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Smkgames/Menu/SimpleGrabPassBlur
-  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Distortion: 5
-    m_Colors:
-    - _Color: {r: 0.6691177, g: 0.6691177, b: 0.6691177, a: 1}
 --- !u!1001 &1552489820
 Prefab:
   m_ObjectHideFlags: 0
@@ -17122,32 +17168,6 @@ MonoBehaviour:
   mGUI_ShowReferences: 0
   mGUI_ShowTems: 1
   mGUI_ShowCallback: 0
---- !u!21 &1910975552
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Smkgames/Menu/SimpleGrabPassBlur
-  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Distortion: 5
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1922445747
 Prefab:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.71001, y: 0.000038147}
+  m_AnchoredPosition: {x: 108.71002, y: 0.000038147}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &94455407
@@ -663,6 +663,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!21 &173611441
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Smkgames/Menu/SimpleGrabPassBlur
+  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Distortion: 18
+    m_Colors:
+    - _Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
 --- !u!1 &181468544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,7 +2754,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1874035466}
+  m_Material: {fileID: 173611441}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -3220,7 +3246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 107.3, y: -0.0000076294}
+  m_AnchoredPosition: {x: 107.30002, y: -0.0000076294}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884866362
@@ -3438,7 +3464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 108.2, y: -1.2049999}
+  m_AnchoredPosition: {x: 108.20001, y: -1.2049999}
   m_SizeDelta: {x: 196.41, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948073469
@@ -5972,9 +5998,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114928874265766280, guid: 37d7021254f1b634fb0f55e782d61097,
+        type: 2}
+      propertyPath: m_Text
+      value: "\uC11C\uBC84\uC640\uC758 \uD1B5\uC2E0\uC911 \uC624\uB958\uAC00 \uBC1C\uC0DD\uD558\uC600\uC2B5\uB2C8\uB2E4.\n\uB7AD\uD0B9
+        \uC815\uBCF4\uB294 \uBA54\uC778\uC5D0\uC11C \uB2E4\uC2DC \uD655\uC778 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37d7021254f1b634fb0f55e782d61097, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1612271408 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114928874265766280, guid: 37d7021254f1b634fb0f55e782d61097,
+    type: 2}
+  m_PrefabInternal: {fileID: 1612271407}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1612347255
 GameObject:
   m_ObjectHideFlags: 0
@@ -6308,6 +6346,46 @@ Prefab:
       propertyPath: networkErrorMsg
       value: 
       objectReference: {fileID: 1972385460}
+    - target: {fileID: 114592494220505664, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114304089984860146, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: watch ads
+      objectReference: {fileID: 0}
+    - target: {fileID: 114282720981281392, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: Return
+      objectReference: {fileID: 0}
+    - target: {fileID: 114554640074449744, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: Distance Rank
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222311276570002, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: Point Rank
+      objectReference: {fileID: 0}
+    - target: {fileID: 114319182176169858, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: to get point X 2!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114490705608545452, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: Distance
+      objectReference: {fileID: 0}
+    - target: {fileID: 114112818580431876, guid: ca39e0b98bd83401e969e6156689df66,
+        type: 2}
+      propertyPath: m_Text
+      value: Point Get
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca39e0b98bd83401e969e6156689df66, type: 2}
   m_IsPrefabParent: 0
@@ -6957,32 +7035,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!21 &1874035466
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Smkgames/Menu/SimpleGrabPassBlur
-  m_Shader: {fileID: 4800000, guid: 83a256425dae224428cb03ca7dad0c71, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Distortion: 18
-    m_Colors:
-    - _Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
 --- !u!1 &1925755914
 GameObject:
   m_ObjectHideFlags: 0
@@ -7120,6 +7172,39 @@ GameObject:
   m_PrefabParentObject: {fileID: 1404292772695282, guid: 37d7021254f1b634fb0f55e782d61097,
     type: 2}
   m_PrefabInternal: {fileID: 1612271407}
+--- !u!114 &1972385461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1972385460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: rank_error
+  mTermSecondary: BMJUA_TTF
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  TermPrefix: 
+  TermSuffix: 
+  LocalizeOnAwake: 1
+  Source: {fileID: 0}
+  mTarget: {fileID: 1612271408}
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  IgnoreNumbersInRTL: 1
+  CorrectAlignmentForRTL: 1
+  AddSpacesToJoinedLanguages: 0
+  TranslatedObjects: []
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
+  AlwaysForceLocalize: 0
+  mGUI_ShowReferences: 0
+  mGUI_ShowTems: 1
+  mGUI_ShowCallback: 0
 --- !u!1 &2015306668
 GameObject:
   m_ObjectHideFlags: 0
