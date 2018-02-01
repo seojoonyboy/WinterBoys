@@ -45,8 +45,6 @@ public class ResultModalController : MonoBehaviour {
         distArrow,
         pointArrow,
         networkErrorMsg;
-
-    private int postReqNum;
     private void setManager() {
 		saveManager = SaveManager.Instance;
 		gameManager = GameManager.Instance;
@@ -178,14 +176,14 @@ public class ResultModalController : MonoBehaviour {
     private void postRecordCallback(HTTPResponse callback, SportType type) {
         string statusCode = callback.StatusCode.ToString();
         char[] characters = statusCode.ToCharArray();
-        if(characters[0] == '4' || characters[0] == '5') {
-            if(postReqNum > 2) {
-                networkErrorMsg.SetActive(true);
-                postReqNum = 0;
-                return;
-            }
-            networkManager.postRecord(postRecordCallback, sport, (int)distance, point);
-            postReqNum++;
+        if(characters[0] == '5') {
+            networkErrorMsg.SetActive(true);
+            networkErrorMsg.GetComponent<Text>().text = "서버와의 통신중 오류가 발생하였습니다.";
+            return;
+        }
+        else if(characters[0] == '4') {
+            networkErrorMsg.SetActive(true);
+            networkErrorMsg.GetComponent<Text>().text = "알수없는 오류가 발생하였습니다.";
             return;
         }
         DataSet dataSet = DataSet.fromJSON(callback.DataAsText);
