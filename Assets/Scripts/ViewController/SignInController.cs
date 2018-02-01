@@ -42,7 +42,7 @@ public class SignInController : MonoBehaviour {
     }
 
     public void signIn() {
-        if (PlayerPrefs.GetInt("character", -1) == -1) {
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString("nickname"))) {
             signUp();
         }
         else {
