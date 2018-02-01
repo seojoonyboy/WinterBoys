@@ -595,7 +595,7 @@ public class Ski_PlayerController : MonoBehaviour {
                 break;
 
             case ItemType.DH.POINT:
-                dM.scoreInc(50);
+                dM.scoreInc(10);
 
                 fontEffectComp.isNegative = false;
                 fontEffectComp.text = translate("Effect/dh_gold");

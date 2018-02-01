@@ -486,7 +486,7 @@ public class SkiJumpPlayerController : MonoBehaviour {
                     soundManager.Play(SoundManager.SoundType.EFX, "item_bad");
                     break;
                 case ItemType.SJ.POINT:
-                    sm.bonusScore += 50;
+                    sm.bonusScore += 10;
 
                     fontComp.text = translate("Effect/sj_gold");
                     fontComp.isNegative = false;

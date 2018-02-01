@@ -1258,7 +1258,7 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uCD94\uAC00 \uD3EC\uC778\uD2B8 \uD68D\uB4DD"
+    - "\uCD94\uAC00 \uD3EC\uC778\uD2B8 10 \uD68D\uB4DD"
     - point +10
     - 
     Languages_Touch:
@@ -1909,8 +1909,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uACE8\uB4DC +50"
-    - gold + 50
+    - "\uD3EC\uC778\uD2B8+10"
+    - point + 10
     - 
     Languages_Touch:
     - 
@@ -2017,8 +2017,8 @@ MonoBehaviour:
     TermType: 0
     Description: 
     Languages:
-    - "\uACE8\uB4DC +50"
-    - gold + 50
+    - "\uD3EC\uC778\uD2B8+10"
+    - point + 10
     - 
     Languages_Touch:
     - 
