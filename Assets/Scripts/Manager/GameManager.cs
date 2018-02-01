@@ -121,12 +121,13 @@ public class GameManager : Singleton<GameManager> {
         SceneManager.LoadScene(sceneName);
     }
 
-    #if UNITY_ANDROID || UNITY_EDITOR
 	void Update() {
+        #if UNITY_ANDROID || UNITY_EDITOR
 		if(Input.GetKeyDown(KeyCode.Escape)) {
 			if(modal) modal.SetActive(false);
 			else exitModal.SetActive(true);
 		}
+        #endif
         Scene scene = SceneManager.GetActiveScene();
         if(scene.name == "DownHill" || scene.name == "SkiJump" || scene.name == "Skeleton") {
             return;
@@ -148,7 +149,6 @@ public class GameManager : Singleton<GameManager> {
             
         }
 	}
-#endif
 	public void gameOff() {
 		Application.Quit();
 	}
