@@ -73,6 +73,7 @@ public class SignInController : MonoBehaviour {
         TrackEntry track = chara.AnimationState.SetAnimation(0, "approval", false);
         Invoke("changeScene", track.AnimationEnd + 0.5f);
         Invoke("submitSound", track.AnimationEnd - 0.8f);
+        gameObject.GetComponentInChildren<CharSelect>().selected();
 
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "registBtn");
     }
