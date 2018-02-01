@@ -43,8 +43,10 @@ public class ResultModalController : MonoBehaviour {
 
     public GameObject 
         distArrow,
-        pointArrow;
+        pointArrow,
+        networkErrorMsg;
 
+    private int postReqNum;
     private void setManager() {
 		saveManager = SaveManager.Instance;
 		gameManager = GameManager.Instance;
@@ -174,13 +176,20 @@ public class ResultModalController : MonoBehaviour {
     }
 
     private void postRecordCallback(HTTPResponse callback, SportType type) {
-        if(callback.StatusCode == 500) {
+        string statusCode = callback.StatusCode.ToString();
+        char[] characters = statusCode.ToCharArray();
+        if(characters[0] == '4' || characters[1] == '5') {
+            if(postReqNum > 2) {
+                networkErrorMsg.SetActive(true);
+                postReqNum = 0;
+                return;
+            }
             networkManager.postRecord(postRecordCallback, sport, (int)distance, point);
+            postReqNum++;
+            return;
         }
-        else {
-            DataSet dataSet = DataSet.fromJSON(callback.DataAsText);
-            setResultRaw(dataSet);
-        }
+        DataSet dataSet = DataSet.fromJSON(callback.DataAsText);
+        setResultRaw(dataSet);
     }
 
     private void setResultRaw(DataSet dataSet) {
@@ -323,6 +332,10 @@ public class ResultModalController : MonoBehaviour {
         foreach(Transform raw in parent) {
             Destroy(raw.gameObject);
         }
+    }
+
+    private void OnDisable() {
+        networkErrorMsg.SetActive(false);
     }
 
     [System.Serializable]
