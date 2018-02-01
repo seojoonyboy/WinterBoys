@@ -176,14 +176,15 @@ public class ResultModalController : MonoBehaviour {
     private void postRecordCallback(HTTPResponse callback, SportType type) {
         string statusCode = callback.StatusCode.ToString();
         char[] characters = statusCode.ToCharArray();
-        if(characters[0] == '5') {
+        
+        if (characters[0] == '5') {
             networkErrorMsg.SetActive(true);
-            networkErrorMsg.GetComponent<Text>().text = "서버와의 통신중 오류가 발생하였습니다.";
+            networkErrorMsg.GetComponent<I2.Loc.Localize>().mTerm = "server_comm_errror";
             return;
         }
         else if(characters[0] == '4') {
             networkErrorMsg.SetActive(true);
-            networkErrorMsg.GetComponent<Text>().text = "알수없는 오류가 발생하였습니다.";
+            networkErrorMsg.GetComponent<I2.Loc.Localize>().mTerm = "rank_error";
             return;
         }
         DataSet dataSet = DataSet.fromJSON(callback.DataAsText);

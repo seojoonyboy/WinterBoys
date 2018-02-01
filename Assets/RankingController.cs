@@ -36,13 +36,12 @@ public class RankingController : MonoBehaviour {
     private void ranksByDistCallback(HTTPResponse resp, SportType type) {
         if (!resp.IsSuccess) {
             if(resp.StatusCode == 404) {
-                Debug.LogError("네트워크 에러 발생");
                 int num;
                 if(type == SportType.DOWNHILL) num = 0;
                 else num = 1;
                 GameObject error = panels[num].transform.GetChild(3).gameObject;
                 error.SetActive(true);
-                error.GetComponent<I2.Loc.Localize>().mTerm = "rank_error";
+                error.GetComponent<I2.Loc.Localize>().mTerm = "rank_nodata";
             }
             return;
         }
