@@ -42,6 +42,7 @@ public class SignInController : MonoBehaviour {
     }
 
     public void signIn() {
+        Debug.Log("!!!");
         if (string.IsNullOrEmpty(PlayerPrefs.GetString("nickname"))) {
             signUp();
         }
