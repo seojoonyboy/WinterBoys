@@ -31,4 +31,9 @@ public class CharSelect : MonoBehaviour {
         charStat.setData(charSprites[charIndex], cm.getName(charIndex), cm.getSpeed(charIndex), cm.getControl(charIndex));
         SoundManager.Instance.Play(SoundManager.SoundType.EFX, "charChangeBtn");
     }
+
+    public void selected() {
+        beforeBtn.onClick.RemoveAllListeners();
+        nextBtn.onClick.RemoveAllListeners();
+    }
 }
