@@ -13,6 +13,7 @@ public class SignInController : MonoBehaviour {
     public Text msg;
     public Text nickName;
     public SkeletonGraphic chara;
+    public GameObject noNickNameModal;
 
     private void Start() {
         gm = GameManager.Instance;
@@ -61,7 +62,10 @@ public class SignInController : MonoBehaviour {
 
     //최종 회원가입 버튼 처리
     public void submit() {
-        if(string.IsNullOrEmpty(nickName.text)) return;
+        if (string.IsNullOrEmpty(nickName.text)) {
+            noNickNameModal.SetActive(true);
+            return;
+        }
         int character = CharacterManager.Instance.currentCharacter;
         PlayerPrefs.SetString("nickname", nickName.text);
         PlayerPrefs.SetInt("character", character);

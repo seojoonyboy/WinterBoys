@@ -2187,6 +2187,18 @@ MonoBehaviour:
     - 
     - 
     Flags: 000000
+  - Term: nickname
+    TermType: 0
+    Description: 
+    Languages:
+    - "\uB2C9\uB124\uC784\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694."
+    - 
+    - 
+    Languages_Touch:
+    - 
+    - Type your nickname
+    - 
+    Flags: 000000
   mLanguages:
   - Name: Korean
     Code: ko
