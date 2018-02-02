@@ -23,7 +23,7 @@ public class RankingController : MonoBehaviour {
         else {
             panels[0].transform.GetChild(3).gameObject.SetActive(true);
         }
-        if(SaveManager.Instance.getRecord(SportType.DOWNHILL) != 0f) {
+        if(SaveManager.Instance.getRecord(SportType.SKIJUMP) != 0f) {
             networkManager.getRanksByDist(ranksByDistCallback, SportType.SKIJUMP);
             networkManager.getRanksByPoint(ranksByPointCallback, SportType.SKIJUMP);
             panels[1].transform.GetChild(3).gameObject.SetActive(false);
