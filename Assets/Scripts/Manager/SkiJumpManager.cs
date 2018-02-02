@@ -284,6 +284,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     }
 
     private void _OffZooming(SkiJump_ArrowRotEndEvent e) {
+        isGameStart = true;
         Time.timeScale = 1.0f;
 
         jumpButton.SetActive(false);
