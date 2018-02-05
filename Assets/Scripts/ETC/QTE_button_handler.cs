@@ -20,7 +20,8 @@ public class QTE_button_handler : MonoBehaviour {
         blur,
         QTEResults,
         successObj,
-        failObj;
+        failObj,
+        realButton;
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -39,6 +40,7 @@ public class QTE_button_handler : MonoBehaviour {
     }
 
     public void OnClick() {
+        realButton.GetComponent<Button>().enabled = false;
         StartCoroutine(nextQTE());
 
         AnimatorStateInfo animState = animator.GetCurrentAnimatorStateInfo(0);
@@ -99,6 +101,7 @@ public class QTE_button_handler : MonoBehaviour {
     private IEnumerator nextQTE() {
         yield return sm.WaitForRealSeconds(1.0f);
 
+        realButton.GetComponent<Button>().enabled = true;
         qteCnt++;
 
         float randX = Random.Range(-630, 630);
