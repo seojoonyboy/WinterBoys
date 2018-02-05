@@ -213,7 +213,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
             charRb.velocity = new Vector2(charRb.velocity.x * 0.995f, charRb.velocity.y * 0.995f);
             slideLimitTime -= Time.deltaTime;
 
-            if (charRb.velocity.x <= 1 || slideLimitTime < 0) {
+            if (charRb.velocity.x <= 0.1 || slideLimitTime < 0) {
                 gameOver();
                 slideLimitTime = 3.0f;
                 isEndQTE = false;
