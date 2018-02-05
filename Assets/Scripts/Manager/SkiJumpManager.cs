@@ -80,6 +80,7 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
     private SoundManager soundManager;
     private float lastTimeIncInterval = 1000;
     private float nextMeterSignInterval = 500;  //미터 표시 간격
+    private float slideLimitTime = 3.0f;
 
     public IEnumerator WaitForRealSeconds(float time) {
         float start = Time.realtimeSinceStartup;
@@ -210,10 +211,15 @@ public class SkiJumpManager : Singleton<SkiJumpManager> {
 
         if (isEndQTE) {
             charRb.velocity = new Vector2(charRb.velocity.x * 0.995f, charRb.velocity.y * 0.995f);
-            if (charRb.velocity.x <= 0) {
+            slideLimitTime -= Time.deltaTime;
+
+            if (charRb.velocity.x <= 1 || slideLimitTime < 0) {
                 gameOver();
+                slideLimitTime = 3.0f;
+                isEndQTE = false;
             }
         }
+
         double value = System.Math.Round(charRb.transform.position.y * 3f);
         height.text = value + " M";
         heightSlider.value = (float)value;
