@@ -12,7 +12,6 @@ public class BoardManager : MonoBehaviour {
 
     private GameManager gm;
     public GameObject[] Tiles;
-    public Sprite[] treeImages;
     public GameObject 
         flagPref,
         treePref;
