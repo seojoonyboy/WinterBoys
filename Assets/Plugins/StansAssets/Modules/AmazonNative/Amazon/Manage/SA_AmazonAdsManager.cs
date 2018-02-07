@@ -201,7 +201,7 @@ public class SA_AmazonAdsManager: AMN_Singleton<SA_AmazonAdsManager> {
 	//--------------------------------------
 	
 	private void OnInterstitialsLoaded (string adProperties) {
-		SA_AmazonAdsExample.isInterstitialLoaded = true;
+		//SA_AmazonAdsExample.isInterstitialLoaded = true;
 
 		string[] storeData = adProperties.Split(DATA_SPLITTER [0]);
 		
@@ -210,7 +210,7 @@ public class SA_AmazonAdsManager: AMN_Singleton<SA_AmazonAdsManager> {
 	}
 	
 	private void OnInterstitialsFailed (string error_message ) {
-		SA_AmazonAdsExample.isInterstitialLoaded = false;
+		//SA_AmazonAdsExample.isInterstitialLoaded = false;
 
 		Debug.Log("OnInterstitialsFailed with error " + error_message);
 
@@ -219,7 +219,7 @@ public class SA_AmazonAdsManager: AMN_Singleton<SA_AmazonAdsManager> {
 	}
 	
 	private void OnInterstitialsDismissed (string warning_message) {
-		SA_AmazonAdsExample.isInterstitialLoaded = false;
+		//SA_AmazonAdsExample.isInterstitialLoaded = false;
 
 		Debug.Log("OnInterstitialsDismissed warning " + warning_message);
 
