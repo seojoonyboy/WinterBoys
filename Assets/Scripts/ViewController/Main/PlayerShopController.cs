@@ -29,7 +29,6 @@ public class PlayerShopController : MonoBehaviour {
 	}
 
 	private void Start() {
-		charNum = cm.currentCharacter;
 		setButton();
 		if(GameManager.Instance.isTutorial(GameManager.tutorialEnum.CHARACTER)) return;
         tutorialModal.SetActive(true);
@@ -37,6 +36,7 @@ public class PlayerShopController : MonoBehaviour {
 	}
 
 	private void OnEnable() {
+		charNum = cm.currentCharacter;
 		setCharData();
 	}
 
